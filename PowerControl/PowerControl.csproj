@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC7656F3-D83B-44B6-9097-556BE7FE6876}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PowerControl</RootNamespace>
+    <AssemblyName>PowerControl</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\PowerControl.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Design\DesignerUtil.cs" />
+    <Compile Include="Design\FixedSizeDesigner.cs" />
+    <Compile Include="IPTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IPTextBox.Designer.cs">
+      <DependentUpon>IPTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingLayer.cs" />
+    <Compile Include="XButton\DropDownButtonItemCollection.cs" />
+    <Compile Include="XButton\DropDownButtonItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XButton\DropDownButtonItemCollectionChangedEventArgs.cs" />
+    <Compile Include="LoadingCircle\Dot.cs" />
+    <Compile Include="LoadingCircle\LoadingCircle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LoadingCircle\LoadingCircle.designer.cs">
+      <DependentUpon>LoadingCircle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NativeConstants.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="NativeStructures.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Design\TypeEventsTab.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="XButton\XButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XButton\XButton.Designer.cs">
+      <DependentUpon>XButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XButton\XButtonDisplayStyle.cs" />
+    <Compile Include="XForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XForm.Designer.cs">
+      <DependentUpon>XForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XMessageBox.Designer.cs">
+      <DependentUpon>XMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XProgressBar.Designer.cs">
+      <DependentUpon>XProgressBar.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LoadingCircle\LoadingCircle.resx">
+      <DependentUpon>LoadingCircle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XForm.resx">
+      <DependentUpon>XForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XMessageBox.resx">
+      <DependentUpon>XMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconEvent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnClose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnMinimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnMaximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnNormal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LoadingCircle\LoadingCircleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnMaximizeDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnNormalDisabled.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
