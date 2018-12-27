@@ -118,8 +118,9 @@ namespace PowerControl
         /// <inheritdoc />
         public void Dispose()
         {
-            _form?.Dispose();
             _circle?.Dispose();
+            _progressBar?.Dispose();
+            _form?.Dispose();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -968,6 +969,8 @@ namespace PowerControl
         /// <returns>返回文字起始x坐标</returns>
         private float DrawText(Graphics g)
         {
+            g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+
             SizeF szShortcut = default(SizeF),
                 szParentheses = default(SizeF);
 

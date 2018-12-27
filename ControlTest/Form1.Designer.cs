@@ -32,6 +32,7 @@
             this.xButton2 = new PowerControl.XButton();
             this.ddi2 = new PowerControl.DropDownButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.xButton7 = new PowerControl.XButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.loadingCircle2 = new PowerControl.LoadingCircle();
             this.loadingCircle1 = new PowerControl.LoadingCircle();
@@ -95,6 +96,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.xButton7);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.loadingCircle2);
             this.panel1.Controls.Add(this.loadingCircle1);
@@ -112,6 +114,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(871, 807);
             this.panel1.TabIndex = 7;
+            // 
+            // xButton7
+            // 
+            this.xButton7.BorderColor = System.Drawing.Color.White;
+            this.xButton7.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.xButton7.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
+            this.xButton7.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
+            this.xButton7.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
+            this.xButton7.ForeColor = System.Drawing.Color.White;
+            this.xButton7.Image = null;
+            this.xButton7.Location = new System.Drawing.Point(251, 462);
+            this.xButton7.Name = "xButton7";
+            this.xButton7.Size = new System.Drawing.Size(75, 40);
+            this.xButton7.StartColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
+            this.xButton7.TabIndex = 14;
+            this.xButton7.Text = "查询";
             // 
             // textBox1
             // 
@@ -350,5 +368,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件OToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private PowerControl.XButton xButton7;
     }
 }
