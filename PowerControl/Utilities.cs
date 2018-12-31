@@ -110,5 +110,35 @@ namespace PowerControl
 
             return new PointF(x, y);
         }
+
+        /// <summary>
+        /// 确保值不越界
+        /// </summary>
+        /// <param name="raw">原值</param>
+        /// <param name="lo">最低</param>
+        /// <param name="hi">最高</param>
+        /// <returns></returns>
+        public static int CoerceValue(int raw, int lo, int hi)
+        {
+            if (raw <= lo) return lo;
+            if (raw >= hi) return hi;
+            return raw;
+        }
+
+        /// <summary>
+        /// 按指定大小缩放一个位图
+        /// </summary>
+        /// <param name="bmpOrigin">原始位图</param>
+        /// <param name="size">大小</param>
+        /// <returns></returns>
+        public static Bitmap StretchBitmap(Bitmap bmpOrigin,Size size)
+        {
+            Bitmap bmpResult = new Bitmap(size.Width, size.Height);
+
+            using (Graphics g = Graphics.FromImage(bmpResult))
+                g.DrawImage(bmpOrigin, new Rectangle(Point.Empty, size));
+
+            return bmpResult;
+        }
     }
 }

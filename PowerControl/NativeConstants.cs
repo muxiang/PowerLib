@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PowerControl
+﻿namespace PowerControl
 {
     class NativeConstants
     {
+        public const int WM_PAINT = 0x000F;
+        public const int WM_ERASEBKGND = 0x0014;
+        public const int WM_PRINTCLIENT = 0x0318;
+
         public const int WM_NCACTIVATE = 0x86;
         public const int WM_NCPAINT = 0x85;
         public const int WM_NCLBUTTONDOWN = 0xA1;

@@ -22,6 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\PowerControl.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +55,10 @@
       <DependentUpon>IPTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingLayer.cs" />
+    <Compile Include="RipplePictureBox\RippleEffect.cs" />
+    <Compile Include="RipplePictureBox\RipplePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="XButton\DropDownButtonItemCollection.cs" />
     <Compile Include="XButton\DropDownButtonItem.cs">
       <SubType>Component</SubType>
@@ -143,5 +148,6 @@
   <ItemGroup>
     <None Include="Resources\btnNormalDisabled.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

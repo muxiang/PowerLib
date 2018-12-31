@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
+
 using static PowerControl.NativeStructures;
 
 namespace PowerControl
@@ -21,5 +19,11 @@ namespace PowerControl
 
         [DllImport("user32.dll", EntryPoint = "GetCaretBlinkTime")]
         public static extern int GetCaretBlinkTime();
+        
+        [DllImport("user32.dll")]
+        public static extern IntPtr BeginPaint(IntPtr hWnd, ref PAINTSTRUCT paintStruct);
+
+        [DllImport("user32.dll")]
+        public static extern bool EndPaint(IntPtr hWnd, ref PAINTSTRUCT paintStruct);
     }
 }
