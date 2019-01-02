@@ -60,6 +60,8 @@ namespace PowerControl
         {
             InitializeComponent();
 
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+
             BackColor = Color.White;
             ForeColor = Color.FromArgb(12, 70, 222);
 

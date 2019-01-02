@@ -1004,7 +1004,7 @@ namespace PowerControl
                 g.DrawString(_shortcut.ToString(), _shortcutFont, _textBrush,
                     new PointF(drawPt.X + szText.Width + szParentheses.Width / 2F, drawPt.Y), StringFormat.GenericTypographic);
             }
-
+            
             return drawPt.X;
         }
 
