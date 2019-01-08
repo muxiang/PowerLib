@@ -17,6 +17,11 @@ namespace PowerControl
     [ToolboxItem(false)]
     public partial class XForm : Form
     {
+        /// <summary>
+        /// 指定一个值，将覆盖当前AppDomain下所有XForm的图标
+        /// </summary>
+        public static Icon OverrideIcon { get; set; }
+
         #region 构造器
 
         /// <summary>
@@ -411,6 +416,14 @@ namespace PowerControl
         }
 
         #region 重写
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            if (OverrideIcon != null)
+                Icon = OverrideIcon;
+        }
 
         /// <summary>
         /// 背景色变更时发生

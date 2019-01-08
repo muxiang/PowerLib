@@ -22,7 +22,7 @@ namespace PowerControl
 
         private Brush _brsBack;
         private Pen _penFore;
-
+        
         public int Min
         {
             get => _min;
@@ -104,7 +104,7 @@ namespace PowerControl
                 Brush brs = new LinearGradientBrush(new PointF(0, Height / 2F),
                     new PointF((float)drawWidth, Height / 2F),
                     ForeColor, Utilities.GetLighterColor(ForeColor, 60));
-
+                
                 pe.Graphics.FillRectangle(brs, 0, 0, (float)drawWidth, Height);
             }
 
