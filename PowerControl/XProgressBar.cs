@@ -22,7 +22,7 @@ namespace PowerControl
 
         private Brush _brsBack;
         private Pen _penFore;
-        
+
         public int Min
         {
             get => _min;
@@ -53,6 +53,9 @@ namespace PowerControl
             }
         }
 
+        [DefaultValue(false)]
+        public bool TextOutLine { get; set; } = false;
+
         /// <summary>
         /// 初始化进度条的实例
         /// </summary>
@@ -62,8 +65,8 @@ namespace PowerControl
 
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
-            BackColor = Color.White;
-            ForeColor = Color.FromArgb(12, 70, 222);
+            BackColor = Color.FromArgb(0x3C, 0x3C, 0x3C);
+            ForeColor = Color.FromArgb(0, 0x6E, 0xDE);
 
             Font = new Font("微软雅黑", 10, FontStyle.Bold);
         }
@@ -103,25 +106,35 @@ namespace PowerControl
             {
                 Brush brs = new LinearGradientBrush(new PointF(0, Height / 2F),
                     new PointF((float)drawWidth, Height / 2F),
-                    ForeColor, Utilities.GetLighterColor(ForeColor, 60));
-                
+                    Utilities.GetLighterColor(ForeColor, 60), ForeColor);
+
                 pe.Graphics.FillRectangle(brs, 0, 0, (float)drawWidth, Height);
             }
 
-            using (GraphicsPath path = new GraphicsPath())
-            {
-                string text = $"{Text}   {Math.Round(percentage, 2)}%";
-                SizeF szText = pe.Graphics.MeasureString(text, Font, Size, StringFormat.GenericTypographic);
+            string text = $"{Text}   {Math.Round(percentage, 2)}%";
+            SizeF szText = pe.Graphics.MeasureString(text, Font, Size, StringFormat.GenericTypographic);
 
-                path.AddString(text,
-                    Font.FontFamily,
-                    (int)Font.Style,
-                    Font.SizeInPoints / 72 * pe.Graphics.DpiX,
+            if (TextOutLine)
+            {
+                using (GraphicsPath path = new GraphicsPath())
+                {
+                    path.AddString(text,
+                        Font.FontFamily,
+                        (int)Font.Style,
+                        Font.SizeInPoints / 72 * pe.Graphics.DpiX,
+                        new PointF(Width / 2F - szText.Width / 2F, Height / 2F - szText.Height / 2F),
+                        StringFormat.GenericTypographic);
+
+                    pe.Graphics.FillPath(_brsBack, path);
+                    pe.Graphics.DrawPath(_penFore, path);
+                }
+            }
+            else
+            {
+                pe.Graphics.DrawString(Text, Font,
+                    Brushes.White,
                     new PointF(Width / 2F - szText.Width / 2F, Height / 2F - szText.Height / 2F),
                     StringFormat.GenericTypographic);
-
-                pe.Graphics.FillPath(_brsBack, path);
-                pe.Graphics.DrawPath(_penFore, path);
             }
 
             base.OnPaint(pe);

@@ -208,7 +208,7 @@ namespace PowerControl
                 int closeBtnPosX = info.CaptionRect.Left + info.CaptionRect.Width - info.BorderSize.Width - info.CaptionButtonSize.Width;
                 int maxBtnPosX = closeBtnPosX - info.CaptionButtonSize.Width;
                 int minBtnPosX = maxBtnPosX - info.CaptionButtonSize.Width;
-                int btnPosY = info.BorderSize.Height + (info.CaptionHeight - info.CaptionButtonSize.Height) / 2 - 1;
+                int btnPosY = info.BorderSize.Height + (info.CaptionHeight - info.CaptionButtonSize.Height) / 2 - 0;
 
                 Rectangle btnRect = new Rectangle(new Point(closeBtnPosX, btnPosY), info.CaptionButtonSize);
                 Rectangle maxRect = new Rectangle(new Point(maxBtnPosX, btnPosY), info.CaptionButtonSize);

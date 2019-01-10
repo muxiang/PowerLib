@@ -133,6 +133,7 @@
             this.xButton7.StartColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
             this.xButton7.TabIndex = 14;
             this.xButton7.Text = "查询";
+            this.xButton7.Click += new System.EventHandler(this.xButton7_Click);
             // 
             // textBox1
             // 

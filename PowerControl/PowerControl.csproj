@@ -128,26 +128,25 @@
     <None Include="Resources\iconEvent.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnClose.png" />
+    <EmbeddedResource Include="LoadingCircle\LoadingCircleIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnMinimize.png" />
+    <None Include="Resources\btnClose.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnMaximize.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnNormal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="LoadingCircle\LoadingCircleIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\btnMaximizeDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnMinimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnNormal.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnNormalDisabled.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

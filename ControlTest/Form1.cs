@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ControlTest
@@ -117,6 +118,21 @@ namespace ControlTest
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             //MessageBox.Show("Test");
+        }
+
+        private async void xButton7_Click(object sender, EventArgs e)
+        {
+            string x = await ReadAsync();
+            MessageBox.Show(x);
+        }
+
+        private async Task<string> ReadAsync()
+        {
+            await Task.Run(() =>
+            {
+                Thread.Sleep(5000);
+            });
+            return "asd";
         }
     }
 }
