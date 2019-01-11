@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -7,7 +8,7 @@ namespace PowerControl
     /// <summary>
     /// 2D模拟水波特效
     /// </summary>
-    public unsafe class RippleEffect
+    public unsafe class RippleEffect : IDisposable
     {
         #region 字段
 
@@ -49,7 +50,7 @@ namespace PowerControl
         /// <param name="texture">材质位图</param>
         public RippleEffect(Bitmap texture)
         {
-            _texture = texture ?? throw new ArgumentNullException("texture");
+            _texture = texture ?? throw new ArgumentNullException(nameof(texture));
 
             //分配缓冲区
             _frontBuffer = new int[_texture.Width * _texture.Height];
@@ -87,7 +88,7 @@ namespace PowerControl
                                  pF[i + w]) >> 1) - pB[i];
 
                     //通过阻力递减
-                    pB[i] -= pB[i] >> 4;
+                    pB[i] -= pB[i] >> 5;
                 }
             }
 
@@ -115,13 +116,14 @@ namespace PowerControl
             //固定当前帧浪高缓冲区
             fixed (int* buffer = _frontBuffer)
             {
-                //获取位图数据指针(第一像素R分量)
+                //获取位图数据指针
                 byte* faddr = (byte*)fdat.Scan0;
                 byte* taddr = (byte*)tdat.Scan0;
 
                 for (int i = w; i < w * h - w; i++)
                 {
                     //计算XY偏移(根据浪高把偏移位置的像素设置到当前位置)
+
                     int xo = buffer[i - 1] - buffer[i + 1];
                     int yo = buffer[i - w] - buffer[i + w];
 
@@ -129,31 +131,31 @@ namespace PowerControl
                     int shade = (xo - yo) / 4;
 
                     //获取基准像素的坐标
-                    int pxi = i * 3;
+                    int pxi = i * 3 + (tdat.Stride - w * 3) * (i / (tdat.Stride / 3));
                     int fxi = pxi + xo * 3 + yo * tdat.Stride;
                     if (fxi < 0) fxi = pxi;
                     if (fxi >= w * h * 3) fxi = pxi;
 
                     //从材质获取基准像素
-                    byte r = taddr[fxi];
+                    byte b = taddr[fxi];
                     byte g = taddr[fxi + 1];
-                    byte b = taddr[fxi + 2];
+                    byte r = taddr[fxi + 2];
 
                     //着色
-                    r = (byte)Utilities.CoerceValue(r + shade, 0, 255);
-                    g = (byte)Utilities.CoerceValue(g + shade, 0, 255);
                     b = (byte)Utilities.CoerceValue(b + shade, 0, 255);
+                    g = (byte)Utilities.CoerceValue(g + shade, 0, 255);
+                    r = (byte)Utilities.CoerceValue(r + shade, 0, 255);
 
                     //生成水波
-                    faddr[pxi] = r;
+                    faddr[pxi] = b;
                     faddr[pxi + 1] = g;
-                    faddr[pxi + 2] = b;
+                    faddr[pxi + 2] = r;
                 }
 
                 //复制首尾行像素
                 for (int i = 0; i < w * 3; i++)
                 {
-                    faddr[(w * h) * 3 - i - 1] = taddr[(w * h) * 3 - i - 1];
+                    faddr[w * h * 3 - i - 1] = taddr[w * h * 3 - i - 1];
                     faddr[i] = taddr[i];
                 }
             }
@@ -204,5 +206,11 @@ namespace PowerControl
         }
 
         #endregion 公开方法
+
+        public void Dispose()
+        {
+            _frame?.Dispose();
+            _texture?.Dispose();
+        }
     }
 }

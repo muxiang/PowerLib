@@ -77,7 +77,6 @@ namespace PowerControl
             };
 
             _timer.Start();
-            _timer.Enabled = true;
         }
 
         #endregion 构造器
@@ -108,15 +107,14 @@ namespace PowerControl
         [DefaultValue(null)]
         public new Image Image
         {
-            get { return _effect != null ? _effect.Texture : null; }
+            get => _effect?.Texture;
             set
             {
-                if (value != null)
-                {
-                    _bmpOrigin = new Bitmap(value);
-                    Bitmap texture = Utilities.StretchBitmap(_bmpOrigin, Size);
-                    _effect = new RippleEffect(texture);
-                }
+                if (value == null) return;
+                _bmpOrigin = new Bitmap(value);
+                //Bitmap texture = Utilities.StretchBitmap(_bmpOrigin, Size);
+                _effect?.Dispose();
+                _effect = new RippleEffect(_bmpOrigin);
             }
         }
 
@@ -128,11 +126,11 @@ namespace PowerControl
         [DefaultValue(true)]
         public bool AnimationEnabled
         {
-            get { return _timer.Enabled; }
+            get => _timer.Enabled;
             set
             {
                 _timer.Enabled = value;
-                if (!value && _effect != null) _effect.Clear();
+                if (!value) Clear();
             }
         }
 
@@ -149,9 +147,8 @@ namespace PowerControl
         public void Splash(int x, int y, int radius)
         {
             Point lc = new Point(x, y);
-            lc = Translate(lc);//兼容尺寸到原图像
-            if (_effect == null) return;
-            _effect.Splash(lc.X, lc.Y, radius);
+            lc = Translate(lc);
+            _effect?.Splash(lc.X, lc.Y, radius);
         }
 
         /// <summary>
@@ -159,31 +156,12 @@ namespace PowerControl
         /// </summary>
         public void Clear()
         {
-            if (_effect != null)
-                _effect.Clear();
+            _effect?.Clear();
         }
 
         #endregion 公开方法
 
         #region 重写
-
-        /// <summary>
-        /// 句柄创建
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            MinimumSize = new Size(256, 256);
-            base.OnHandleCreated(e);
-        }
-
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            base.OnSizeChanged(e);
-
-            Bitmap texture = Utilities.StretchBitmap(_bmpOrigin, Size);
-            _effect = new RippleEffect(texture);
-        }
 
         /// <summary>
         /// 窗口函数
@@ -198,11 +176,12 @@ namespace PowerControl
                     return;
                 //绘图
                 case WM_PAINT:
+
                     PAINTSTRUCT paintStruct = new PAINTSTRUCT();
                     //开始绘图,获取设备上下文(dc)指针
                     IntPtr wndHdc = BeginPaint(m.HWnd, ref paintStruct);
 
-                    if (_effect != null && _effect.Texture != null)
+                    if (_effect?.Texture != null)
                     {
                         //生成一帧动画
                         Bitmap f = _effect.Render();
@@ -238,18 +217,6 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 兼容图片尺寸与控件尺寸
-        /// </summary>
-        /// <param name="point">相对于控件的点</param>
-        /// <returns>相对于图片的点</returns>
-        private Point Translate(Point point)
-        {
-            double cx = (double)Image.Width / Width;
-            double cy = (double)Image.Height / Height;
-            return new Point((int)(cx * point.X), (int)(cy * point.Y));
-        }
-
-        /// <summary>
         /// 判断两个点的X相差或Y相差是否大于指定值
         /// </summary>
         /// <param name="pt1"></param>
@@ -263,6 +230,14 @@ namespace PowerControl
             int yDiff = pt1.Value.Y - pt2.Value.Y;
 
             return Math.Abs(xDiff) < diff && Math.Abs(yDiff) < diff;
+        }
+
+        // Handles different control and image sizes
+        private Point Translate(Point point)
+        {
+            Double cx = (double)this.Image.Width / this.Width;
+            Double cy = (double)this.Image.Height / this.Height;
+            return new Point((int)(cx * point.X), (int)(cy * point.Y));
         }
 
         #endregion 私有方法

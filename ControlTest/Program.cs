@@ -19,7 +19,7 @@ namespace ControlTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
-            Application.Run(new Form1());
+            Application.Run(new FrmAbout());
         }
     }
 }

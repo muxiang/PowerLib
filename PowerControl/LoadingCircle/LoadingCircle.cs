@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+
 using ThreadingTimer = System.Threading.Timer;
 using UITimer = System.Windows.Forms.Timer;
 
@@ -18,6 +19,9 @@ namespace PowerControl
     {
         #region 构造
 
+        /// <summary>
+        /// 初始化加载圆圈动画的实例
+        /// </summary>
         public LoadingCircle()
         {
             InitializeComponent();

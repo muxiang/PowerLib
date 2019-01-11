@@ -82,7 +82,7 @@ namespace PowerControl
                 };
             }
         }
-        
+
         /// <inheritdoc cref="TextBox"/>
         public override string Text
         {
@@ -100,6 +100,9 @@ namespace PowerControl
             }
         }
 
+        /// <summary>
+        /// 获取输入的IP地址
+        /// </summary>
         public IPAddress Value => !IPAddress.TryParse(Text, out IPAddress ip) ? null : ip;
 
         protected override void OnPaint(PaintEventArgs e)

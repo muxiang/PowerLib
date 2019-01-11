@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ddi1 = new PowerControl.DropDownButtonItem();
             this.xButton2 = new PowerControl.XButton();
             this.ddi2 = new PowerControl.DropDownButtonItem();
@@ -48,10 +47,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.ripplePictureBox1 = new PowerControl.RipplePictureBox();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ddi1
@@ -325,16 +322,6 @@
             this.button1.Text = "button1(&O)";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // ripplePictureBox1
-            // 
-            this.ripplePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("ripplePictureBox1.Image")));
-            this.ripplePictureBox1.Location = new System.Drawing.Point(1010, 196);
-            this.ripplePictureBox1.MinimumSize = new System.Drawing.Size(256, 256);
-            this.ripplePictureBox1.Name = "ripplePictureBox1";
-            this.ripplePictureBox1.Size = new System.Drawing.Size(256, 256);
-            this.ripplePictureBox1.TabIndex = 12;
-            this.ripplePictureBox1.TabStop = false;
-            // 
             // Form1
             // 
             this.AcceptButton = this.xButton1;
@@ -342,7 +329,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(1316, 787);
-            this.Controls.Add(this.ripplePictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -359,7 +345,6 @@
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,6 +370,5 @@
         private System.Windows.Forms.ToolStripMenuItem 文件OToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private PowerControl.XButton xButton7;
-        private PowerControl.RipplePictureBox ripplePictureBox1;
     }
 }

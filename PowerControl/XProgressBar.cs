@@ -23,6 +23,9 @@ namespace PowerControl
         private Brush _brsBack;
         private Pen _penFore;
 
+        /// <summary>
+        /// 获取或设置进度条的最小值
+        /// </summary>
         public int Min
         {
             get => _min;
@@ -33,6 +36,9 @@ namespace PowerControl
             }
         }
 
+        /// <summary>
+        /// 获取或设置进度条的最大值
+        /// </summary>
         public int Max
         {
             get => _max;
@@ -42,7 +48,10 @@ namespace PowerControl
                 Invalidate();
             }
         }
-
+        
+        /// <summary>
+        /// 获取或设置进度条的值
+        /// </summary>
         public int Value
         {
             get => _value;
@@ -53,6 +62,9 @@ namespace PowerControl
             }
         }
 
+        /// <summary>
+        /// 获取或设置一个表示进度条文本是否描边的值
+        /// </summary>
         [DefaultValue(false)]
         public bool TextOutLine { get; set; } = false;
 
