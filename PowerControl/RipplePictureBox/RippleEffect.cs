@@ -123,7 +123,6 @@ namespace PowerControl
                 for (int i = w; i < w * h - w; i++)
                 {
                     //计算XY偏移(根据浪高把偏移位置的像素设置到当前位置)
-
                     int xo = buffer[i - 1] - buffer[i + 1];
                     int yo = buffer[i - w] - buffer[i + w];
 

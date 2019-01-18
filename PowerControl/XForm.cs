@@ -186,6 +186,9 @@ namespace PowerControl
             ncInfo = GetNonClientInfo(hwnd);
             g = Graphics.FromHdc(dc);
 
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
             Rectangle rect = ncInfo.CaptionRect;
             g.FillRectangle(new LinearGradientBrush(
                 new Point(rect.Width / 2, rect.Height + rect.Y), new Point(rect.Width / 2, 0),
