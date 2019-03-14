@@ -17,12 +17,10 @@ namespace ControlTest
         [STAThread]
         static void Main(string[] args)
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
-            //Application.Run(new FrmDetectorsSelect());
-
-            new FrmDetectorsSelect().ShowDialog();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
+            Application.Run(new Form1());
         }
     }
 }

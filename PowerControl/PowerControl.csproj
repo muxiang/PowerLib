@@ -107,6 +107,12 @@
     <Compile Include="XProgressBar.Designer.cs">
       <DependentUpon>XProgressBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="XTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XTreeView.Designer.cs">
+      <DependentUpon>XTreeView.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>

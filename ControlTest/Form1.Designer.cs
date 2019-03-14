@@ -28,13 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("L2,0");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("L1,0", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("L1,1");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("L1,2");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("L0,0", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("L1,0");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("L0,1", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
             this.ddi1 = new PowerControl.DropDownButtonItem();
             this.xButton2 = new PowerControl.XButton();
             this.ddi2 = new PowerControl.DropDownButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ipTextBox1 = new PowerControl.IPTextBox();
             this.xButton7 = new PowerControl.XButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.loadingCircle2 = new PowerControl.LoadingCircle();
             this.loadingCircle1 = new PowerControl.LoadingCircle();
             this.xButton3 = new PowerControl.XButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -47,6 +58,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.treeView1 = new PowerControl.XTreeView();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -96,9 +108,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ipTextBox1);
             this.panel1.Controls.Add(this.xButton7);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.loadingCircle2);
             this.panel1.Controls.Add(this.loadingCircle1);
             this.panel1.Controls.Add(this.xButton3);
             this.panel1.Controls.Add(this.checkBox1);
@@ -114,6 +125,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(871, 807);
             this.panel1.TabIndex = 7;
+            // 
+            // ipTextBox1
+            // 
+            this.ipTextBox1.BackColor = System.Drawing.Color.White;
+            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ipTextBox1.Location = new System.Drawing.Point(497, 421);
+            this.ipTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ipTextBox1.Name = "ipTextBox1";
+            this.ipTextBox1.Size = new System.Drawing.Size(127, 18);
+            this.ipTextBox1.TabIndex = 15;
             // 
             // xButton7
             // 
@@ -131,22 +152,6 @@
             this.xButton7.TabIndex = 14;
             this.xButton7.Text = "查询";
             this.xButton7.Click += new System.EventHandler(this.xButton7_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(488, 480);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 13;
-            // 
-            // loadingCircle2
-            // 
-            this.loadingCircle2.Color = System.Drawing.Color.White;
-            this.loadingCircle2.Location = new System.Drawing.Point(630, 343);
-            this.loadingCircle2.Name = "loadingCircle2";
-            this.loadingCircle2.Size = new System.Drawing.Size(302, 302);
-            this.loadingCircle2.TabIndex = 12;
-            this.loadingCircle2.Text = "loadingCircle1";
             // 
             // loadingCircle1
             // 
@@ -322,6 +327,33 @@
             this.button1.Text = "button1(&O)";
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // treeView1
+            // 
+            this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(60)))));
+            this.treeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
+            this.treeView1.ForeColor = System.Drawing.Color.White;
+            this.treeView1.Location = new System.Drawing.Point(926, 149);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "L2,0";
+            treeNode1.Text = "L2,0";
+            treeNode2.Name = "L1,0";
+            treeNode2.Text = "L1,0";
+            treeNode3.Name = "L1,1";
+            treeNode3.Text = "L1,1";
+            treeNode4.Name = "L1,2";
+            treeNode4.Text = "L1,2";
+            treeNode5.Name = "L0,0";
+            treeNode5.Text = "L0,0";
+            treeNode6.Name = "L1,0";
+            treeNode6.Text = "L1,0";
+            treeNode7.Name = "L0,1";
+            treeNode7.Text = "L0,1";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode7});
+            this.treeView1.Size = new System.Drawing.Size(239, 383);
+            this.treeView1.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AcceptButton = this.xButton1;
@@ -329,6 +361,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(1316, 787);
+            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -361,8 +394,6 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private PowerControl.XButton xButton1;
         private PowerControl.LoadingCircle loadingCircle1;
-        private System.Windows.Forms.TextBox textBox1;
-        private PowerControl.LoadingCircle loadingCircle2;
         private PowerControl.XButton xButton6;
         private PowerControl.XButton xButton5;
         private PowerControl.XButton xButton4;
@@ -370,5 +401,7 @@
         private System.Windows.Forms.ToolStripMenuItem 文件OToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private PowerControl.XButton xButton7;
+        private PowerControl.IPTextBox ipTextBox1;
+        private PowerControl.XTreeView treeView1;
     }
 }

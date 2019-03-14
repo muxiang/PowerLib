@@ -78,7 +78,7 @@ namespace PowerControl
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
             BackColor = Color.FromArgb(0x3C, 0x3C, 0x3C);
-            ForeColor = Color.FromArgb(0, 0x6E, 0xDE);
+            ForeColor = Color.FromArgb(0, 150, 170);
 
             Font = new Font("微软雅黑", 10, FontStyle.Bold);
         }

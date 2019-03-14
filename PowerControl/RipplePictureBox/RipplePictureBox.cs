@@ -5,16 +5,19 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+
 using PowerControl.Design;
+
 using static PowerControl.NativeConstants;
 using static PowerControl.NativeStructures;
 using static PowerControl.NativeMethods;
+
 using Timer = System.Windows.Forms.Timer;
 
 namespace PowerControl
 {
     /// <summary>
-    /// 水波特效图片框
+    /// 表示附带水波特效的图片框
     /// </summary>
     public sealed class RipplePictureBox : PictureBox
     {
@@ -68,7 +71,7 @@ namespace PowerControl
 
             //缺省水波半径
             ClickSplashRadius = 12;
-            DragSplashRadius = 7;
+            DragSplashRadius = 10;
 
             _dragging = false;
 
@@ -109,7 +112,7 @@ namespace PowerControl
 
             MouseMove += (s1, e1) =>
             {
-                if (_dragging)
+                if (_dragging || HoverSplash)
                     Splash(e1.Location.X, e1.Location.Y, DragSplashRadius);
             };
 
@@ -126,6 +129,7 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Appearance")]
         [DefaultValue(12)]
+        [Description("获取或设置水波单击时半径")]
         public int ClickSplashRadius { get; set; }
 
         /// <summary>
@@ -134,6 +138,7 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Appearance")]
         [DefaultValue(7)]
+        [Description("获取或设置水波拖动时半径")]
         public int DragSplashRadius { get; set; }
 
         /// <summary>
@@ -142,6 +147,7 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Appearance")]
         [DefaultValue(null)]
+        [Description("获取或设置水波背景图")]
         public new Image Image
         {
             get => _effect?.Texture;
@@ -161,13 +167,14 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Behavior")]
         [DefaultValue(true)]
+        [Description("获取或设置启用或禁用动画")]
         public bool AnimationEnabled
         {
             get => _timer.Enabled;
             set
             {
-                if (!value) Clear();
                 _timer.Enabled = value;
+                if (!value) Clear();
             }
         }
 
@@ -177,6 +184,7 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Behavior")]
         [DefaultValue(false)]
+        [Description("获取或设置自动划动水波")]
         public bool AutoSplash
         {
             get => _autoSplash;
@@ -186,6 +194,16 @@ namespace PowerControl
                 _timerAutoSplash.Enabled = !DesignerUtil.IsDesignMode() && value;
             }
         }
+
+        /// <summary>
+        /// 鼠标附上划动水波
+        /// 不需要按下鼠标按键
+        /// </summary>
+        [Browsable(true)]
+        [Category("Behavior")]
+        [DefaultValue(false)]
+        [Description("获取或设置鼠标附上时划动水波")]
+        public bool HoverSplash { get; set; }
 
         #endregion 属性
 
@@ -257,6 +275,7 @@ namespace PowerControl
             }
         }
 
+        /// <inheritdoc />
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -287,7 +306,7 @@ namespace PowerControl
                 new Point((int)(Width / 5.94339622641509), (int)(Height / 2.18803418803419)),
                 new Point((int)(Width / 5.57522123893805), (int)(Height / 2.08130081300813)),
                 new Point((int)(Width / 5.43103448275862), (int)(Height / 2.06451612903226)),
-                new Point((int)(Width / 5.16393442622951), (int)(Height / 2)),
+                new Point((int)(Width / 5.16393442622951), Height / 2),
                 new Point((int)(Width / 5.08064516129032), (int)(Height / 1.96923076923077)),
                 new Point((int)(Width / 4.56521739130435), (int)(Height / 1.85507246376812)),
                 new Point((int)(Width / 4.5), (int)(Height / 1.85507246376812)),

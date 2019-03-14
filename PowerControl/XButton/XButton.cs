@@ -898,8 +898,7 @@ namespace PowerControl
         private void DrawBackgroundAndBorder(Graphics g)
         {
             //获取渐变颜色起止
-            Color cStart, cEnd;
-            GetDrawColor(_buttonState, out cStart, out cEnd);
+            GetDrawColor(_buttonState, out Color cStart, out Color cEnd);
 
             GraphicsPath gPath = null;
             //圆角
@@ -920,7 +919,6 @@ namespace PowerControl
             else
                 //填充有效区
                 g.FillRegion(brsh, Region);
-
 
             //存在下拉项
             if (DropDownItems.Count > 0)

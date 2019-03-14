@@ -36,6 +36,7 @@
             // ripplePictureBox1
             // 
             this.ripplePictureBox1.AutoSplash = true;
+            this.ripplePictureBox1.HoverSplash = true;
             this.ripplePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("ripplePictureBox1.Image")));
             this.ripplePictureBox1.Location = new System.Drawing.Point(24, 12);
             this.ripplePictureBox1.MinimumSize = new System.Drawing.Size(256, 256);

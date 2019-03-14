@@ -13,7 +13,7 @@ namespace PowerControl
     /// <summary>
     /// 表示一个支持IPV4格式化录入的文本框
     /// </summary>
-    [Designer(typeof(FixedSizeDesigner))]
+    //[Designer(typeof(FixedSizeDesigner))]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public sealed partial class IPTextBox : UserControl
     {
