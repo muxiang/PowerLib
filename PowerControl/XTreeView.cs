@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PowerControl
@@ -75,7 +70,7 @@ namespace PowerControl
         {
             base.OnDrawNode(e);
 
-            if (e.Bounds == default) return;
+            if (e.Bounds == default(Rectangle)) return;
 
             e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
