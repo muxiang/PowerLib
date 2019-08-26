@@ -108,6 +108,12 @@
     <Compile Include="XProgressBar.Designer.cs">
       <DependentUpon>XProgressBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="XTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XTextBox.Designer.cs">
+      <DependentUpon>XTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="XTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XMessageBox.resx">
       <DependentUpon>XMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTextBox.resx">
+      <DependentUpon>XTextBox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

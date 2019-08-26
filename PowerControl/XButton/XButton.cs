@@ -54,19 +54,19 @@ namespace PowerControl
         {
             InitializeComponent();
 
-            StartColor = Color.FromArgb(126, 135, 142);
-            EndColor = Color.FromArgb(90, 107, 125);
+            StartColor = Color.White;
+            EndColor = Color.FromArgb(232, 232, 232);
 
-            CheckedStartColor = Color.FromArgb(186, 185, 181);
-            CheckedEndColor = Color.FromArgb(157, 153, 155);
+            CheckedStartColor = Color.FromArgb(109, 169, 255);
+            CheckedEndColor = Color.FromArgb(83, 128, 252);
 
             ForeColor = Color.White;
-            Font = new Font("微软雅黑", 8, FontStyle.Bold, GraphicsUnit.Point);
+            Font = new Font("微软雅黑", 8, FontStyle.Regular, GraphicsUnit.Point);
+
+            BorderColor = Color.FromArgb(212, 212, 212);
+            BorderWidth = 1;
 
             _shortcutFont = new Font(Font, FontStyle.Underline | Font.Style);
-
-            _borderColor = Color.White;
-            _borderWidth = 0;
 
             _enableLinearGradientColor = true;
             _enableRoundedRectangle = true;
@@ -78,7 +78,7 @@ namespace PowerControl
 
             _parentKeyDownEventHandler = (s1, e1) =>
             {
-                if ((char)e1.KeyCode == _shortcut)
+                if ((char)e1.KeyCode == _shortcut && e1.Alt)
                     PerformClick();
             };
         }
@@ -198,6 +198,23 @@ namespace PowerControl
         }
 
         /// <summary>
+        /// 选中状态前景颜色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("选中状态前景颜色")]
+        public Color CheckedForeColor
+        {
+            get => _checkedForeColor;
+            set
+            {
+                _checkedForeColor = value;
+
+                Invalidate();
+            }
+        }
+
+        /// <summary>
         /// 是否启用线性渐变颜色
         /// </summary>
         [Browsable(true)]
@@ -286,7 +303,7 @@ namespace PowerControl
         /// 边框宽度
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(0)]
+        [DefaultValue(1)]
         [Category("Appearance")]
         [Description("边框宽度")]
         public int BorderWidth
@@ -418,6 +435,8 @@ namespace PowerControl
         //选中状态渐变起止颜色
         private Color _checkedStartColor;
         private Color _checkedEndColor;
+        //选中状态前景色
+        private Color _checkedForeColor;
 
         //边框颜色
         private Color _borderColor;
@@ -719,6 +738,7 @@ namespace PowerControl
         {
             base.OnFontChanged(e);
             _shortcutFont = new Font(Font, Font.Style | FontStyle.Underline);
+            Invalidate();
         }
 
         /// <summary>

@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("L2,0");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("L1,0", new System.Windows.Forms.TreeNode[] {
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("L1,1");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("L1,2");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("L0,0", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10,
-            treeNode11});
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("L1,0");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("L0,1", new System.Windows.Forms.TreeNode[] {
-            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("L2,0");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("L1,0", new System.Windows.Forms.TreeNode[] {
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("L1,1");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("L1,2");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("L0,0", new System.Windows.Forms.TreeNode[] {
+            treeNode16,
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("L1,0");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("L0,1", new System.Windows.Forms.TreeNode[] {
+            treeNode20});
             this.ddi1 = new PowerControl.DropDownButtonItem();
             this.xButton2 = new PowerControl.XButton();
             this.ddi2 = new PowerControl.DropDownButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.xTextBox1 = new PowerControl.XTextBox();
             this.ipTextBox1 = new PowerControl.IPTextBox();
             this.xButton7 = new PowerControl.XButton();
             this.loadingCircle1 = new PowerControl.LoadingCircle();
@@ -60,6 +61,7 @@
             this.文件OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new PowerControl.XTreeView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +81,7 @@
             // 
             this.xButton2.BorderColor = System.Drawing.Color.White;
             this.xButton2.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.xButton2.CheckedForeColor = System.Drawing.Color.Empty;
             this.xButton2.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
             this.xButton2.DropDownItems.Add(this.ddi1);
             this.xButton2.DropDownItems.Add(this.ddi2);
@@ -109,6 +112,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.xTextBox1);
             this.panel1.Controls.Add(this.ipTextBox1);
             this.panel1.Controls.Add(this.xButton7);
             this.panel1.Controls.Add(this.loadingCircle1);
@@ -128,6 +133,18 @@
             this.panel1.Size = new System.Drawing.Size(871, 807);
             this.panel1.TabIndex = 7;
             // 
+            // xTextBox1
+            // 
+            this.xTextBox1.BackColor = System.Drawing.Color.White;
+            this.xTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
+            this.xTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.xTextBox1.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.xTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
+            this.xTextBox1.Location = new System.Drawing.Point(714, 480);
+            this.xTextBox1.Name = "xTextBox1";
+            this.xTextBox1.Size = new System.Drawing.Size(100, 22);
+            this.xTextBox1.TabIndex = 16;
+            // 
             // ipTextBox1
             // 
             this.ipTextBox1.BackColor = System.Drawing.Color.White;
@@ -142,6 +159,7 @@
             // 
             this.xButton7.BorderColor = System.Drawing.Color.White;
             this.xButton7.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.xButton7.CheckedForeColor = System.Drawing.Color.Empty;
             this.xButton7.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
             this.xButton7.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton7.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
@@ -168,6 +186,7 @@
             // 
             this.xButton3.BorderColor = System.Drawing.Color.White;
             this.xButton3.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.xButton3.CheckedForeColor = System.Drawing.Color.Empty;
             this.xButton3.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
             this.xButton3.DisplayStyle = PowerControl.XButtonDisplayStyle.ImageAndText;
             this.xButton3.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
@@ -227,19 +246,20 @@
             // 
             // xButton6
             // 
-            this.xButton6.BorderColor = System.Drawing.Color.White;
-            this.xButton6.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
-            this.xButton6.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
-            this.xButton6.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
-            this.xButton6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.xButton6.ForeColor = System.Drawing.Color.White;
+            this.xButton6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.xButton6.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton6.CheckedForeColor = System.Drawing.Color.Empty;
+            this.xButton6.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.xButton6.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.xButton6.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.xButton6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.xButton6.Image = null;
             this.xButton6.Location = new System.Drawing.Point(527, 51);
             this.xButton6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.xButton6.Name = "xButton6";
             this.xButton6.Shortcut = 'O';
-            this.xButton6.Size = new System.Drawing.Size(159, 80);
-            this.xButton6.StartColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
+            this.xButton6.Size = new System.Drawing.Size(87, 33);
+            this.xButton6.StartColor = System.Drawing.Color.White;
             this.xButton6.TabIndex = 6;
             this.xButton6.Text = "确定";
             this.xButton6.Click += new System.EventHandler(this.xButton1_Click_1);
@@ -248,6 +268,7 @@
             // 
             this.xButton5.BorderColor = System.Drawing.Color.White;
             this.xButton5.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.xButton5.CheckedForeColor = System.Drawing.Color.Empty;
             this.xButton5.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
             this.xButton5.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
@@ -267,6 +288,7 @@
             // 
             this.xButton8.BorderColor = System.Drawing.Color.White;
             this.xButton8.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.xButton8.CheckedForeColor = System.Drawing.Color.Empty;
             this.xButton8.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
             this.xButton8.EndColor = System.Drawing.Color.Lime;
             this.xButton8.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
@@ -286,6 +308,7 @@
             // 
             this.xButton4.BorderColor = System.Drawing.Color.White;
             this.xButton4.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.xButton4.CheckedForeColor = System.Drawing.Color.Empty;
             this.xButton4.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
             this.xButton4.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
@@ -305,6 +328,7 @@
             // 
             this.xButton1.BorderColor = System.Drawing.Color.White;
             this.xButton1.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.xButton1.CheckedForeColor = System.Drawing.Color.Empty;
             this.xButton1.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
             this.xButton1.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
@@ -321,7 +345,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(60)))));
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件OToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -333,7 +357,7 @@
             // 文件OToolStripMenuItem
             // 
             this.文件OToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.文件OToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.文件OToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.文件OToolStripMenuItem.Name = "文件OToolStripMenuItem";
             this.文件OToolStripMenuItem.Size = new System.Drawing.Size(70, 23);
             this.文件OToolStripMenuItem.Text = "文件(&O)";
@@ -355,41 +379,51 @@
             this.treeView1.ForeColor = System.Drawing.Color.White;
             this.treeView1.Location = new System.Drawing.Point(926, 149);
             this.treeView1.Name = "treeView1";
-            treeNode8.Name = "L2,0";
-            treeNode8.Text = "L2,0";
-            treeNode9.Name = "L1,0";
-            treeNode9.Text = "L1,0";
-            treeNode10.Name = "L1,1";
-            treeNode10.Text = "L1,1";
-            treeNode11.Name = "L1,2";
-            treeNode11.Text = "L1,2";
-            treeNode12.Name = "L0,0";
-            treeNode12.Text = "L0,0";
-            treeNode13.Name = "L1,0";
-            treeNode13.Text = "L1,0";
-            treeNode14.Name = "L0,1";
-            treeNode14.Text = "L0,1";
+            treeNode15.Name = "L2,0";
+            treeNode15.Text = "L2,0";
+            treeNode16.Name = "L1,0";
+            treeNode16.Text = "L1,0";
+            treeNode17.Name = "L1,1";
+            treeNode17.Text = "L1,1";
+            treeNode18.Name = "L1,2";
+            treeNode18.Text = "L1,2";
+            treeNode19.Name = "L0,0";
+            treeNode19.Text = "L0,0";
+            treeNode20.Name = "L1,0";
+            treeNode20.Text = "L1,0";
+            treeNode21.Name = "L0,1";
+            treeNode21.Text = "L0,1";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode14});
+            treeNode19,
+            treeNode21});
             this.treeView1.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(170)))));
             this.treeView1.Size = new System.Drawing.Size(239, 383);
             this.treeView1.TabIndex = 12;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.textBox1.Location = new System.Drawing.Point(733, 384);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 17;
             // 
             // Form1
             // 
             this.AcceptButton = this.xButton1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(60)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(1316, 787);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -426,5 +460,7 @@
         private PowerControl.IPTextBox ipTextBox1;
         private PowerControl.XTreeView treeView1;
         private PowerControl.XButton xButton8;
+        private PowerControl.XTextBox xTextBox1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

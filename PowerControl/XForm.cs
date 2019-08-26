@@ -45,96 +45,263 @@ namespace PowerControl
         /// </summary>
         private void CreateButtonImages()
         {
-            //关闭按钮
-            _imgBtnClose = GetNormalImage(Properties.Resources.btnClose);
-            _imgBtnCloseHovering = GetHoveringImage(Properties.Resources.btnClose);
-            _imgBtnCloseHolding = GetHoldingImage(Properties.Resources.btnClose);
-
-            //最小化按钮
-            _imgBtnMinimize = GetNormalImage(Properties.Resources.btnMinimize);
-            _imgBtnMinimizeHovering = GetHoveringImage(Properties.Resources.btnMinimize);
-            _imgBtnMinimizeHolding = GetHoldingImage(Properties.Resources.btnMinimize);
-
-            //最大化按钮
-            _imgBtnMaximize = GetNormalImage(Properties.Resources.btnMaximize);
-            _imgBtnMaximizeDisabled = GetNormalImage(Properties.Resources.btnMaximizeDisabled);
-            _imgBtnMaximizeHovering = GetHoveringImage(Properties.Resources.btnMaximize);
-            _imgBtnMaximizeHolding = GetHoldingImage(Properties.Resources.btnMaximize);
-
-            //取消最大化按钮
-            _imgBtnNormal = GetNormalImage(Properties.Resources.btnNormal);
-            _imgBtnNormalDisabled = GetNormalImage(Properties.Resources.btnNormalDisabled);
-            _imgBtnNormalHovering = GetHoveringImage(Properties.Resources.btnNormal);
-            _imgBtnNormalHolding = GetHoldingImage(Properties.Resources.btnNormal);
+            _NonClientSizeInfo ncInfo = GetNonClientInfo(Handle);
+            CreateNormalImages(ncInfo);
+            CreateHoveringImages(ncInfo);
+            CreateHoldingImages(ncInfo);
         }
 
         /// <summary>
-        /// 获取常规状态按钮图标
+        /// 创建常规状态按钮图标
         /// </summary>
-        /// <param name="bmp">基本图标</param>
         /// <returns></returns>
-        private Image GetNormalImage(Bitmap bmp)
+        private void CreateNormalImages(_NonClientSizeInfo ncInfo)
         {
-            Bitmap bmpNew = new Bitmap(bmp.Width, bmp.Height);
-            using (Graphics g = Graphics.FromImage(bmpNew))
+            int closeBtnPosX = ncInfo.CaptionRect.Right - ncInfo.BorderSize.Width - ncInfo.CaptionButtonSize.Width;
+            int maxBtnPosX = closeBtnPosX - ncInfo.CaptionButtonSize.Width;
+            int minBtnPosX = maxBtnPosX - ncInfo.CaptionButtonSize.Width;
+            int btnPosY = ncInfo.BorderSize.Height + (ncInfo.CaptionHeight - ncInfo.CaptionButtonSize.Height) / 2 - 0;
+
+            Rectangle closeRect = new Rectangle(new Point(closeBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+            Rectangle maxRect = new Rectangle(new Point(maxBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+            Rectangle minRect = new Rectangle(new Point(minBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+
+            Color cLeft = Color.FromArgb(89, 98, 255);
+            Color cRight = Color.FromArgb(130, 101, 255);
+            //最小化
+            _imgBtnMinimize = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnMinimize))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
-                    new Point(bmp.Width / 2, bmp.Height),
-                    new Point(bmp.Width / 2, 0),
-                    BackColor,
-                    Utilities.GetLighterColor(BackColor, 60));
+                    new Point(-minRect.X, btnPosY),
+                    new Point(minRect.Width + maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
 
-                g.FillRectangle(brs, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                g.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimize.Width, _imgBtnMinimize.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
+                    Properties.Resources.btnMinimize.Width,
+                    Properties.Resources.btnMinimize.Height));
             }
+            //最大化
+            _imgBtnMaximize = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximize))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
 
-            return bmpNew;
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximize.Width, _imgBtnMaximize.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximize.Width,
+                    Properties.Resources.btnMaximize.Height));
+            }
+            //最大化禁用
+            _imgBtnMaximizeDisabled = new Bitmap(Properties.Resources.btnMaximizeDisabled.Width, Properties.Resources.btnMaximizeDisabled.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximizeDisabled))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeDisabled.Width, _imgBtnMaximizeDisabled.Height));
+                g.DrawImage(Properties.Resources.btnMaximizeDisabled, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximizeDisabled.Width,
+                    Properties.Resources.btnMaximizeDisabled.Height));
+            }
+            //最大化恢复
+            _imgBtnNormal = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnNormal))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormal.Width, _imgBtnNormal.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
+                    Properties.Resources.btnNormal.Width,
+                    Properties.Resources.btnNormal.Height));
+            }
+            //最大化恢复禁用
+            _imgBtnNormalDisabled = new Bitmap(Properties.Resources.btnNormalDisabled.Width, Properties.Resources.btnNormalDisabled.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnNormalDisabled))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalDisabled.Width, _imgBtnNormalDisabled.Height));
+                g.DrawImage(Properties.Resources.btnNormalDisabled, new Rectangle(0, 0,
+                    Properties.Resources.btnNormalDisabled.Width,
+                    Properties.Resources.btnNormalDisabled.Height));
+            }
+            //关闭
+            _imgBtnClose = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnClose))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-closeRect.X, btnPosY),
+                    new Point(_imgBtnClose.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnClose.Width, _imgBtnClose.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
+                    Properties.Resources.btnClose.Width,
+                    Properties.Resources.btnClose.Height));
+            }
         }
 
         /// <summary>
-        /// 获取鼠标悬浮状态按钮图标
+        /// 创建鼠标悬浮状态按钮图标
         /// </summary>
-        /// <param name="bmp">基本图标</param>
         /// <returns></returns>
-        private Image GetHoveringImage(Bitmap bmp)
+        private void CreateHoveringImages(_NonClientSizeInfo ncInfo)
         {
-            Bitmap bmpNew = new Bitmap(bmp.Width, bmp.Height);
-            using (Graphics g = Graphics.FromImage(bmpNew))
+            int closeBtnPosX = ncInfo.CaptionRect.Right - ncInfo.BorderSize.Width - ncInfo.CaptionButtonSize.Width;
+            int maxBtnPosX = closeBtnPosX - ncInfo.CaptionButtonSize.Width;
+            int minBtnPosX = maxBtnPosX - ncInfo.CaptionButtonSize.Width;
+            int btnPosY = ncInfo.BorderSize.Height + (ncInfo.CaptionHeight - ncInfo.CaptionButtonSize.Height) / 2 - 0;
+
+            Rectangle closeRect = new Rectangle(new Point(closeBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+            Rectangle maxRect = new Rectangle(new Point(maxBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+            Rectangle minRect = new Rectangle(new Point(minBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+
+            Color cLeft = Utilities.GetLighterColor(Color.FromArgb(89, 98, 255));
+            Color cRight = Utilities.GetLighterColor(Color.FromArgb(130, 101, 255));
+            //最小化
+            _imgBtnMinimizeHovering = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
-                    new Point(bmp.Width / 2, bmp.Height),
-                    new Point(bmp.Width / 2, 0),
-                    Utilities.GetLighterColor(BackColor, 30),
-                    Utilities.GetLighterColor(BackColor, 90));
+                    new Point(-minRect.X, btnPosY),
+                    new Point(minRect.Width + maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
 
-                g.FillRectangle(brs, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                g.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHovering.Width, _imgBtnMinimizeHovering.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
+                    Properties.Resources.btnMinimize.Width,
+                    Properties.Resources.btnMinimize.Height));
             }
+            //最大化
+            _imgBtnMaximizeHovering = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHovering))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
 
-            return bmpNew;
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHovering.Width, _imgBtnMaximizeHovering.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximize.Width,
+                    Properties.Resources.btnMaximize.Height));
+            }
+            //最大化恢复
+            _imgBtnNormalHovering = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnNormalHovering))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHovering.Width, _imgBtnNormalHovering.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
+                    Properties.Resources.btnNormal.Width,
+                    Properties.Resources.btnNormal.Height));
+            }
+            //关闭
+            _imgBtnCloseHovering = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnCloseHovering))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-closeRect.X, btnPosY),
+                    new Point(_imgBtnCloseHovering.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHovering.Width, _imgBtnCloseHovering.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
+                    Properties.Resources.btnClose.Width,
+                    Properties.Resources.btnClose.Height));
+            }
         }
 
         /// <summary>
-        /// 获取鼠标按下状态按钮图标
+        /// 创建鼠标按下状态按钮图标
         /// </summary>
-        /// <param name="bmp">基本图标</param>
         /// <returns></returns>
-        private Image GetHoldingImage(Bitmap bmp)
+        private void CreateHoldingImages(_NonClientSizeInfo ncInfo)
         {
-            Bitmap bmpNew = new Bitmap(bmp.Width, bmp.Height);
-            using (Graphics g = Graphics.FromImage(bmpNew))
+            int closeBtnPosX = ncInfo.CaptionRect.Right - ncInfo.BorderSize.Width - ncInfo.CaptionButtonSize.Width;
+            int maxBtnPosX = closeBtnPosX - ncInfo.CaptionButtonSize.Width;
+            int minBtnPosX = maxBtnPosX - ncInfo.CaptionButtonSize.Width;
+            int btnPosY = ncInfo.BorderSize.Height + (ncInfo.CaptionHeight - ncInfo.CaptionButtonSize.Height) / 2 - 0;
+
+            Rectangle closeRect = new Rectangle(new Point(closeBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+            Rectangle maxRect = new Rectangle(new Point(maxBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+            Rectangle minRect = new Rectangle(new Point(minBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
+
+            Color cLeft = Utilities.GetDeeperColor(Color.FromArgb(89, 98, 255));
+            Color cRight = Utilities.GetDeeperColor(Color.FromArgb(130, 101, 255));
+            //最小化
+            _imgBtnMinimizeHolding = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
-                    new Point(bmp.Width / 2, bmp.Height),
-                    new Point(bmp.Width / 2, 0),
-                    Utilities.GetDeeperColor(BackColor, 60),
-                    BackColor);
+                    new Point(-minRect.X, btnPosY),
+                    new Point(minRect.Width + maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
 
-                g.FillRectangle(brs, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                g.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHolding.Width, _imgBtnMinimizeHolding.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
+                    Properties.Resources.btnMinimize.Width,
+                    Properties.Resources.btnMinimize.Height));
             }
+            //最大化
+            _imgBtnMaximizeHolding = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHolding))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
 
-            return bmpNew;
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHolding.Width, _imgBtnMaximizeHolding.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximize.Width,
+                    Properties.Resources.btnMaximize.Height));
+            }
+            //最大化恢复
+            _imgBtnNormalHolding = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnNormalHolding))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-maxRect.X, btnPosY),
+                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHolding.Width, _imgBtnNormalHolding.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
+                    Properties.Resources.btnNormal.Width,
+                    Properties.Resources.btnNormal.Height));
+            }
+            //关闭
+            _imgBtnCloseHolding = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+            using (Graphics g = Graphics.FromImage(_imgBtnCloseHolding))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-closeRect.X, btnPosY),
+                    new Point(_imgBtnCloseHolding.Width + ncInfo.BorderSize.Width, btnPosY),
+                    cLeft, cRight);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHolding.Width, _imgBtnCloseHolding.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
+                    Properties.Resources.btnClose.Width,
+                    Properties.Resources.btnClose.Height));
+            }
         }
 
         #endregion 私有方法
@@ -191,9 +358,10 @@ namespace PowerControl
 
             Rectangle rect = ncInfo.CaptionRect;
             g.FillRectangle(new LinearGradientBrush(
-                new Point(rect.Width / 2, rect.Height + rect.Y), new Point(rect.Width / 2, 0),
-                BackColor,
-                Utilities.GetLighterColor(BackColor, 60)),
+                new Point(rect.X - ncInfo.BorderSize.Width, rect.Y - ncInfo.BorderSize.Height + rect.Height / 2),
+                new Point(rect.Right + ncInfo.BorderSize.Width, rect.Y - ncInfo.BorderSize.Height + rect.Height / 2),
+                Color.FromArgb(89, 98, 255),
+                Color.FromArgb(130, 101, 255)),
                 rect);
 
             DrawBorder(g, ncInfo, active);
@@ -208,7 +376,7 @@ namespace PowerControl
         {
             if (ControlBox)
             {
-                int closeBtnPosX = info.CaptionRect.Left + info.CaptionRect.Width - info.BorderSize.Width - info.CaptionButtonSize.Width;
+                int closeBtnPosX = info.CaptionRect.Right - info.BorderSize.Width - info.CaptionButtonSize.Width;
                 int maxBtnPosX = closeBtnPosX - info.CaptionButtonSize.Width;
                 int minBtnPosX = maxBtnPosX - info.CaptionButtonSize.Width;
                 int btnPosY = info.BorderSize.Height + (info.CaptionHeight - info.CaptionButtonSize.Height) / 2 - 0;
@@ -216,12 +384,6 @@ namespace PowerControl
                 Rectangle btnRect = new Rectangle(new Point(closeBtnPosX, btnPosY), info.CaptionButtonSize);
                 Rectangle maxRect = new Rectangle(new Point(maxBtnPosX, btnPosY), info.CaptionButtonSize);
                 Rectangle minRect = new Rectangle(new Point(minBtnPosX, btnPosY), info.CaptionButtonSize);
-
-                Brush backgroundColor = new SolidBrush(BackColor);
-
-                //g.FillRectangle(backgroundColor, btnRect);
-                //g.FillRectangle(backgroundColor, maxRect);
-                //g.FillRectangle(backgroundColor, minRect);
 
                 g.DrawImage(_imgBtnClose, btnRect);
 
@@ -284,58 +446,42 @@ namespace PowerControl
                     ncInfo.Rect.Width/* - ncInfo.BorderSize.Width * 2*/,
                     ncInfo.BorderSize.Height);
 
-            LinearGradientBrush brs = new LinearGradientBrush(
-                new Point(borderTop.X + borderTop.Width / 2, borderTop.Y),
-                new Point(borderTop.X + borderTop.Width / 2, borderTop.Bottom),
-                Utilities.GetLighterColor(BackColor, 128),
-                //BackColor);
-                Utilities.GetLighterColor(BackColor, 40));
-
-            //SolidBrush brs = new SolidBrush(Utilities.GetLighterColor(BackColor, 20));
-            //LinearGradientBrush brs = new LinearGradientBrush(
-            //    new Point(borderTop.Left + borderTop.Width / 2, 0),
-            //    new Point(borderTop.Left + borderTop.Width / 2, borderTop.Height),
-            //    BackColor, Utilities.GetLighterColor(BackColor, 60));
-
-            // top border  
+            //上边框 
+            Brush brs = new LinearGradientBrush(
+                new Point(borderTop.X, borderTop.Y + borderTop.Height / 2),
+                new Point(borderTop.Right, borderTop.Y + borderTop.Height / 2),
+                Color.FromArgb(89, 98, 255),
+                Color.FromArgb(130, 101, 255));
             g.FillRectangle(brs, borderTop);
 
-            //brs = new LinearGradientBrush(
-            //    new Point(borderLeft.Right, borderLeft.Top + borderLeft.Height / 2),
-            //    new Point(borderLeft.Left, borderLeft.Top + borderLeft.Height / 2),
-            //    BackColor, Utilities.GetLighterColor(BackColor, 60));
-            // left border  
+            //左边框
             brs.Dispose();
-            brs = new LinearGradientBrush(
-                new Point(borderLeft.X, borderLeft.Y + borderLeft.Height / 2),
-                new Point(borderLeft.Right, borderLeft.Y + borderLeft.Height / 2),
-                Utilities.GetLighterColor(BackColor, 128),
-                BackColor);
+            brs = new SolidBrush(BackColor);
             g.FillRectangle(brs, borderLeft);
+            brs.Dispose();
+            //重绘与标题栏相邻部分，融入标题栏
+            brs = new LinearGradientBrush(
+                new Point(borderLeft.X, borderLeft.Y + ncInfo.CaptionHeight / 2),
+                new Point(borderLeft.Right + ncInfo.CaptionRect.Width + borderRight.Width, borderLeft.Y + ncInfo.CaptionHeight / 2),
+                Color.FromArgb(89, 98, 255),
+                Color.FromArgb(130, 101, 255));
+            g.FillRectangle(brs, new RectangleF(borderLeft.X, borderLeft.Y, borderLeft.Width, ncInfo.CaptionRect.Height));
 
-            //brs = new LinearGradientBrush(
-            //    new Point(borderRight.Left, borderRight.Top + borderRight.Height / 2),
-            //    new Point(borderRight.Right, borderRight.Top + borderRight.Height / 2),
-            //    BackColor, Utilities.GetLighterColor(BackColor, 60));
-            // right border
+            //右边框
             brs.Dispose();
-            brs = new LinearGradientBrush(
-                new Point(borderRight.X, borderRight.Y + borderRight.Height / 2),
-                new Point(borderRight.Right, borderRight.Y + borderRight.Height / 2),
-                BackColor,
-                Utilities.GetLighterColor(BackColor, 128));
+            brs = new SolidBrush(BackColor);
             g.FillRectangle(brs, borderRight);
-            //brs = new LinearGradientBrush(
-            //    new Point(borderBottom.Left + borderBottom.Width / 2, 0),
-            //    new Point(borderBottom.Left + borderBottom.Width / 2, borderBottom.Height),
-            //    BackColor, Utilities.GetLighterColor(BackColor, 60));
-            // bottom border
-            brs.Dispose();
+            //重绘与标题栏相邻部分，融入标题栏
             brs = new LinearGradientBrush(
-                new Point(borderBottom.X + borderBottom.Width / 2, borderBottom.Y),
-                new Point(borderBottom.X + borderBottom.Width / 2, borderBottom.Bottom),
-                BackColor,
-                Utilities.GetLighterColor(BackColor, 128));
+                new Point(borderLeft.X, borderLeft.Y + ncInfo.CaptionHeight / 2),
+                new Point(borderLeft.Right + ncInfo.CaptionRect.Width + borderRight.Width, borderLeft.Y + ncInfo.CaptionHeight / 2),
+                Color.FromArgb(89, 98, 255),
+                Color.FromArgb(130, 101, 255));
+            g.FillRectangle(brs, new RectangleF(borderRight.X, borderRight.Y, borderRight.Width, ncInfo.CaptionRect.Height));
+
+            //底边框
+            brs.Dispose();
+            brs = new SolidBrush(BackColor);
             g.FillRectangle(brs, borderBottom);
         }
 
@@ -435,7 +581,12 @@ namespace PowerControl
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);
+            Invalidate();
+        }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
             CreateButtonImages();
             Invalidate();
         }

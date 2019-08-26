@@ -1,6 +1,6 @@
 ﻿namespace PowerControl
 {
-    partial class XForm
+    partial class XTextBox
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -30,13 +30,10 @@
         {
             this.SuspendLayout();
             // 
-            // XForm
+            // XTextBox
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.KeyPreview = true;
-            this.Name = "XForm";
+            this.BackColor = System.Drawing.Color.White;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ResumeLayout(false);
 
         }
