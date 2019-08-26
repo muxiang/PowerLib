@@ -134,5 +134,11 @@ namespace ControlTest
             });
             return "asd";
         }
+
+        private void xButton8_Click(object sender, EventArgs e)
+        {
+            FrmAbout frm = new FrmAbout();
+            frm.ShowDialog();
+        }
     }
 }

@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("L2,0");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("L1,0", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("L1,1");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("L1,2");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("L0,0", new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("L1,0");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("L0,1", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("L2,0");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("L1,0", new System.Windows.Forms.TreeNode[] {
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("L1,1");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("L1,2");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("L0,0", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("L1,0");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("L0,1", new System.Windows.Forms.TreeNode[] {
+            treeNode13});
             this.ddi1 = new PowerControl.DropDownButtonItem();
             this.xButton2 = new PowerControl.XButton();
             this.ddi2 = new PowerControl.DropDownButtonItem();
@@ -53,6 +53,7 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.xButton6 = new PowerControl.XButton();
             this.xButton5 = new PowerControl.XButton();
+            this.xButton8 = new PowerControl.XButton();
             this.xButton4 = new PowerControl.XButton();
             this.xButton1 = new PowerControl.XButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -118,6 +119,7 @@
             this.panel1.Controls.Add(this.xButton2);
             this.panel1.Controls.Add(this.xButton6);
             this.panel1.Controls.Add(this.xButton5);
+            this.panel1.Controls.Add(this.xButton8);
             this.panel1.Controls.Add(this.xButton4);
             this.panel1.Controls.Add(this.xButton1);
             this.panel1.Location = new System.Drawing.Point(12, 40);
@@ -261,6 +263,25 @@
             this.xButton5.Text = "确定";
             this.xButton5.Click += new System.EventHandler(this.xButton1_Click_1);
             // 
+            // xButton8
+            // 
+            this.xButton8.BorderColor = System.Drawing.Color.White;
+            this.xButton8.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.xButton8.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
+            this.xButton8.EndColor = System.Drawing.Color.Lime;
+            this.xButton8.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.xButton8.ForeColor = System.Drawing.Color.White;
+            this.xButton8.Image = null;
+            this.xButton8.Location = new System.Drawing.Point(458, 475);
+            this.xButton8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.xButton8.Name = "xButton8";
+            this.xButton8.Shortcut = 'A';
+            this.xButton8.Size = new System.Drawing.Size(122, 102);
+            this.xButton8.StartColor = System.Drawing.Color.Red;
+            this.xButton8.TabIndex = 6;
+            this.xButton8.Text = "关于";
+            this.xButton8.Click += new System.EventHandler(this.xButton8_Click);
+            // 
             // xButton4
             // 
             this.xButton4.BorderColor = System.Drawing.Color.White;
@@ -334,23 +355,24 @@
             this.treeView1.ForeColor = System.Drawing.Color.White;
             this.treeView1.Location = new System.Drawing.Point(926, 149);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "L2,0";
-            treeNode1.Text = "L2,0";
-            treeNode2.Name = "L1,0";
-            treeNode2.Text = "L1,0";
-            treeNode3.Name = "L1,1";
-            treeNode3.Text = "L1,1";
-            treeNode4.Name = "L1,2";
-            treeNode4.Text = "L1,2";
-            treeNode5.Name = "L0,0";
-            treeNode5.Text = "L0,0";
-            treeNode6.Name = "L1,0";
-            treeNode6.Text = "L1,0";
-            treeNode7.Name = "L0,1";
-            treeNode7.Text = "L0,1";
+            treeNode8.Name = "L2,0";
+            treeNode8.Text = "L2,0";
+            treeNode9.Name = "L1,0";
+            treeNode9.Text = "L1,0";
+            treeNode10.Name = "L1,1";
+            treeNode10.Text = "L1,1";
+            treeNode11.Name = "L1,2";
+            treeNode11.Text = "L1,2";
+            treeNode12.Name = "L0,0";
+            treeNode12.Text = "L0,0";
+            treeNode13.Name = "L1,0";
+            treeNode13.Text = "L1,0";
+            treeNode14.Name = "L0,1";
+            treeNode14.Text = "L0,1";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
+            treeNode12,
+            treeNode14});
+            this.treeView1.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(170)))));
             this.treeView1.Size = new System.Drawing.Size(239, 383);
             this.treeView1.TabIndex = 12;
             // 
@@ -403,5 +425,6 @@
         private PowerControl.XButton xButton7;
         private PowerControl.IPTextBox ipTextBox1;
         private PowerControl.XTreeView treeView1;
+        private PowerControl.XButton xButton8;
     }
 }
