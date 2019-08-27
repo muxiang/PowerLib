@@ -28,22 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("L2,0");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("L1,0", new System.Windows.Forms.TreeNode[] {
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("L1,1");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("L1,2");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("L0,0", new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17,
-            treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("L1,0");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("L0,1", new System.Windows.Forms.TreeNode[] {
-            treeNode20});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("L2,0");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("L1,0", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("L1,1");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("L1,2");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("L0,0", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("L1,0");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("L0,1", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
             this.ddi1 = new PowerControl.DropDownButtonItem();
             this.xButton2 = new PowerControl.XButton();
             this.ddi2 = new PowerControl.DropDownButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.xCheckBox1 = new PowerControl.XCheckBox();
+            this.xRadioButton2 = new PowerControl.XRadioButton();
+            this.xRadioButton1 = new PowerControl.XRadioButton();
+            this.xComboBox1 = new PowerControl.XComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.xTextBox1 = new PowerControl.XTextBox();
             this.ipTextBox1 = new PowerControl.IPTextBox();
             this.xButton7 = new PowerControl.XButton();
@@ -61,7 +66,6 @@
             this.文件OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new PowerControl.XTreeView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -112,6 +116,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.xCheckBox1);
+            this.panel1.Controls.Add(this.xRadioButton2);
+            this.panel1.Controls.Add(this.xRadioButton1);
+            this.panel1.Controls.Add(this.xComboBox1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.xTextBox1);
             this.panel1.Controls.Add(this.ipTextBox1);
@@ -132,6 +140,75 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(871, 807);
             this.panel1.TabIndex = 7;
+            // 
+            // xCheckBox1
+            // 
+            this.xCheckBox1.AutoSize = true;
+            this.xCheckBox1.BoxBorderColor = System.Drawing.SystemColors.ControlText;
+            this.xCheckBox1.Checked = true;
+            this.xCheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.xCheckBox1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(98)))), ((int)(((byte)(255)))));
+            this.xCheckBox1.Location = new System.Drawing.Point(106, 568);
+            this.xCheckBox1.MouseHoveringForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xCheckBox1.Name = "xCheckBox1";
+            this.xCheckBox1.Size = new System.Drawing.Size(94, 20);
+            this.xCheckBox1.TabIndex = 21;
+            this.xCheckBox1.Text = "xCheckBox1";
+            this.xCheckBox1.UseVisualStyleBackColor = true;
+            // 
+            // xRadioButton2
+            // 
+            this.xRadioButton2.AutoSize = true;
+            this.xRadioButton2.InnerCircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(98)))), ((int)(((byte)(255)))));
+            this.xRadioButton2.Location = new System.Drawing.Point(624, 605);
+            this.xRadioButton2.MouseHoveringForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xRadioButton2.Name = "xRadioButton2";
+            this.xRadioButton2.OuterCircleColor = System.Drawing.SystemColors.ControlText;
+            this.xRadioButton2.Size = new System.Drawing.Size(109, 20);
+            this.xRadioButton2.TabIndex = 20;
+            this.xRadioButton2.TabStop = true;
+            this.xRadioButton2.Text = "xRadioButton2";
+            this.xRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // xRadioButton1
+            // 
+            this.xRadioButton1.AutoSize = true;
+            this.xRadioButton1.Checked = true;
+            this.xRadioButton1.InnerCircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(98)))), ((int)(((byte)(255)))));
+            this.xRadioButton1.Location = new System.Drawing.Point(37, 551);
+            this.xRadioButton1.MouseHoveringForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xRadioButton1.Name = "xRadioButton1";
+            this.xRadioButton1.OuterCircleColor = System.Drawing.SystemColors.ControlText;
+            this.xRadioButton1.Size = new System.Drawing.Size(48, 20);
+            this.xRadioButton1.TabIndex = 19;
+            this.xRadioButton1.TabStop = true;
+            this.xRadioButton1.Text = "直角";
+            this.xRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // xComboBox1
+            // 
+            this.xComboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
+            this.xComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.xComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
+            this.xComboBox1.FormattingEnabled = true;
+            this.xComboBox1.Items.AddRange(new object[] {
+            "111",
+            "222",
+            "333"});
+            this.xComboBox1.Location = new System.Drawing.Point(714, 551);
+            this.xComboBox1.MouseHoveringForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xComboBox1.Name = "xComboBox1";
+            this.xComboBox1.Size = new System.Drawing.Size(121, 24);
+            this.xComboBox1.TabIndex = 18;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.textBox1.Location = new System.Drawing.Point(733, 384);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 17;
             // 
             // xTextBox1
             // 
@@ -225,7 +302,6 @@
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(48, 20);
             this.radioButton2.TabIndex = 8;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "直角";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -233,13 +309,11 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(37, 495);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(48, 20);
             this.radioButton1.TabIndex = 9;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "圆角";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -379,35 +453,26 @@
             this.treeView1.ForeColor = System.Drawing.Color.White;
             this.treeView1.Location = new System.Drawing.Point(926, 149);
             this.treeView1.Name = "treeView1";
-            treeNode15.Name = "L2,0";
-            treeNode15.Text = "L2,0";
-            treeNode16.Name = "L1,0";
-            treeNode16.Text = "L1,0";
-            treeNode17.Name = "L1,1";
-            treeNode17.Text = "L1,1";
-            treeNode18.Name = "L1,2";
-            treeNode18.Text = "L1,2";
-            treeNode19.Name = "L0,0";
-            treeNode19.Text = "L0,0";
-            treeNode20.Name = "L1,0";
-            treeNode20.Text = "L1,0";
-            treeNode21.Name = "L0,1";
-            treeNode21.Text = "L0,1";
+            treeNode1.Name = "L2,0";
+            treeNode1.Text = "L2,0";
+            treeNode2.Name = "L1,0";
+            treeNode2.Text = "L1,0";
+            treeNode3.Name = "L1,1";
+            treeNode3.Text = "L1,1";
+            treeNode4.Name = "L1,2";
+            treeNode4.Text = "L1,2";
+            treeNode5.Name = "L0,0";
+            treeNode5.Text = "L0,0";
+            treeNode6.Name = "L1,0";
+            treeNode6.Text = "L1,0";
+            treeNode7.Name = "L0,1";
+            treeNode7.Text = "L0,1";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode19,
-            treeNode21});
+            treeNode5,
+            treeNode7});
             this.treeView1.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(170)))));
             this.treeView1.Size = new System.Drawing.Size(239, 383);
             this.treeView1.TabIndex = 12;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.textBox1.Location = new System.Drawing.Point(733, 384);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 17;
             // 
             // Form1
             // 
@@ -462,5 +527,9 @@
         private PowerControl.XButton xButton8;
         private PowerControl.XTextBox xTextBox1;
         private System.Windows.Forms.TextBox textBox1;
+        private PowerControl.XComboBox xComboBox1;
+        private PowerControl.XRadioButton xRadioButton1;
+        private PowerControl.XRadioButton xRadioButton2;
+        private PowerControl.XCheckBox xCheckBox1;
     }
 }

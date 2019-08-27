@@ -32,6 +32,7 @@
         public const int WM_GETMINMAXINFO = 0x0024;
         public const int WM_ENTERSIZEMOVE = 0x0231;
         public const int WM_WINDOWPOSCHANGING = 0x0046;
+        public const int WM_CTLCOLOREDIT = 0x133;
 
 
         // FOR WM_SIZING MSG WPARAM  
