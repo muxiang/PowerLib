@@ -26,6 +26,7 @@ namespace PowerControl
         private Font _fontText = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
 
         private bool _checked;
+        private bool _isMouseHovering;
 
         private string _projectStateText = "正常工况";
         private string _computeMethodText = "单一计算";
@@ -52,7 +53,7 @@ namespace PowerControl
 
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
         }
-        
+
         /// <summary>
         /// 序号
         /// </summary>
@@ -179,15 +180,16 @@ namespace PowerControl
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
             pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
+            if (_isMouseHovering)
+                pe.Graphics.DrawPath(_penBorder, _graphicsPath);
+
             if (_checked)
             {
                 pe.Graphics.DrawPath(_penBorder, _graphicsPath);
                 pe.Graphics.DrawImage(Resources.ProjectItemChecked, new RectangleF(20, 20, 32, 32));
             }
             else
-            {
                 pe.Graphics.DrawEllipse(_penCheckedBox, new RectangleF(20, 20, 32, 32));
-            }
 
             //删除按钮
             pe.Graphics.DrawImage(Resources.ProjectItemBtnDelete, new RectangleF(Width - 20 - 32, 20, 32, 32));
@@ -235,6 +237,28 @@ namespace PowerControl
             base.OnMouseClick(e);
 
             Checked = !Checked;
+        }
+
+        /// <summary>
+        /// 鼠标进入时调用
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            _isMouseHovering = true;
+            Invalidate();
+            base.OnMouseEnter(e);
+        }
+
+        /// <summary>
+        /// 鼠标离开时调用
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            _isMouseHovering = false;
+            Invalidate();
+            base.OnMouseLeave(e);
         }
     }
 }
