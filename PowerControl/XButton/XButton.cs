@@ -81,6 +81,8 @@ namespace PowerControl
                 if ((char)e1.KeyCode == _shortcut && e1.Alt)
                     PerformClick();
             };
+
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
         }
 
         #region 属性
@@ -887,7 +889,7 @@ namespace PowerControl
             pe.Graphics.CompositingQuality = CompositingQuality.HighQuality;
             pe.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-            pe.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+            pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             DrawBackgroundAndBorder(pe.Graphics);
 

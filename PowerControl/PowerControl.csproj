@@ -56,6 +56,12 @@
       <DependentUpon>IPTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingLayer.cs" />
+    <Compile Include="ProjectListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectListItem.Designer.cs">
+      <DependentUpon>ProjectListItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="RipplePictureBox\RippleEffect.cs" />
     <Compile Include="RipplePictureBox\RipplePictureBox.cs">
       <SubType>Component</SubType>
@@ -199,6 +205,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnNormalDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProjectItemChecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProjectItemBtnDelete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
