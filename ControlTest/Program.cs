@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using PowerControl;
-using SignalerTool.Forms;
 
 namespace ControlTest
 {
@@ -20,7 +17,7 @@ namespace ControlTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
-            Application.Run(new Form1());
+            Application.Run(new FrmShadowPanelTest());
         }
     }
 }

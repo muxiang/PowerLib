@@ -102,17 +102,35 @@
     <Compile Include="XComboBox.Designer.cs">
       <DependentUpon>XComboBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="XDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XDataGridView.Designer.cs">
+      <DependentUpon>XDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="XForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="XForm.Designer.cs">
       <DependentUpon>XForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="XGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XGroupBox.Designer.cs">
+      <DependentUpon>XGroupBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="XMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="XMessageBox.Designer.cs">
       <DependentUpon>XMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XPanel.Designer.cs">
+      <DependentUpon>XPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="XProgressBar.cs">
       <SubType>Component</SubType>

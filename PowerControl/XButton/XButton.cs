@@ -60,7 +60,7 @@ namespace PowerControl
             CheckedStartColor = Color.FromArgb(109, 169, 255);
             CheckedEndColor = Color.FromArgb(83, 128, 252);
 
-            ForeColor = Color.White;
+            ForeColor = Color.FromArgb(134, 134, 134);
             Font = new Font("微软雅黑", 8, FontStyle.Regular, GraphicsUnit.Point);
 
             BorderColor = Color.FromArgb(212, 212, 212);

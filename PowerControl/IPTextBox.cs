@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-
-using PowerControl.Design;
 
 namespace PowerControl
 {

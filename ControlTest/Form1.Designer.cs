@@ -66,6 +66,7 @@
             this.文件OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new PowerControl.XTreeView();
+            this.xPanel1 = new PowerControl.XPanel();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -448,9 +449,9 @@
             // 
             // treeView1
             // 
-            this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(60)))));
+            this.treeView1.BackColor = System.Drawing.Color.White;
             this.treeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.treeView1.ForeColor = System.Drawing.Color.White;
+            this.treeView1.ForeColor = System.Drawing.Color.Black;
             this.treeView1.Location = new System.Drawing.Point(926, 149);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "L2,0";
@@ -470,9 +471,18 @@
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode5,
             treeNode7});
-            this.treeView1.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(170)))));
+            this.treeView1.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.treeView1.Size = new System.Drawing.Size(239, 383);
             this.treeView1.TabIndex = 12;
+            // 
+            // xPanel1
+            // 
+            this.xPanel1.Location = new System.Drawing.Point(926, 579);
+            this.xPanel1.Name = "xPanel1";
+            this.xPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.xPanel1.ShadowHeightRatio = 0.05F;
+            this.xPanel1.Size = new System.Drawing.Size(317, 142);
+            this.xPanel1.TabIndex = 14;
             // 
             // Form1
             // 
@@ -481,6 +491,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(1316, 787);
+            this.Controls.Add(this.xPanel1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
@@ -531,5 +542,6 @@
         private PowerControl.XRadioButton xRadioButton1;
         private PowerControl.XRadioButton xRadioButton2;
         private PowerControl.XCheckBox xCheckBox1;
+        private PowerControl.XPanel xPanel1;
     }
 }
