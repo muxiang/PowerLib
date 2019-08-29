@@ -120,6 +120,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BeyondTraffic.ico" />
+    <None Include="Resources\核素管理2.png" />
+    <None Include="Resources\核素管理1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

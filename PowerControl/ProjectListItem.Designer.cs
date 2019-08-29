@@ -1,6 +1,6 @@
 ﻿namespace PowerControl
 {
-    partial class ProjectListItem
+    sealed partial class ProjectListItem
     {
         /// <summary>
         /// 必需的设计器变量。

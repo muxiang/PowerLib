@@ -59,6 +59,11 @@ namespace PowerControl
 
             CheckedStartColor = Color.FromArgb(109, 169, 255);
             CheckedEndColor = Color.FromArgb(83, 128, 252);
+            CheckedForeColor = Color.White;
+
+            HoldingStartColor = Color.FromArgb(109, 169, 255);
+            HoldingEndColor = Color.FromArgb(83, 128, 252);
+            HoldingForeColor = Color.White;
 
             ForeColor = Color.FromArgb(134, 134, 134);
             Font = new Font("微软雅黑", 8, FontStyle.Regular, GraphicsUnit.Point);
@@ -104,6 +109,22 @@ namespace PowerControl
         }
 
         /// <summary>
+        /// 鼠标按下状态显示的图像
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("指定鼠标按下状态显示的图像")]
+        public Image HoldingImage
+        {
+            get => _holdingImage;
+            set
+            {
+                _holdingImage = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
         /// 是否选中
         /// </summary>
         [Browsable(true)]
@@ -134,7 +155,6 @@ namespace PowerControl
                 _startColor = value;
 
                 _hoveringStartColor = Utilities.GetLighterColor(StartColor);
-                _holdingStartColor = Utilities.GetDeeperColor(StartColor);
 
                 Invalidate();
             }
@@ -153,7 +173,6 @@ namespace PowerControl
             {
                 _endColor = value;
                 _hoveringEndColor = Utilities.GetLighterColor(EndColor);
-                _holdingEndColor = Utilities.GetDeeperColor(EndColor);
 
                 Invalidate();
             }
@@ -212,6 +231,54 @@ namespace PowerControl
             {
                 _checkedForeColor = value;
 
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 鼠标按下状态渐变起始颜色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("鼠标按下状态渐变起始颜色")]
+        public Color HoldingStartColor
+        {
+            get => _holdingStartColor;
+            set
+            {
+                _holdingStartColor = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 鼠标按下状态渐变结束颜色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("鼠标按下状态渐变结束颜色")]
+        public Color HoldingEndColor
+        {
+            get => _holdingEndColor;
+            set
+            {
+                _holdingEndColor = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 鼠标按下状态前景颜色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("鼠标按下状态前景颜色")]
+        public Color HoldingForeColor
+        {
+            get => _holdingForeColor;
+            set
+            {
+                _holdingForeColor = value;
                 Invalidate();
             }
         }
@@ -354,7 +421,7 @@ namespace PowerControl
                     if (value < 'A'
                         || value > 'Z' && value < 'a'
                         || value > 'z')
-                        throw new ArgumentOutOfRangeException(nameof(value), "快捷键字符只能是A~Z");
+                        throw new ArgumentOutOfRangeException(nameof(value), @"快捷键字符只能是A~Z");
 
                     //大写
                     if (value >= 'a')
@@ -391,6 +458,8 @@ namespace PowerControl
         //鼠标按下渐变起止颜色
         private Color _holdingStartColor;
         private Color _holdingEndColor;
+        //鼠标按下前景色
+        private Color _holdingForeColor;
         //选中状态鼠标停留渐变起止颜色
         private Color _hoveringCheckedStartColor;
         private Color _hoveringCheckedEndColor;
@@ -400,6 +469,7 @@ namespace PowerControl
 
         //文本画刷
         private SolidBrush _textBrush;
+        private SolidBrush _holdingTextBrush;
 
         //按钮状态
         private ButtonState _buttonState;
@@ -450,6 +520,8 @@ namespace PowerControl
         private XButtonDisplayStyle _displayStyle;
         //显示图像
         private Image _image;
+        //鼠标按下状态显示图像
+        private Image _holdingImage;
 
         //对话框结果
         private DialogResult _dialogResult;
@@ -530,7 +602,12 @@ namespace PowerControl
         {
             cStart = EnableLinearGradientColor ? StartColor : EndColor;
             cEnd = EndColor;
-            _textBrush = new SolidBrush(Enabled ? ForeColor : Color.FromArgb(76, 92, 95));
+            Color foreColor = ForeColor;
+            if (Checked)
+                foreColor = _checkedForeColor;
+            if (_isMouseHolding)
+                foreColor = _holdingForeColor;
+            _textBrush = new SolidBrush(Enabled ? foreColor : Color.FromArgb(76, 92, 95));
 
             switch (btnState)
             {
@@ -902,8 +979,8 @@ namespace PowerControl
                     DrawImage(pe.Graphics);
                     break;
                 case XButtonDisplayStyle.ImageAndText:
-                    float textX = DrawText(pe.Graphics);
-                    DrawImage(pe.Graphics, textX);
+                    float contentX = DrawText(pe.Graphics);
+                    DrawImage(pe.Graphics, contentX);
                     break;
             }
         }
@@ -987,7 +1064,7 @@ namespace PowerControl
         /// 绘制显示文本
         /// </summary>
         /// <param name="g">图面</param>
-        /// <returns>返回文字起始x坐标</returns>
+        /// <returns>返回显示的所有内容的X偏移</returns>
         private float DrawText(Graphics g)
         {
             g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
@@ -1010,45 +1087,53 @@ namespace PowerControl
             SizeF szTotal = new SizeF(szText.Width + szShortcut.Width + szParentheses.Width,
                 Math.Max(Math.Max(szText.Height, szShortcut.Height), szParentheses.Height));
 
+            const float textImagePadding = 5F;
+
+            //包含图片在内全部内容的X偏移
+            float contentXOffset = 0, textXOffset = 0;
+            if (_displayStyle == XButtonDisplayStyle.Text)
+                contentXOffset = textXOffset = ((DropDownItems.Count == 0 ? Width : Width - DropDownArrowWidth) - szTotal.Width) / 2f;
+            else if (_displayStyle == XButtonDisplayStyle.ImageAndText)
+            {
+                contentXOffset = ((DropDownItems.Count == 0 ? Width : Width - DropDownArrowWidth) - szTotal.Width - _image.Width) / 2f - textImagePadding;
+                textXOffset = contentXOffset + _image.Width + textImagePadding;
+            }
+
             //起始坐标
-            PointF drawPt = DropDownItems.Count == 0
-                ? new PointF(Width / 2f - szTotal.Width / 2, Height / 2f - szTotal.Height / 2)
-                : new PointF((Width - DropDownArrowWidth) / 2f - szTotal.Width / 2, Height / 2f - szTotal.Height / 2);
+            PointF drawPt = new PointF(textXOffset, Height / 2f - szTotal.Height / 2F);
 
             g.DrawString(Text, Font, _textBrush, drawPt, StringFormat.GenericTypographic);
 
-            if (_shortcut != '\0')
-            {
-                g.DrawString("(", Font, _textBrush, new PointF(drawPt.X + szText.Width, drawPt.Y), StringFormat.GenericTypographic);
-                g.DrawString(")", Font, _textBrush,
-                    new PointF(drawPt.X + szText.Width + szParentheses.Width / 2F + szShortcut.Width, drawPt.Y), StringFormat.GenericTypographic);
-                g.DrawString(_shortcut.ToString(), _shortcutFont, _textBrush,
-                    new PointF(drawPt.X + szText.Width + szParentheses.Width / 2F, drawPt.Y), StringFormat.GenericTypographic);
-            }
+            if (_shortcut == '\0')
+                return contentXOffset;
 
-            return drawPt.X;
+            g.DrawString("(", Font, _textBrush, new PointF(drawPt.X + szText.Width, drawPt.Y), StringFormat.GenericTypographic);
+            g.DrawString(")", Font, _textBrush,
+                new PointF(drawPt.X + szText.Width + szParentheses.Width / 2F + szShortcut.Width, drawPt.Y), StringFormat.GenericTypographic);
+            g.DrawString(_shortcut.ToString(), _shortcutFont, _textBrush,
+                new PointF(drawPt.X + szText.Width + szParentheses.Width / 2F, drawPt.Y), StringFormat.GenericTypographic);
+
+            return contentXOffset;
         }
 
         /// <summary>
         /// 绘制图像
         /// </summary>
         /// <param name="g">图面</param>
-        /// <param name="textX">文字起始X坐标，DisplayStyle为Image时，忽略此参数</param>
-        private void DrawImage(Graphics g, float textX = -1)
+        /// <param name="contentXOffset">显示的所有内容的X偏移</param>
+        private void DrawImage(Graphics g, float contentXOffset = -1)
         {
-            float szImg = Height - 2 * 2;
-
             RectangleF drawRect;
 
             //仅图像
-            if (textX < 0)
-                drawRect = new RectangleF(Width / 2f - szImg / 2, Height / 2f - szImg / 2, szImg, szImg);
+            if (contentXOffset < 0)
+                drawRect = new RectangleF(Width / 2f - _image.Width / 2F, Height / 2f - _image.Height / 2F, _image.Width, _image.Height);
             //图像与文字
             else
-                drawRect = new RectangleF(textX - 2 - szImg, Height / 2f - szImg / 2, szImg, szImg);
+                drawRect = new RectangleF(contentXOffset, Height / 2f - _image.Height / 2F, _image.Width, _image.Height);
 
             if (_image == null) return;
-            g.DrawImage(_image, drawRect);
+            g.DrawImage(_isMouseHolding ? _holdingImage ?? _image : _image, drawRect);
         }
 
         #endregion 绘图逻辑

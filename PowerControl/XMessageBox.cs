@@ -243,23 +243,25 @@ namespace PowerControl
             }
         }
 
+        /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs e)
         {
             if (_icon != null)
             {
                 e.Graphics.DrawIcon(_icon, (int)IconMarginX, (int)TextMarginY);
-                e.Graphics.DrawString(_content, Font, Brushes.White,
+                e.Graphics.DrawString(_content, Font, new SolidBrush(Color.FromArgb(80, 80, 80)),
                     new RectangleF(IconMarginX + _icon.Width + TextMarginX, TextMarginY, _szText.Width, _szText.Height),
                     StringFormat.GenericTypographic);
             }
             else
-                e.Graphics.DrawString(_content, Font, Brushes.White,
+                e.Graphics.DrawString(_content, Font, new SolidBrush(Color.FromArgb(80, 80, 80)),
                     new RectangleF(TextMarginX, TextMarginY, _szText.Width, _szText.Height),
                     StringFormat.GenericTypographic);
 
             base.OnPaint(e);
         }
 
+        /// <inheritdoc />
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);

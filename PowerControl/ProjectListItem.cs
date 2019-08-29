@@ -1,29 +1,36 @@
-﻿using PowerControl.Properties;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using PowerControl.Properties;
 
 namespace PowerControl
 {
+    /// <summary>
+    /// 表示工程列表中的一个项
+    /// </summary>
     [ToolboxItem(false)]
-    public partial class ProjectListItem : Control
+    public sealed partial class ProjectListItem : Control
     {
         //缓存画笔画刷字体
-        private Pen _penBorder = new Pen(Color.FromArgb(73, 119, 252), 5);
-        private Pen _penCheckedBox = new Pen(Color.FromArgb(217, 220, 231), 2);
-        private Pen _penHorizontalSeparator = new Pen(Color.FromArgb(245, 246, 250), 2);
-        private Pen _penVerticalSeparator = new Pen(Color.FromArgb(210, 210, 210), 1);
-        private Brush _brsProjectName = new SolidBrush(Color.Black);
-        private Brush _brsText = new SolidBrush(Color.FromArgb(195, 195, 195));
-        private Font _fontProjectName = new Font("微软雅黑", 24, FontStyle.Regular, GraphicsUnit.Pixel);
-        private Font _fontText = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
+        private static readonly Pen PenBorder = new Pen(Color.FromArgb(73, 119, 252), 5);
+        private static readonly Pen PenCheckedBox = new Pen(Color.FromArgb(217, 220, 231), 2);
+        private static readonly Pen PenHorizontalSeparator = new Pen(Color.FromArgb(245, 246, 250), 2);
+        private static readonly Pen PenVerticalSeparator = new Pen(Color.FromArgb(210, 210, 210), 1);
+        private static readonly Pen PenBlueDash = new Pen(Color.FromArgb(88, 136, 253), 2) { DashStyle = DashStyle.Dot };
+        private static readonly Pen PenPurpleDash = new Pen(Color.FromArgb(138, 101, 247), 2) { DashStyle = DashStyle.Dot };
+        private static readonly Pen PenRedDash = new Pen(Color.FromArgb(251, 117, 111), 2) { DashStyle = DashStyle.Dot };
+        private static readonly Pen PenCyanDash = new Pen(Color.FromArgb(28, 228, 223), 2) { DashStyle = DashStyle.Dot };
+        private static readonly Brush BrsProjectName = new SolidBrush(Color.Black);
+        private static readonly Brush BrsText = new SolidBrush(Color.FromArgb(195, 195, 195));
+        private static readonly Brush BrsBlueNumber = new LinearGradientBrush(new PointF(138, 113), new PointF(194, 113), Color.FromArgb(103, 160, 254), Color.FromArgb(88, 135, 253));
+        private static readonly Brush BrsPurpleNumber = new LinearGradientBrush(new PointF(138, 113), new PointF(194, 113), Color.FromArgb(174, 152, 237), Color.FromArgb(135, 97, 248));
+        private static readonly Brush BrsRedNumber = new LinearGradientBrush(new PointF(138, 113), new PointF(194, 113), Color.FromArgb(253, 123, 119), Color.FromArgb(248, 99, 89));
+        private static readonly Brush BrsCyanNumber = new LinearGradientBrush(new PointF(138, 113), new PointF(194, 113), Color.FromArgb(17, 232, 115), Color.FromArgb(54, 219, 242));
+        private static readonly Font FontProjectName = new Font("微软雅黑", 24, FontStyle.Regular, GraphicsUnit.Pixel);
+        private static readonly Font FontText = new Font("微软雅黑", 18, FontStyle.Regular, GraphicsUnit.Pixel);
 
         private bool _checked;
         private bool _isMouseHovering;
@@ -33,10 +40,31 @@ namespace PowerControl
         private string _plantNameText = "松花江";
         private string _createDateTimeText = "2019/08/28 17:07";
         private string _projectNameText = "工程名称1";
-        private int _number = 1;
+        private int _number;
 
-        private GraphicsPath _graphicsPath;
+        private readonly GraphicsPath _graphicsPath;
 
+        #region 事件
+
+        /// <summary>
+        /// 选中状态变更时发生
+        /// </summary>
+        [Browsable(true)]
+        public event EventHandler CheckedChanged;
+
+        /// <summary>
+        /// 删除按钮单击时发生
+        /// </summary>
+        [Browsable(true)]
+        public event EventHandler DeleteButtonClick;
+
+        #endregion 事件
+
+        /// <inheritdoc />
+        /// <summary>
+        /// 初始化工程列表项
+        /// </summary>
+        /// <param name="number">序号</param>
         public ProjectListItem(int number)
         {
             InitializeComponent();
@@ -84,6 +112,7 @@ namespace PowerControl
             set
             {
                 _checked = value;
+                OnCheckedChanged();
                 Invalidate();
             }
         }
@@ -173,6 +202,7 @@ namespace PowerControl
             }
         }
 
+        /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs pe)
         {
             pe.Graphics.CompositingQuality = CompositingQuality.HighQuality;
@@ -181,60 +211,108 @@ namespace PowerControl
             pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             if (_isMouseHovering)
-                pe.Graphics.DrawPath(_penBorder, _graphicsPath);
+                pe.Graphics.DrawPath(PenBorder, _graphicsPath);
 
             if (_checked)
             {
-                pe.Graphics.DrawPath(_penBorder, _graphicsPath);
+                pe.Graphics.DrawPath(PenBorder, _graphicsPath);
                 pe.Graphics.DrawImage(Resources.ProjectItemChecked, new RectangleF(20, 20, 32, 32));
             }
             else
-                pe.Graphics.DrawEllipse(_penCheckedBox, new RectangleF(20, 20, 32, 32));
+                pe.Graphics.DrawEllipse(PenCheckedBox, new RectangleF(20, 20, 32, 32));
 
             //删除按钮
             pe.Graphics.DrawImage(Resources.ProjectItemBtnDelete, new RectangleF(Width - 20 - 32, 20, 32, 32));
 
+            //序号
+            Pen pen = null;
+            Brush brs = null;
+            switch (_number % 4)
+            {
+                case 1:
+                    pen = PenBlueDash;
+                    brs = BrsBlueNumber;
+                    break;
+                case 2:
+                    pen = PenPurpleDash;
+                    brs = BrsPurpleNumber;
+                    break;
+                case 3:
+                    pen = PenRedDash;
+                    brs = BrsRedNumber;
+                    break;
+                case 0:
+                    pen = PenCyanDash;
+                    brs = BrsCyanNumber;
+                    break;
+            }
+            //外圆
+            pe.Graphics.DrawEllipse(pen ?? throw new InvalidOperationException(), new RectangleF(Width / 2F - 95 / 2F, 65, 95, 95));
+            //六边形
+            pe.Graphics.FillPolygon(brs, new[]
+            {
+                new PointF(138, 113),
+                new PointF(152, 87),
+                new PointF(180, 87),
+                new PointF(194, 113),
+                new PointF(180, 138),
+                new PointF(152, 138),
+            });
+            //序号
+            SizeF szNumber = pe.Graphics.MeasureString(_number.ToString(), FontText);
+            pe.Graphics.DrawString(_number.ToString(), FontText, Brushes.White, 
+                138 + (194 - 138) / 2F - szNumber.Width / 2F, 87 + (138 - 87) / 2F - szNumber.Height / 2F);
+
             //工程名称
-            pe.Graphics.DrawString(_projectNameText, _fontProjectName, _brsProjectName,
-                new PointF(Width / 2F - pe.Graphics.MeasureString(_projectNameText, _fontProjectName).Width / 2F, 180));
+            pe.Graphics.DrawString(_projectNameText, FontProjectName, BrsProjectName,
+                new PointF(Width / 2F - pe.Graphics.MeasureString(_projectNameText, FontProjectName).Width / 2F, 180));
 
             //竖分割线
-            pe.Graphics.DrawLine(_penVerticalSeparator, new PointF(Width / 2F, 225), new PointF(Width / 2F, 245));
+            pe.Graphics.DrawLine(PenVerticalSeparator, new PointF(Width / 2F, 225), new PointF(Width / 2F, 245));
 
             pe.Graphics.SmoothingMode = SmoothingMode.Default;
 
             //工况
-            pe.Graphics.DrawString(_projectStateText, _fontText, _brsText,
-                new PointF(Width / 2F - pe.Graphics.MeasureString(_projectStateText, _fontText).Width - 5, 225 - 2.5F));
+            pe.Graphics.DrawString(_projectStateText, FontText, BrsText,
+                new PointF(Width / 2F - pe.Graphics.MeasureString(_projectStateText, FontText).Width - 5, 225 - 2.5F));
             //计算方式
-            pe.Graphics.DrawString(_computeMethodText, _fontText, _brsText,
+            pe.Graphics.DrawString(_computeMethodText, FontText, BrsText,
                 new PointF(Width / 2F + 5, 225 - 2.5F));
 
-            pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
             //横分割线
-            pe.Graphics.DrawLine(_penHorizontalSeparator, new PointF(5, 280), new PointF(Width - 5, 280));
+            pe.Graphics.DrawLine(PenHorizontalSeparator, new PointF(5, 280), new PointF(Width - 5, 280));
 
             //竖分割线
-            pe.Graphics.DrawLine(_penVerticalSeparator, new PointF(120, Height - 55), new PointF(120, Height - 35));
+            pe.Graphics.DrawLine(PenVerticalSeparator, new PointF(120, Height - 55), new PointF(120, Height - 35));
 
             //厂址
-            pe.Graphics.DrawString(_plantNameText, _fontText, _brsText,
-                new PointF(120 - pe.Graphics.MeasureString(_plantNameText, _fontText).Width - 5, Height - 55 - 2.5F));
+            pe.Graphics.DrawString(_plantNameText, FontText, BrsText,
+                new PointF(120 - pe.Graphics.MeasureString(_plantNameText, FontText).Width - 5, Height - 55 - 2.5F));
             //日期
-            pe.Graphics.DrawString(_createDateTimeText, _fontText, _brsText,
+            pe.Graphics.DrawString(_createDateTimeText, FontText, BrsText,
                 new PointF(120 + 5, Height - 55 - 2.5F));
+
+            pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
         }
 
+        /// <inheritdoc />
         protected override void OnResize(EventArgs e)
         {
             Width = 330;
             Height = 370;
         }
 
+        /// <inheritdoc />
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
+
+            RectangleF rectBtnDelete = new RectangleF(Width - 20 - 32, 20, 32, 32);
+            if (rectBtnDelete.Contains(e.Location))
+            {
+                OnDeleteButtonClick();
+                return;
+            }
 
             Checked = !Checked;
         }
@@ -259,6 +337,16 @@ namespace PowerControl
             _isMouseHovering = false;
             Invalidate();
             base.OnMouseLeave(e);
+        }
+
+        private void OnCheckedChanged()
+        {
+            CheckedChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnDeleteButtonClick()
+        {
+            DeleteButtonClick?.Invoke(this, EventArgs.Empty);
         }
     }
 }
