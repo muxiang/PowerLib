@@ -1,6 +1,6 @@
 ﻿namespace PowerControl
 {
-    partial class XPanel
+    partial class XTabControl
     {
         /// <summary>
         /// 必需的设计器变量。

@@ -6,11 +6,10 @@ using System.Windows.Forms;
 
 namespace PowerControl
 {
-    public partial class XPanel : Panel
+    public partial class XShadowPanel : Panel
     {
         //缓存画笔画刷
         private SolidBrush _brsTopBorderColor;
-        private SolidBrush _brsShadowColor;
         private LinearGradientBrush _brsBackground;
 
         private Color _topBorderColor = Color.FromArgb(224, 224, 224);
@@ -18,12 +17,11 @@ namespace PowerControl
         private float _shadowHeightRatio = 5F / 100;
         private const int TopBorderWidth = 2;
 
-        public XPanel()
+        public XShadowPanel()
         {
             InitializeComponent();
 
             _brsTopBorderColor = new SolidBrush(_topBorderColor);
-            _brsShadowColor = new SolidBrush(_shadowColor);
             _brsBackground = new LinearGradientBrush(new PointF(Width / 2F, TopBorderWidth),
                 new PointF(Width / 2F, TopBorderWidth + Height * _shadowHeightRatio), _shadowColor, BackColor);
         }
@@ -57,7 +55,6 @@ namespace PowerControl
             set
             {
                 _shadowColor = value;
-                _brsShadowColor = new SolidBrush(_shadowColor);
                 _brsBackground = new LinearGradientBrush(new PointF(Width / 2F, TopBorderWidth),
                     new PointF(Width / 2F, TopBorderWidth + Height * _shadowHeightRatio), _shadowColor, BackColor);
                 Invalidate();
@@ -95,7 +92,7 @@ namespace PowerControl
             //阴影
             pe.Graphics.FillRectangle(_brsBackground, 0, TopBorderWidth, Width, Height * _shadowHeightRatio);
         }
-
+        
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);
@@ -107,6 +104,9 @@ namespace PowerControl
         protected override void OnResize(EventArgs eventargs)
         {
             base.OnResize(eventargs);
+            if (Width == 0)
+                return;
+
             _brsBackground = new LinearGradientBrush(new PointF(Width / 2F, TopBorderWidth),
                 new PointF(Width / 2F, TopBorderWidth + Height * _shadowHeightRatio), _shadowColor, BackColor);
             Invalidate();

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ControlTest</RootNamespace>
     <AssemblyName>ControlTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,8 +75,15 @@
     <Compile Include="FrmShadowPanelTest.Designer.cs">
       <DependentUpon>FrmShadowPanelTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyForm2Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm2Test.Designer.cs">
+      <DependentUpon>MyForm2Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Win32API.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmShadowPanelTest.resx">
       <DependentUpon>FrmShadowPanelTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm2Test.resx">
+      <DependentUpon>MyForm2Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +131,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BeyondTraffic.ico" />
+    <None Include="Resources\uparrow.png" />
+    <None Include="Resources\ThumbTop.png" />
+    <None Include="Resources\ThumbSpanTop.png" />
+    <None Include="Resources\ThumbSpanBottom.png" />
+    <None Include="Resources\ThumbMiddle.png" />
+    <None Include="Resources\ThumbBottom.png" />
+    <None Include="Resources\downarrow.png" />
     <None Include="Resources\核素管理2.png" />
     <None Include="Resources\核素管理1.png" />
   </ItemGroup>

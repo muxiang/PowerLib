@@ -66,7 +66,7 @@
             this.文件OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new PowerControl.XTreeView();
-            this.xPanel1 = new PowerControl.XPanel();
+            this.xPanel1 = new PowerControl.XShadowPanel();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -270,7 +270,7 @@
             this.xButton3.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.xButton3.ForeColor = System.Drawing.Color.White;
-            this.xButton3.Image = global::ControlTest.Properties.Resources._123;
+            this.xButton3.Image = global::ControlTest.Properties.Resources.a123;
             this.xButton3.Location = new System.Drawing.Point(463, 168);
             this.xButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.xButton3.Name = "xButton3";
@@ -542,6 +542,6 @@
         private PowerControl.XRadioButton xRadioButton1;
         private PowerControl.XRadioButton xRadioButton2;
         private PowerControl.XCheckBox xCheckBox1;
-        private PowerControl.XPanel xPanel1;
+        private PowerControl.XShadowPanel xPanel1;
     }
 }

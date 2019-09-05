@@ -521,8 +521,8 @@ namespace PowerControl
                 case FormBorderStyle.Sizable:
                     info.BorderSize = SystemInformation.FrameBorderSize;
                     info.BorderSize = new Size(
-                        info.BorderSize.Width + 4,
-                        info.BorderSize.Height + 4);
+                        info.BorderSize.Width/**2*/,
+                        info.BorderSize.Height/**2*/);
                     break;
                 case FormBorderStyle.SizableToolWindow:
                     info.CaptionButtonSize = SystemInformation.ToolWindowCaptionButtonSize;

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>PowerControl</RootNamespace>
     <AssemblyName>PowerControl</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -109,16 +109,30 @@
       <DependentUpon>XComboBox.cs</DependentUpon>
     </Compile>
     <Compile Include="XDataGridView.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="XDataGridView.Designer.cs">
       <DependentUpon>XDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TypeDescriptionContext.cs" />
+    <Compile Include="XDataGridViewColumnCollectionEditor.cs" />
+    <Compile Include="XDataGridView_backup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XDataGridView_backup.Designer.cs">
+      <DependentUpon>XDataGridView_backup.cs</DependentUpon>
     </Compile>
     <Compile Include="XForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="XForm.Designer.cs">
       <DependentUpon>XForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XForm2.Designer.cs">
+      <DependentUpon>XForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="XGroupBox.cs">
       <SubType>Component</SubType>
@@ -132,11 +146,17 @@
     <Compile Include="XMessageBox.Designer.cs">
       <DependentUpon>XMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="XPanel.cs">
+    <Compile Include="XShadowPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XPanel.Designer.cs">
-      <DependentUpon>XPanel.cs</DependentUpon>
+    <Compile Include="XShadowPanel.Designer.cs">
+      <DependentUpon>XShadowPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XFlowLayoutPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XFlowLayoutPanel.Designer.cs">
+      <DependentUpon>XFlowLayoutPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="XProgressBar.cs">
       <SubType>Component</SubType>
@@ -149,6 +169,18 @@
     </Compile>
     <Compile Include="XRadioButton.Designer.cs">
       <DependentUpon>XRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XScrollBar.Designer.cs">
+      <DependentUpon>XScrollBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XTabControl.Designer.cs">
+      <DependentUpon>XTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="XTextBox.cs">
       <SubType>Component</SubType>
@@ -172,11 +204,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="XDataGridView.resx">
+      <DependentUpon>XDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XForm.resx">
       <DependentUpon>XForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XMessageBox.resx">
       <DependentUpon>XMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XFlowLayoutPanel.resx">
+      <DependentUpon>XFlowLayoutPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XTextBox.resx">
       <DependentUpon>XTextBox.cs</DependentUpon>
@@ -211,6 +249,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ProjectItemBtnDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbMiddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbSpanBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbSpanTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThumbTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uparrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
