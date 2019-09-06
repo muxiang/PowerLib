@@ -592,6 +592,13 @@ namespace PowerControl
             Invalidate();
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            CreateButtonImages();
+            DrawCaption(Handle, ActiveForm == this);
+        }
+
         protected override void OnResizeEnd(EventArgs e)
         {
             base.OnResizeEnd(e);

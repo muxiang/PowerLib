@@ -55,11 +55,18 @@
     <Compile Include="IPTextBox.Designer.cs">
       <DependentUpon>IPTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="IrregularControls\ComputeApplications.cs" />
     <Compile Include="LoadingLayer.cs" />
-    <Compile Include="ProjectListItem.cs">
+    <Compile Include="IrregularControls\ProjectFlowChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IrregularControls\ProjectFlowChart.Designer.cs">
+      <DependentUpon>ProjectFlowChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IrregularControls\ProjectListItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ProjectListItem.Designer.cs">
+    <Compile Include="IrregularControls\ProjectListItem.Designer.cs">
       <DependentUpon>ProjectListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="RipplePictureBox\RippleEffect.cs" />
@@ -193,6 +200,9 @@
   <ItemGroup>
     <EmbeddedResource Include="LoadingCircle\LoadingCircle.resx">
       <DependentUpon>LoadingCircle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IrregularControls\ProjectFlowChart.resx">
+      <DependentUpon>ProjectFlowChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

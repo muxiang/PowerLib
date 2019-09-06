@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 using PowerControl.Properties;
 
-namespace PowerControl
+namespace PowerControl.IrregularControls
 {
     /// <summary>
     /// 表示工程列表中的一个项
