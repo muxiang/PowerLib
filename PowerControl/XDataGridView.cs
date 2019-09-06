@@ -15,6 +15,34 @@ namespace PowerControl
 {
     public partial class XDataGridView : UserControl
     {
+        /// <summary>
+        /// 缺省表格列头样式
+        /// </summary>
+        private static readonly DataGridViewCellStyle DefaultTableHeaderStyle = new DataGridViewCellStyle
+        {
+            Alignment = DataGridViewContentAlignment.MiddleLeft,
+            Font = new Font("微软雅黑", 8F, FontStyle.Bold, GraphicsUnit.Point, 134),
+            BackColor = Color.FromArgb(249, 249, 251),
+            ForeColor = Color.Black,
+            SelectionBackColor = Color.FromArgb(249, 249, 251),
+            SelectionForeColor = Color.Black,
+            WrapMode = DataGridViewTriState.True,
+        };
+
+        /// <summary>
+        /// 缺省表格单元格样式
+        /// </summary>
+        private static readonly DataGridViewCellStyle DefaultTableCellStyle = new DataGridViewCellStyle
+        {
+            Alignment = DataGridViewContentAlignment.MiddleLeft,
+            Font = new Font("微软雅黑", 8F, FontStyle.Bold, GraphicsUnit.Point, 134),
+            BackColor = Color.FromArgb(255, 255, 255),
+            ForeColor = Color.Black,
+            SelectionBackColor = Color.FromArgb(115, 180, 247),
+            SelectionForeColor = Color.White,
+            WrapMode = DataGridViewTriState.False,
+        };
+
         public XDataGridView()
         {
             InitializeComponent();
@@ -27,6 +55,15 @@ namespace PowerControl
                 xScrollBar1.Invalidate();
                 Application.DoEvents();
             };
+
+            dataGridView1.ColumnHeadersDefaultCellStyle = DefaultTableHeaderStyle;
+            dataGridView1.DefaultCellStyle = DefaultTableCellStyle;
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.GridColor = Color.FromArgb(233, 233, 235);
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.EnableHeadersVisualStyles = false;
 
             dataGridView1.RowsAdded += DataGridView1_RowsAdded;
             dataGridView1.RowsRemoved += DataGridView1_RowsRemoved;

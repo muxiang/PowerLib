@@ -7,6 +7,9 @@ namespace PowerControl
 {
     class NativeMethods
     {
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         [DllImport("User32.dll")]
         public static extern IntPtr GetWindowDC(IntPtr hwnd);
 
@@ -19,11 +22,14 @@ namespace PowerControl
 
         [DllImport("user32.dll", EntryPoint = "GetCaretBlinkTime")]
         public static extern int GetCaretBlinkTime();
-        
+
         [DllImport("user32.dll")]
         public static extern IntPtr BeginPaint(IntPtr hWnd, ref PAINTSTRUCT paintStruct);
 
         [DllImport("user32.dll")]
         public static extern bool EndPaint(IntPtr hWnd, ref PAINTSTRUCT paintStruct);
+
+        [DllImport("Dwmapi.dll")]
+        public static extern int DwmIsCompositionEnabled(out bool isEnabled);
     }
 }

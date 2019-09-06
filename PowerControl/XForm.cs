@@ -30,6 +30,8 @@ namespace PowerControl
         {
             InitializeComponent();
 
+            SetStyle(ControlStyles.ResizeRedraw | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+
             Font = new Font("微软雅黑", 8, FontStyle.Bold, GraphicsUnit.Point);
 
             CreateButtonImages();
@@ -67,13 +69,20 @@ namespace PowerControl
 
             Color cLeft = Color.FromArgb(89, 98, 255);
             Color cRight = Color.FromArgb(130, 101, 255);
-            //最小化
+
             _imgBtnMinimize = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            _imgBtnMaximize = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            _imgBtnMaximizeDisabled = new Bitmap(Properties.Resources.btnMaximizeDisabled.Width, Properties.Resources.btnMaximizeDisabled.Height);
+            _imgBtnNormal = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            _imgBtnNormalDisabled = new Bitmap(Properties.Resources.btnNormalDisabled.Width, Properties.Resources.btnNormalDisabled.Height);
+            _imgBtnClose = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+
+            //最小化
             using (Graphics g = Graphics.FromImage(_imgBtnMinimize))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-minRect.X, btnPosY),
-                    new Point(minRect.Width + maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnMinimize.Width + _imgBtnMaximize.Width + _imgBtnClose.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimize.Width, _imgBtnMinimize.Height));
@@ -82,12 +91,11 @@ namespace PowerControl
                     Properties.Resources.btnMinimize.Height));
             }
             //最大化
-            _imgBtnMaximize = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnMaximize))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnMaximize.Width + _imgBtnClose.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximize.Width, _imgBtnMaximize.Height));
@@ -96,12 +104,11 @@ namespace PowerControl
                     Properties.Resources.btnMaximize.Height));
             }
             //最大化禁用
-            _imgBtnMaximizeDisabled = new Bitmap(Properties.Resources.btnMaximizeDisabled.Width, Properties.Resources.btnMaximizeDisabled.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeDisabled))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnMaximizeDisabled.Width + _imgBtnClose.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeDisabled.Width, _imgBtnMaximizeDisabled.Height));
@@ -110,12 +117,11 @@ namespace PowerControl
                     Properties.Resources.btnMaximizeDisabled.Height));
             }
             //最大化恢复
-            _imgBtnNormal = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnNormal))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnNormal.Width + _imgBtnClose.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormal.Width, _imgBtnNormal.Height));
@@ -124,12 +130,11 @@ namespace PowerControl
                     Properties.Resources.btnNormal.Height));
             }
             //最大化恢复禁用
-            _imgBtnNormalDisabled = new Bitmap(Properties.Resources.btnNormalDisabled.Width, Properties.Resources.btnNormalDisabled.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnNormalDisabled))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnNormalDisabled.Width + _imgBtnClose.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalDisabled.Width, _imgBtnNormalDisabled.Height));
@@ -138,7 +143,6 @@ namespace PowerControl
                     Properties.Resources.btnNormalDisabled.Height));
             }
             //关闭
-            _imgBtnClose = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnClose))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -170,13 +174,18 @@ namespace PowerControl
 
             Color cLeft = Utilities.GetLighterColor(Color.FromArgb(89, 98, 255));
             Color cRight = Utilities.GetLighterColor(Color.FromArgb(130, 101, 255));
-            //最小化
+
             _imgBtnMinimizeHovering = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            _imgBtnMaximizeHovering = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            _imgBtnNormalHovering = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            _imgBtnCloseHovering = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+
+            //最小化
             using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-minRect.X, btnPosY),
-                    new Point(minRect.Width + maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnMinimizeHovering.Width + _imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHovering.Width, _imgBtnMinimizeHovering.Height));
@@ -185,12 +194,11 @@ namespace PowerControl
                     Properties.Resources.btnMinimize.Height));
             }
             //最大化
-            _imgBtnMaximizeHovering = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHovering.Width, _imgBtnMaximizeHovering.Height));
@@ -199,12 +207,11 @@ namespace PowerControl
                     Properties.Resources.btnMaximize.Height));
             }
             //最大化恢复
-            _imgBtnNormalHovering = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnNormalHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnNormalHovering.Width + _imgBtnCloseHovering.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHovering.Width, _imgBtnNormalHovering.Height));
@@ -213,7 +220,6 @@ namespace PowerControl
                     Properties.Resources.btnNormal.Height));
             }
             //关闭
-            _imgBtnCloseHovering = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnCloseHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -245,13 +251,18 @@ namespace PowerControl
 
             Color cLeft = Utilities.GetDeeperColor(Color.FromArgb(89, 98, 255));
             Color cRight = Utilities.GetDeeperColor(Color.FromArgb(130, 101, 255));
-            //最小化
+
             _imgBtnMinimizeHolding = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            _imgBtnMaximizeHolding = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            _imgBtnNormalHolding = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            _imgBtnCloseHolding = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+
+            //最小化
             using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-minRect.X, btnPosY),
-                    new Point(minRect.Width + maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnMinimizeHolding.Width + _imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHolding.Width, _imgBtnMinimizeHolding.Height));
@@ -260,12 +271,11 @@ namespace PowerControl
                     Properties.Resources.btnMinimize.Height));
             }
             //最大化
-            _imgBtnMaximizeHolding = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHolding.Width, _imgBtnMaximizeHolding.Height));
@@ -274,12 +284,11 @@ namespace PowerControl
                     Properties.Resources.btnMaximize.Height));
             }
             //最大化恢复
-            _imgBtnNormalHolding = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnNormalHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-maxRect.X, btnPosY),
-                    new Point(maxRect.Width + closeRect.Width + ncInfo.BorderSize.Width, btnPosY),
+                    new Point(_imgBtnNormalHolding.Width + _imgBtnCloseHolding.Width + ncInfo.BorderSize.Width, btnPosY),
                     cLeft, cRight);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHolding.Width, _imgBtnNormalHolding.Height));
@@ -288,7 +297,6 @@ namespace PowerControl
                     Properties.Resources.btnNormal.Height));
             }
             //关闭
-            _imgBtnCloseHolding = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
             using (Graphics g = Graphics.FromImage(_imgBtnCloseHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -339,7 +347,8 @@ namespace PowerControl
 
         private void DrawCaption(IntPtr hwnd, bool active)
         {
-            Invalidate();
+            if (FormBorderStyle == FormBorderStyle.None)
+                return;
 
             IntPtr dc;
             Graphics g;
@@ -357,8 +366,8 @@ namespace PowerControl
 
             Rectangle rect = ncInfo.CaptionRect;
             g.FillRectangle(new LinearGradientBrush(
-                new Point(rect.X - ncInfo.BorderSize.Width, rect.Y - ncInfo.BorderSize.Height + rect.Height / 2),
-                new Point(rect.Right + ncInfo.BorderSize.Width, rect.Y - ncInfo.BorderSize.Height + rect.Height / 2),
+                new PointF(rect.X - ncInfo.BorderSize.Width, rect.Y - ncInfo.BorderSize.Height + rect.Height / 2F),
+                new PointF(rect.Right + ncInfo.BorderSize.Width, rect.Y - ncInfo.BorderSize.Height + rect.Height / 2F),
                 Color.FromArgb(89, 98, 255),
                 Color.FromArgb(130, 101, 255)),
                 rect);
@@ -386,7 +395,7 @@ namespace PowerControl
 
                 g.DrawImage(_imgBtnClose, btnRect);
 
-                if (this.MaximizeBox || this.MinimizeBox)
+                if (MaximizeBox || MinimizeBox)
                 {
                     if (FormBorderStyle != FormBorderStyle.FixedToolWindow &&
                         FormBorderStyle != FormBorderStyle.SizableToolWindow)
@@ -490,56 +499,56 @@ namespace PowerControl
             info.CaptionButtonSize = SystemInformation.CaptionButtonSize;
             info.CaptionHeight = SystemInformation.CaptionHeight;
 
+            int borderSizeFactor = 1;
+            if (DwmIsCompositionEnabled(out bool isEnabled) == 0 && isEnabled)
+                borderSizeFactor = 2;
+
             switch (FormBorderStyle)
             {
                 case FormBorderStyle.Fixed3D:
                     info.BorderSize = SystemInformation.FixedFrameBorderSize;
                     info.BorderSize = new Size(
-                        info.BorderSize.Width + 5,
-                        info.BorderSize.Height + 5);
+                        info.BorderSize.Width * borderSizeFactor,
+                        info.BorderSize.Height * borderSizeFactor);
                     break;
                 case FormBorderStyle.FixedDialog:
                     info.BorderSize = SystemInformation.FixedFrameBorderSize;
                     info.BorderSize = new Size(
-                        info.BorderSize.Width + 5,
-                        info.BorderSize.Height + 5);
+                        info.BorderSize.Width * borderSizeFactor,
+                        info.BorderSize.Height * borderSizeFactor);
                     break;
                 case FormBorderStyle.FixedSingle:
                     info.BorderSize = SystemInformation.FixedFrameBorderSize;
                     info.BorderSize = new Size(
-                        info.BorderSize.Width + 5,
-                        info.BorderSize.Height + 5);
+                        info.BorderSize.Width * borderSizeFactor,
+                        info.BorderSize.Height * borderSizeFactor);
                     break;
                 case FormBorderStyle.FixedToolWindow:
                     info.BorderSize = SystemInformation.FixedFrameBorderSize;
                     info.BorderSize = new Size(
-                        info.BorderSize.Width + 5,
-                        info.BorderSize.Height + 5);
+                        info.BorderSize.Width * borderSizeFactor,
+                        info.BorderSize.Height * borderSizeFactor);
                     info.CaptionButtonSize = SystemInformation.ToolWindowCaptionButtonSize;
                     info.CaptionHeight = SystemInformation.ToolWindowCaptionHeight;
                     break;
                 case FormBorderStyle.Sizable:
                     info.BorderSize = SystemInformation.FrameBorderSize;
                     info.BorderSize = new Size(
-                        info.BorderSize.Width/**2*/,
-                        info.BorderSize.Height/**2*/);
+                        info.BorderSize.Width * borderSizeFactor,
+                        info.BorderSize.Height * borderSizeFactor);
                     break;
                 case FormBorderStyle.SizableToolWindow:
                     info.CaptionButtonSize = SystemInformation.ToolWindowCaptionButtonSize;
                     info.BorderSize = SystemInformation.FrameBorderSize;
                     info.BorderSize = new Size(
-                        info.BorderSize.Width + 4,
-                        info.BorderSize.Height + 4);
+                        info.BorderSize.Width * borderSizeFactor,
+                        info.BorderSize.Height * borderSizeFactor);
                     info.CaptionHeight = SystemInformation.ToolWindowCaptionHeight;
                     break;
                 default:
                     info.BorderSize = SystemInformation.BorderSize;
                     break;
             }
-
-            //HACK: ri le gou le、
-            //string strRuntimeVersion = Assembly.GetEntryAssembly().ImageRuntimeVersion;
-            //if (Environment.Version >= new Version(4, 0, 30319, 42000))
 
             RECT areatRect = new RECT();
             GetWindowRect(hwnd, ref areatRect);
@@ -583,11 +592,11 @@ namespace PowerControl
             Invalidate();
         }
 
-        protected override void OnResize(EventArgs e)
+        protected override void OnResizeEnd(EventArgs e)
         {
-            base.OnResize(e);
+            base.OnResizeEnd(e);
             CreateButtonImages();
-            Invalidate();
+            DrawCaption(Handle, ActiveForm == this);
         }
 
         /// <summary>
@@ -597,6 +606,12 @@ namespace PowerControl
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
+            DrawCaption(Handle, true);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
             DrawCaption(Handle, true);
         }
 
@@ -646,7 +661,6 @@ namespace PowerControl
                             posX = LOBYTE(lp);
                             posY = HIBYTE(lp);
 
-                            Brush backgroundColor = new SolidBrush(BackColor);
                             _NonClientSizeInfo ncInfo = GetNonClientInfo(m.HWnd);
                             IntPtr dc = GetWindowDC(m.HWnd);
 
@@ -661,10 +675,6 @@ namespace PowerControl
                             Rectangle btnRect = new Rectangle(new Point(closeBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
                             Rectangle maxRect = new Rectangle(new Point(maxBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
                             Rectangle minRect = new Rectangle(new Point(minBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
-
-                            //g.FillRectangle(backgroundColor, btnRect);
-                            //g.FillRectangle(backgroundColor, maxRect);
-                            //g.FillRectangle(backgroundColor, minRect);
 
                             if (posX != HTCLOSE)
                                 g.DrawImage(_imgBtnClose, btnRect);
@@ -766,6 +776,7 @@ namespace PowerControl
 
                             g.Dispose();
                             ReleaseDC(m.HWnd, dc);
+                            return;
                         }
                         break;
                     case WM_NCLBUTTONUP:
@@ -782,13 +793,9 @@ namespace PowerControl
                                     {
                                         m.Msg = WM_SYSCOMMAND;
                                         if (WindowState == FormWindowState.Maximized)
-                                        {
                                             m.WParam = new IntPtr(SC_RESTORE);
-                                        }
                                         else
-                                        {
                                             m.WParam = new IntPtr(SC_MAXIMIZE);
-                                        }
                                     }
                                     break;
                                 case HTMINBUTTON:
@@ -810,6 +817,13 @@ namespace PowerControl
                             bool ret = false;
                             int posX, posY;
                             int wp = m.WParam.ToInt32();
+
+                            if (wp == HTCAPTION)
+                            {
+                                SendMessage(Handle, WM_SYSCOMMAND, SC_MOVE | HTCAPTION, 0);
+                                return;
+                            }
+
                             long lp = m.LParam.ToInt64();
                             posX = LOBYTE(lp);
                             posY = HIBYTE(lp);
@@ -829,26 +843,20 @@ namespace PowerControl
                             Rectangle maxRect = new Rectangle(new Point(maxBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
                             Rectangle minRect = new Rectangle(new Point(minBtnPosX, btnPosY), ncInfo.CaptionButtonSize);
 
-                            //g.FillRectangle(backgroundColor, btnRect);
-                            //g.FillRectangle(backgroundColor, maxRect);
-                            //g.FillRectangle(backgroundColor, minRect);
-
                             if (wp == HTCLOSE)
                             {
                                 g.DrawImage(_imgBtnCloseHolding, btnRect);
                                 ret = true;
                             }
                             else
-                            {
                                 g.DrawImage(_imgBtnClose, btnRect);
-                            }
 
                             if (MaximizeBox || MinimizeBox)
                             {
                                 if (FormBorderStyle != FormBorderStyle.SizableToolWindow &&
                                     FormBorderStyle != FormBorderStyle.FixedToolWindow)
                                 {
-                                    if (this.WindowState == FormWindowState.Maximized)
+                                    if (WindowState == FormWindowState.Maximized)
                                     {
                                         if (wp == HTMAXBUTTON && MaximizeBox)
                                         {
@@ -857,9 +865,7 @@ namespace PowerControl
                                             ret = true;
                                         }
                                         else
-                                        {
                                             g.DrawImage(MaximizeBox ? _imgBtnNormal : _imgBtnNormalDisabled, maxRect);
-                                        }
                                     }
                                     else
                                     {
@@ -870,9 +876,7 @@ namespace PowerControl
                                             ret = true;
                                         }
                                         else
-                                        {
                                             g.DrawImage(MaximizeBox ? _imgBtnMaximize : _imgBtnMaximizeDisabled, maxRect);
-                                        }
                                     }
                                     if (wp == HTMINBUTTON && MinimizeBox)
                                     {
@@ -880,33 +884,14 @@ namespace PowerControl
                                         ret = true;
                                     }
                                     else
-                                    {
                                         g.DrawImage(_imgBtnMinimize, minRect);
-                                    }
                                 }
                             }
-                            //else if (this.HelpButton)
-                            //{
-                            //    if (this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.FixedToolWindow &&
-                            //        this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.SizableToolWindow)
-                            //    {
-                            //        if (wp == HTHELP)
-                            //        {
-                            //            g.DrawImage(HelpButtonPressDownImage, maxRect);
-                            //            ret = true;
-                            //        }
-                            //        else
-                            //        {
-                            //            g.DrawImage(HelpButtonImage, maxRect);
-                            //        }
-                            //    }
-                            //}
 
                             g.Dispose();
                             ReleaseDC(m.HWnd, dc);
 
-                            if (ret)
-                                return;
+                            if (ret) return;
                         }
                         break;
                 }

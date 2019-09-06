@@ -51,6 +51,7 @@
         public const int SC_CLOSE = 0xF060;
         public const int SC_MAXIMIZE = 0xF030;
         public const int SC_MINIMIZE = 0xF020;
+        public const int SC_MOVE = 0xF010;
         public const int SC_RESTORE = 0xF120;
         public const int SC_CONTEXTHELP = 0xF180;
 

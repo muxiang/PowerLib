@@ -29,11 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XFlowLayoutPanel));
+            this.fpnlInner = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlOuter = new System.Windows.Forms.Panel();
             this.xScrollBar1 = new PowerControl.XScrollBar();
-            this.fpnlInner = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlOuter.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // fpnlInner
+            // 
+            this.fpnlInner.AutoScroll = true;
+            this.fpnlInner.Dock = System.Windows.Forms.DockStyle.Left;
+            this.fpnlInner.Location = new System.Drawing.Point(0, 0);
+            this.fpnlInner.Margin = new System.Windows.Forms.Padding(0);
+            this.fpnlInner.Name = "fpnlInner";
+            this.fpnlInner.Size = new System.Drawing.Size(276, 349);
+            this.fpnlInner.TabIndex = 0;
             // 
             // pnlOuter
             // 
@@ -47,12 +57,11 @@
             // 
             // xScrollBar1
             // 
-            this.xScrollBar1.ChannelColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(166)))), ((int)(((byte)(3)))));
+            this.xScrollBar1.ChannelColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.xScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
             this.xScrollBar1.DownArrowImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.DownArrowImage")));
             this.xScrollBar1.LargeChange = 10;
             this.xScrollBar1.Location = new System.Drawing.Point(396, 0);
-            this.xScrollBar1.Margin = new System.Windows.Forms.Padding(0);
             this.xScrollBar1.Maximum = 100;
             this.xScrollBar1.Minimum = 0;
             this.xScrollBar1.MinimumSize = new System.Drawing.Size(15, 92);
@@ -68,16 +77,6 @@
             this.xScrollBar1.ThumbTopSpanImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.ThumbTopSpanImage")));
             this.xScrollBar1.UpArrowImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.UpArrowImage")));
             this.xScrollBar1.Value = 0;
-            // 
-            // fpnlInner
-            // 
-            this.fpnlInner.AutoScroll = true;
-            this.fpnlInner.Dock = System.Windows.Forms.DockStyle.Left;
-            this.fpnlInner.Location = new System.Drawing.Point(0, 0);
-            this.fpnlInner.Margin = new System.Windows.Forms.Padding(0);
-            this.fpnlInner.Name = "fpnlInner";
-            this.fpnlInner.Size = new System.Drawing.Size(276, 349);
-            this.fpnlInner.TabIndex = 0;
             // 
             // XFlowLayoutPanel
             // 
@@ -95,8 +94,8 @@
 
         #endregion
 
+        private System.Windows.Forms.FlowLayoutPanel fpnlInner;
         private System.Windows.Forms.Panel pnlOuter;
         private XScrollBar xScrollBar1;
-        private System.Windows.Forms.FlowLayoutPanel fpnlInner;
     }
 }

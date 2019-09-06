@@ -20,7 +20,7 @@ namespace PowerControl
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
 
-            moChannelColor = Color.FromArgb(51, 166, 3);
+            moChannelColor = Color.FromArgb(212, 212, 212);
             UpArrowImage = Resources.uparrow;
             DownArrowImage = Resources.downarrow;
 
@@ -233,11 +233,10 @@ namespace PowerControl
             }
 
             Brush oBrush = new SolidBrush(moChannelColor);
-            Brush oWhiteBrush = new SolidBrush(Color.FromArgb(255, 255, 255));
 
             //draw channel left and right border colors
-            e.Graphics.FillRectangle(oWhiteBrush, new Rectangle(0, UpArrowImage.Height, 1, Height - DownArrowImage.Height));
-            e.Graphics.FillRectangle(oWhiteBrush, new Rectangle(Width - 1, UpArrowImage.Height, 1, Height - DownArrowImage.Height));
+            e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, UpArrowImage.Height, 1, Height - DownArrowImage.Height));
+            e.Graphics.FillRectangle(Brushes.White, new Rectangle(Width - 1, UpArrowImage.Height, 1, Height - DownArrowImage.Height));
 
             //draw channel
             e.Graphics.FillRectangle(oBrush, new Rectangle(1, UpArrowImage.Height, Width - 2, Height - DownArrowImage.Height));

@@ -116,12 +116,6 @@
     </Compile>
     <Compile Include="TypeDescriptionContext.cs" />
     <Compile Include="XDataGridViewColumnCollectionEditor.cs" />
-    <Compile Include="XDataGridView_backup.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="XDataGridView_backup.Designer.cs">
-      <DependentUpon>XDataGridView_backup.cs</DependentUpon>
-    </Compile>
     <Compile Include="XForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,13 +245,7 @@
     <None Include="Resources\ProjectItemBtnDelete.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\downarrow.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ThumbBottom.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ThumbMiddle.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ThumbSpanBottom.png" />
@@ -269,7 +257,13 @@
     <None Include="Resources\ThumbTop.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ThumbMiddle.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\uparrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downarrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
