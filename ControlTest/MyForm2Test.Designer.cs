@@ -34,10 +34,14 @@
             // projectFlowChart1
             // 
             this.projectFlowChart1.BackColor = System.Drawing.Color.White;
-            this.projectFlowChart1.Location = new System.Drawing.Point(22, 197);
+            this.projectFlowChart1.ComputeApplications = ((PowerControl.IrregularControls.ComputeApplications)(((PowerControl.IrregularControls.ComputeApplications.Mike21Ladtap | PowerControl.IrregularControls.ComputeApplications.HyDrus_1D) 
+            | PowerControl.IrregularControls.ComputeApplications.PavanDose)));
+            this.projectFlowChart1.IsComputeBySingle = false;
+            this.projectFlowChart1.Location = new System.Drawing.Point(36, 237);
             this.projectFlowChart1.Name = "projectFlowChart1";
-            this.projectFlowChart1.Size = new System.Drawing.Size(1350, 115);
+            this.projectFlowChart1.Size = new System.Drawing.Size(1350, 345);
             this.projectFlowChart1.TabIndex = 0;
+            this.projectFlowChart1.Text = "projectFlowChart1";
             // 
             // MyForm2Test
             // 
@@ -47,6 +51,7 @@
             this.Controls.Add(this.projectFlowChart1);
             this.Name = "MyForm2Test";
             this.Text = "MyForm2Test";
+            this.Load += new System.EventHandler(this.MyForm2Test_Load);
             this.ResumeLayout(false);
 
         }

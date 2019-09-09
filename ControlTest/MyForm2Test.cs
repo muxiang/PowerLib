@@ -50,6 +50,12 @@ namespace ControlTest
         public MyForm2Test()
         {
             InitializeComponent();
+
+
+        }
+
+        private void MyForm2Test_Load(object sender, EventArgs e)
+        {
         }
 
         //private void customScrollBar1_Scroll(object sender, EventArgs e)
@@ -63,7 +69,7 @@ namespace ControlTest
         //    //int currPos = Win32API.SetScrollInfo(panel1.Handle, (int)Win32API.ScrollBarDirection.SB_VERT, ref info, true);
         //    //Debug.Print($"currPos:{currPos}");
         //    //Win32API.PostMessage(panel1.Handle, Win32API.WM_VSCROLL, Win32API.MakeLong((short)Win32API.SB_THUMBTRACK, (short)(customScrollBar1.Value)), /*Handle.ToInt32()*/0);
-            
+
 
         //    customScrollBar1.Maximum = panel1.VerticalScroll.Maximum;
         //    customScrollBar1.Minimum = panel1.VerticalScroll.Minimum;

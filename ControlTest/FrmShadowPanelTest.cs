@@ -17,23 +17,15 @@ namespace ControlTest
 
         private void FrmShadowPanelTest_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10; i++)
+
+            projectFlowChart1.PavanClicked += (s1, e1) =>
             {
-                xDataGridView1.Rows.Add(nextRowId++, "123", "ddddddddd", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            }
-
-            xFlowLayoutPanel1.BackColor = Color.LightGray;
-
-            for (int i = 0; i < 5; i++)
+                MessageBox.Show("Pavan");
+            };
+            projectFlowChart1.ResultClicked += (s1, e1) =>
             {
-                var item = new ProjectListItem(nextId++);
-                item.CheckedChanged += (s1, e1) => { XMessageBox.Show("CheckedChanged"); };
-                item.DeleteButtonClick += (s1, e1) => xFlowLayoutPanel1.ControlList.Remove((Control)s1);
-                xFlowLayoutPanel1.ControlList.Add(item);
-            }
-
-
-            xFlowLayoutPanel1.ControlList.OfType<ProjectListItem>().First().Size = new Size(200, 200);
+                MessageBox.Show("Result");
+            };
         }
 
         private int nextId = 1;
@@ -41,10 +33,7 @@ namespace ControlTest
 
         private void xButton1_Click(object sender, EventArgs e)
         {
-            var item = new ProjectListItem(nextId++);
-            item.CheckedChanged += (s1, e1) => { XMessageBox.Show("CheckedChanged"); };
-            item.DeleteButtonClick += (s1, e1) => xFlowLayoutPanel1.ControlList.Remove((Control)s1);
-            xFlowLayoutPanel1.ControlList.Add(item);
+
         }
 
         private void xButton2_Click(object sender, EventArgs e)

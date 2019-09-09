@@ -131,7 +131,7 @@ namespace PowerControl
         /// <param name="bmpOrigin">原始位图</param>
         /// <param name="size">大小</param>
         /// <returns></returns>
-        public static Bitmap StretchBitmap(Bitmap bmpOrigin,Size size)
+        public static Bitmap StretchBitmap(Bitmap bmpOrigin, Size size)
         {
             Bitmap bmpResult = new Bitmap(size.Width, size.Height);
 
@@ -139,6 +139,27 @@ namespace PowerControl
                 g.DrawImage(bmpOrigin, new Rectangle(Point.Empty, size));
 
             return bmpResult;
+        }
+
+        /// <summary>
+        /// 或者给定正方形内最大的六边形
+        /// </summary>
+        /// <param name="rectSquare">正方形</param>
+        /// <param name="ratioFactor">宽高比因子，值越大，六边形越宽</param>
+        /// <returns></returns>
+        public static PointF[] GetHexagonBySquare(RectangleF rectSquare, float ratioFactor = 4F)
+        {
+            PointF[] result =
+            {
+                new PointF(rectSquare.X + rectSquare.Width / ratioFactor, rectSquare.Y),
+                new PointF(rectSquare.Right - rectSquare.Width / ratioFactor, rectSquare.Y),
+                new PointF(rectSquare.Right, rectSquare.Y + rectSquare.Height / 2),
+                new PointF(rectSquare.Right - rectSquare.Width / ratioFactor, rectSquare.Bottom),
+                new PointF(rectSquare.X + rectSquare.Width / ratioFactor, rectSquare.Bottom),
+                new PointF(rectSquare.X, rectSquare.Y + rectSquare.Height / 2),
+            };
+
+            return result;
         }
     }
 }
