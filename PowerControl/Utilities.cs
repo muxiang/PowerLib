@@ -8,7 +8,7 @@ namespace PowerControl
     /// <summary>
     /// 实用工具类
     /// </summary>
-    static class Utilities
+    public static class Utilities
     {
         /// <summary>
         /// 递归获取控件所在的父窗口

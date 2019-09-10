@@ -17,15 +17,7 @@ namespace ControlTest
 
         private void FrmShadowPanelTest_Load(object sender, EventArgs e)
         {
-
-            projectFlowChart1.PavanClicked += (s1, e1) =>
-            {
-                MessageBox.Show("Pavan");
-            };
-            projectFlowChart1.ResultClicked += (s1, e1) =>
-            {
-                MessageBox.Show("Result");
-            };
+            
         }
 
         private int nextId = 1;

@@ -38,14 +38,14 @@ namespace PowerControl
         {
             base.WndProc(ref m);
 
-            if(m.Msg == NativeConstants.WM_PAINT)
-            {
-                Graphics g = Graphics.FromHwnd(base.Handle);
+            if (m.Msg != NativeConstants.WM_PAINT || BorderStyle == BorderStyle.None)
+                return;
 
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-                g.DrawRectangle(_borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
-            }
+            Graphics g = Graphics.FromHwnd(Handle);
+
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.DrawRectangle(_borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
         }
     }
 }

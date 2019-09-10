@@ -128,6 +128,15 @@ namespace PowerControl.IrregularControls
         {
             Height = 115;
 
+            _strComputeTarget1
+                = _strComputeTarget2
+                = _strComputeTarget3
+                = _strTarget1App1
+                = _strTarget1App2
+                = _strTarget2App1
+                = _strTarget2App2
+                = _strTarget3App1;
+
             if (_isComputeBySingle)
             {
                 if (_isNormalState)

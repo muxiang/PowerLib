@@ -365,11 +365,9 @@ namespace PowerControl
                         moValue = (int)fValue;
                         Debug.WriteLine(moValue.ToString());
 
-                        if (ValueChanged != null)
-                            ValueChanged(this, new EventArgs());
+                        ValueChanged?.Invoke(this, new EventArgs());
 
-                        if (Scroll != null)
-                            Scroll(this, new EventArgs());
+                        Scroll?.Invoke(this, new EventArgs());
 
                         Invalidate();
                     }
@@ -397,11 +395,9 @@ namespace PowerControl
                         moValue = (int)fValue;
                         Debug.WriteLine(moValue.ToString());
 
-                        if (ValueChanged != null)
-                            ValueChanged(this, new EventArgs());
+                        ValueChanged?.Invoke(this, new EventArgs());
 
-                        if (Scroll != null)
-                            Scroll(this, new EventArgs());
+                        Scroll?.Invoke(this, new EventArgs());
 
                         Invalidate();
                     }
@@ -424,10 +420,11 @@ namespace PowerControl
                 moThumbDragging = true;
 
             if (moThumbDragging)
+            {
                 MoveThumb(e.Y);
-
-            ValueChanged?.Invoke(this, new EventArgs());
-            Scroll?.Invoke(this, new EventArgs());
+                ValueChanged?.Invoke(this, new EventArgs());
+                Scroll?.Invoke(this, new EventArgs());
+            }
         }
 
         private void MoveThumb(int y)

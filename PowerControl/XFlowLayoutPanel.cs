@@ -20,7 +20,8 @@ namespace PowerControl
 
             fpnlInner.ControlAdded += FpnlInner_ControlChanged;
             fpnlInner.ControlRemoved += FpnlInner_ControlChanged;
-            
+
+            fpnlInner.MouseMove += (s1, e1) => { if (!fpnlInner.Focused) fpnlInner.Focus(); };
             fpnlInner.MouseWheel += (s1, e1) => xScrollBar1.Value = Math.Abs(fpnlInner.AutoScrollPosition.Y);
         }
 
@@ -29,7 +30,7 @@ namespace PowerControl
             xScrollBar1.Visible = fpnlInner.VerticalScroll.Visible;
             KeepInnerAndScrollBar();
         }
-        
+
         private void KeepInnerAndScrollBar()
         {
             fpnlInner.Size = Size;

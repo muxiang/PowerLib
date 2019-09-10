@@ -9,36 +9,31 @@ namespace PowerControl
 {
     public partial class XTabControl : TabControl
     {
-        private Color _backColor = Color.FromArgb(212, 212, 212);
-        private Color _borderColor = Color.FromArgb(80, 80, 80);
+        private Color _backColor = Color.FromArgb(231, 231, 231);
+        private Color _borderColor = Color.FromArgb(215, 215, 215);
 
-        private Color _headerBackColor = Color.FromArgb(212, 212, 212);
-        private Color _headSelectedBackColor = Color.FromArgb(23, 169, 254);
-        private Color _headSelectedBorderColor = Color.FromArgb(23, 169, 254);
+        private Color _headerBackColorStart = Color.FromArgb(255, 255, 255);
+        private Color _headerBackColorEnd = Color.FromArgb(227, 227, 227);
+        private Color _headerForeColor = Color.FromArgb(80, 80, 80);
+        private Color _headerSelectedBackColorStart = Color.FromArgb(109, 169, 255);
+        private Color _headerSelectedBackColorEnd = Color.FromArgb(83, 128, 252);
+        private Color _headerSelectedForeColor = Color.FromArgb(255, 255, 255);
 
         public XTabControl()
         {
-            SetStyles();
-        }
-
-        private void SetStyles()
-        {
-            SetStyle(
-                ControlStyles.UserPaint |
-                ControlStyles.DoubleBuffer |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.ResizeRedraw |
-                ControlStyles.SupportsTransparentBackColor, true);
-            UpdateStyles();
+            SetStyle(ControlStyles.UserPaint
+                     | ControlStyles.DoubleBuffer
+                     | ControlStyles.OptimizedDoubleBuffer
+                     | ControlStyles.AllPaintingInWmPaint
+                     | ControlStyles.ResizeRedraw
+                     | ControlStyles.SupportsTransparentBackColor, true);
         }
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DefaultValue(typeof(Color), "23, 169, 254")]
         public override Color BackColor
         {
-            get { return _backColor; }
+            get => _backColor;
             set
             {
                 _backColor = value;
@@ -46,11 +41,9 @@ namespace PowerControl
             }
         }
 
-        [DefaultValue(typeof(Color), "23, 169, 254")]
-        [Description("TabContorl边框色")]
         public Color BorderColor
         {
-            get { return _borderColor; }
+            get => _borderColor;
             set
             {
                 _borderColor = value;
@@ -58,46 +51,80 @@ namespace PowerControl
             }
         }
 
-        [DefaultValue(typeof(Color), "23, 169, 254")]
-        [Description("TabPage头部选中后的背景颜色")]
-        public Color HeadSelectedBackColor
+        public Color HeaderSelectedBackColorStart
         {
-            get { return _headSelectedBackColor; }
-            set { _headSelectedBackColor = value; }
+            get => _headerSelectedBackColorStart;
+            set
+            {
+                _headerSelectedBackColorStart = value;
+                Invalidate();
+            }
         }
 
-        [DefaultValue(typeof(Color), "23, 169, 254")]
-        [Description("TabPage头部选中后的边框颜色")]
-        public Color HeadSelectedBorderColor
+        public Color HeaderSelectedBackColorEnd
         {
-            get { return _headSelectedBorderColor; }
-            set { _headSelectedBorderColor = value; }
+            get => _headerSelectedBackColorEnd;
+            set
+            {
+                _headerSelectedBackColorEnd = value;
+                Invalidate();
+            }
         }
 
-        [DefaultValue(typeof(Color), "23, 169, 254")]
-        [Description("TabPage头部默认边框颜色")]
-        public Color HeaderBackColor
+        public Color HeaderSelectedForeColor
         {
-            get { return _headerBackColor; }
-            set { _headerBackColor = value; }
+            get => _headerSelectedForeColor;
+            set
+            {
+                _headerSelectedForeColor = value;
+                Invalidate();
+            }
         }
 
-        protected override void OnPaintBackground(PaintEventArgs pevent)
+        public Color HeaderBackColorStart
+        {
+            get => _headerBackColorStart;
+            set
+            {
+                _headerBackColorStart = value;
+                Invalidate();
+            }
+        }
+
+        public Color HeaderBackColorEnd
+        {
+            get => _headerBackColorEnd;
+            set
+            {
+                _headerBackColorEnd = value;
+                Invalidate();
+            }
+        }
+
+        public Color HeaderForeColor
+        {
+            get => _headerForeColor;
+            set
+            {
+                _headerForeColor = value;
+                Invalidate();
+            }
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs pe)
         {
             if (DesignMode)
             {
                 LinearGradientBrush backBrush = new LinearGradientBrush(
-                            Bounds,
-                            SystemColors.ControlLightLight,
-                            SystemColors.ControlLight,
-                            LinearGradientMode.Vertical);
-                pevent.Graphics.FillRectangle(backBrush, Bounds);
+                    Bounds,
+                    SystemColors.ControlLightLight,
+                    SystemColors.ControlLight,
+                    LinearGradientMode.Vertical);
+                pe.Graphics.FillRectangle(backBrush, Bounds);
                 backBrush.Dispose();
             }
             else
-            {
-                PaintTransparentBackground(pevent.Graphics, ClientRectangle);
-            }
+                PaintTransparentBackground(pe.Graphics, ClientRectangle);
         }
 
         /// <summary>
@@ -141,7 +168,6 @@ namespace PowerControl
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            // Paint the Background 
             base.OnPaint(e);
             PaintTransparentBackground(e.Graphics, ClientRectangle);
             PaintAllTheTabs(e);
@@ -152,12 +178,8 @@ namespace PowerControl
         private void PaintAllTheTabs(PaintEventArgs e)
         {
             if (TabCount > 0)
-            {
                 for (int index = 0; index < TabCount; index++)
-                {
                     PaintTab(e, index);
-                }
-            }
         }
 
         private void PaintTab(PaintEventArgs e, int index)
@@ -178,13 +200,10 @@ namespace PowerControl
         private void PaintTabBackground(Graphics graph, int index, GraphicsPath path)
         {
             Rectangle rect = GetTabRect(index);
-            Brush buttonBrush = new LinearGradientBrush(rect, SystemColors.ControlLightLight, SystemColors.ControlLight, LinearGradientMode.Vertical);  //非选中时候的 TabPage 页头部背景色
-            //System.Drawing.Brush buttonBrush = new System.Drawing.SolidBrush(_headerBackColor);
+            Brush buttonBrush = new LinearGradientBrush(rect, _headerBackColorStart, _headerBackColorEnd, LinearGradientMode.Vertical);
+
             if (index == SelectedIndex)
-            {
-                //buttonBrush = new System.Drawing.SolidBrush(SystemColors.ControlLightLight); // TabPage 选中时候页头部背景色
-                buttonBrush = new SolidBrush(_headSelectedBackColor);
-            }
+                buttonBrush = new LinearGradientBrush(rect, _headerSelectedBackColorStart, _headerSelectedBackColorEnd, LinearGradientMode.Vertical);
             graph.FillPath(buttonBrush, path);
             buttonBrush.Dispose();
         }
@@ -195,16 +214,12 @@ namespace PowerControl
         /// <param name="graph"></param>
         /// <param name="index"></param>
         /// <param name="path"></param>
-        private void PaintTabBorder(Graphics graph, int index, GraphicsPath path)
+        private void PaintTabBorder(Graphics g, int index, GraphicsPath path)
         {
-            //Pen borderPen = new Pen(SystemColors.ControlDark);
             Pen borderPen = new Pen(_borderColor);// TabPage 非选中时候的 TabPage 头部边框色
-            if (index == SelectedIndex)
-            {
-                //borderPen = new Pen(ThemedColors.ToolBorder);
-                borderPen = new Pen(_headSelectedBorderColor); // TabPage 选中后的 TabPage 头部边框色
-            }
-            graph.DrawPath(borderPen, path);
+            /*if (index == SelectedIndex)
+                borderPen = new Pen(_borderColor); // TabPage 选中后的 TabPage 头部边框色*/
+            g.DrawPath(borderPen, path);
             borderPen.Dispose();
         }
 
@@ -212,13 +227,9 @@ namespace PowerControl
         {
             Image tabImage = null;
             if (TabPages[index].ImageIndex > -1 && ImageList != null)
-            {
                 tabImage = ImageList.Images[TabPages[index].ImageIndex];
-            }
             else if (TabPages[index].ImageKey.Trim().Length > 0 && ImageList != null)
-            {
                 tabImage = ImageList.Images[TabPages[index].ImageKey];
-            }
             if (tabImage != null)
             {
                 Rectangle rect = GetTabRect(index);
@@ -231,12 +242,6 @@ namespace PowerControl
             Rectangle rect = GetTabRect(index);
 
             Rectangle rect2 = new Rectangle(rect.Left, rect.Top, rect.Width, rect.Height);
-            //Rectangle rect2 = new Rectangle(rect.Left + 16, rect.Top + 1, rect.Width - 6, rect.Height);
-
-            //if (index == 0)
-            //{
-            //    rect2 = new Rectangle(rect.Left + rect.Height, rect.Top + 1, rect.Width - rect.Height, rect.Height);
-            //}
 
             string tabtext = TabPages[index].Text;
 
@@ -249,17 +254,13 @@ namespace PowerControl
 
             Brush forebrush;
 
-            forebrush = TabPages[index].Enabled == false ? SystemBrushes.ControlDark : SystemBrushes.ControlText;
+            forebrush = TabPages[index].Enabled
+                ? (index == SelectedIndex ? new SolidBrush(_headerSelectedForeColor) : new SolidBrush(_headerForeColor))
+                : SystemBrushes.ControlDark;
 
             Font tabFont = Font;
             if (index == SelectedIndex)
-            {
                 tabFont = new Font(Font, FontStyle.Bold);
-                //if (index == 0)
-                //{
-                //    rect2 = new Rectangle(rect.Left + rect.Height, rect.Top + 1, rect.Width - rect.Height + 5, rect.Height);
-                //}
-            }
             graph.DrawString(tabtext, tabFont, forebrush, rect2, format);
         }
 

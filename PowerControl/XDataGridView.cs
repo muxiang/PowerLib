@@ -13,7 +13,7 @@ using System.Windows.Forms.Design;
 
 namespace PowerControl
 {
-    public partial class XDataGridView : UserControl
+    public partial class XDataGridView : UserControl, ISupportInitialize
     {
         /// <summary>
         /// 缺省表格列头样式
@@ -51,6 +51,7 @@ namespace PowerControl
 
             xScrollBar1.Scroll += (s1, e1) =>
             {
+                if (dataGridView1.RowCount == 0) return;
                 dataGridView1.FirstDisplayedScrollingRowIndex = xScrollBar1.Value / dataGridView1.RowTemplate.Height;
                 xScrollBar1.Invalidate();
                 Application.DoEvents();
@@ -68,6 +69,7 @@ namespace PowerControl
             dataGridView1.RowsAdded += DataGridView1_RowsAdded;
             dataGridView1.RowsRemoved += DataGridView1_RowsRemoved;
 
+            dataGridView1.MouseMove += (s1, e1) => { if (!dataGridView1.Focused) dataGridView1.Focus(); };
             dataGridView1.MouseWheel += (s1, e1) => xScrollBar1.Value = Math.Abs(dataGridView1.VerticalScrollingOffset);
         }
 
@@ -1615,13 +1617,24 @@ namespace PowerControl
             xScrollBar1.Maximum = dataGridView1.RowCount * dataGridView1.RowTemplate.Height + dataGridView1.ColumnHeadersHeight;
             xScrollBar1.LargeChange = xScrollBar1.Maximum / xScrollBar1.Height + dataGridView1.Height;
             xScrollBar1.SmallChange = 15;
-            xScrollBar1.Value = dataGridView1.FirstDisplayedScrollingRowIndex * dataGridView1.RowTemplate.Height;
+            xScrollBar1.Value = (dataGridView1.FirstDisplayedScrollingRowIndex == -1 ? 0 : dataGridView1.FirstDisplayedScrollingRowIndex) 
+                                * dataGridView1.RowTemplate.Height;
         }
 
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
             KeepInnerAndScrollBar();
+        }
+
+        public void BeginInit()
+        {
+            ((ISupportInitialize)dataGridView1).BeginInit();
+        }
+
+        public void EndInit()
+        {
+            ((ISupportInitialize)dataGridView1).EndInit();
         }
     }
 }

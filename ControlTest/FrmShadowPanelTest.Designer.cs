@@ -43,9 +43,14 @@
             this.xButton2 = new PowerControl.XButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.xButton1 = new PowerControl.XButton();
-            this.projectFlowChart1 = new PowerControl.IrregularControls.ProjectFlowChart();
+            this.xTabControl1 = new PowerControl.XTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.xPanel1.SuspendLayout();
             this.xGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
+            this.xTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // xPanel1
@@ -217,24 +222,60 @@
             this.xButton1.Text = "format C:";
             this.xButton1.Click += new System.EventHandler(this.xButton1_Click);
             // 
-            // projectFlowChart1
+            // xTabControl1
             // 
-            this.projectFlowChart1.BackColor = System.Drawing.Color.White;
-            this.projectFlowChart1.ComputeApplications = ((PowerControl.IrregularControls.ComputeApplications)(((PowerControl.IrregularControls.ComputeApplications.Mike21Ladtap | PowerControl.IrregularControls.ComputeApplications.HyDrus_1D) 
-            | PowerControl.IrregularControls.ComputeApplications.PavanDose)));
-            this.projectFlowChart1.IsComputeBySingle = false;
-            this.projectFlowChart1.Location = new System.Drawing.Point(-8, 446);
-            this.projectFlowChart1.Name = "projectFlowChart1";
-            this.projectFlowChart1.Size = new System.Drawing.Size(1350, 345);
-            this.projectFlowChart1.TabIndex = 4;
-            this.projectFlowChart1.Text = "projectFlowChart1";
+            this.xTabControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.xTabControl1.Controls.Add(this.tabPage1);
+            this.xTabControl1.Controls.Add(this.tabPage2);
+            this.xTabControl1.Controls.Add(this.tabPage3);
+            this.xTabControl1.HeaderBackColorEnd = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
+            this.xTabControl1.HeaderBackColorStart = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.xTabControl1.HeaderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.xTabControl1.HeaderSelectedBackColorEnd = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xTabControl1.HeaderSelectedBackColorStart = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.xTabControl1.HeaderSelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.xTabControl1.Location = new System.Drawing.Point(77, 478);
+            this.xTabControl1.Name = "xTabControl1";
+            this.xTabControl1.SelectedIndex = 0;
+            this.xTabControl1.Size = new System.Drawing.Size(703, 252);
+            this.xTabControl1.TabIndex = 4;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(695, 223);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(695, 223);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(695, 223);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // FrmShadowPanelTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 803);
-            this.Controls.Add(this.projectFlowChart1);
+            this.Controls.Add(this.xTabControl1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.xButton1);
             this.Controls.Add(this.xPanel1);
@@ -245,6 +286,8 @@
             this.Load += new System.EventHandler(this.FrmShadowPanelTest_Load);
             this.xPanel1.ResumeLayout(false);
             this.xGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).EndInit();
+            this.xTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,6 +306,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_DateTime;
         private PowerControl.XButton xButton3;
         private PowerControl.XButton xButton2;
-        private PowerControl.IrregularControls.ProjectFlowChart projectFlowChart1;
+        private PowerControl.XTabControl xTabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
