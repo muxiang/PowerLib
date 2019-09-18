@@ -135,7 +135,8 @@ namespace PowerControl.IrregularControls
                 = _strTarget1App2
                 = _strTarget2App1
                 = _strTarget2App2
-                = _strTarget3App1;
+                = _strTarget3App1
+                = null;
 
             if (_isComputeBySingle)
             {
