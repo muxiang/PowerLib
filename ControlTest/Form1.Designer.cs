@@ -44,6 +44,7 @@
             this.xButton2 = new PowerControl.XButton();
             this.ddi2 = new PowerControl.DropDownButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.projectFlowChart1 = new PowerControl.IrregularControls.ProjectFlowChart();
             this.xCheckBox1 = new PowerControl.XCheckBox();
             this.xRadioButton2 = new PowerControl.XRadioButton();
             this.xRadioButton1 = new PowerControl.XRadioButton();
@@ -93,6 +94,10 @@
             this.xButton2.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.xButton2.ForeColor = System.Drawing.Color.White;
+            this.xButton2.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton2.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton2.HoldingImage = null;
+            this.xButton2.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton2.Image = null;
             this.xButton2.Location = new System.Drawing.Point(293, 4);
             this.xButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -117,6 +122,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.projectFlowChart1);
             this.panel1.Controls.Add(this.xCheckBox1);
             this.panel1.Controls.Add(this.xRadioButton2);
             this.panel1.Controls.Add(this.xRadioButton1);
@@ -142,6 +148,18 @@
             this.panel1.Size = new System.Drawing.Size(871, 807);
             this.panel1.TabIndex = 7;
             // 
+            // projectFlowChart1
+            // 
+            this.projectFlowChart1.BackColor = System.Drawing.Color.White;
+            this.projectFlowChart1.ComputeApplications = ((PowerControl.IrregularControls.ComputeApplications)(((PowerControl.IrregularControls.ComputeApplications.Mike21Ladtap | PowerControl.IrregularControls.ComputeApplications.HyDrus_1D) 
+            | PowerControl.IrregularControls.ComputeApplications.PavanDose)));
+            this.projectFlowChart1.IsComputeBySingle = false;
+            this.projectFlowChart1.Location = new System.Drawing.Point(12, 390);
+            this.projectFlowChart1.Name = "projectFlowChart1";
+            this.projectFlowChart1.Size = new System.Drawing.Size(1350, 345);
+            this.projectFlowChart1.TabIndex = 16;
+            this.projectFlowChart1.Text = "projectFlowChart1";
+            // 
             // xCheckBox1
             // 
             this.xCheckBox1.AutoSize = true;
@@ -152,7 +170,7 @@
             this.xCheckBox1.Location = new System.Drawing.Point(106, 568);
             this.xCheckBox1.MouseHoveringForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xCheckBox1.Name = "xCheckBox1";
-            this.xCheckBox1.Size = new System.Drawing.Size(94, 20);
+            this.xCheckBox1.Size = new System.Drawing.Size(91, 20);
             this.xCheckBox1.TabIndex = 21;
             this.xCheckBox1.Text = "xCheckBox1";
             this.xCheckBox1.UseVisualStyleBackColor = true;
@@ -165,7 +183,7 @@
             this.xRadioButton2.MouseHoveringForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xRadioButton2.Name = "xRadioButton2";
             this.xRadioButton2.OuterCircleColor = System.Drawing.SystemColors.ControlText;
-            this.xRadioButton2.Size = new System.Drawing.Size(109, 20);
+            this.xRadioButton2.Size = new System.Drawing.Size(104, 20);
             this.xRadioButton2.TabIndex = 20;
             this.xRadioButton2.TabStop = true;
             this.xRadioButton2.Text = "xRadioButton2";
@@ -242,6 +260,10 @@
             this.xButton7.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton7.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
             this.xButton7.ForeColor = System.Drawing.Color.White;
+            this.xButton7.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton7.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton7.HoldingImage = null;
+            this.xButton7.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton7.Image = null;
             this.xButton7.Location = new System.Drawing.Point(251, 462);
             this.xButton7.Name = "xButton7";
@@ -249,7 +271,6 @@
             this.xButton7.StartColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
             this.xButton7.TabIndex = 14;
             this.xButton7.Text = "查询";
-            this.xButton7.Click += new System.EventHandler(this.xButton7_Click);
             // 
             // loadingCircle1
             // 
@@ -270,6 +291,10 @@
             this.xButton3.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.xButton3.ForeColor = System.Drawing.Color.White;
+            this.xButton3.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton3.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton3.HoldingImage = null;
+            this.xButton3.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton3.Image = global::ControlTest.Properties.Resources.a123;
             this.xButton3.Location = new System.Drawing.Point(463, 168);
             this.xButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -328,6 +353,10 @@
             this.xButton6.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.xButton6.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.xButton6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.xButton6.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton6.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton6.HoldingImage = null;
+            this.xButton6.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton6.Image = null;
             this.xButton6.Location = new System.Drawing.Point(527, 51);
             this.xButton6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -348,6 +377,10 @@
             this.xButton5.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.xButton5.ForeColor = System.Drawing.Color.White;
+            this.xButton5.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton5.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton5.HoldingImage = null;
+            this.xButton5.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton5.Image = null;
             this.xButton5.Location = new System.Drawing.Point(163, 412);
             this.xButton5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -368,6 +401,10 @@
             this.xButton8.EndColor = System.Drawing.Color.Lime;
             this.xButton8.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.xButton8.ForeColor = System.Drawing.Color.White;
+            this.xButton8.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton8.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton8.HoldingImage = null;
+            this.xButton8.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton8.Image = null;
             this.xButton8.Location = new System.Drawing.Point(458, 475);
             this.xButton8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -388,6 +425,10 @@
             this.xButton4.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.xButton4.ForeColor = System.Drawing.Color.White;
+            this.xButton4.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton4.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton4.HoldingImage = null;
+            this.xButton4.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton4.Image = null;
             this.xButton4.Location = new System.Drawing.Point(12, 259);
             this.xButton4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -408,6 +449,10 @@
             this.xButton1.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(107)))), ((int)(((byte)(125)))));
             this.xButton1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.xButton1.ForeColor = System.Drawing.Color.White;
+            this.xButton1.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton1.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton1.HoldingImage = null;
+            this.xButton1.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton1.Image = null;
             this.xButton1.Location = new System.Drawing.Point(91, 4);
             this.xButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -480,9 +525,9 @@
             this.xPanel1.Location = new System.Drawing.Point(926, 579);
             this.xPanel1.Name = "xPanel1";
             this.xPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.xPanel1.ShadowHeightRatio = 0.05F;
             this.xPanel1.Size = new System.Drawing.Size(317, 142);
             this.xPanel1.TabIndex = 14;
+            this.xPanel1.TopBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             // 
             // Form1
             // 
@@ -497,6 +542,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -543,5 +589,6 @@
         private PowerControl.XRadioButton xRadioButton2;
         private PowerControl.XCheckBox xCheckBox1;
         private PowerControl.XShadowPanel xPanel1;
+        private PowerControl.IrregularControls.ProjectFlowChart projectFlowChart1;
     }
 }

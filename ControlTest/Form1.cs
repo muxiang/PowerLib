@@ -115,20 +115,6 @@ namespace ControlTest
             //MessageBox.Show("Test");
         }
 
-        private async void xButton7_Click(object sender, EventArgs e)
-        {
-            string x = await ReadAsync();
-            MessageBox.Show(x);
-        }
-
-        private async Task<string> ReadAsync()
-        {
-            await Task.Run(() =>
-            {
-                Thread.Sleep(5000);
-            });
-            return "asd";
-        }
 
         private void xButton8_Click(object sender, EventArgs e)
         {

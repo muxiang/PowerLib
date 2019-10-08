@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xPanel1 = new PowerControl.XShadowPanel();
             this.xGroupBox1 = new PowerControl.XGroupBox();
             this.xDataGridView1 = new PowerControl.XDataGridView();
@@ -47,6 +47,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.xButton4 = new PowerControl.XButton();
             this.xPanel1.SuspendLayout();
             this.xGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
@@ -70,7 +71,7 @@
             this.xGroupBox1.Controls.Add(this.xDataGridView1);
             this.xGroupBox1.Location = new System.Drawing.Point(107, 56);
             this.xGroupBox1.Name = "xGroupBox1";
-            this.xGroupBox1.Size = new System.Drawing.Size(531, 229);
+            this.xGroupBox1.Size = new System.Drawing.Size(531, 198);
             this.xGroupBox1.TabIndex = 2;
             this.xGroupBox1.TabStop = false;
             this.xGroupBox1.Text = "中文测试";
@@ -79,16 +80,16 @@
             // 
             // xDataGridView1
             // 
-            this.xDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.xDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.xDataGridView1.BackgroundColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.xDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.xDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.xDataGridView1.ColumnHeadersHeight = 21;
             this.xDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.xDataGridView1.ColumnHeadersVisible = true;
@@ -97,27 +98,27 @@
             this.Column_Name,
             this.Column_Details,
             this.Column_DateTime});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.xDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.xDataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
             this.xDataGridView1.EnableHeadersVisualStyles = false;
             this.xDataGridView1.GridColor = System.Drawing.SystemColors.ControlDark;
             this.xDataGridView1.Location = new System.Drawing.Point(6, 35);
             this.xDataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.xDataGridView1.Name = "xDataGridView1";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.xDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.xDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.xDataGridView1.RowHeadersVisible = false;
             this.xDataGridView1.RowHeadersWidth = 41;
             this.xDataGridView1.RowTemplate.Height = 23;
@@ -159,7 +160,7 @@
             this.xButton3.HoldingImage = global::ControlTest.Properties.Resources.核素管理2;
             this.xButton3.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton3.Image = global::ControlTest.Properties.Resources.核素管理1;
-            this.xButton3.Location = new System.Drawing.Point(312, 280);
+            this.xButton3.Location = new System.Drawing.Point(308, 291);
             this.xButton3.Name = "xButton3";
             this.xButton3.Size = new System.Drawing.Size(150, 35);
             this.xButton3.StartColor = System.Drawing.Color.White;
@@ -181,7 +182,7 @@
             this.xButton2.HoldingImage = global::ControlTest.Properties.Resources.核素管理2;
             this.xButton2.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton2.Image = global::ControlTest.Properties.Resources.核素管理1;
-            this.xButton2.Location = new System.Drawing.Point(96, 280);
+            this.xButton2.Location = new System.Drawing.Point(96, 291);
             this.xButton2.Name = "xButton2";
             this.xButton2.Size = new System.Drawing.Size(150, 35);
             this.xButton2.StartColor = System.Drawing.Color.White;
@@ -270,17 +271,42 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // xButton4
+            // 
+            this.xButton4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.xButton4.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton4.CheckedForeColor = System.Drawing.Color.White;
+            this.xButton4.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.xButton4.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.xButton4.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.xButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(134)))), ((int)(((byte)(134)))));
+            this.xButton4.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton4.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton4.HoldingImage = null;
+            this.xButton4.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.xButton4.Image = null;
+            this.xButton4.Location = new System.Drawing.Point(855, 415);
+            this.xButton4.Name = "xButton4";
+            this.xButton4.Size = new System.Drawing.Size(75, 23);
+            this.xButton4.StartColor = System.Drawing.Color.White;
+            this.xButton4.TabIndex = 5;
+            this.xButton4.Text = "xButton4";
+            // 
             // FrmShadowPanelTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 803);
+            this.Controls.Add(this.xButton4);
             this.Controls.Add(this.xTabControl1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.xButton1);
             this.Controls.Add(this.xPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = false;
             this.Name = "FrmShadowPanelTest";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmShadowPanelTest";
             this.Load += new System.EventHandler(this.FrmShadowPanelTest_Load);
@@ -310,5 +336,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private PowerControl.XButton xButton4;
     }
 }

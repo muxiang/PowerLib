@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace PowerControl
 {
-    class NativeStructures
+    public class NativeStructures
     {
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT

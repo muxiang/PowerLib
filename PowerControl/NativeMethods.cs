@@ -5,7 +5,7 @@ using static PowerControl.NativeStructures;
 
 namespace PowerControl
 {
-    class NativeMethods
+    public class NativeMethods
     {
         [DllImport("user32.dll")]
         public static extern bool SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);

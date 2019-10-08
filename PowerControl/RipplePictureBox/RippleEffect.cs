@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 namespace PowerControl
 {
     /// <summary>
-    /// 2D模拟水波特效
+    /// 表示一个2D水波特效
     /// </summary>
     public unsafe class RippleEffect : IDisposable
     {

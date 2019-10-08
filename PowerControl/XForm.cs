@@ -420,7 +420,9 @@ namespace PowerControl
                 FormBorderStyle != FormBorderStyle.SizableToolWindow)
             {
                 Size iconSize = SystemInformation.SmallIconSize;
-                g.DrawIcon(Icon, new Rectangle(new Point(ncInfo.BorderSize.Width, ncInfo.BorderSize.Height + (ncInfo.CaptionHeight - iconSize.Height) / 2), iconSize));
+                g.DrawIcon(Icon, new Rectangle(
+                    new Point(ncInfo.BorderSize.Width, ncInfo.BorderSize.Height + (ncInfo.CaptionHeight - iconSize.Height) / 2),
+                    iconSize));
                 titleX = ncInfo.BorderSize.Width + iconSize.Width + ncInfo.BorderSize.Width;
             }
             else
@@ -431,7 +433,7 @@ namespace PowerControl
             SizeF captionTitleSize = g.MeasureString(Text, SystemFonts.CaptionFont);
             g.DrawString(Text, SystemFonts.CaptionFont, new SolidBrush(Color.White),
                     new RectangleF(titleX,
-                        (ncInfo.BorderSize.Height + ncInfo.CaptionHeight - captionTitleSize.Height) / 2,
+                        ncInfo.BorderSize.Height + (ncInfo.CaptionHeight - captionTitleSize.Height) / 2,
                         ncInfo.CaptionRect.Width - ncInfo.BorderSize.Width * 2 - SystemInformation.MinimumWindowSize.Width,
                         ncInfo.CaptionRect.Height), StringFormat.GenericTypographic);
         }
@@ -500,8 +502,8 @@ namespace PowerControl
             info.CaptionHeight = SystemInformation.CaptionHeight;
 
             int borderSizeFactor = 1;
-            if (DwmIsCompositionEnabled(out bool isEnabled) == 0 && isEnabled)
-                borderSizeFactor = 2;
+            //if (DwmIsCompositionEnabled(out bool isEnabled) == 0 && isEnabled)
+            //    borderSizeFactor = 2;
 
             switch (FormBorderStyle)
             {
@@ -592,12 +594,12 @@ namespace PowerControl
             Invalidate();
         }
 
-        protected override void OnResize(EventArgs e)
-        {
-            base.OnResize(e);
-            CreateButtonImages();
-            DrawCaption(Handle, ActiveForm == this);
-        }
+        //protected override void OnResize(EventArgs e)
+        //{
+        //    base.OnResize(e);
+        //    CreateButtonImages();
+        //    DrawCaption(Handle, ActiveForm == this);
+        //}
 
         protected override void OnResizeEnd(EventArgs e)
         {
@@ -609,22 +611,30 @@ namespace PowerControl
         /// <summary>
         /// 文本变更时发生
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">事件参数</param>
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
             DrawCaption(Handle, true);
         }
 
+        /// <summary>
+        /// 重绘时调用
+        /// </summary>
+        /// <param name="e">事件参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             DrawCaption(Handle, true);
         }
 
-        private int LOBYTE(long p) { return (int)(p & 0x0000FFFF); }
-        private int HIBYTE(long p) { return (int)(p >> 16); }
-
+        private static int LOBYTE(long p) { return (int)(p & 0x0000FFFF); }
+        private static int HIBYTE(long p) { return (int)(p >> 16); }
+        
+        /// <summary>
+        /// 窗口过程
+        /// </summary>
+        /// <param name="m">消息</param>
         protected override void WndProc(ref Message m)
         {
             if (FormBorderStyle != FormBorderStyle.None)
@@ -648,15 +658,15 @@ namespace PowerControl
                     //        posX = LOBYTE(lp);
                     //        posY = HIBYTE(lp);
 
-                    //        //if (wp == HTCAPTION)
-                    //        //{
-                    //        //    Point pt = this.PointToClient(new Point(posX, posY));
-                    //        //    if (this.CaptionContextMenu != null)
-                    //        //    {
-                    //        //        this.CaptionContextMenu.Show(posX, posY);
-                    //        //        return;
-                    //        //    }
-                    //        //}
+                    //        if (wp == HTCAPTION)
+                    //        {
+                    //            Point pt = this.PointToClient(new Point(posX, posY));
+                    //            if (this.CaptionContextMenu != null)
+                    //            {
+                    //                this.CaptionContextMenu.Show(posX, posY);
+                    //                return;
+                    //            }
+                    //        }
                     //        break;
                     //    }
                     case WM_SETCURSOR:
@@ -783,7 +793,7 @@ namespace PowerControl
 
                             g.Dispose();
                             ReleaseDC(m.HWnd, dc);
-                            return;
+                            //return;
                         }
                         break;
                     case WM_NCLBUTTONUP:

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>PowerControl</RootNamespace>
     <AssemblyName>PowerControl</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -58,7 +58,7 @@
     <Compile Include="IrregularControls\ComputeApplications.cs" />
     <Compile Include="LoadingLayer.cs" />
     <Compile Include="IrregularControls\ProjectFlowChart.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="IrregularControls\ProjectFlowChart.Designer.cs">
       <DependentUpon>ProjectFlowChart.cs</DependentUpon>

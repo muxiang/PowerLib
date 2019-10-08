@@ -19,13 +19,11 @@ namespace ControlTest
         [STAThread]
         static void Main(string[] args)
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
-            //Application.Run(new FrmShadowPanelTest());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
+            Application.Run(new FrmMain());
 
-            const string str = "ass5*-swSDAds23";
-            MessageBox.Show(new string(str.Select(c => c >= 'A' && c <= 'Z' ? (char)(c + 32) : (c >= 'a' && c <= 'z' ? (char)(c - 32) : c)).ToArray()));
 
 
         }
