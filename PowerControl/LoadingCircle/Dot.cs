@@ -33,7 +33,7 @@ namespace PowerControl
         /// </summary>
         public int Opacity
         {
-            get { return _opacity < MinOpacity ? MinOpacity : (_opacity > MaxOpacity ? MaxOpacity : _opacity); }
+            get { return _opacity < MinOpacity ? MinOpacity : _opacity > MaxOpacity ? MaxOpacity : _opacity; }
         }
 
         #endregion
@@ -152,7 +152,7 @@ namespace PowerControl
             }
 
             //移动
-            _angle = _angle >= (MaxAngle - _speed) ? MinAngle : _angle + _speed;
+            _angle = _angle >= MaxAngle - _speed ? MinAngle : _angle + _speed;
             //重新计算坐标
             ReCalcLocation();
         }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+
 using PowerControl;
 
 namespace ControlTest
@@ -21,16 +24,13 @@ namespace ControlTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
-            Application.Run(new FrmMain());
-
-
-
+            XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly()?.Location ?? throw new InvalidOperationException());
+            Application.Run(new FrmAbout());
         }
 
         private static readonly Random RandomSeed = new Random();
 
-        private static int R(int x,int y)
+        private static int R(int x, int y)
         {
             return RandomSeed.Next(x + 1, y + 1);
         }

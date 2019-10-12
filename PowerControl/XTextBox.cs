@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace PowerControl
 {
-    public partial class XTextBox : TextBox
+    public sealed partial class XTextBox : TextBox
     {
         private Color _borderColor;
         private Pen _borderPen = Pens.Black;
@@ -14,7 +14,7 @@ namespace PowerControl
         {
             InitializeComponent();
             BorderColor = Color.FromArgb(184, 184, 184);
-            ForeColor = BorderColor;
+            ForeColor = Color.FromArgb(80, 80, 80);
         }
 
         /// <summary>

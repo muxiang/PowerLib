@@ -1,6 +1,6 @@
 ﻿namespace PowerControl
 {
-    partial class XCheckBox
+    sealed partial class XCheckBox
     {
         /// <summary>
         /// 必需的设计器变量。

@@ -103,7 +103,7 @@ namespace PowerControl
             RectangleF rectCircle = new RectangleF(0, 0, Height, Height);
             rectCircle.Inflate(-Height / 6F, -Height / 6F);
             g.DrawEllipse(Enabled
-                ? (_isMouseHovering ? _penMouseHoveringForeColor : _penOuterCircle)
+                ? _isMouseHovering ? _penMouseHoveringForeColor : _penOuterCircle
                 : _penDisabledBackColor
                 , rectCircle);
 

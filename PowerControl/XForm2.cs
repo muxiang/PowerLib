@@ -268,7 +268,7 @@ namespace PowerControl
             int left = 0, top = 0;
             if (ShowIcon)
             {
-                int x = (_Top - Icon.Height) > 0 ? (_Top - Icon.Height) / 2 : _Bottom;
+                int x = _Top - Icon.Height > 0 ? (_Top - Icon.Height) / 2 : _Bottom;
                 Rectangle e = new Rectangle(x, x, _Top - _Bottom, _Top - _Bottom);
                 vGraphics.DrawIcon(Icon, e);
                 left += (_Top - Icon.Width) / 2 + Icon.Width;

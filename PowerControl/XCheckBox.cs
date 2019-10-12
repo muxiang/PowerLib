@@ -6,21 +6,21 @@ using System.Windows.Forms;
 
 namespace PowerControl
 {
-    public partial class XCheckBox : CheckBox
+    public sealed partial class XCheckBox : CheckBox
     {
         //缓存画笔画刷
         private SolidBrush _brsBackColor;
-        private SolidBrush _brsDisabledBackColor = new SolidBrush(Color.Gray);
+        private readonly SolidBrush _brsDisabledBackColor = new SolidBrush(Color.Gray);
         private SolidBrush _brsForeColor;
         private SolidBrush _brsInner;
         private Pen _penBoxBorderColor;
         private Pen _penInner;
         private Pen _penMouseHoveringForeColor;
-        private Pen _penDisabledBackColor = new Pen(Color.Gray);
+        private readonly Pen _penDisabledBackColor = new Pen(Color.Gray);
 
         private Color _boxBorderColor;
         private Color _innerColor;
-        private Color _MouseHoveringForeColor = Color.FromArgb(83, 128, 252);
+        private Color _mouseHoveringForeColor = Color.FromArgb(83, 128, 252);
 
         //鼠标正在停留
         private bool _isMouseHovering;
@@ -68,11 +68,11 @@ namespace PowerControl
         [Description("指定鼠标停留时的前景色")]
         public Color MouseHoveringForeColor
         {
-            get => _MouseHoveringForeColor;
+            get => _mouseHoveringForeColor;
             set
             {
-                _MouseHoveringForeColor = value;
-                _penMouseHoveringForeColor = new Pen(_MouseHoveringForeColor);
+                _mouseHoveringForeColor = value;
+                _penMouseHoveringForeColor = new Pen(_mouseHoveringForeColor);
                 Invalidate();
             }
         }
@@ -86,7 +86,7 @@ namespace PowerControl
 
             _penInner = new Pen(_innerColor, 2F);
             _brsInner = new SolidBrush(_innerColor);
-            _penMouseHoveringForeColor = new Pen(_MouseHoveringForeColor);
+            _penMouseHoveringForeColor = new Pen(_mouseHoveringForeColor);
             _penBoxBorderColor = new Pen(_boxBorderColor);
         }
 
@@ -104,7 +104,7 @@ namespace PowerControl
             RectangleF rectBorder = new RectangleF(0, 0, Height, Height);
             rectBorder.Inflate(-Height / 6F, -Height / 6F);
             g.DrawRectangle(Enabled
-                ? (_isMouseHovering ? _penMouseHoveringForeColor : _penBoxBorderColor)
+                ? _isMouseHovering ? _penMouseHoveringForeColor : _penBoxBorderColor
                 : _penDisabledBackColor
                 , rectBorder.X, rectBorder.Y, rectBorder.Width, rectBorder.Height);
 

@@ -40,7 +40,7 @@ namespace ControlTest
 
         public static int MakeLong(short lowPart, short highPart)
         {
-            return (int) (((ushort) lowPart) | (uint) (highPart << 16));
+            return (int) ((ushort) lowPart | (uint) (highPart << 16));
         }
 
         public const int SB_THUMBTRACK = 5;

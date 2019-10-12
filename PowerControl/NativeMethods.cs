@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-
+using System.Text;
 using static PowerControl.NativeStructures;
 
 namespace PowerControl
@@ -29,7 +29,21 @@ namespace PowerControl
         [DllImport("user32.dll")]
         public static extern bool EndPaint(IntPtr hWnd, ref PAINTSTRUCT paintStruct);
 
+        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+        public static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
         [DllImport("Dwmapi.dll")]
-        public static extern int DwmIsCompositionEnabled(out bool isEnabled);
+        public static extern int DwmIsCompositionEnabled(out bool isEnabled); 
+        
+        public delegate bool EnumWindowsProc(IntPtr hwnd, IntPtr lParam);
+        
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool EnumChildWindows(IntPtr hwndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
     }
 }

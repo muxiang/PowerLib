@@ -134,7 +134,7 @@ namespace PowerControl
         /// <param name="clipRect"></param>
         protected void PaintTransparentBackground(Graphics g, Rectangle clipRect)
         {
-            if ((Parent != null))
+            if (Parent != null)
             {
                 clipRect.Offset(Location);
                 PaintEventArgs e = new PaintEventArgs(g, clipRect);
@@ -255,7 +255,7 @@ namespace PowerControl
             Brush forebrush;
 
             forebrush = TabPages[index].Enabled
-                ? (index == SelectedIndex ? new SolidBrush(_headerSelectedForeColor) : new SolidBrush(_headerForeColor))
+                ? index == SelectedIndex ? new SolidBrush(_headerSelectedForeColor) : new SolidBrush(_headerForeColor)
                 : SystemBrushes.ControlDark;
 
             Font tabFont = Font;

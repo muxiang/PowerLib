@@ -1,6 +1,6 @@
 ﻿namespace PowerControl
 {
-    partial class XTextBox
+    sealed partial class XTextBox
     {
         /// <summary>
         /// 必需的设计器变量。

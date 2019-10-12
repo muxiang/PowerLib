@@ -188,7 +188,7 @@ namespace PowerControl
                     double d = Math.Sqrt(Math.Pow(ix - x, 2) + Math.Pow(iy - y, 2));
                     Point p = new Point(ix, iy);
                     if (d < r && effectRect.Contains(p))
-                        _frontBuffer[ix + iy * effectRect.Width] = (int)(255 - (256 * 3 * (1 - d / r / 2)));
+                        _frontBuffer[ix + iy * effectRect.Width] = (int)(255 - 256 * 3 * (1 - d / r / 2));
                 }
             }
         }

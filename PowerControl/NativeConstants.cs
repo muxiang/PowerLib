@@ -1,7 +1,11 @@
 ﻿namespace PowerControl
 {
-    class NativeConstants
+    public class NativeConstants
     {
+        public const int WM_USER = 0x0400;
+
+        public const int WM_COPYDATA = 0x004A;
+
         public const int WM_PAINT = 0x000F;
         public const int WM_ERASEBKGND = 0x0014;
         public const int WM_PRINTCLIENT = 0x0318;
@@ -67,7 +71,7 @@
         public const int SM_CYCAPTION = 4;
 
         public const int CS_DropSHADOW = 0x20000;
-        public const int GCL_STYLE = (-26);
+        public const int GCL_STYLE = -26;
 
     }
 }

@@ -24,13 +24,13 @@ namespace PowerControl
             public int X
             {
                 get { return Left; }
-                set { Right -= (Left - value); Left = value; }
+                set { Right -= Left - value; Left = value; }
             }
 
             public int Y
             {
                 get { return Top; }
-                set { Bottom -= (Top - value); Top = value; }
+                set { Bottom -= Top - value; Top = value; }
             }
 
             public int Height
@@ -112,6 +112,14 @@ namespace PowerControl
             public int fIncUpdate;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
             public byte[] rgbReserved;
+        }
+
+        public struct COPYDATASTRUCT
+        {
+            public IntPtr dwData; //可以是任意值
+            public int cbData;    //指定lpData内存区域的字节数
+            [MarshalAs(UnmanagedType.LPStr)]
+            public string lpData; //发送给目录窗口所在进程的数据
         }
     }
 }
