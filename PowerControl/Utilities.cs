@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace PowerControl
         public static Form GetParentForm(Control c)
         {
             if (c.Parent == null) return null;
-            if (c.Parent is Form) return c.Parent as Form;
+            if (c.Parent is Form parent) return parent;
 
             return GetParentForm(c.Parent);
         }
@@ -142,7 +143,56 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 或者给定正方形内最大的六边形
+        /// 在指定位置创建正多边形
+        /// </summary>
+        /// <param name="ptCenter">外切圆圆心</param>
+        /// <param name="radius">外切圆半径</param>
+        /// <param name="edgeCount">边数</param>
+        /// <param name="originDegree">原始角度</param>
+        /// <returns>多边形顶点数组</returns>
+        /// <exception cref="ArgumentOutOfRangeException">边数小于3</exception>
+        public static PointF[] CreateRegularPolygon(PointF ptCenter, float radius, int edgeCount, double originDegree = 0)
+        {
+            if (edgeCount < 3)
+                throw new ArgumentOutOfRangeException(nameof(edgeCount));
+
+            PointF[] polygon = new PointF[edgeCount];
+
+            for (int i = 0; i < edgeCount; i++)
+            {
+                double x = ptCenter.X + Math.Cos(Math.PI / 180 * (360D / edgeCount * i + originDegree)) * radius;
+                double y = ptCenter.Y + Math.Sin(Math.PI / 180 * (360D / edgeCount * i + originDegree)) * radius;
+
+                polygon[i] = new PointF((float)x, (float)y);
+            }
+
+            return polygon;
+        }
+
+        /// <summary>
+        /// 计算一个点绕另一个点旋转后的坐标
+        /// </summary>
+        /// <param name="pointToRotate">原始点</param>
+        /// <param name="centerPoint">中心点</param>
+        /// <param name="angleInDegrees">角度</param>
+        /// <returns>旋转后的点</returns>
+        public static PointF RotateAt(this PointF pointToRotate, PointF centerPoint, double angleInDegrees)
+        {
+            //弧度
+            double angleInRadians = angleInDegrees * (Math.PI / 180);
+            //余弦
+            double cosTheta = Math.Cos(angleInRadians);
+            //正弦
+            double sinTheta = Math.Sin(angleInRadians);
+
+            return new PointF(
+                (float)(cosTheta * (pointToRotate.X - centerPoint.X) - sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X),
+                (float)(sinTheta * (pointToRotate.X - centerPoint.X) + cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
+            );
+        }
+
+        /// <summary>
+        /// 获取给定正方形内最大的六边形
         /// </summary>
         /// <param name="rectSquare">正方形</param>
         /// <param name="ratioFactor">宽高比因子，值越大，六边形越宽</param>

@@ -521,7 +521,7 @@ namespace PowerControl
         /// <summary>
         /// 引发<see cref="AfterDrawing"/>事件
         /// </summary>
-        /// <param name="e">绘图时间参数</param>
+        /// <param name="e">绘图事件参数</param>
         private void OnAfterDrawing(PaintEventArgs e)
         {
             AfterDrawing?.Invoke(this, e);

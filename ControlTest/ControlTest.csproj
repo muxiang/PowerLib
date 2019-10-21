@@ -69,6 +69,12 @@
     <Compile Include="FrmDetectorsSelect.designer.cs">
       <DependentUpon>FrmDetectorsSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDrawTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDrawTest.Designer.cs">
+      <DependentUpon>FrmDrawTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDetectorsSelect.resx">
       <DependentUpon>FrmDetectorsSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDrawTest.resx">
+      <DependentUpon>FrmDrawTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmShadowPanelTest.resx">
       <DependentUpon>FrmShadowPanelTest.cs</DependentUpon>

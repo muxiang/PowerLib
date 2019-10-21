@@ -25,7 +25,7 @@ namespace ControlTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly()?.Location ?? throw new InvalidOperationException());
-            Application.Run(new FrmAbout());
+            Application.Run(new FrmDrawTest());
         }
 
         private static readonly Random RandomSeed = new Random();

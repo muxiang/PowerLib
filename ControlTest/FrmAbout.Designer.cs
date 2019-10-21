@@ -36,12 +36,11 @@
             // ripplePictureBox1
             // 
             this.ripplePictureBox1.DragSplashRadius = 10;
-            this.ripplePictureBox1.HoverSplash = true;
             this.ripplePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("ripplePictureBox1.Image")));
             this.ripplePictureBox1.Location = new System.Drawing.Point(24, 12);
             this.ripplePictureBox1.MinimumSize = new System.Drawing.Size(256, 256);
             this.ripplePictureBox1.Name = "ripplePictureBox1";
-            this.ripplePictureBox1.Size = new System.Drawing.Size(630, 256);
+            this.ripplePictureBox1.Size = new System.Drawing.Size(500, 500);
             this.ripplePictureBox1.TabIndex = 0;
             this.ripplePictureBox1.TabStop = false;
             // 
@@ -49,9 +48,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 360);
+            this.ClientSize = new System.Drawing.Size(537, 528);
             this.Controls.Add(this.ripplePictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Location = new System.Drawing.Point(0, 0);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAbout";
