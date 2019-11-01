@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -10,10 +11,17 @@ namespace PowerControl
         private Color _borderColor;
         private Pen _borderPen = Pens.Black;
 
+        private Color _focusedBorderColor;
+        private Pen _focusedBorderPen = Pens.Black;
+
         public XTextBox()
         {
             InitializeComponent();
+
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             BorderColor = Color.FromArgb(184, 184, 184);
+            FocusedBorderColor = Color.FromArgb(66, 215, 250);
             ForeColor = Color.FromArgb(80, 80, 80);
         }
 
@@ -34,6 +42,35 @@ namespace PowerControl
             }
         }
 
+        /// <summary>
+        /// 焦点边框颜色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("焦点边框颜色")]
+        public Color FocusedBorderColor
+        {
+            get => _focusedBorderColor;
+            set
+            {
+                _focusedBorderColor = value;
+                _focusedBorderPen = new Pen(value, 1.5F);
+                Invalidate();
+            }
+        }
+
+        protected override void OnGotFocus(EventArgs e)
+        {
+            base.OnGotFocus(e);
+            Invalidate();
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            Invalidate();
+        }
+
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -45,7 +82,7 @@ namespace PowerControl
 
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.DrawRectangle(_borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
+            g.DrawRectangle(Focused ? _focusedBorderPen : _borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
         }
     }
 }

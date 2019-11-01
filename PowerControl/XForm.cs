@@ -502,8 +502,8 @@ namespace PowerControl
             info.CaptionHeight = SystemInformation.CaptionHeight;
 
             int borderSizeFactor = 1;
-            //if (DwmIsCompositionEnabled(out bool isEnabled) == 0 && isEnabled)
-            //    borderSizeFactor = 2;
+            if (DwmIsCompositionEnabled(out bool isEnabled) == 0 && isEnabled)
+                borderSizeFactor = 2;
 
             switch (FormBorderStyle)
             {
@@ -520,7 +520,7 @@ namespace PowerControl
                         info.BorderSize.Height * borderSizeFactor);
                     break;
                 case FormBorderStyle.FixedSingle:
-                    info.BorderSize = SystemInformation.FixedFrameBorderSize;
+                    info.BorderSize = SystemInformation.FrameBorderSize;
                     info.BorderSize = new Size(
                         info.BorderSize.Width * borderSizeFactor,
                         info.BorderSize.Height * borderSizeFactor);

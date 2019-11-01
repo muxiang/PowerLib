@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 using static PowerControl.NativeStructures;
 
 namespace PowerControl
@@ -45,5 +46,24 @@ namespace PowerControl
         
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool EnumChildWindows(IntPtr hwndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
+        
+        [DllImport("USER32.dll")]
+        public static extern short GetKeyState(NativeConstants.VK vk);
+        
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern bool RegisterHotKey(IntPtr hWnd, int id, NativeConstants.KeyModifiers fsModifiers, Keys vk);
+        
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr LoadCursorFromFile(string fileName);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetCursor(IntPtr cursorHandle);
+
+        [DllImport("user32.dll")]
+        public static extern uint DestroyCursor(IntPtr cursorHandle);
     }
 }

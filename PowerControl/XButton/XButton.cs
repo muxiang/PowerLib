@@ -65,7 +65,7 @@ namespace PowerControl
             HoldingEndColor = Color.FromArgb(83, 128, 252);
             HoldingForeColor = Color.White;
 
-            ForeColor = Color.FromArgb(134, 134, 134);
+            ForeColor = Color.FromArgb(80, 80, 80);
             Font = new Font("微软雅黑", 8, FontStyle.Regular, GraphicsUnit.Point);
 
             BorderColor = Color.FromArgb(212, 212, 212);

@@ -45,6 +45,9 @@ namespace PowerControl
         {
             InitializeComponent();
 
+            if (Parent == null)
+                StartPosition = FormStartPosition.CenterScreen;
+
             _content = text;
             Text = caption;
 
