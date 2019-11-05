@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace PowerControl
@@ -210,6 +211,47 @@ namespace PowerControl
             };
 
             return result;
+        }
+
+        /// <summary>
+        /// 从位图计算图像路径
+        /// </summary>
+        /// <param name="bmp">位图</param>
+        /// <param name="scanCallback">
+        /// 扫描回调，回传当前扫描的像素索引
+        /// </param>
+        /// <returns></returns>
+        public static unsafe GraphicsPath GetGraphicsPathFromBitmap(Bitmap bmp, Action<int> scanCallback = null)
+        {
+            int w = bmp.Width;
+            int h = bmp.Height;
+
+            GraphicsPath path = new GraphicsPath();
+            BitmapData bckdata = null;
+
+            try
+            {
+                bckdata = bmp.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                uint* bckInt = (uint*)bckdata.Scan0;
+                for (int j = 0; j < h; j++)
+                {
+                    for (int i = 0; i < w; i++)
+                    {
+                        if ((*bckInt & 0xFF000000) != 0)
+                            path.AddRectangle(new Rectangle(i, j, 1, 1));
+
+                        scanCallback?.Invoke(i + j * w);
+                        bckInt++;
+                    }
+                }
+            }
+            finally
+            {
+                if (bckdata != null)
+                    bmp.UnlockBits(bckdata);
+            }
+
+            return path;
         }
     }
 }

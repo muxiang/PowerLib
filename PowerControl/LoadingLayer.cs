@@ -104,7 +104,7 @@ namespace PowerControl
                 _progressBar.BeginInvoke(new MethodInvoker(() =>
                 {
                     _progressBar.Value = value;
-                    if (text != null)
+                    if (text != null && _progressBar.Text != text)
                         _progressBar.Text = text;
                 }));
             else
@@ -118,9 +118,29 @@ namespace PowerControl
         /// <inheritdoc />
         public void Dispose()
         {
-            _circle?.Dispose();
-            _progressBar?.Dispose();
-            _form?.Dispose();
+            if (_circle != null)
+            {
+                if (_circle.InvokeRequired)
+                    _circle.BeginInvoke(new MethodInvoker(_circle.Dispose));
+                else
+                    _circle.Dispose();
+            }
+
+            if (_progressBar != null)
+            {
+                if (_progressBar.InvokeRequired)
+                    _progressBar.BeginInvoke(new MethodInvoker(_progressBar.Dispose));
+                else
+                    _progressBar.Dispose();
+            }
+
+            if (_form != null)
+            {
+                if (_form.InvokeRequired)
+                    _form.BeginInvoke(new MethodInvoker(_form.Dispose));
+                else
+                    _form.Dispose();
+            }
         }
     }
 }

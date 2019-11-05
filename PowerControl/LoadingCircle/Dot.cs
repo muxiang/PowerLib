@@ -31,10 +31,7 @@ namespace PowerControl
         /// <summary>
         /// 透明度
         /// </summary>
-        public int Opacity
-        {
-            get { return _opacity < MinOpacity ? MinOpacity : _opacity > MaxOpacity ? MaxOpacity : _opacity; }
-        }
+        public int Opacity => _opacity < MinOpacity ? MinOpacity : _opacity > MaxOpacity ? MaxOpacity : _opacity;
 
         #endregion
 
