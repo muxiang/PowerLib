@@ -22,7 +22,8 @@ namespace PowerControl
         /// <param name="progressBar">
         /// 指示遮罩层是否包含一个进度条，在另一线程中调用 <see cref="UpdateProgress"/>更新进度条
         /// </param>
-        public LoadingLayer(Form parent, double opacity = .5D, bool progressBar = false)
+        /// <param name="customCursor">指定自定义的光标</param>
+        public LoadingLayer(Form parent, double opacity = .5D, bool progressBar = false, Cursor customCursor = null)
         {
             _form = new Form
             {
@@ -33,8 +34,11 @@ namespace PowerControl
                 FormBorderStyle = FormBorderStyle.None,
                 BackColor = Color.Black,
                 StartPosition = FormStartPosition.CenterParent,
-                UseWaitCursor = true
+                UseWaitCursor = customCursor == null
             };
+
+            if (customCursor != null)
+                _form.Cursor = customCursor;
 
             int wh = Math.Min(parent.Width / 2, parent.Height / 2);
             _circle = new LoadingCircle
