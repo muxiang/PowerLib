@@ -34,7 +34,7 @@ namespace PowerControl
                 true);
 
             //初始化绘图timer
-            _graphicsTmr = new UITimer { Interval = 1 };
+            _graphicsTmr = new UITimer { Interval = 1000 / 60 };
             //Invalidate()强制重绘,绘图操作在OnPaint中实现
             _graphicsTmr.Tick += (sender1, e1) => Invalidate(false);
 
@@ -199,30 +199,22 @@ namespace PowerControl
         {
             if (_isActived && _isDrawing)
             {
+                //缓冲绘制
+                using Bitmap bmp = new Bitmap(Width, Height);
+                using Graphics bufferGraphics = Graphics.FromImage(bmp);
                 //抗锯齿
-                e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-
-                using (var bmp = new Bitmap(Width, Height))
+                bufferGraphics.SmoothingMode = SmoothingMode.HighQuality;
+                foreach (Dot dot in _dots)
                 {
-                    //缓冲绘制
-                    using (Graphics bufferGraphics = Graphics.FromImage(bmp))
-                    {
-                        //抗锯齿
-                        bufferGraphics.SmoothingMode = SmoothingMode.HighQuality;
-                        foreach (Dot dot in _dots)
-                        {
-                            var rect = new RectangleF(
-                                new PointF(dot.Location.X - _dotSize / 2, dot.Location.Y - _dotSize / 2),
-                                new SizeF(_dotSize, _dotSize));
+                    RectangleF rect = new RectangleF(
+                        new PointF(dot.Location.X - _dotSize / 2, dot.Location.Y - _dotSize / 2),
+                        new SizeF(_dotSize, _dotSize));
 
-                            bufferGraphics.FillEllipse(new SolidBrush(Color.FromArgb(dot.Opacity, Color)),
-                                rect);
-                        }
-                    }
+                    bufferGraphics.FillEllipse(new SolidBrush(Color.FromArgb(dot.Opacity, Color)), rect);
+                }
 
-                    //贴图
-                    e.Graphics.DrawImage(bmp, new PointF(0, 0));
-                } //bmp disposed
+                //贴图
+                e.Graphics.DrawImage(bmp, new PointF(0, 0));
             }
 
             base.OnPaint(e);

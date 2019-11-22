@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using PowerControl;
 
 namespace ControlTest
@@ -25,7 +26,7 @@ namespace ControlTest
         //        Win32API.GetScrollInfo(panel1.Handle, (int)Win32API.ScrollBarDirection.SB_VERT, ref si);
         //        Debug.Print($"--------nmax:{si.nMax},npos:{si.nPos},nTrackPos:{si.nTrackPos}");
         //        //customScrollBar1.Maximum = si.nMax;
-                
+
         //        //customScrollBar1.Value = si.nPos;
         //        return si;
         //    }
@@ -56,6 +57,7 @@ namespace ControlTest
 
         private void MyForm2Test_Load(object sender, EventArgs e)
         {
+
         }
 
         //private void customScrollBar1_Scroll(object sender, EventArgs e)
