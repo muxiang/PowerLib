@@ -1,6 +1,6 @@
 ﻿namespace PowerControl
 {
-    partial class XForm
+    partial class XForm3
     {
         /// <summary>
         /// 必需的设计器变量。

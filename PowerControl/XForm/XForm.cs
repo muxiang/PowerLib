@@ -6,15 +6,20 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using PowerControl;
 
-namespace ControlTest
+namespace PowerControl
 {
-    public partial class FrmMain : XForm3
+    public partial class XForm : Form
     {
-        public FrmMain()
+        public XForm()
         {
             InitializeComponent();
+        }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
         }
     }
 }

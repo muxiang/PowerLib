@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ControlTest
 {
-    public partial class Form1 : XForm
+    public partial class Form1 : XForm3
     {
         public Form1()
         {

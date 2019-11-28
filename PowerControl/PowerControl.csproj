@@ -123,17 +123,29 @@
     </Compile>
     <Compile Include="TypeDescriptionContext.cs" />
     <Compile Include="XDataGridViewColumnCollectionEditor.cs" />
-    <Compile Include="XForm.cs">
+    <Compile Include="XForm\XForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="XForm.Designer.cs">
+    <Compile Include="XForm\XForm.Designer.cs">
       <DependentUpon>XForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XForm3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XForm3.Designer.cs">
+      <DependentUpon>XForm3.cs</DependentUpon>
     </Compile>
     <Compile Include="XForm2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="XForm2.Designer.cs">
       <DependentUpon>XForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XForm\XFormBackground.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XForm\XFormBackground.Designer.cs">
+      <DependentUpon>XFormBackground.cs</DependentUpon>
     </Compile>
     <Compile Include="XGroupBox.cs">
       <SubType>Component</SubType>
@@ -211,8 +223,8 @@
     <EmbeddedResource Include="XDataGridView.resx">
       <DependentUpon>XDataGridView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="XForm.resx">
-      <DependentUpon>XForm.cs</DependentUpon>
+    <EmbeddedResource Include="XForm3.resx">
+      <DependentUpon>XForm3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XMessageBox.resx">
       <DependentUpon>XMessageBox.cs</DependentUpon>
@@ -275,5 +287,6 @@
   <ItemGroup>
     <None Include="Resources\downarrow.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

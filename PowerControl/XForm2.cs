@@ -26,8 +26,8 @@ namespace PowerControl
         [Description("边框颜色"), Category("UserSet")]
         public Color BorderColor
         {
-            set { this.BorderColor = value; }
-            get { return this._BorderColor; }
+            set { BorderColor = value; }
+            get { return _BorderColor; }
         }
         #endregion
         #region WindowsAPI
@@ -106,53 +106,53 @@ namespace PowerControl
                     switch (getMousePosition())
                     {
                         case SC_CLOSE://点击了关闭按钮
-                            this.Close();
+                            Close();
                             break;
                         case SC_MAXIMIZE://点击了最大化按钮
-                            this.WindowState = this.WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
+                            WindowState = WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
                             break;
                         case SC_MINIMIZE://点击了最小化按钮
-                            if (this.WindowState != FormWindowState.Minimized)
+                            if (WindowState != FormWindowState.Minimized)
                             {
-                                this.WindowState = FormWindowState.Minimized;
+                                WindowState = FormWindowState.Minimized;
                             }
                             break;
                         case HTCAPTION: //点击标题栏拖动窗体
                             ReleaseCapture();//释放label1对鼠标的捕捉
-                            SendMessage(this.Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
                             break;
                         case HTLEFT://拖动左边改变窗体大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_LEFT, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_LEFT, 0);
                             break;
                         case HTRIGHT://拖动右边改变窗体大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_RIGHT, 0);
-                            this.Invalidate();
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_RIGHT, 0);
+                            Invalidate();
                             break;
                         case HTTOP://拖动上面改变窗体大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_TOP, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_TOP, 0);
                             break;
                         case HTBOTTOM://拖动底部改变窗体大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_BOTTOM, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_BOTTOM, 0);
                             break;
                         case HTLEFTTOP://拖动左上角改变大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_LEFTTOP, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_LEFTTOP, 0);
                             break;
                         case HTLEFTBOTTOM://拖动左下角改变大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_LEFTBOTTOM, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_LEFTBOTTOM, 0);
                             break;
                         case HTRIGHTTOP://拖动右上角改变大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_RIGHTTOP, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_RIGHTTOP, 0);
                             break;
                         case HTRIGHTBOTTOM://拖动右下角改变大小
                             ReleaseCapture();
-                            SendMessage(this.Handle, WM_SYSCOMMAND, WMSZ_RIGHTBOTTOM, 0);
+                            SendMessage(Handle, WM_SYSCOMMAND, WMSZ_RIGHTBOTTOM, 0);
                             break;
                     }
                     #endregion
@@ -227,7 +227,7 @@ namespace PowerControl
             prt.Offset(-_MaxBtnWidth, 0);
             prb.Offset(-_MaxBtnWidth, 0);
             //绘制最大化按钮             
-            if (this.WindowState != FormWindowState.Maximized)
+            if (WindowState != FormWindowState.Maximized)
             {
                 vGraphics.DrawLine(MaxPen, plt, plb);
                 vGraphics.DrawLine(MaxPen, prt, prb);

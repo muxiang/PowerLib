@@ -8,7 +8,7 @@ using PowerControl.IrregularControls;
 
 namespace ControlTest
 {
-    public partial class FrmShadowPanelTest : XForm
+    public partial class FrmShadowPanelTest : XForm3
     {
         public FrmShadowPanelTest()
         {

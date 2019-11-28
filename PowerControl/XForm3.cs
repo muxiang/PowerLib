@@ -14,7 +14,7 @@ namespace PowerControl
     /// 表示一个包含渐变色标题栏的窗口
     /// </summary>
     [ToolboxItem(false)]
-    public partial class XForm : Form
+    public partial class XForm3 : Form
     {
         /// <summary>
         /// 指定一个值，将覆盖当前AppDomain下所有XForm的图标
@@ -26,7 +26,7 @@ namespace PowerControl
         /// <summary>
         /// 构建XForm的实例
         /// </summary>
-        public XForm()
+        public XForm3()
         {
             InitializeComponent();
 

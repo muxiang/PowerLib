@@ -7,7 +7,7 @@ using PowerControl;
 
 namespace SignalerTool.Forms
 {
-    public partial class FrmDetectorsSelect : XForm
+    public partial class FrmDetectorsSelect : XForm3
     {
         public FrmDetectorsSelect()
         {

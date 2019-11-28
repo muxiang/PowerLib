@@ -11,7 +11,7 @@ using PowerControl;
 
 namespace ControlTest
 {
-    public partial class FrmDrawTest : XForm
+    public partial class FrmDrawTest : XForm3
     {
         public FrmDrawTest()
         {

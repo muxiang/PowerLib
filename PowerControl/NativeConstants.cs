@@ -82,6 +82,12 @@ namespace PowerControl
         public const int CS_DropSHADOW = 0x20000;
         public const int GCL_STYLE = -26;
 
+        public const int WS_EX_LAYERED = 0x00080000;
+
+        public const byte AC_SRC_OVER = 0;
+        public const int ULW_ALPHA = 2;
+        public const byte AC_SRC_ALPHA = 1;
+
         public enum VK
         {
             ///<summary>

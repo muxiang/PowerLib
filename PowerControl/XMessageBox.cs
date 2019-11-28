@@ -7,7 +7,7 @@ namespace PowerControl
     /// <summary>
     /// 消息框
     /// </summary>
-    public sealed partial class XMessageBox : XForm
+    public sealed partial class XMessageBox : XForm3
     {
         private const float TextMaxWidth = 430;
         private const float TextMinWidth = 90;

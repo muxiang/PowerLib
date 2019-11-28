@@ -102,6 +102,44 @@ namespace PowerControl
             }
         }
         
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int X;
+            public int Y;
+
+            public POINT(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+
+            public POINT(Point pt) : this(pt.X, pt.Y) { }
+
+            public static implicit operator Point(POINT p)
+            {
+                return new Point(p.X, p.Y);
+            }
+
+            public static implicit operator POINT(Point p)
+            {
+                return new POINT(p.X, p.Y);
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SIZE
+        {
+            public int cx;
+            public int cy;
+
+            public SIZE(int cx, int cy)
+            {
+                this.cx = cx;
+                this.cy = cy;
+            }
+        }
+
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         public struct PAINTSTRUCT
         {
@@ -120,6 +158,23 @@ namespace PowerControl
             public int cbData;    //指定lpData内存区域的字节数
             [MarshalAs(UnmanagedType.LPStr)]
             public string lpData; //发送给目录窗口所在进程的数据
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct BLENDFUNCTION
+        {
+            public byte BlendOp;
+            public byte BlendFlags;
+            public byte SourceConstantAlpha;
+            public byte AlphaFormat;
+
+            public BLENDFUNCTION(byte op, byte flags, byte alpha, byte format)
+            {
+                BlendOp = op;
+                BlendFlags = flags;
+                SourceConstantAlpha = alpha;
+                AlphaFormat = format;
+            }
         }
     }
 }

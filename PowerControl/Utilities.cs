@@ -253,5 +253,68 @@ namespace PowerControl
 
             return path;
         }
+
+        /// <summary>
+        /// Create a translucent bitmap
+        /// </summary>
+        /// <param name="alpha">Transparency</param>
+        /// <param name="baseColor">Base-color</param>
+        /// <param name="size">Size</param>
+        /// <returns>Reference of bitmap</returns>
+        public static Bitmap CreateBitmap(byte alpha, Color baseColor, Size size)
+        {
+            Bitmap bmp = new Bitmap(size.Width, size.Height);
+
+            Color clr = Color.FromArgb(alpha, baseColor);
+
+            //for (int i = 0; i < bmp.Width; i++)
+            //    for (int j = 0; j < bmp.Height; j++)
+            //        bmp.SetPixel(i, j, clr);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+                g.Clear(clr);
+
+            return bmp;
+        }
+
+        /// <summary>
+        /// Stretch a bitmap to a new size
+        /// </summary>
+        /// <param name="original">Original bmp</param>
+        /// <param name="stretchSize">Size</param>
+        /// <param name="disposeOriginal">Auto dispose the original bitmap</param>
+        /// <returns>Reference of new bmp</returns>
+        public static Bitmap StretchBitmap(Bitmap original, Size stretchSize, bool disposeOriginal = true)
+        {
+            Bitmap newBitmap = new Bitmap(stretchSize.Width, stretchSize.Height);
+
+            Graphics g = Graphics.FromImage(newBitmap);
+            g.DrawImage(original, new Rectangle(new Point(0, 0), stretchSize));
+            g.Dispose();
+
+            if (disposeOriginal) original.Dispose();
+
+            return newBitmap;
+        }
+
+        /// <summary>
+        /// Cut a bitmap to a new rectangle
+        /// </summary>
+        /// <param name="original">Original bmp</param>
+        /// <param name="cutRect">Rectangle</param>
+        /// <param name="disposeOriginal">Auto dispose the original bitmap</param>
+        /// <returns>Reference of new bmp</returns>
+        public static Bitmap CutBitmap(Bitmap original, Rectangle cutRect, bool disposeOriginal = true)
+        {
+            Bitmap newBitmap = new Bitmap(cutRect.Width, cutRect.Height);
+
+            Graphics g = Graphics.FromImage(newBitmap);
+            g.DrawImage(original, new Rectangle(0, 0, cutRect.Width, cutRect.Height), cutRect, GraphicsUnit.Pixel);
+            g.Dispose();
+
+            if (disposeOriginal) original.Dispose();
+
+            return newBitmap;
+        }
     }
 }
