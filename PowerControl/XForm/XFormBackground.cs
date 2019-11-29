@@ -95,7 +95,6 @@ namespace PowerControl
                     0,
                     ref blendFunc,
                     ULW_ALPHA);
-
             }
             finally
             {

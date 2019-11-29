@@ -28,16 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.xButton1 = new PowerControl.XButton();
             this.SuspendLayout();
+            // 
+            // xButton1
+            // 
+            this.xButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.xButton1.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton1.CheckedForeColor = System.Drawing.Color.White;
+            this.xButton1.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.xButton1.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.xButton1.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.xButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.xButton1.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.xButton1.HoldingForeColor = System.Drawing.Color.White;
+            this.xButton1.HoldingImage = null;
+            this.xButton1.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.xButton1.Image = null;
+            this.xButton1.Location = new System.Drawing.Point(139, 294);
+            this.xButton1.Name = "xButton1";
+            this.xButton1.Size = new System.Drawing.Size(75, 23);
+            this.xButton1.StartColor = System.Drawing.Color.White;
+            this.xButton1.TabIndex = 0;
+            this.xButton1.Text = "xButton1";
+            this.xButton1.Click += new System.EventHandler(this.xButton1_Click);
             // 
             // FrmDrawTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(789, 423);
-            this.Location = new System.Drawing.Point(0, 0);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ClientSize = new System.Drawing.Size(871, 561);
+            this.Controls.Add(this.xButton1);
             this.Name = "FrmDrawTest";
             this.Text = "FrmDrawTest";
             this.ResumeLayout(false);
@@ -45,5 +67,7 @@
         }
 
         #endregion
+
+        private PowerControl.XButton xButton1;
     }
 }

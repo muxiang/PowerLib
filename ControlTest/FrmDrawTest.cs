@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -11,7 +12,7 @@ using PowerControl;
 
 namespace ControlTest
 {
-    public partial class FrmDrawTest : XForm3
+    public partial class FrmDrawTest : XForm
     {
         public FrmDrawTest()
         {
@@ -19,12 +20,10 @@ namespace ControlTest
 
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
         }
-
-        protected override void OnPaint(PaintEventArgs e)
+        
+        private void xButton1_Click(object sender, EventArgs e)
         {
-            base.OnPaint(e);
-
-
+            MessageBox.Show(Padding.Top.ToString());
         }
     }
 }
