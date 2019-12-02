@@ -14,7 +14,7 @@ namespace PowerControl.IrregularControls
     [ToolboxItem(false)]
     public sealed partial class ProjectListItem : Control
     {
-        //缓存画笔画刷字体
+        // 缓存画笔画刷字体
         private static readonly Pen PenBorder = new Pen(Color.FromArgb(73, 119, 252), 5);
         private static readonly Pen PenCheckedBox = new Pen(Color.FromArgb(217, 220, 231), 2);
         private static readonly Pen PenHorizontalSeparator = new Pen(Color.FromArgb(245, 246, 250), 2);
@@ -221,10 +221,10 @@ namespace PowerControl.IrregularControls
             else
                 pe.Graphics.DrawEllipse(PenCheckedBox, new RectangleF(20, 20, 32, 32));
 
-            //删除按钮
+            // 删除按钮
             pe.Graphics.DrawImage(Resources.ProjectItemBtnDelete, new RectangleF(Width - 20 - 32, 20, 32, 32));
 
-            //序号
+            // 序号
             Pen pen = null;
             Brush brs = null;
             switch (_number % 4)
@@ -246,9 +246,9 @@ namespace PowerControl.IrregularControls
                     brs = BrsCyanNumber;
                     break;
             }
-            //外圆
+            // 外圆
             pe.Graphics.DrawEllipse(pen ?? throw new InvalidOperationException(), new RectangleF(Width / 2F - 95 / 2F, 65, 95, 95));
-            //六边形
+            // 六边形
             pe.Graphics.FillPolygon(brs, new[]
             {
                 new PointF(138, 113),
@@ -258,37 +258,37 @@ namespace PowerControl.IrregularControls
                 new PointF(180, 138),
                 new PointF(152, 138),
             });
-            //序号
+            // 序号
             SizeF szNumber = pe.Graphics.MeasureString(_number.ToString(), FontText);
             pe.Graphics.DrawString(_number.ToString(), FontText, Brushes.White, 
                 138 + (194 - 138) / 2F - szNumber.Width / 2F, 87 + (138 - 87) / 2F - szNumber.Height / 2F);
 
-            //工程名称
+            // 工程名称
             pe.Graphics.DrawString(_projectNameText, FontProjectName, BrsProjectName,
                 new PointF(Width / 2F - pe.Graphics.MeasureString(_projectNameText, FontProjectName).Width / 2F, 180));
 
-            //竖分割线
+            // 竖分割线
             pe.Graphics.DrawLine(PenVerticalSeparator, new PointF(Width / 2F, 225), new PointF(Width / 2F, 245));
 
             pe.Graphics.SmoothingMode = SmoothingMode.Default;
 
-            //工况
+            // 工况
             pe.Graphics.DrawString(_projectStateText, FontText, BrsText,
                 new PointF(Width / 2F - pe.Graphics.MeasureString(_projectStateText, FontText).Width - 5, 225 - 2.5F));
-            //计算方式
+            // 计算方式
             pe.Graphics.DrawString(_computeMethodText, FontText, BrsText,
                 new PointF(Width / 2F + 5, 225 - 2.5F));
 
-            //横分割线
+            // 横分割线
             pe.Graphics.DrawLine(PenHorizontalSeparator, new PointF(5, 280), new PointF(Width - 5, 280));
 
-            //竖分割线
+            // 竖分割线
             pe.Graphics.DrawLine(PenVerticalSeparator, new PointF(120, Height - 55), new PointF(120, Height - 35));
 
-            //厂址
+            // 厂址
             pe.Graphics.DrawString(_plantNameText, FontText, BrsText,
                 new PointF(120 - pe.Graphics.MeasureString(_plantNameText, FontText).Width - 5, Height - 55 - 2.5F));
-            //日期
+            // 日期
             pe.Graphics.DrawString(_createDateTimeText, FontText, BrsText,
                 new PointF(120 + 5, Height - 55 - 2.5F));
 

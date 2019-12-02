@@ -8,7 +8,7 @@ namespace PowerControl
 {
     public partial class XShadowPanel : Panel
     {
-        //缓存画笔画刷
+        // 缓存画笔画刷
         private SolidBrush _brsTopBorderColor;
         private LinearGradientBrush _brsBackground;
 
@@ -87,9 +87,9 @@ namespace PowerControl
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
             pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-            //顶部边框
+            // 顶部边框
             pe.Graphics.FillRectangle(_brsTopBorderColor, 0, 0, Width, TopBorderWidth);
-            //阴影
+            // 阴影
             pe.Graphics.FillRectangle(_brsBackground, 0, TopBorderWidth, Width, Height * _shadowHeightRatio);
         }
         

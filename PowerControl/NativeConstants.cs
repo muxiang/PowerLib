@@ -24,7 +24,7 @@ namespace PowerControl
         public const int WM_NCMOUSELEAVE = 0x02A2;
         public const int WM_NCHITTEST = 0x0084;
         public const int WM_NCCREATE = 0x0081;
-        //public const int WM_RBUTTONUP = 0x0205;  
+        // public const int WM_RBUTTONUP = 0x0205;  
 
         public const int WM_LBUTTONDOWN = 0x0201;
         public const int WM_CAPTURECHANGED = 0x0215;
@@ -48,7 +48,7 @@ namespace PowerControl
         public const int WM_KEYDOWN = 0x0100;
         public const int WM_KEYUP = 0x0101;
 
-        // FOR WM_SIZING MSG WPARAM  
+        //  FOR WM_SIZING MSG WPARAM  
         public const int WMSZ_BOTTOM = 6;
         public const int WMSZ_BOTTOMLEFT = 7;
         public const int WMSZ_BOTTOMRIGHT = 8;
@@ -58,7 +58,7 @@ namespace PowerControl
         public const int WMSZ_TOPLEFT = 4;
         public const int WMSZ_TOPRIGHT = 5;
 
-        // left mouse button is down.  
+        //  left mouse button is down.  
         public const int MK_LBUTTON = 0x0001;
 
         public const int SC_CLOSE = 0xF060;
@@ -805,9 +805,9 @@ namespace PowerControl
             Alt = 1,
             Control = 2,
             Shift = 4,
-            // Either WINDOWS key was held down. These keys are labeled with the Windows logo.
-            // Keyboard shortcuts that involve the WINDOWS key are reserved for use by the
-            // operating system.
+            //  Either WINDOWS key was held down. These keys are labeled with the Windows logo.
+            //  Keyboard shortcuts that involve the WINDOWS key are reserved for use by the
+            //  operating system.
             Windows = 8
         }
     }

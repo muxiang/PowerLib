@@ -432,40 +432,40 @@ namespace PowerControl
             set => dataGridView1.AlternatingRowsDefaultCellStyle = value;
         }
 
-        //[DefaultValue(true)]
-        //public bool AllowUserToResizeRows
-        //{
-        //    get => dataGridView1.AllowUserToResizeRows;
-        //    set => dataGridView1.AllowUserToResizeRows = value;
-        //}
+        // [DefaultValue(true)]
+        // public bool AllowUserToResizeRows
+        // {
+        //     get => dataGridView1.AllowUserToResizeRows;
+        //     set => dataGridView1.AllowUserToResizeRows = value;
+        // }
 
-        //[DefaultValue(true)]
-        //public bool AllowUserToResizeColumns
-        //{
-        //    get => dataGridView1.AllowUserToResizeColumns;
-        //    set => dataGridView1.AllowUserToResizeColumns = value;
-        //}
+        // [DefaultValue(true)]
+        // public bool AllowUserToResizeColumns
+        // {
+        //     get => dataGridView1.AllowUserToResizeColumns;
+        //     set => dataGridView1.AllowUserToResizeColumns = value;
+        // }
 
-        //[DefaultValue(false)]
-        //public bool AllowUserToOrderColumns
-        //{
-        //    get => dataGridView1.AllowUserToOrderColumns;
-        //    set => dataGridView1.AllowUserToOrderColumns = value;
-        //}
+        // [DefaultValue(false)]
+        // public bool AllowUserToOrderColumns
+        // {
+        //     get => dataGridView1.AllowUserToOrderColumns;
+        //     set => dataGridView1.AllowUserToOrderColumns = value;
+        // }
 
-        //[DefaultValue(true)]
-        //public bool AllowUserToDeleteRows
-        //{
-        //    get => dataGridView1.AllowUserToDeleteRows;
-        //    set => dataGridView1.AllowUserToDeleteRows = value;
-        //}
+        // [DefaultValue(true)]
+        // public bool AllowUserToDeleteRows
+        // {
+        //     get => dataGridView1.AllowUserToDeleteRows;
+        //     set => dataGridView1.AllowUserToDeleteRows = value;
+        // }
 
-        //[DefaultValue(true)]
-        //public bool AllowUserToAddRows
-        //{
-        //    get => dataGridView1.AllowUserToAddRows;
-        //    set => dataGridView1.AllowUserToAddRows = value;
-        //}
+        // [DefaultValue(true)]
+        // public bool AllowUserToAddRows
+        // {
+        //     get => dataGridView1.AllowUserToAddRows;
+        //     set => dataGridView1.AllowUserToAddRows = value;
+        // }
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
@@ -553,7 +553,7 @@ namespace PowerControl
 
         [Editor(typeof(XDataGridViewColumnCollectionEditor), typeof(UITypeEditor))]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //[MergableProperty(false)]
+        // [MergableProperty(false)]
         public DataGridViewColumnCollection Columns => dataGridView1.Columns;
 
         public Rectangle DisplayRectangle => dataGridView1.DisplayRectangle;

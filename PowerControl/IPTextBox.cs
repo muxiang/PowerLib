@@ -10,7 +10,7 @@ namespace PowerControl
     /// <summary>
     /// 表示一个支持IPV4格式化录入的文本框
     /// </summary>
-    //[Designer(typeof(FixedSizeDesigner))]
+    // [Designer(typeof(FixedSizeDesigner))]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public sealed partial class IPTextBox : UserControl
     {
@@ -69,7 +69,7 @@ namespace PowerControl
                     {
                         if (e1.KeyChar == 8) return;
 
-                        //第三位数字按下后跳到下一段
+                        // 第三位数字按下后跳到下一段
                         TextBox t = (TextBox)sender;
                         if (t.SelectionStart == 2)
                             Controls.OfType<TextBox>().FirstOrDefault(textBox =>

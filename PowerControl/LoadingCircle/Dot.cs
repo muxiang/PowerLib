@@ -9,9 +9,9 @@ namespace PowerControl
     {
         #region 字段/属性
 
-        //圆心
+        // 圆心
         private readonly PointF _circleCenter;
-        //半径
+        // 半径
         private readonly float _circleRadius;
 
         /// <summary>
@@ -19,13 +19,13 @@ namespace PowerControl
         /// </summary>
         public PointF Location;
 
-        //点相对于圆心的角度，用于计算点的绘图坐标
+        // 点相对于圆心的角度，用于计算点的绘图坐标
         private int _angle;
-        //透明度
+        // 透明度
         private int _opacity;
-        //动画进度
+        // 动画进度
         private int _progress;
-        //速度
+        // 速度
         private int _speed;
 
         /// <summary>
@@ -37,25 +37,25 @@ namespace PowerControl
 
         #region 常量
 
-        //最小/最大速度
+        // 最小/最大速度
         private const int MinSpeed = 2;
         private const int MaxSpeed = 11;
 
-        //出现区的相对角度        
+        // 出现区的相对角度        
         private const int AppearAngle = 90;
-        //减速区的相对角度
+        // 减速区的相对角度
         private const int SlowAngle = 225;
-        //加速区的相对角度
+        // 加速区的相对角度
         private const int QuickAngle = 315;
 
-        //最小/最大角度
+        // 最小/最大角度
         private const int MinAngle = 0;
         private const int MaxAngle = 360;
 
-        //淡出速度
+        // 淡出速度
         private const int AlphaSub = 25;
 
-        //最小/最大透明度
+        // 最小/最大透明度
         private const int MinOpacity = 0;
         private const int MaxOpacity = 255;
 
@@ -148,20 +148,20 @@ namespace PowerControl
                     break;
             }
 
-            //移动
+            // 移动
             _angle = _angle >= MaxAngle - _speed ? MinAngle : _angle + _speed;
-            //重新计算坐标
+            // 重新计算坐标
             ReCalcLocation();
         }
 
-        //淡出
+        // 淡出
         private void FadeOut()
         {
             if ((_opacity -= AlphaSub) <= 0)
                 _angle = AppearAngle;
         }
 
-        //重置状态
+        // 重置状态
         public void Reset()
         {
             _angle = AppearAngle;
@@ -170,13 +170,13 @@ namespace PowerControl
             _opacity = 1;
         }
 
-        //加速
+        // 加速
         private void AddSpeed()
         {
             if (++_speed >= MaxSpeed) _speed = MaxSpeed;
         }
 
-        //减速
+        // 减速
         private void SubSpeed()
         {
             if (--_speed <= MinSpeed) _speed = MinSpeed;

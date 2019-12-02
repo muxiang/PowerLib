@@ -94,11 +94,11 @@ namespace PowerControl
 
         #region 字段
 
-        //显示文本
+        // 显示文本
         private string _text;
-        //内部按钮
+        // 内部按钮
         private XButton _button;
-        //父按钮
+        // 父按钮
         private XButton _parentBtn;
 
         #endregion 字段        

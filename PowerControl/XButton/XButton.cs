@@ -423,7 +423,7 @@ namespace PowerControl
                         || value > 'z')
                         throw new ArgumentOutOfRangeException(nameof(value), @"快捷键字符只能是A~Z");
 
-                    //大写
+                    // 大写
                     if (value >= 'a')
                         value = (char)(value - 32);
                 }
@@ -431,7 +431,7 @@ namespace PowerControl
                 _shortcut = value;
                 Invalidate();
 
-                //绑定快捷键响应
+                // 绑定快捷键响应
                 Form parentForm = Utilities.GetParentForm(this);
                 if (parentForm == null)
                     return;
@@ -452,92 +452,92 @@ namespace PowerControl
 
         #region 字段
 
-        //鼠标停留渐变起止颜色
+        // 鼠标停留渐变起止颜色
         private Color _hoveringStartColor;
         private Color _hoveringEndColor;
-        //鼠标按下渐变起止颜色
+        // 鼠标按下渐变起止颜色
         private Color _holdingStartColor;
         private Color _holdingEndColor;
-        //鼠标按下前景色
+        // 鼠标按下前景色
         private Color _holdingForeColor;
-        //选中状态鼠标停留渐变起止颜色
+        // 选中状态鼠标停留渐变起止颜色
         private Color _hoveringCheckedStartColor;
         private Color _hoveringCheckedEndColor;
-        //选中状态鼠标按下渐变起止颜色
+        // 选中状态鼠标按下渐变起止颜色
         private Color _holdingCheckedStartColor;
         private Color _holdingCheckedEndColor;
 
-        //文本画刷
+        // 文本画刷
         private SolidBrush _textBrush;
         private SolidBrush _holdingTextBrush;
 
-        //按钮状态
+        // 按钮状态
         private ButtonState _buttonState;
 
-        //鼠标正在停留
+        // 鼠标正在停留
         private bool _isMouseHovering;
-        //鼠标正在按住
+        // 鼠标正在按住
         private bool _isMouseHolding;
 
-        //支持下拉列表时的原按钮响应区
+        // 支持下拉列表时的原按钮响应区
         private Rectangle _buttonRect;
-        //支持下拉列表时的下拉箭头响应区
+        // 支持下拉列表时的下拉箭头响应区
         private Rectangle _dropArrowAreaRect;
 
-        //支持下拉列表时，用于标识鼠标停留在按钮区、下拉箭头区或界外
+        // 支持下拉列表时，用于标识鼠标停留在按钮区、下拉箭头区或界外
         private MouseOn _mouseOnButtonOrArrow = MouseOn.Outside;
 
-        //下拉面板
+        // 下拉面板
         [NonSerialized]
         private Panel _dropDownPanel;
 
-        //启用线性渐变颜色
+        // 启用线性渐变颜色
         private bool _enableLinearGradientColor;
-        //启用圆角矩形
+        // 启用圆角矩形
         private bool _enableRoundedRectangle;
-        //圆角矩形圆角所在圆的半径
+        // 圆角矩形圆角所在圆的半径
         private int _roundedRectangleCornerRadius = 5;
 
-        //是否选中
+        // 是否选中
         private bool _checked;
 
-        //渐变起止颜色
+        // 渐变起止颜色
         private Color _startColor;
         private Color _endColor;
-        //选中状态渐变起止颜色
+        // 选中状态渐变起止颜色
         private Color _checkedStartColor;
         private Color _checkedEndColor;
-        //选中状态前景色
+        // 选中状态前景色
         private Color _checkedForeColor;
 
-        //边框颜色
+        // 边框颜色
         private Color _borderColor;
-        //边框宽度
+        // 边框宽度
         private int _borderWidth;
-        //边框画笔
+        // 边框画笔
         private Pen _borderPen;
-        //显示风格：文字或图像
+        // 显示风格：文字或图像
         private XButtonDisplayStyle _displayStyle;
-        //显示图像
+        // 显示图像
         private Image _image;
-        //鼠标按下状态显示图像
+        // 鼠标按下状态显示图像
         private Image _holdingImage;
 
-        //对话框结果
+        // 对话框结果
         private DialogResult _dialogResult;
 
-        //快捷键
+        // 快捷键
         private char _shortcut = '\0';
-        //快捷键字体
+        // 快捷键字体
         private Font _shortcutFont;
-        //父窗口键盘按下回调
+        // 父窗口键盘按下回调
         private readonly KeyEventHandler _parentKeyDownEventHandler;
 
         #endregion 字段
 
         #region 常量
 
-        //下拉箭头区宽度
+        // 下拉箭头区宽度
         private const int DropDownArrowWidth = 15;
 
         #endregion 常量
@@ -654,10 +654,10 @@ namespace PowerControl
 
         #region 事件处理
 
-        //下拉项添加
+        // 下拉项添加
         private void DropDownItemAdded(object sender, DropDownButtonItemCollectionChangedEventArgs e)
         {
-            //重绘以更新下拉箭头
+            // 重绘以更新下拉箭头
             Invalidate();
 
             Form parentForm = Utilities.GetParentForm(this);
@@ -665,7 +665,7 @@ namespace PowerControl
 
             if (((DropDownButtonItemCollection)sender).Count == 1)
             {
-                //构建下拉面板
+                // 构建下拉面板
                 _dropDownPanel = new Panel
                 {
                     Size = new Size(Width, Height * DropDownItems.Count),
@@ -676,7 +676,7 @@ namespace PowerControl
 
                 _dropDownPanel.LostFocus += (s1, e1) => _dropDownPanel.Hide();
 
-                //添加到父窗口
+                // 添加到父窗口
                 parentForm.Click += (s1, e1) =>
                 {
                     if (_dropDownPanel.Visible)
@@ -688,7 +688,7 @@ namespace PowerControl
 
             _dropDownPanel.Height = DropDownItems.Count * Height;
 
-            //添加下拉项
+            // 添加下拉项
             e.ChangedItem.Location = new Point(0, (DropDownItems.Count - 1) * Height);
             e.ChangedItem.ParentBtn = this;
             e.ChangedItem.Click += (s1, e1) => _dropDownPanel.Hide();
@@ -697,7 +697,7 @@ namespace PowerControl
 
         }
 
-        //下拉项移除
+        // 下拉项移除
         private void DropDownItemRemoved(object sender, DropDownButtonItemCollectionChangedEventArgs e)
         {
             Invalidate();
@@ -724,7 +724,7 @@ namespace PowerControl
             Form parentForm = Utilities.GetParentForm(this);
             if (parentForm == null) return;
 
-            //绑定快捷键响应
+            // 绑定快捷键响应
             switch (_shortcut)
             {
                 case '\0':
@@ -737,7 +737,7 @@ namespace PowerControl
 
             if (DropDownItems.Count <= 0) return;
 
-            //构建下拉面板
+            // 构建下拉面板
             _dropDownPanel = new Panel
             {
                 Location = parentForm.PointToClient(Parent.PointToScreen(new Point(Left, Bottom))),
@@ -753,7 +753,7 @@ namespace PowerControl
                     _dropDownPanel.Hide();
             };
 
-            //添加到父窗口
+            // 添加到父窗口
             parentForm.Click += (s1, e1) =>
             {
                 if (_dropDownPanel.Visible)
@@ -762,7 +762,7 @@ namespace PowerControl
             parentForm.LocationChanged += (s1, e1) => _dropDownPanel.Location = parentForm.PointToClient(Parent.PointToScreen(new Point(Left, Bottom)));
             parentForm.Controls.Add(_dropDownPanel);
 
-            //添加下拉项
+            // 添加下拉项
             for (int i = 0; i < DropDownItems.Count; ++i)
             {
                 DropDownItems[i].Location = new Point(0, i * Height);
@@ -847,10 +847,10 @@ namespace PowerControl
         /// <param name="e">事件参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            //不支持下拉时返回
+            // 不支持下拉时返回
             if (DropDownItems.Count == 0) return;
 
-            //根据鼠标坐标，汇总重绘时需要的数据
+            // 根据鼠标坐标，汇总重绘时需要的数据
             if (_buttonRect.Contains(e.Location))
             {
                 if (_mouseOnButtonOrArrow == MouseOn.Button) return;
@@ -873,7 +873,7 @@ namespace PowerControl
                 _mouseOnButtonOrArrow = MouseOn.Outside;
             }
 
-            //重绘
+            // 重绘
             Invalidate();
             base.OnMouseMove(e);
         }
@@ -918,7 +918,7 @@ namespace PowerControl
         /// <param name="e">事件参数</param>
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            //左半区
+            // 左半区
             if (_buttonRect.Contains(e.Location))
             {
                 Click?.Invoke(this, EventArgs.Empty);
@@ -926,15 +926,15 @@ namespace PowerControl
                 if (_dropDownPanel != null && _dropDownPanel.Visible)
                     _dropDownPanel.Hide();
             }
-            //下拉箭头区
+            // 下拉箭头区
             else if (_dropArrowAreaRect.Contains(e.Location))
             {
-                //不支持下拉时，仅触发单击
+                // 不支持下拉时，仅触发单击
                 if (DropDownItems.Count == 0)
                     Click?.Invoke(this, EventArgs.Empty);
                 else
                 {
-                    //显示/隐藏下拉列表
+                    // 显示/隐藏下拉列表
                     if (_dropDownPanel.Visible)
                         _dropDownPanel.Hide();
                     else
@@ -960,7 +960,7 @@ namespace PowerControl
         /// <param name="pe">事件参数</param>
         protected override void OnPaint(PaintEventArgs pe)
         {
-            //更新按钮状态
+            // 更新按钮状态
             UpdateButtonState();
 
             pe.Graphics.CompositingQuality = CompositingQuality.HighQuality;
@@ -996,33 +996,33 @@ namespace PowerControl
         /// <param name="g">图面</param>
         private void DrawBackgroundAndBorder(Graphics g)
         {
-            //获取渐变颜色起止
+            // 获取渐变颜色起止
             GetDrawColor(_buttonState, out Color cStart, out Color cEnd);
 
             GraphicsPath gPath = null;
-            //圆角
+            // 圆角
             if (EnableRoundedRectangle)
             {
                 gPath = Utilities.GetRoundedRectPath(DisplayRectangle, _roundedRectangleCornerRadius);
                 Region = new Region(Utilities.GetRoundedRectPath(DisplayRectangle,
                     _roundedRectangleCornerRadius - 2 < 0 ? 0 : _roundedRectangleCornerRadius - 2));
             }
-            //直角
+            // 直角
             else
                 Region = new Region(DisplayRectangle);
 
-            //渐变画刷
+            // 渐变画刷
             LinearGradientBrush brsh = new LinearGradientBrush(new Point(Width / 2, 0), new Point(Width / 2, Height), cStart, cEnd);
             if (gPath != null)
                 g.FillPath(brsh, gPath);
             else
-                //填充有效区
+                // 填充有效区
                 g.FillRegion(brsh, Region);
 
-            //存在下拉项
+            // 存在下拉项
             if (DropDownItems.Count > 0)
             {
-                //存在下拉列表项，绘制下拉箭头区
+                // 存在下拉列表项，绘制下拉箭头区
                 if (_buttonState.ToString().Contains("Checked"))
                     GetDrawColor(ButtonState.Checked, out cStart, out cEnd);
                 else
@@ -1030,7 +1030,7 @@ namespace PowerControl
 
                 brsh = new LinearGradientBrush(new Point(Width - DropDownArrowWidth / 2, 0), new Point(Width - DropDownArrowWidth / 2, Height), cStart, cEnd);
 
-                //根据鼠标位置绘制高亮差别
+                // 根据鼠标位置绘制高亮差别
                 switch (_mouseOnButtonOrArrow)
                 {
                     case MouseOn.Button:
@@ -1043,7 +1043,7 @@ namespace PowerControl
                         break;
                 }
 
-                //绘制三角
+                // 绘制三角
                 g.FillPolygon(_textBrush, new[]
                 {
                     new Point(_dropArrowAreaRect.Left + 3, Height / 2 - 3),
@@ -1052,7 +1052,7 @@ namespace PowerControl
                 });
             }
 
-            //绘制边框
+            // 绘制边框
             if (_borderWidth > 0)
                 if (gPath == null)
                     g.DrawRectangle(_borderPen, DisplayRectangle);
@@ -1074,22 +1074,22 @@ namespace PowerControl
 
             if (_shortcut != '\0')
             {
-                //快捷键文本大小
+                // 快捷键文本大小
                 szShortcut = g.MeasureString(_shortcut.ToString(), _shortcutFont, Size, StringFormat.GenericTypographic);
-                //括号文本大小
+                // 括号文本大小
                 szParentheses = g.MeasureString("()", Font, Size, StringFormat.GenericTypographic);
             }
 
-            //测量文本大小
+            // 测量文本大小
             SizeF szText = g.MeasureString(Text, Font, Size, StringFormat.GenericTypographic);
 
-            //全部文本总大小
+            // 全部文本总大小
             SizeF szTotal = new SizeF(szText.Width + szShortcut.Width + szParentheses.Width,
                 Math.Max(Math.Max(szText.Height, szShortcut.Height), szParentheses.Height));
 
             const float textImagePadding = 5F;
 
-            //包含图片在内全部内容的X偏移
+            // 包含图片在内全部内容的X偏移
             float contentXOffset = 0, textXOffset = 0;
             if (_displayStyle == XButtonDisplayStyle.Text)
                 contentXOffset = textXOffset = ((DropDownItems.Count == 0 ? Width : Width - DropDownArrowWidth) - szTotal.Width) / 2f;
@@ -1099,7 +1099,7 @@ namespace PowerControl
                 textXOffset = contentXOffset + _image.Width + textImagePadding;
             }
 
-            //起始坐标
+            // 起始坐标
             PointF drawPt = new PointF(textXOffset, Height / 2f - szTotal.Height / 2F);
 
             g.DrawString(Text, Font, _textBrush, drawPt, StringFormat.GenericTypographic);
@@ -1125,10 +1125,10 @@ namespace PowerControl
         {
             RectangleF drawRect;
 
-            //仅图像
+            // 仅图像
             if (contentXOffset < 0)
                 drawRect = new RectangleF(Width / 2f - _image.Width / 2F, Height / 2f - _image.Height / 2F, _image.Width, _image.Height);
-            //图像与文字
+            // 图像与文字
             else
                 drawRect = new RectangleF(contentXOffset, Height / 2f - _image.Height / 2F, _image.Width, _image.Height);
 

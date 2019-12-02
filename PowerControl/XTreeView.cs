@@ -12,12 +12,12 @@ namespace PowerControl
     /// </summary>
     public sealed partial class XTreeView : TreeView
     {
-        //前景画刷
+        // 前景画刷
         private Brush _brsFore;
-        //背景画刷
+        // 背景画刷
         private Brush _brsBack;
 
-        //选择项背景色
+        // 选择项背景色
         private Color _selectedBackColor = Color.FromArgb(0, 150, 170);
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace PowerControl
 
             e.Graphics.FillRectangle(_brsBack, e.Bounds);
 
-            //绘制节点背景色
+            // 绘制节点背景色
             if (e.Node.IsSelected || IsChildSelected(e.Node))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -99,7 +99,7 @@ namespace PowerControl
 
             float fontHeight = Font.GetHeight(e.Graphics);
 
-            //绘制节点折叠图标
+            // 绘制节点折叠图标
             int x = (int)(e.Node.Bounds.X - fontHeight), y = e.Node.Bounds.Y;
 
             if (e.Node.Nodes.Count > 0)

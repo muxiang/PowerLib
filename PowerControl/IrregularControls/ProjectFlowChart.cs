@@ -308,7 +308,7 @@ namespace PowerControl.IrregularControls
         {
             base.OnPaint(e);
 
-            //绘图
+            // 绘图
             Graphics g = e.Graphics;
             g.CompositingQuality = CompositingQuality.HighQuality;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -346,13 +346,13 @@ namespace PowerControl.IrregularControls
             brs.InterpolationColors = cb;
 
             GraphicsPath gp = new GraphicsPath(FillMode.Winding);
-            //第一行
+            // 第一行
             gp.AddRectangle(new RectangleF(padding + diameter, padding + diameter / 2F - linkWidth / 2F, 1215, linkWidth));
-            //1
+            // 1
             gp.AddEllipse(padding, padding, diameter, diameter);
-            //2
+            // 2
             gp.AddEllipse(padding + diameter + linkLength, padding, diameter, diameter);
-            //3
+            // 3
             if (_strTarget1App2 == null)
                 gp.AddEllipse(padding + diameter * 2 + linkLength * 2, padding, diameter, diameter);
             else
@@ -360,30 +360,30 @@ namespace PowerControl.IrregularControls
                 gp.AddEllipse(padding + diameter * 2 + linkLength * 2 - diameter * 1.5F, padding, diameter, diameter);
                 gp.AddEllipse(padding + diameter * 2 + linkLength * 2 + diameter * 1.5F, padding, diameter, diameter);
             }
-            //4
+            // 4
             gp.AddEllipse(padding + diameter * 3 + linkLength * 3, padding, diameter, diameter);
-            //5
+            // 5
             gp.AddEllipse(padding + diameter * 4 + linkLength * 4, padding, diameter, diameter);
 
-            //第二行
+            // 第二行
             if (_strComputeTarget2 != null)
             {
-                //横线
+                // 横线
                 gp.AddRectangle(new RectangleF(padding + diameter + linkLength / 2F, lineHeight + padding + diameter / 2F - linkWidth / 2F,
                     linkLength * 2 + diameter * 2 + linkWidth, linkWidth));
 
-                //左竖线
+                // 左竖线
                 gp.AddRectangle(new RectangleF(padding + diameter + linkLength / 2F, padding + diameter / 2F - linkWidth / 2F,
                     linkWidth, lineHeight));
 
-                //右竖线
+                // 右竖线
                 gp.AddRectangle(new RectangleF(padding + diameter * 3 + linkLength * 2 + linkLength / 2F, padding + diameter / 2F - linkWidth / 2F,
                     linkWidth, lineHeight));
 
-                //2
+                // 2
                 RectangleF rect = new RectangleF(padding + diameter + linkLength, padding + lineHeight, diameter, diameter);
                 gp.AddPolygon(Utilities.GetHexagonBySquare(rect));
-                //3
+                // 3
                 if (_strTarget2App2 == null)
                 {
                     rect = new RectangleF(padding + diameter * 2 + linkLength * 2, padding + lineHeight, diameter, diameter);
@@ -391,34 +391,34 @@ namespace PowerControl.IrregularControls
                 }
                 else
                 {
-                    //3-1
+                    // 3-1
                     rect = new RectangleF(padding + diameter * 2 + linkLength * 2 - diameter * 1.5F, padding + lineHeight, diameter, diameter);
                     gp.AddPolygon(Utilities.GetHexagonBySquare(rect));
-                    //3-2
+                    // 3-2
                     rect = new RectangleF(padding + diameter * 2 + linkLength * 2 + diameter * 1.5F, padding + lineHeight, diameter, diameter);
                     gp.AddPolygon(Utilities.GetHexagonBySquare(rect));
                 }
             }
 
-            //第三行
+            // 第三行
             if (_strComputeTarget3 != null)
             {
-                //横线
+                // 横线
                 gp.AddRectangle(new RectangleF(padding + diameter + linkLength / 2F, lineHeight * 2 + padding + diameter / 2F - linkWidth / 2F,
                     linkLength * 2 + diameter * 2 + linkWidth, linkWidth));
 
-                //左竖线
+                // 左竖线
                 gp.AddRectangle(new RectangleF(padding + diameter + linkLength / 2F, lineHeight + padding + diameter / 2F - linkWidth / 2F,
                     linkWidth, lineHeight));
 
-                //右竖线
+                // 右竖线
                 gp.AddRectangle(new RectangleF(padding + diameter * 3 + linkLength * 2 + linkLength / 2F, lineHeight + padding + diameter / 2F - linkWidth / 2F,
                     linkWidth, lineHeight));
 
-                //2
+                // 2
                 Rectangle rect = new Rectangle(padding + diameter + linkLength, padding + lineHeight * 2 + 5, diameter, diameter - 10);
                 gp.AddPath(Utilities.GetRoundedRectPath(rect, 15), true);
-                //3
+                // 3
                 rect = new Rectangle(padding + diameter * 2 + linkLength * 2, padding + lineHeight * 2 + 5, diameter, diameter - 10);
                 gp.AddPath(Utilities.GetRoundedRectPath(rect, 15), true);
             }
@@ -429,14 +429,14 @@ namespace PowerControl.IrregularControls
 
             #region 前景
 
-            //第一行
-            //1
+            // 第一行
+            // 1
             SizeF szNumber1 = g.MeasureString("1", _fontNumber);
             g.DrawString("1", _fontNumber, Brushes.White, padding + diameter / 2F - szNumber1.Width / 2F, padding + diameter / 2F - szNumber1.Height / 2F);
             string strState = _isNormalState ? "正常工况" : "事故工况";
             SizeF szText1 = g.MeasureString(strState, _fontText);
             g.DrawString(strState, _fontText, Brushes.Black, padding + diameter / 2F - szText1.Width / 2F, padding * 3 + diameter);
-            //2
+            // 2
             SizeF szNumber2 = g.MeasureString("2", _fontNumber);
             g.DrawString("2", _fontNumber, Brushes.White,
                 padding + diameter + linkLength + diameter / 2F - szNumber2.Width / 2F,
@@ -448,10 +448,10 @@ namespace PowerControl.IrregularControls
 
             Rectangle rectText, rectBorder;
 
-            //3
+            // 3
             if (_strTarget1App2 == null)
             {
-                //3
+                // 3
                 SizeF szNumber3 = g.MeasureString("3", _fontNumber);
                 g.DrawString("3", _fontNumber, Brushes.White,
                     padding + diameter * 2 + linkLength * 2 + diameter / 2F - szNumber3.Width / 2F,
@@ -476,7 +476,7 @@ namespace PowerControl.IrregularControls
             }
             else
             {
-                //3-1
+                // 3-1
                 SizeF szNumber3_1 = g.MeasureString("3-1", _fontNumber);
                 g.DrawString("3-1", _fontNumber, Brushes.White,
                     padding + diameter * 2 + linkLength * 2 + diameter / 2F - szNumber3_1.Width / 2F
@@ -498,7 +498,7 @@ namespace PowerControl.IrregularControls
                 }
                 g.DrawString(_strTarget1App1, _fontText, Brushes.Black, rectText.Location);
 
-                //3-2
+                // 3-2
                 SizeF szNumber3_2 = g.MeasureString("3-2", _fontNumber);
                 g.DrawString("3-2", _fontNumber, Brushes.White,
                     padding + diameter * 2 + linkLength * 2 + diameter / 2F - szNumber3_2.Width / 2F + diameter * 1.5F,
@@ -520,7 +520,7 @@ namespace PowerControl.IrregularControls
                 g.DrawString(_strTarget1App2, _fontText, Brushes.Black, rectText.Location);
             }
 
-            //4
+            // 4
             SizeF szNumber4 = g.MeasureString("4", _fontNumber);
             g.DrawString("4", _fontNumber, Brushes.White,
                 padding + diameter * 3 + linkLength * 3 + diameter / 2F - szNumber4.Width / 2F,
@@ -540,7 +540,7 @@ namespace PowerControl.IrregularControls
             }
             g.DrawString("计算结果", _fontText, Brushes.Black, rectText.Location);
 
-            //5
+            // 5
             SizeF szNumber5 = g.MeasureString("5", _fontNumber);
             g.DrawString("5", _fontNumber, Brushes.White,
                 padding + diameter * 4 + linkLength * 4 + diameter / 2F - szNumber5.Width / 2F,
@@ -560,10 +560,10 @@ namespace PowerControl.IrregularControls
             }
             g.DrawString("可视化", _fontText, Brushes.Black, rectText.Location);
 
-            //第二行
+            // 第二行
             if (_strComputeTarget2 != null)
             {
-                //2
+                // 2
                 g.DrawString("2", _fontNumber, Brushes.White,
                     padding + diameter + linkLength + diameter / 2F - szNumber2.Width / 2F,
                     lineHeight + padding + diameter / 2F - szNumber2.Height / 2F);
@@ -572,10 +572,10 @@ namespace PowerControl.IrregularControls
                     padding + diameter + linkLength + diameter / 2F - szText2.Width / 2F,
                     lineHeight + padding * 3 + diameter);
 
-                //3
+                // 3
                 if (_strTarget2App2 == null)
                 {
-                    //3
+                    // 3
                     SizeF szNumber3 = g.MeasureString("3", _fontNumber);
                     g.DrawString("3", _fontNumber, Brushes.White,
                         padding + diameter * 2 + linkLength * 2 + diameter / 2F - szNumber3.Width / 2F,
@@ -599,7 +599,7 @@ namespace PowerControl.IrregularControls
                 }
                 else
                 {
-                    //3-1
+                    // 3-1
                     SizeF szNumber3_1 = g.MeasureString("3-1", _fontNumber);
                     g.DrawString("3-1", _fontNumber, Brushes.White,
                         padding + diameter * 2 + linkLength * 2 + diameter / 2F - szNumber3_1.Width / 2F
@@ -622,7 +622,7 @@ namespace PowerControl.IrregularControls
                     }
                     g.DrawString(_strTarget2App1, _fontText, Brushes.Black, rectText.Location);
 
-                    //3-2
+                    // 3-2
                     SizeF szNumber3_2 = g.MeasureString("3-2", _fontNumber);
                     g.DrawString("3-2", _fontNumber, Brushes.White,
                         padding + diameter * 2 + linkLength * 2 + diameter / 2F - szNumber3_2.Width / 2F
@@ -647,10 +647,10 @@ namespace PowerControl.IrregularControls
                 }
             }
 
-            //第三行
+            // 第三行
             if (_strComputeTarget3 != null)
             {
-                //2
+                // 2
                 g.DrawString("2", _fontNumber, Brushes.White,
                     padding + diameter + linkLength + diameter / 2F - szNumber2.Width / 2F,
                     lineHeight * 2 + padding + diameter / 2F - szNumber2.Height / 2F);
@@ -659,7 +659,7 @@ namespace PowerControl.IrregularControls
                     padding + diameter + linkLength + diameter / 2F - szText2.Width / 2F,
                     lineHeight * 2 + padding * 3 + diameter);
 
-                //3
+                // 3
                 SizeF szNumber3 = g.MeasureString("3", _fontNumber);
                 g.DrawString("3", _fontNumber, Brushes.White,
                     padding + diameter * 2 + linkLength * 2 + diameter / 2F - szNumber3.Width / 2F,

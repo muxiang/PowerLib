@@ -34,27 +34,27 @@ namespace PowerControl.Design
         /// <returns></returns>
         public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object component, Attribute[] attributes)
         {
-            // Obtain an instance of the IEventBindingService.
+            //  Obtain an instance of the IEventBindingService.
             IEventBindingService eventPropertySvc = (IEventBindingService)
                 sp.GetService(typeof(IEventBindingService));
 
-            // Return if an IEventBindingService could not be obtained.
+            //  Return if an IEventBindingService could not be obtained.
             if (eventPropertySvc == null)
                 return new PropertyDescriptorCollection(null);
 
-            // Obtain the events on the component.
+            //  Obtain the events on the component.
             EventDescriptorCollection events =
                 TypeDescriptor.GetEvents(component, attributes);
 
-            // Create an array of the events, where each event is assigned 
-            // a category matching its type.
+            //  Create an array of the events, where each event is assigned 
+            //  a category matching its type.
             EventDescriptor[] newEvents = new EventDescriptor[events.Count];
             for (int i = 0; i < events.Count; i++)
                 newEvents[i] = TypeDescriptor.CreateEvent(events[i].ComponentType, events[i],
                     new CategoryAttribute(events[i].EventType.FullName));
             events = new EventDescriptorCollection(newEvents);
 
-            // Return event properties for the event descriptors.
+            //  Return event properties for the event descriptors.
             return eventPropertySvc.GetEventProperties(events);
         }
 

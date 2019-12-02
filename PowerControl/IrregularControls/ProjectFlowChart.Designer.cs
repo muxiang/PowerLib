@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // ProjectFlowChart
-            // 
+            //  
+            //  ProjectFlowChart
+            //  
             this.BackColor = System.Drawing.Color.White;
             this.Name = "ProjectFlowChart";
             this.Size = new System.Drawing.Size(1350, 115);

@@ -13,7 +13,7 @@ namespace PowerControl
 {
     public partial class XGroupBox : GroupBox
     {
-        //缓存画笔画刷
+        // 缓存画笔画刷
         private SolidBrush _brsTitle;
         private SolidBrush _brsTitleMark;
 

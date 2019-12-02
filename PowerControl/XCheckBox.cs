@@ -8,7 +8,7 @@ namespace PowerControl
 {
     public sealed partial class XCheckBox : CheckBox
     {
-        //缓存画笔画刷
+        // 缓存画笔画刷
         private SolidBrush _brsBackColor;
         private readonly SolidBrush _brsDisabledBackColor = new SolidBrush(Color.Gray);
         private SolidBrush _brsForeColor;
@@ -22,7 +22,7 @@ namespace PowerControl
         private Color _innerColor;
         private Color _mouseHoveringForeColor = Color.FromArgb(83, 128, 252);
 
-        //鼠标正在停留
+        // 鼠标正在停留
         private bool _isMouseHovering;
 
         /// <summary>
@@ -96,11 +96,11 @@ namespace PowerControl
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            //背景
+            // 背景
             Rectangle rectControl = new Rectangle(-1, -1, Width + 2, Height + 2);
             g.FillRectangle(_brsBackColor, rectControl);
 
-            //选框边框
+            // 选框边框
             RectangleF rectBorder = new RectangleF(0, 0, Height, Height);
             rectBorder.Inflate(-Height / 6F, -Height / 6F);
             g.DrawRectangle(Enabled
@@ -113,7 +113,7 @@ namespace PowerControl
                 case CheckState.Unchecked:
                     break;
                 case CheckState.Checked:
-                    //对勾
+                    // 对勾
                     rectBorder.Inflate(-(Height / 8F), -(Height / 8F));
                     g.DrawLines(_isMouseHovering ? _penMouseHoveringForeColor : _penInner, new[]
                     {
@@ -123,13 +123,13 @@ namespace PowerControl
                     });
                     break;
                 case CheckState.Indeterminate:
-                    //矩形
+                    // 矩形
                     rectBorder.Inflate(-(Height / 8F), -(Height / 8F));
                     g.FillRectangle(Enabled ? _brsInner : _brsDisabledBackColor, rectBorder);
                     break;
             }
 
-            //文字
+            // 文字
             g.DrawString(Text, Font, _brsForeColor, Height, (Height - Font.Height) / 2);
         }
 

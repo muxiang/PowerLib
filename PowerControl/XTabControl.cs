@@ -150,7 +150,7 @@ namespace PowerControl
                 {
                     g.Restore(state);
                     clipRect.Offset(-Location.X, -Location.Y);
-                    //新加片段,待测试
+                    // 新加片段,待测试
                     using (SolidBrush brush = new SolidBrush(_backColor))
                     {
                         clipRect.Inflate(1, 1);
@@ -216,9 +216,9 @@ namespace PowerControl
         /// <param name="path"></param>
         private void PaintTabBorder(Graphics g, int index, GraphicsPath path)
         {
-            Pen borderPen = new Pen(_borderColor);// TabPage 非选中时候的 TabPage 头部边框色
+            Pen borderPen = new Pen(_borderColor);//  TabPage 非选中时候的 TabPage 头部边框色
             /*if (index == SelectedIndex)
-                borderPen = new Pen(_borderColor); // TabPage 选中后的 TabPage 头部边框色*/
+                borderPen = new Pen(_borderColor); //  TabPage 选中后的 TabPage 头部边框色*/
             g.DrawPath(borderPen, path);
             borderPen.Dispose();
         }
@@ -274,13 +274,13 @@ namespace PowerControl
             {
                 Rectangle borderRect = TabPages[0].Bounds;
                 borderRect.Inflate(1, 1);
-                //ControlPaint.DrawBorder(e.Graphics, borderRect, ThemedColors.ToolBorder, ButtonBorderStyle.Solid);
+                // ControlPaint.DrawBorder(e.Graphics, borderRect, ThemedColors.ToolBorder, ButtonBorderStyle.Solid);
                 ControlPaint.DrawBorder(e.Graphics, borderRect, BorderColor, ButtonBorderStyle.Solid);
             }
         }
 
         /// <summary>
-        /// // TabPage 页头部间隔色
+        /// //  TabPage 页头部间隔色
         /// </summary>
         /// <param name="e"></param>
         private void PaintTheSelectedTab(PaintEventArgs e)
@@ -374,7 +374,7 @@ namespace PowerControl
             SendMessage(Handle, WM_SETFONT, hFont, (IntPtr)(-1));
             SendMessage(Handle, WM_FONTCHANGE, IntPtr.Zero, IntPtr.Zero);
             UpdateStyles();
-            //this.ItemSize = new Size(0, this.Font.Height + 2);
+            // this.ItemSize = new Size(0, this.Font.Height + 2);
         }
     }
 }

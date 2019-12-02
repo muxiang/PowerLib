@@ -26,21 +26,21 @@ namespace PowerControl
         {
             InitializeComponent();
 
-            //双缓冲，禁擦背景
+            // 双缓冲，禁擦背景
             SetStyle(
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.UserPaint |
                 ControlStyles.OptimizedDoubleBuffer,
                 true);
 
-            //初始化绘图timer
+            // 初始化绘图timer
             _graphicsTmr = new UITimer { Interval = 1000 / 60 };
-            //Invalidate()强制重绘,绘图操作在OnPaint中实现
+            // Invalidate()强制重绘,绘图操作在OnPaint中实现
             _graphicsTmr.Tick += (sender1, e1) => Invalidate(false);
 
             _dotSize = Width / 10f;
 
-            //初始化"点"
+            // 初始化"点"
             _dots = new Dot[5];
 
             Color = Color.White;
@@ -78,46 +78,46 @@ namespace PowerControl
 
         #region 字段
 
-        //点数组
+        // 点数组
         private readonly Dot[] _dots;
 
-        //Timers
+        // Timers
         private readonly UITimer _graphicsTmr;
         private ThreadingTimer _actionTmr;
 
-        //点大小
+        // 点大小
         private float _dotSize;
 
-        //是否活动
+        // 是否活动
         private bool _isActived;
 
-        //是否绘制:用于状态重置时挂起与恢复绘图
+        // 是否绘制:用于状态重置时挂起与恢复绘图
         private bool _isDrawing = true;
 
-        //Timer计数:用于延迟启动每个点
+        // Timer计数:用于延迟启动每个点
         private int _timerCount;
 
         #endregion 字段
 
         #region 常量
 
-        //动作间隔(Timer)
+        // 动作间隔(Timer)
         private const int ActionInterval = 30;
 
-        //计数基数：用于计算每个点启动延迟：index * timerCountRadix
+        // 计数基数：用于计算每个点启动延迟：index * timerCountRadix
         private const int TimerCountRadix = 45;
 
         #endregion 常量
 
         #region 方法
 
-        //检查是否重置
+        // 检查是否重置
         private bool CheckToReset()
         {
             return _dots.Count(d => d.Opacity > 0) == 0;
         }
 
-        //初始化点元素
+        // 初始化点元素
         private void CreateDots()
         {
             for (int i = 0; i < _dots.Length; ++i)
@@ -150,19 +150,19 @@ namespace PowerControl
 
             _graphicsTmr.Start();
 
-            //初始化动作timer
+            // 初始化动作timer
             _actionTmr = new ThreadingTimer(
                 state =>
                 {
-                    //动画动作
+                    // 动画动作
                     for (int i = 0; i < _dots.Length; i++)
                         if (_timerCount++ > i * TimerCountRadix)
                             _dots[i].DotAction();
 
-                    //是否重置
+                    // 是否重置
                     if (CheckToReset())
                     {
-                        //重置前暂停绘图
+                        // 重置前暂停绘图
                         _isDrawing = false;
 
                         _timerCount = 0;
@@ -170,7 +170,7 @@ namespace PowerControl
                         foreach (Dot dot in _dots)
                             dot.Reset();
 
-                        //恢复绘图
+                        // 恢复绘图
                         _isDrawing = true;
                     }
 
@@ -199,10 +199,10 @@ namespace PowerControl
         {
             if (_isActived && _isDrawing)
             {
-                //缓冲绘制
+                // 缓冲绘制
                 using Bitmap bmp = new Bitmap(Width, Height);
                 using Graphics bufferGraphics = Graphics.FromImage(bmp);
-                //抗锯齿
+                // 抗锯齿
                 bufferGraphics.SmoothingMode = SmoothingMode.HighQuality;
                 foreach (Dot dot in _dots)
                 {
@@ -213,7 +213,7 @@ namespace PowerControl
                     bufferGraphics.FillEllipse(new SolidBrush(Color.FromArgb(dot.Opacity, Color)), rect);
                 }
 
-                //贴图
+                // 贴图
                 e.Graphics.DrawImage(bmp, new PointF(0, 0));
             }
 

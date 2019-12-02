@@ -36,11 +36,11 @@ namespace PowerControl
 
         protected Color moChannelColor = Color.Empty;
         protected Image moUpArrowImage;
-        //protected Image moUpArrowImage_Over = null;
-        //protected Image moUpArrowImage_Down = null;
+        // protected Image moUpArrowImage_Over = null;
+        // protected Image moUpArrowImage_Down = null;
         protected Image moDownArrowImage;
-        //protected Image moDownArrowImage_Over = null;
-        //protected Image moDownArrowImage_Down = null;
+        // protected Image moDownArrowImage_Over = null;
+        // protected Image moDownArrowImage_Down = null;
         protected Image moThumbArrowImage = null;
 
         protected Image moThumbTopImage;
@@ -153,7 +153,7 @@ namespace PowerControl
                     fThumbHeight = 56;
                 }
 
-                //figure out value
+                // figure out value
                 int nPixelRange = nTrackHeight - nThumbHeight;
                 int nRealRange = Maximum - Minimum - LargeChange;
                 float fPerc = 0.0f;
@@ -234,14 +234,14 @@ namespace PowerControl
 
             Brush oBrush = new SolidBrush(moChannelColor);
 
-            //draw channel left and right border colors
+            // draw channel left and right border colors
             e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, UpArrowImage.Height, 1, Height - DownArrowImage.Height));
             e.Graphics.FillRectangle(Brushes.White, new Rectangle(Width - 1, UpArrowImage.Height, 1, Height - DownArrowImage.Height));
 
-            //draw channel
+            // draw channel
             e.Graphics.FillRectangle(oBrush, new Rectangle(1, UpArrowImage.Height, Width - 2, Height - DownArrowImage.Height));
 
-            //draw thumb
+            // draw thumb
             int nTrackHeight = Height - (UpArrowImage.Height + DownArrowImage.Height);
             float fThumbHeight = LargeChange / (float)Maximum * nTrackHeight;
             int nThumbHeight = (int)fThumbHeight;
@@ -257,7 +257,7 @@ namespace PowerControl
                 fThumbHeight = 56;
             }
 
-            //Debug.WriteLine(nThumbHeight.ToString());
+            // Debug.WriteLine(nThumbHeight.ToString());
 
             float fSpanHeight = (fThumbHeight - (ThumbMiddleImage.Height + ThumbTopImage.Height + ThumbBottomImage.Height)) / 2.0f;
             int nSpanHeight = (int)fSpanHeight;
@@ -265,28 +265,28 @@ namespace PowerControl
             int nTop = moThumbTop;
             nTop += UpArrowImage.Height;
 
-            //draw top
+            // draw top
             e.Graphics.DrawImage(ThumbTopImage, new Rectangle(1, nTop, Width - 2, ThumbTopImage.Height));
 
             nTop += ThumbTopImage.Height;
-            //draw top span
+            // draw top span
             Rectangle rect = new Rectangle(1, nTop, Width - 2, nSpanHeight);
 
 
             e.Graphics.DrawImage(ThumbTopSpanImage, 1.0f, nTop, Width - 2.0f, fSpanHeight * 2);
 
             nTop += nSpanHeight;
-            //draw middle
+            // draw middle
             e.Graphics.DrawImage(ThumbMiddleImage, new Rectangle(1, nTop, Width - 2, ThumbMiddleImage.Height));
 
 
             nTop += ThumbMiddleImage.Height;
-            //draw top span
+            // draw top span
             rect = new Rectangle(1, nTop, Width - 2, nSpanHeight * 2);
             e.Graphics.DrawImage(ThumbBottomSpanImage, rect);
 
             nTop += nSpanHeight;
-            //draw bottom
+            // draw bottom
             e.Graphics.DrawImage(ThumbBottomImage, new Rectangle(1, nTop, Width - 2, nSpanHeight));
 
             if (DownArrowImage != null)
@@ -337,9 +337,9 @@ namespace PowerControl
             if (thumbrect.Contains(ptPoint))
             {
 
-                //hit the thumb
+                // hit the thumb
                 nClickPoint = ptPoint.Y - nTop;
-                //MessageBox.Show(Convert.ToString((ptPoint.Y - nTop)));
+                // MessageBox.Show(Convert.ToString((ptPoint.Y - nTop)));
                 moThumbDown = true;
             }
 
@@ -358,7 +358,7 @@ namespace PowerControl
                         else
                             moThumbTop -= SmallChange;
 
-                        //figure out value
+                        // figure out value
                         float fPerc = moThumbTop / (float)nPixelRange;
                         float fValue = fPerc * (Maximum - LargeChange);
 
@@ -388,7 +388,7 @@ namespace PowerControl
                         else
                             moThumbTop += SmallChange;
 
-                        //figure out value
+                        // figure out value
                         float fPerc = moThumbTop / (float)nPixelRange;
                         float fValue = fPerc * (Maximum - LargeChange);
 
@@ -467,7 +467,7 @@ namespace PowerControl
                         moThumbTop = y - (UpArrowImage.Height + nSpot);
                     }
 
-                    //figure out value
+                    // figure out value
                     float fPerc = moThumbTop / (float)nPixelRange;
                     float fValue = fPerc * (Maximum - LargeChange);
                     moValue = (int)fValue;

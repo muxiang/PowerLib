@@ -22,33 +22,33 @@ namespace PowerControl
     {
         #region 字段
 
-        //特效实例
+        // 特效实例
         private RippleEffect _effect;
-        //渲染定时器
+        // 渲染定时器
         private readonly Timer _timer;
-        //自动划动定时器
+        // 自动划动定时器
         private readonly Timer _timerAutoSplash;
-        //是否正在拖动
+        // 是否正在拖动
         private bool _dragging;
-        //上一次单击点
+        // 上一次单击点
         private Point? _lastClick;
-        //单击计时
+        // 单击计时
         private Stopwatch _swClick;
-        //未缩放的原始底图
+        // 未缩放的原始底图
         private Bitmap _bmpOrigin;
 
-        //自动轨迹
+        // 自动轨迹
         private Point[] _autoSplashPoints;
-        //自动划动
+        // 自动划动
         private bool _autoSplash;
 
         #endregion 字段
 
         #region 常量
 
-        //核定每秒帧数
+        // 核定每秒帧数
         private const int FPS = 60;
-        //单击延迟
+        // 单击延迟
         private const int ClickDelay = 1000;
 
         #endregion 常量
@@ -68,7 +68,7 @@ namespace PowerControl
         {
             MinimumSize = new Size(256, 256);
 
-            //缺省水波半径
+            // 缺省水波半径
             ClickSplashRadius = 12;
             DragSplashRadius = 10;
 
@@ -98,7 +98,7 @@ namespace PowerControl
 
             MouseDown += (s1, e1) =>
             {
-                //由于算法缺陷,避免短时间内在同一点生成大量水波
+                // 由于算法缺陷,避免短时间内在同一点生成大量水波
                 if (ComparePoint(_lastClick, e1.Location, 10) && _swClick != null && _swClick.ElapsedMilliseconds < ClickDelay) return;
 
                 _swClick = Stopwatch.StartNew();
@@ -154,7 +154,7 @@ namespace PowerControl
             {
                 if (value == null) return;
                 _bmpOrigin = new Bitmap(value);
-                //Bitmap texture = Utilities.StretchBitmap(_bmpOrigin, Size);
+                // Bitmap texture = Utilities.StretchBitmap(_bmpOrigin, Size);
                 _effect?.Dispose();
                 _effect = new RippleEffect(_bmpOrigin);
             }
@@ -219,7 +219,7 @@ namespace PowerControl
             Point lc = new Point(x, y);
             lc = Translate(lc);
             _effect?.Splash(lc.X, lc.Y, radius);
-            //Debug.Print($"new Point((int)(Width / {Width / (double)x}), (int)(Height / {Height / (double)y})),");
+            // Debug.Print($"new Point((int)(Width / {Width / (double)x}), (int)(Height / {Height / (double)y})),");
         }
 
         /// <summary>
@@ -242,30 +242,30 @@ namespace PowerControl
         {
             switch (m.Msg)
             {
-                //禁止擦除背景
+                // 禁止擦除背景
                 case WM_ERASEBKGND:
                     return;
-                //绘图
+                // 绘图
                 case WM_PAINT:
                     PAINTSTRUCT paintStruct = new PAINTSTRUCT();
-                    //开始绘图,获取设备上下文(dc)指针
+                    // 开始绘图,获取设备上下文(dc)指针
                     IntPtr wndHdc = BeginPaint(m.HWnd, ref paintStruct);
 
                     if (_effect?.Texture != null)
                     {
-                        //生成一帧动画
+                        // 生成一帧动画
                         Bitmap f = _effect.Render();
 
-                        //绘制额外内容
+                        // 绘制额外内容
                         using (Graphics g = Graphics.FromImage(f))
                             OnAfterDrawing(new PaintEventArgs(g, new Rectangle(Point.Empty, f.Size)));
 
-                        //渲染到窗口
+                        // 渲染到窗口
                         using (Graphics gWnd = Graphics.FromHdc(wndHdc))
                             gWnd.DrawImage(f, ClientRectangle);
                     }
 
-                    //结束绘图
+                    // 结束绘图
                     EndPaint(m.HWnd, ref paintStruct);
                     return;
                 default:
@@ -477,14 +477,14 @@ namespace PowerControl
 
         #region 私有方法
 
-        //更新一帧
+        // 更新一帧
         private void UpdateFrame()
         {
             if (DesignMode) return;
             if (_effect == null) return;
-            //更新特效缓冲区浪高数据
+            // 更新特效缓冲区浪高数据
             _effect.Update();
-            //强制重绘
+            // 强制重绘
             Invalidate();
         }
 

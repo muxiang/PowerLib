@@ -35,9 +35,9 @@
             this.pnlOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pnlOuter
-            // 
+            //  
+            //  pnlOuter
+            //  
             this.pnlOuter.Controls.Add(this.dataGridView1);
             this.pnlOuter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlOuter.Location = new System.Drawing.Point(0, 0);
@@ -45,9 +45,9 @@
             this.pnlOuter.Name = "pnlOuter";
             this.pnlOuter.Size = new System.Drawing.Size(370, 164);
             this.pnlOuter.TabIndex = 1;
-            // 
-            // dataGridView1
-            // 
+            //  
+            //  dataGridView1
+            //  
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
@@ -60,9 +60,9 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(265, 164);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // xScrollBar1
-            // 
+            //  
+            //  xScrollBar1
+            //  
             this.xScrollBar1.ChannelColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.xScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
             this.xScrollBar1.DownArrowImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.DownArrowImage")));
@@ -83,9 +83,9 @@
             this.xScrollBar1.ThumbTopSpanImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.ThumbTopSpanImage")));
             this.xScrollBar1.UpArrowImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.UpArrowImage")));
             this.xScrollBar1.Value = 0;
-            // 
-            // XDataGridView
-            // 
+            //  
+            //  XDataGridView
+            //  
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlOuter);

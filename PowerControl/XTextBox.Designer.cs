@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // XTextBox
-            // 
+            //  
+            //  XTextBox
+            //  
             this.BackColor = System.Drawing.Color.White;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ResumeLayout(false);

@@ -8,7 +8,7 @@ namespace PowerControl
 {
     public partial class XRadioButton : RadioButton
     {
-        //缓存画笔画刷
+        // 缓存画笔画刷
         private SolidBrush _brsBackColor;
         private SolidBrush _brsDisabledBackColor = new SolidBrush(Color.Gray);
         private SolidBrush _brsForeColor;
@@ -21,7 +21,7 @@ namespace PowerControl
         private Color _innerCircleColor;
         private Color _MouseHoveringForeColor = Color.FromArgb(83, 128, 252);
 
-        //鼠标正在停留
+        // 鼠标正在停留
         private bool _isMouseHovering;
 
         public XRadioButton()
@@ -95,11 +95,11 @@ namespace PowerControl
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            //背景
+            // 背景
             Rectangle rectControl = new Rectangle(-1, -1, Width + 2, Height + 2);
             g.FillRectangle(_brsBackColor, rectControl);
 
-            //外圆
+            // 外圆
             RectangleF rectCircle = new RectangleF(0, 0, Height, Height);
             rectCircle.Inflate(-Height / 6F, -Height / 6F);
             g.DrawEllipse(Enabled
@@ -107,14 +107,14 @@ namespace PowerControl
                 : _penDisabledBackColor
                 , rectCircle);
 
-            //选中
+            // 选中
             if (Checked)
             {
                 rectCircle.Inflate(-(Height / 8F), -(Height / 8F));
                 g.FillEllipse(Enabled ? _brsInnerCircle : _brsDisabledBackColor, rectCircle);
             }
 
-            //文字
+            // 文字
             g.DrawString(Text, Font, _brsForeColor, Height, (Height - Font.Height) / 2);
         }
 

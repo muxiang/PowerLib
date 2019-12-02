@@ -53,9 +53,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
             this.xTabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // xPanel1
-            // 
+            //  
+            //  xPanel1
+            //  
             this.xPanel1.Controls.Add(this.xGroupBox1);
             this.xPanel1.Controls.Add(this.xButton3);
             this.xPanel1.Controls.Add(this.xButton2);
@@ -65,9 +65,9 @@
             this.xPanel1.Size = new System.Drawing.Size(787, 345);
             this.xPanel1.TabIndex = 0;
             this.xPanel1.TopBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            // 
-            // xGroupBox1
-            // 
+            //  
+            //  xGroupBox1
+            //  
             this.xGroupBox1.Controls.Add(this.xDataGridView1);
             this.xGroupBox1.Location = new System.Drawing.Point(107, 56);
             this.xGroupBox1.Name = "xGroupBox1";
@@ -77,9 +77,9 @@
             this.xGroupBox1.Text = "中文测试";
             this.xGroupBox1.TitleFont = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
             this.xGroupBox1.TitleMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(215)))), ((int)(((byte)(250)))));
-            // 
-            // xDataGridView1
-            // 
+            //  
+            //  xDataGridView1
+            //  
             this.xDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.xDataGridView1.BackgroundColor = System.Drawing.SystemColors.AppWorkspace;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -125,29 +125,29 @@
             this.xDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.xDataGridView1.Size = new System.Drawing.Size(498, 136);
             this.xDataGridView1.TabIndex = 0;
-            // 
-            // Column_Id
-            // 
+            //  
+            //  Column_Id
+            //  
             this.Column_Id.HeaderText = "编号";
             this.Column_Id.Name = "Column_Id";
-            // 
-            // Column_Name
-            // 
+            //  
+            //  Column_Name
+            //  
             this.Column_Name.HeaderText = "姓名";
             this.Column_Name.Name = "Column_Name";
-            // 
-            // Column_Details
-            // 
+            //  
+            //  Column_Details
+            //  
             this.Column_Details.HeaderText = "详细";
             this.Column_Details.Name = "Column_Details";
-            // 
-            // Column_DateTime
-            // 
+            //  
+            //  Column_DateTime
+            //  
             this.Column_DateTime.HeaderText = "日期";
             this.Column_DateTime.Name = "Column_DateTime";
-            // 
-            // xButton3
-            // 
+            //  
+            //  xButton3
+            //  
             this.xButton3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.xButton3.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xButton3.CheckedForeColor = System.Drawing.Color.Empty;
@@ -167,9 +167,9 @@
             this.xButton3.TabIndex = 1;
             this.xButton3.Text = "-";
             this.xButton3.Click += new System.EventHandler(this.xButton3_Click);
-            // 
-            // xButton2
-            // 
+            //  
+            //  xButton2
+            //  
             this.xButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.xButton2.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xButton2.CheckedForeColor = System.Drawing.Color.Empty;
@@ -189,9 +189,9 @@
             this.xButton2.TabIndex = 1;
             this.xButton2.Text = "+";
             this.xButton2.Click += new System.EventHandler(this.xButton2_Click);
-            // 
-            // checkBox1
-            // 
+            //  
+            //  checkBox1
+            //  
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(227, 238);
             this.checkBox1.Name = "checkBox1";
@@ -199,9 +199,9 @@
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // xButton1
-            // 
+            //  
+            //  xButton1
+            //  
             this.xButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.xButton1.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xButton1.CheckedForeColor = System.Drawing.Color.Empty;
@@ -222,9 +222,9 @@
             this.xButton1.TabIndex = 1;
             this.xButton1.Text = "format C:";
             this.xButton1.Click += new System.EventHandler(this.xButton1_Click);
-            // 
-            // xTabControl1
-            // 
+            //  
+            //  xTabControl1
+            //  
             this.xTabControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
             this.xTabControl1.Controls.Add(this.tabPage1);
             this.xTabControl1.Controls.Add(this.tabPage2);
@@ -240,9 +240,9 @@
             this.xTabControl1.SelectedIndex = 0;
             this.xTabControl1.Size = new System.Drawing.Size(703, 252);
             this.xTabControl1.TabIndex = 4;
-            // 
-            // tabPage1
-            // 
+            //  
+            //  tabPage1
+            //  
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -250,9 +250,9 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
+            //  
+            //  tabPage2
+            //  
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -260,9 +260,9 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
+            //  
+            //  tabPage3
+            //  
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -270,9 +270,9 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // xButton4
-            // 
+            //  
+            //  xButton4
+            //  
             this.xButton4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.xButton4.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xButton4.CheckedForeColor = System.Drawing.Color.White;
@@ -291,9 +291,9 @@
             this.xButton4.StartColor = System.Drawing.Color.White;
             this.xButton4.TabIndex = 5;
             this.xButton4.Text = "xButton4";
-            // 
-            // FrmShadowPanelTest
-            // 
+            //  
+            //  FrmShadowPanelTest
+            //  
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 803);

@@ -30,9 +30,9 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // LoadingCircle
-            // 
+            //  
+            //  LoadingCircle
+            //  
             this.DoubleBuffered = true;
             this.Name = "LoadingCircle";
             this.ResumeLayout(false);

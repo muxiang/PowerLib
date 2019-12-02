@@ -30,9 +30,9 @@
         {
             this.projectFlowChart1 = new PowerControl.IrregularControls.ProjectFlowChart();
             this.SuspendLayout();
-            // 
-            // projectFlowChart1
-            // 
+            //  
+            //  projectFlowChart1
+            //  
             this.projectFlowChart1.BackColor = System.Drawing.Color.White;
             this.projectFlowChart1.ComputeApplications = ((PowerControl.IrregularControls.ComputeApplications)(((PowerControl.IrregularControls.ComputeApplications.Mike21Ladtap | PowerControl.IrregularControls.ComputeApplications.HyDrus_1D) 
             | PowerControl.IrregularControls.ComputeApplications.PavanDose)));
@@ -42,9 +42,9 @@
             this.projectFlowChart1.Size = new System.Drawing.Size(1350, 345);
             this.projectFlowChart1.TabIndex = 0;
             this.projectFlowChart1.Text = "projectFlowChart1";
-            // 
-            // MyForm2Test
-            // 
+            //  
+            //  MyForm2Test
+            //  
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1428, 730);

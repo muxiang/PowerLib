@@ -20,7 +20,7 @@ namespace PowerControl
     {
         #region Fields(Instance)
 
-        //Background image
+        // Background image
         private readonly Bitmap _background;
 
         #endregion Fields(Instance)
@@ -61,7 +61,7 @@ namespace PowerControl
         {
             if (!HaveHandle) return;
 
-            //Verify bitmap
+            // Verify bitmap
             if (!Image.IsCanonicalPixelFormat(bmp.PixelFormat) || !Image.IsAlphaPixelFormat(bmp.PixelFormat))
                 throw new ArgumentException(@"Required 32 bits Alpha Bitmap", nameof(bmp));
 

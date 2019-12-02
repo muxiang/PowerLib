@@ -32,9 +32,9 @@
             this.btnCancel = new PowerControl.XButton();
             this.chklstDetectors = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
-            // 
-            // btnOK
-            // 
+            //  
+            //  btnOK
+            //  
             this.btnOK.BorderColor = System.Drawing.Color.White;
             this.btnOK.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
             this.btnOK.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
@@ -50,9 +50,9 @@
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
+            //  
+            //  btnCancel
+            //  
             this.btnCancel.BorderColor = System.Drawing.Color.White;
             this.btnCancel.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
             this.btnCancel.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(185)))), ((int)(((byte)(181)))));
@@ -69,9 +69,9 @@
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // chklstDetectors
-            // 
+            //  
+            //  chklstDetectors
+            //  
             this.chklstDetectors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(60)))));
             this.chklstDetectors.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chklstDetectors.CheckOnClick = true;
@@ -82,9 +82,9 @@
             this.chklstDetectors.Name = "chklstDetectors";
             this.chklstDetectors.Size = new System.Drawing.Size(359, 476);
             this.chklstDetectors.TabIndex = 1;
-            // 
-            // FrmDetectorsSelect
-            // 
+            //  
+            //  FrmDetectorsSelect
+            //  
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -33,9 +33,9 @@
             this.txt3 = new System.Windows.Forms.TextBox();
             this.txt4 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txt1
-            // 
+            //  
+            //  txt1
+            //  
             this.txt1.BackColor = System.Drawing.Color.White;
             this.txt1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt1.Location = new System.Drawing.Point(0, 2);
@@ -44,9 +44,9 @@
             this.txt1.Size = new System.Drawing.Size(28, 14);
             this.txt1.TabIndex = 0;
             this.txt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txt2
-            // 
+            //  
+            //  txt2
+            //  
             this.txt2.BackColor = System.Drawing.Color.White;
             this.txt2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt2.Location = new System.Drawing.Point(33, 2);
@@ -56,9 +56,9 @@
             this.txt2.TabIndex = 0;
             this.txt2.TabStop = false;
             this.txt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txt3
-            // 
+            //  
+            //  txt3
+            //  
             this.txt3.BackColor = System.Drawing.Color.White;
             this.txt3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt3.Location = new System.Drawing.Point(66, 2);
@@ -68,9 +68,9 @@
             this.txt3.TabIndex = 0;
             this.txt3.TabStop = false;
             this.txt3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txt4
-            // 
+            //  
+            //  txt4
+            //  
             this.txt4.BackColor = System.Drawing.Color.White;
             this.txt4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt4.Location = new System.Drawing.Point(99, 2);
@@ -80,9 +80,9 @@
             this.txt4.TabIndex = 0;
             this.txt4.TabStop = false;
             this.txt4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // UCtrlIPTextBox
-            // 
+            //  
+            //  UCtrlIPTextBox
+            //  
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;

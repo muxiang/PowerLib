@@ -34,9 +34,9 @@
             this.xScrollBar1 = new PowerControl.XScrollBar();
             this.pnlOuter.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // fpnlInner
-            // 
+            //  
+            //  fpnlInner
+            //  
             this.fpnlInner.AutoScroll = true;
             this.fpnlInner.Dock = System.Windows.Forms.DockStyle.Left;
             this.fpnlInner.Location = new System.Drawing.Point(0, 0);
@@ -44,9 +44,9 @@
             this.fpnlInner.Name = "fpnlInner";
             this.fpnlInner.Size = new System.Drawing.Size(276, 349);
             this.fpnlInner.TabIndex = 0;
-            // 
-            // pnlOuter
-            // 
+            //  
+            //  pnlOuter
+            //  
             this.pnlOuter.Controls.Add(this.fpnlInner);
             this.pnlOuter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlOuter.Location = new System.Drawing.Point(0, 0);
@@ -54,9 +54,9 @@
             this.pnlOuter.Name = "pnlOuter";
             this.pnlOuter.Size = new System.Drawing.Size(396, 349);
             this.pnlOuter.TabIndex = 0;
-            // 
-            // xScrollBar1
-            // 
+            //  
+            //  xScrollBar1
+            //  
             this.xScrollBar1.ChannelColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.xScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
             this.xScrollBar1.DownArrowImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.DownArrowImage")));
@@ -77,9 +77,9 @@
             this.xScrollBar1.ThumbTopSpanImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.ThumbTopSpanImage")));
             this.xScrollBar1.UpArrowImage = ((System.Drawing.Image)(resources.GetObject("xScrollBar1.UpArrowImage")));
             this.xScrollBar1.Value = 0;
-            // 
-            // XFlowLayoutPanel
-            // 
+            //  
+            //  XFlowLayoutPanel
+            //  
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlOuter);

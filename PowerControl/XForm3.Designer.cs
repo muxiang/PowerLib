@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // XForm
-            // 
+            //  
+            //  XForm
+            //  
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));

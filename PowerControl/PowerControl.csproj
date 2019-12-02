@@ -126,9 +126,6 @@
     <Compile Include="XForm\XForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="XForm\XForm.Designer.cs">
-      <DependentUpon>XForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="XForm3.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,9 +222,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XForm3.resx">
       <DependentUpon>XForm3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XForm\XForm.resx">
-      <DependentUpon>XForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XMessageBox.resx">
       <DependentUpon>XMessageBox.cs</DependentUpon>

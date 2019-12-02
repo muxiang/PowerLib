@@ -32,9 +32,9 @@
             this.ripplePictureBox1 = new PowerControl.RipplePictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ripplePictureBox1
-            // 
+            //  
+            //  ripplePictureBox1
+            //  
             this.ripplePictureBox1.DragSplashRadius = 10;
             this.ripplePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("ripplePictureBox1.Image")));
             this.ripplePictureBox1.Location = new System.Drawing.Point(24, 12);
@@ -43,9 +43,9 @@
             this.ripplePictureBox1.Size = new System.Drawing.Size(500, 500);
             this.ripplePictureBox1.TabIndex = 0;
             this.ripplePictureBox1.TabStop = false;
-            // 
-            // FrmAbout
-            // 
+            //  
+            //  FrmAbout
+            //  
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 528);

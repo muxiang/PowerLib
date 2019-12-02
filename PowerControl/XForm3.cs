@@ -77,7 +77,7 @@ namespace PowerControl
             _imgBtnNormalDisabled = new Bitmap(Properties.Resources.btnNormalDisabled.Width, Properties.Resources.btnNormalDisabled.Height);
             _imgBtnClose = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
 
-            //最小化
+            // 最小化
             using (Graphics g = Graphics.FromImage(_imgBtnMinimize))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -90,7 +90,7 @@ namespace PowerControl
                     Properties.Resources.btnMinimize.Width,
                     Properties.Resources.btnMinimize.Height));
             }
-            //最大化
+            // 最大化
             using (Graphics g = Graphics.FromImage(_imgBtnMaximize))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -103,7 +103,7 @@ namespace PowerControl
                     Properties.Resources.btnMaximize.Width,
                     Properties.Resources.btnMaximize.Height));
             }
-            //最大化禁用
+            // 最大化禁用
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeDisabled))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -116,7 +116,7 @@ namespace PowerControl
                     Properties.Resources.btnMaximizeDisabled.Width,
                     Properties.Resources.btnMaximizeDisabled.Height));
             }
-            //最大化恢复
+            // 最大化恢复
             using (Graphics g = Graphics.FromImage(_imgBtnNormal))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -129,7 +129,7 @@ namespace PowerControl
                     Properties.Resources.btnNormal.Width,
                     Properties.Resources.btnNormal.Height));
             }
-            //最大化恢复禁用
+            // 最大化恢复禁用
             using (Graphics g = Graphics.FromImage(_imgBtnNormalDisabled))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -142,7 +142,7 @@ namespace PowerControl
                     Properties.Resources.btnNormalDisabled.Width,
                     Properties.Resources.btnNormalDisabled.Height));
             }
-            //关闭
+            // 关闭
             using (Graphics g = Graphics.FromImage(_imgBtnClose))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -180,7 +180,7 @@ namespace PowerControl
             _imgBtnNormalHovering = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
             _imgBtnCloseHovering = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
 
-            //最小化
+            // 最小化
             using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -193,7 +193,7 @@ namespace PowerControl
                     Properties.Resources.btnMinimize.Width,
                     Properties.Resources.btnMinimize.Height));
             }
-            //最大化
+            // 最大化
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -206,7 +206,7 @@ namespace PowerControl
                     Properties.Resources.btnMaximize.Width,
                     Properties.Resources.btnMaximize.Height));
             }
-            //最大化恢复
+            // 最大化恢复
             using (Graphics g = Graphics.FromImage(_imgBtnNormalHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -219,7 +219,7 @@ namespace PowerControl
                     Properties.Resources.btnNormal.Width,
                     Properties.Resources.btnNormal.Height));
             }
-            //关闭
+            // 关闭
             using (Graphics g = Graphics.FromImage(_imgBtnCloseHovering))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -257,7 +257,7 @@ namespace PowerControl
             _imgBtnNormalHolding = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
             _imgBtnCloseHolding = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
 
-            //最小化
+            // 最小化
             using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -270,7 +270,7 @@ namespace PowerControl
                     Properties.Resources.btnMinimize.Width,
                     Properties.Resources.btnMinimize.Height));
             }
-            //最大化
+            // 最大化
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -283,7 +283,7 @@ namespace PowerControl
                     Properties.Resources.btnMaximize.Width,
                     Properties.Resources.btnMaximize.Height));
             }
-            //最大化恢复
+            // 最大化恢复
             using (Graphics g = Graphics.FromImage(_imgBtnNormalHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -296,7 +296,7 @@ namespace PowerControl
                     Properties.Resources.btnNormal.Width,
                     Properties.Resources.btnNormal.Height));
             }
-            //关闭
+            // 关闭
             using (Graphics g = Graphics.FromImage(_imgBtnCloseHolding))
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
@@ -315,7 +315,7 @@ namespace PowerControl
 
         #region 字段
 
-        //标题栏按钮图标
+        // 标题栏按钮图标
         private Image _imgBtnClose;
         private Image _imgBtnCloseHovering;
         private Image _imgBtnCloseHolding;
@@ -456,7 +456,7 @@ namespace PowerControl
                     ncInfo.Rect.Width/* - ncInfo.BorderSize.Width * 2*/,
                     ncInfo.BorderSize.Height);
 
-            //上边框 
+            // 上边框 
             Brush brs = new LinearGradientBrush(
                 new Point(borderTop.X, borderTop.Y + borderTop.Height / 2),
                 new Point(borderTop.Right, borderTop.Y + borderTop.Height / 2),
@@ -464,12 +464,12 @@ namespace PowerControl
                 Color.FromArgb(130, 101, 255));
             g.FillRectangle(brs, borderTop);
 
-            //左边框
+            // 左边框
             brs.Dispose();
             brs = new SolidBrush(BackColor);
             g.FillRectangle(brs, borderLeft);
             brs.Dispose();
-            //重绘与标题栏相邻部分，融入标题栏
+            // 重绘与标题栏相邻部分，融入标题栏
             brs = new LinearGradientBrush(
                 new Point(borderLeft.X, borderLeft.Y + ncInfo.CaptionHeight / 2),
                 new Point(borderLeft.Right + ncInfo.CaptionRect.Width + borderRight.Width, borderLeft.Y + ncInfo.CaptionHeight / 2),
@@ -477,11 +477,11 @@ namespace PowerControl
                 Color.FromArgb(130, 101, 255));
             g.FillRectangle(brs, new RectangleF(borderLeft.X, borderLeft.Y, borderLeft.Width, ncInfo.CaptionRect.Height));
 
-            //右边框
+            // 右边框
             brs.Dispose();
             brs = new SolidBrush(BackColor);
             g.FillRectangle(brs, borderRight);
-            //重绘与标题栏相邻部分，融入标题栏
+            // 重绘与标题栏相邻部分，融入标题栏
             brs = new LinearGradientBrush(
                 new Point(borderLeft.X, borderLeft.Y + ncInfo.CaptionHeight / 2),
                 new Point(borderLeft.Right + ncInfo.CaptionRect.Width + borderRight.Width, borderLeft.Y + ncInfo.CaptionHeight / 2),
@@ -489,7 +489,7 @@ namespace PowerControl
                 Color.FromArgb(130, 101, 255));
             g.FillRectangle(brs, new RectangleF(borderRight.X, borderRight.Y, borderRight.Width, ncInfo.CaptionRect.Height));
 
-            //底边框
+            // 底边框
             brs.Dispose();
             brs = new SolidBrush(BackColor);
             g.FillRectangle(brs, borderBottom);
@@ -580,7 +580,7 @@ namespace PowerControl
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ClassStyle |= 0x20000;//CS_DROPSHADOW;
+                cp.ClassStyle |= 0x20000;// CS_DROPSHADOW;
                 return cp;
             }
         }
@@ -652,25 +652,25 @@ namespace PowerControl
                         DrawCaption(m.HWnd, m.WParam.ToInt32() > 0);
                         m.Result = new IntPtr(1);
                         return;
-                    //case WM_NCRBUTTONDOWN:
-                    //    {
-                    //        int posX, posY;
-                    //        int wp = m.WParam.ToInt32();
-                    //        long lp = m.LParam.ToInt64();
-                    //        posX = LOBYTE(lp);
-                    //        posY = HIBYTE(lp);
+                    // case WM_NCRBUTTONDOWN:
+                    //     {
+                    //         int posX, posY;
+                    //         int wp = m.WParam.ToInt32();
+                    //         long lp = m.LParam.ToInt64();
+                    //         posX = LOBYTE(lp);
+                    //         posY = HIBYTE(lp);
 
-                    //        if (wp == HTCAPTION)
-                    //        {
-                    //            Point pt = this.PointToClient(new Point(posX, posY));
-                    //            if (this.CaptionContextMenu != null)
-                    //            {
-                    //                this.CaptionContextMenu.Show(posX, posY);
-                    //                return;
-                    //            }
-                    //        }
-                    //        break;
-                    //    }
+                    //         if (wp == HTCAPTION)
+                    //         {
+                    //             Point pt = this.PointToClient(new Point(posX, posY));
+                    //             if (this.CaptionContextMenu != null)
+                    //             {
+                    //                 this.CaptionContextMenu.Show(posX, posY);
+                    //                 return;
+                    //             }
+                    //         }
+                    //         break;
+                    //     }
                     case WM_SETCURSOR:
                         if (ControlBox)
                         {
@@ -773,29 +773,29 @@ namespace PowerControl
                                     }
                                 }
                             }
-                            //else if (this.HelpButton)
-                            //{
-                            //    if (this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.FixedToolWindow &&
-                            //        this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.SizableToolWindow)
-                            //    {
-                            //        if (posX != HTHELP)
-                            //        {
-                            //            g.DrawImage(HelpButtonImage, maxRect);
-                            //        }
-                            //        else if (MouseButtons != System.Windows.Forms.MouseButtons.Left)
-                            //        {
-                            //            g.DrawImage(HelpButtonHoverImage, maxRect);
-                            //        }
-                            //        else
-                            //        {
-                            //            g.DrawImage(HelpButtonPressDownImage, maxRect);
-                            //        }
-                            //    }
-                            //}
+                            // else if (this.HelpButton)
+                            // {
+                            //     if (this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.FixedToolWindow &&
+                            //         this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.SizableToolWindow)
+                            //     {
+                            //         if (posX != HTHELP)
+                            //         {
+                            //             g.DrawImage(HelpButtonImage, maxRect);
+                            //         }
+                            //         else if (MouseButtons != System.Windows.Forms.MouseButtons.Left)
+                            //         {
+                            //             g.DrawImage(HelpButtonHoverImage, maxRect);
+                            //         }
+                            //         else
+                            //         {
+                            //             g.DrawImage(HelpButtonPressDownImage, maxRect);
+                            //         }
+                            //     }
+                            // }
 
                             g.Dispose();
                             ReleaseDC(m.HWnd, dc);
-                            //return;
+                            // return;
                         }
                         break;
                     case WM_NCLBUTTONUP:
@@ -849,7 +849,7 @@ namespace PowerControl
 
                             _NonClientSizeInfo ncInfo = GetNonClientInfo(m.HWnd);
                             IntPtr dc = GetWindowDC(m.HWnd);
-                            //Brush backgroundColor = new SolidBrush(CaptionBackgroundColor);
+                            // Brush backgroundColor = new SolidBrush(CaptionBackgroundColor);
 
                             Graphics g = Graphics.FromHdc(dc);
                             int closeBtnPosX = ncInfo.CaptionRect.Left + ncInfo.CaptionRect.Width - ncInfo.BorderSize.Width - ncInfo.CaptionButtonSize.Width;

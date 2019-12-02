@@ -47,19 +47,19 @@ namespace PowerControl
         private const int WM_CREATE = 0x0001;
         private const int WM_NCCREATE = 0x0081;
         private const int WM_NCCALCSIZE = 0x0083;
-        private const int WM_NCPAINT = 0x0085;//绘制客户区
+        private const int WM_NCPAINT = 0x0085;// 绘制客户区
         private const int WM_MOUSEMOVE = 0x0200;
         private const int WM_NCMOUSEMOVE = 0x00A0;
-        private const int WM_NCACTIVATE = 0x0086;//绘制非客户区（标题栏）
-        private const int WM_NCLBUTTONDOWN = 0x00A1;//鼠标点击
-        private const int WM_NCHITTEST = 0x84;//命中测试
-        private const int WM_SYSCOMMAND = 0x112;//系统菜单消息
-        private const int SC_CLOSE = 0xF060;//关闭
-        private const int SC_MINIMIZE = 0xF020;//最小化
-        private const int SC_MAXIMIZE = 0xF030;//最大化
+        private const int WM_NCACTIVATE = 0x0086;// 绘制非客户区（标题栏）
+        private const int WM_NCLBUTTONDOWN = 0x00A1;// 鼠标点击
+        private const int WM_NCHITTEST = 0x84;// 命中测试
+        private const int WM_SYSCOMMAND = 0x112;// 系统菜单消息
+        private const int SC_CLOSE = 0xF060;// 关闭
+        private const int SC_MINIMIZE = 0xF020;// 最小化
+        private const int SC_MAXIMIZE = 0xF030;// 最大化
         private const int SC_MOVE = 0xF010;
-        private const int SC_RESTORE = 0xF120;//恢复窗口
-        //鼠标命中测试命中区域
+        private const int SC_RESTORE = 0xF120;// 恢复窗口
+        // 鼠标命中测试命中区域
         private const int HTCLIENT = 1;
         private const int HTCAPTION = 2;
         private const int HTLEFT = 10;
@@ -70,7 +70,7 @@ namespace PowerControl
         private const int HTBOTTOM = 15;
         private const int HTLEFTBOTTOM = 16;
         private const int HTRIGHTBOTTOM = 17;
-        //拖动窗口实现缩放
+        // 拖动窗口实现缩放
         private const int WMSZ_LEFT = 0xF001;
         private const int WMSZ_RIGHT = 0xF002;
         private const int WMSZ_TOP = 0xF003;
@@ -92,65 +92,65 @@ namespace PowerControl
             switch (m.Msg)
             {
                 case WM_NCPAINT:
-                case WM_NCACTIVATE://重绘标题栏
+                case WM_NCACTIVATE:// 重绘标题栏
                     IntPtr vHandle = GetWindowDC(m.HWnd);
                     Graphics vGraphics = Graphics.FromHdc(vHandle);
                     DrawTitle(vGraphics);
                     ReleaseDC(m.HWnd, vHandle);
                     break;
-                //case WM_NCHITTEST://命中测试，即获取鼠标点击的区域
-                //    m.Result = HitTestNCA();
-                //    break;
-                case WM_NCLBUTTONDOWN://鼠标点击事件
+                // case WM_NCHITTEST:// 命中测试，即获取鼠标点击的区域
+                //     m.Result = HitTestNCA();
+                //     break;
+                case WM_NCLBUTTONDOWN:// 鼠标点击事件
                     #region 点击事件（实现窗体拖动、缩放、关闭、最大化、最小化）
                     switch (getMousePosition())
                     {
-                        case SC_CLOSE://点击了关闭按钮
+                        case SC_CLOSE:// 点击了关闭按钮
                             Close();
                             break;
-                        case SC_MAXIMIZE://点击了最大化按钮
+                        case SC_MAXIMIZE:// 点击了最大化按钮
                             WindowState = WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
                             break;
-                        case SC_MINIMIZE://点击了最小化按钮
+                        case SC_MINIMIZE:// 点击了最小化按钮
                             if (WindowState != FormWindowState.Minimized)
                             {
                                 WindowState = FormWindowState.Minimized;
                             }
                             break;
-                        case HTCAPTION: //点击标题栏拖动窗体
-                            ReleaseCapture();//释放label1对鼠标的捕捉
+                        case HTCAPTION: // 点击标题栏拖动窗体
+                            ReleaseCapture();// 释放label1对鼠标的捕捉
                             SendMessage(Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
                             break;
-                        case HTLEFT://拖动左边改变窗体大小
+                        case HTLEFT:// 拖动左边改变窗体大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_LEFT, 0);
                             break;
-                        case HTRIGHT://拖动右边改变窗体大小
+                        case HTRIGHT:// 拖动右边改变窗体大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_RIGHT, 0);
                             Invalidate();
                             break;
-                        case HTTOP://拖动上面改变窗体大小
+                        case HTTOP:// 拖动上面改变窗体大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_TOP, 0);
                             break;
-                        case HTBOTTOM://拖动底部改变窗体大小
+                        case HTBOTTOM:// 拖动底部改变窗体大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_BOTTOM, 0);
                             break;
-                        case HTLEFTTOP://拖动左上角改变大小
+                        case HTLEFTTOP:// 拖动左上角改变大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_LEFTTOP, 0);
                             break;
-                        case HTLEFTBOTTOM://拖动左下角改变大小
+                        case HTLEFTBOTTOM:// 拖动左下角改变大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_LEFTBOTTOM, 0);
                             break;
-                        case HTRIGHTTOP://拖动右上角改变大小
+                        case HTRIGHTTOP:// 拖动右上角改变大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_RIGHTTOP, 0);
                             break;
-                        case HTRIGHTBOTTOM://拖动右下角改变大小
+                        case HTRIGHTBOTTOM:// 拖动右下角改变大小
                             ReleaseCapture();
                             SendMessage(Handle, WM_SYSCOMMAND, WMSZ_RIGHTBOTTOM, 0);
                             break;
@@ -158,7 +158,7 @@ namespace PowerControl
                     #endregion
                     break;
                 case WM_NCMOUSEMOVE:
-                    //鼠标移动事件
+                    // 鼠标移动事件
                     vHandle = GetWindowDC(m.HWnd);
                     vGraphics = Graphics.FromHdc(vHandle);
                     Pen pen = new Pen(new SolidBrush(Color.White), _MaxBorderWidth);
@@ -189,7 +189,7 @@ namespace PowerControl
         #region 绘制最大化、最小化、关闭按钮
         private void DrawFunBtn(Graphics vGraphics, Pen MaxPen, Pen MinPen, Pen ClosePen, string lastBtnName)
         {
-            //Rectangle FunRect=new Rectangle ()
+            // Rectangle FunRect=new Rectangle ()
             int BaseX = Location.X;
             int BaseY = Location.Y;
             Rectangle rectClose = new Rectangle(Width - _Right - _MaxBtnWidth, _Bottom, _MaxBtnWidth, _MaxBtnHeight);
@@ -213,9 +213,9 @@ namespace PowerControl
                 vGraphics.DrawRectangle(MaxPen, rectMax);
                 vGraphics.DrawRectangle(ClosePen, rectClose);
             }
-            //绘制最小化按钮
+            // 绘制最小化按钮
             vGraphics.DrawLine(MinPen, Width - _Right - _MaxBtnWidth * 3 + _MaxLeft, _Bottom + _MaxBtnHeight / 2, Width - _Right - _MaxLeft - _MaxBtnWidth * 2, _Bottom + _MaxBtnHeight / 2);
-            //绘制关闭按钮
+            // 绘制关闭按钮
             Point plt = new Point(Width - _Right - _MaxBtnWidth + _MaxLeft, _Bottom + _MaxBtnHeight / 4);
             Point plb = new Point(Width - _Right - _MaxBtnWidth + _MaxLeft, _Bottom + _MaxBtnHeight * 3 / 4);
             Point prt = new Point(Width - _Right - _MaxLeft, _Bottom + _MaxBtnHeight / 4);
@@ -226,7 +226,7 @@ namespace PowerControl
             plb.Offset(-_MaxBtnWidth, 0);
             prt.Offset(-_MaxBtnWidth, 0);
             prb.Offset(-_MaxBtnWidth, 0);
-            //绘制最大化按钮             
+            // 绘制最大化按钮             
             if (WindowState != FormWindowState.Maximized)
             {
                 vGraphics.DrawLine(MaxPen, plt, plb);
@@ -259,10 +259,10 @@ namespace PowerControl
         private void DrawTitle(Graphics vGraphics)
         {
             #region 绘制边框
-            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, 0, Width, _Top)); //top
-            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, 0, _Left, Height));//left
-            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, Height - _Bottom, Width, _Bottom));//bottom
-            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(Width - _Right, 0, _Right, Height));//right
+            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, 0, Width, _Top)); // top
+            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, 0, _Left, Height));// left
+            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, Height - _Bottom, Width, _Bottom));// bottom
+            vGraphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(Width - _Right, 0, _Right, Height));// right
             #endregion
             #region 绘制标题栏文字、图标
             int left = 0, top = 0;
@@ -292,31 +292,31 @@ namespace PowerControl
         {
             int BaseX = Location.X;
             int BaseY = Location.Y;
-            //获取鼠标位置
+            // 获取鼠标位置
             Point p = new Point(MousePosition.X, MousePosition.Y);
             Point p2 = PointToScreen(MousePosition);
-            //以下待时式判断鼠标处于何处，并返回响应的值，优先级从高到低位为：边角-边缘-标题
+            // 以下待时式判断鼠标处于何处，并返回响应的值，优先级从高到低位为：边角-边缘-标题
             #region 边角判断
-            //左上角判断
+            // 左上角判断
             Rectangle rectTopLeft = new Rectangle(BaseX, BaseY, _Left, _Left);
 
             if (rectTopLeft.Contains(p))
             {
                 return HTLEFTTOP;
             }
-            //右上角
+            // 右上角
             Rectangle rectTopRight = new Rectangle(BaseX + Width - _Right, BaseY, _Right, _Right);
             if (rectTopRight.Contains(p))
             {
                 return HTRIGHTTOP;
             }
-            //左下角
+            // 左下角
             Rectangle rectLeftBottom = new Rectangle(BaseX, BaseY + Height - _Bottom, _Left, _Bottom);
             if (rectLeftBottom.Contains(p))
             {
                 return HTLEFTBOTTOM;
             }
-            //右下角
+            // 右下角
             Rectangle rectRightBottom = new Rectangle(BaseX + Width - _Left, BaseY + Height - _Bottom, _Right, _Bottom);
             if (rectRightBottom.Contains(p))
             {
@@ -341,25 +341,25 @@ namespace PowerControl
             }
             #endregion
             #region 边缘判断
-            //上边缘
+            // 上边缘
             Rectangle rectTop = new Rectangle(BaseX, BaseY, Width, _Bottom);
             if (rectTop.Contains(p))
             {
                 return HTTOP;
             }
-            //左边媛
+            // 左边媛
             Rectangle rectLeft = new Rectangle(BaseX, BaseY + _Bottom, _Left, Height);
             if (rectLeft.Contains(p))
             {
                 return HTLEFT;
             }
-            //右边媛
+            // 右边媛
             Rectangle rectRight = new Rectangle(BaseX + Width - _Right, BaseY + _Bottom, _Right, Height);
             if (rectRight.Contains(p))
             {
                 return HTRIGHT;
             }
-            //下边缘
+            // 下边缘
             Rectangle rectBottom = new Rectangle(BaseX, BaseY + Height - _Bottom, Width, _Bottom);
             if (rectBottom.Contains(p))
             {
@@ -367,14 +367,14 @@ namespace PowerControl
             }
             #endregion
             #region 标题
-            //标题栏
+            // 标题栏
             Rectangle rectCaption = new Rectangle(BaseX, BaseY + _Bottom, Width, _Top - _Bottom);
             if (rectCaption.Contains(p))
             {
                 return HTCAPTION;
             }
             #endregion
-            return HTCLIENT;//返回客户区消息
+            return HTCLIENT;// 返回客户区消息
         }
         #endregion
         #region 根据鼠标在窗体上的位置返回不同消息的值，用于模拟非客户消息

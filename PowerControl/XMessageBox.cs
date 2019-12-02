@@ -23,9 +23,9 @@ namespace PowerControl
         private const int ButtonWidth = 70;
         private const int ButtonHeight = 30;
 
-        //内容文本
+        // 内容文本
         private readonly string _content;
-        //图标引用
+        // 图标引用
         private readonly Icon _icon;
 
         private readonly SizeF _szText;

@@ -11,13 +11,13 @@ namespace PowerControl
     {
         #region 字段
 
-        // 后台缓冲区
-        private int[] _backBuffer;//浪高
-        private readonly Bitmap _frame;//动画帧
+        //  后台缓冲区
+        private int[] _backBuffer;// 浪高
+        private readonly Bitmap _frame;// 动画帧
 
-        // 前台缓冲区
-        private int[] _frontBuffer;//浪高
-        private readonly Bitmap _texture;//原始材质
+        //  前台缓冲区
+        private int[] _frontBuffer;// 浪高
+        private readonly Bitmap _texture;// 原始材质
 
         #endregion 字段
 
@@ -51,7 +51,7 @@ namespace PowerControl
         {
             _texture = texture ?? throw new ArgumentNullException(nameof(texture));
 
-            //分配缓冲区
+            // 分配缓冲区
             _frontBuffer = new int[_texture.Width * _texture.Height];
             _backBuffer = new int[_frontBuffer.Length];
 
@@ -70,28 +70,28 @@ namespace PowerControl
             int w = _texture.Width;
             int h = _texture.Height;
 
-            //固定缓冲区
+            // 固定缓冲区
             fixed (int* pF = _frontBuffer, pB = _backBuffer)
             {
-                //遍历缓冲区,首尾两行除外
+                // 遍历缓冲区,首尾两行除外
                 for (int i = w; i < w * h - w; i++)
                 {
-                    //左右两列除外
+                    // 左右两列除外
                     if (i % w == 1 || i % w == w - 1) continue;
 
-                    //计算浪高
+                    // 计算浪高
                     pB[i] = ((
                                  pF[i - 1] +
                                  pF[i + 1] +
                                  pF[i - w] +
                                  pF[i + w]) >> 1) - pB[i];
 
-                    //通过阻力递减
+                    // 通过阻力递减
                     pB[i] -= pB[i] >> 5;
                 }
             }
 
-            //交换缓冲区
+            // 交换缓冲区
             int[] tmp = _frontBuffer;
             _frontBuffer = _backBuffer;
             _backBuffer = tmp;
@@ -106,51 +106,51 @@ namespace PowerControl
             int w = _texture.Width;
             int h = _texture.Height;
 
-            //锁定位图数据
+            // 锁定位图数据
             BitmapData fdat = _frame.LockBits(new Rectangle(0, 0, _texture.Width, _texture.Height),
                                              ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
             BitmapData tdat = _texture.LockBits(new Rectangle(0, 0, _texture.Width, _texture.Height),
                                                ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
 
-            //固定当前帧浪高缓冲区
+            // 固定当前帧浪高缓冲区
             fixed (int* buffer = _frontBuffer)
             {
-                //获取位图数据指针
+                // 获取位图数据指针
                 byte* faddr = (byte*)fdat.Scan0;
                 byte* taddr = (byte*)tdat.Scan0;
 
                 for (int i = w; i < w * h - w; i++)
                 {
-                    //计算XY偏移(根据浪高把偏移位置的像素设置到当前位置)
+                    // 计算XY偏移(根据浪高把偏移位置的像素设置到当前位置)
                     int xo = buffer[i - 1] - buffer[i + 1];
                     int yo = buffer[i - w] - buffer[i + w];
 
-                    //根据偏移生成阴影着色
+                    // 根据偏移生成阴影着色
                     int shade = (xo - yo) / 4;
 
-                    //获取基准像素的坐标
+                    // 获取基准像素的坐标
                     int pxi = i * 3 + (tdat.Stride - w * 3) * (i / (tdat.Stride / 3));
                     int fxi = pxi + xo * 3 + yo * tdat.Stride;
                     if (fxi < 0) fxi = pxi;
                     if (fxi >= w * h * 3) fxi = pxi;
 
-                    //从材质获取基准像素
+                    // 从材质获取基准像素
                     byte b = taddr[fxi];
                     byte g = taddr[fxi + 1];
                     byte r = taddr[fxi + 2];
 
-                    //着色
+                    // 着色
                     b = (byte)Utilities.CoerceValue(b + shade, 0, 255);
                     g = (byte)Utilities.CoerceValue(g + shade, 0, 255);
                     r = (byte)Utilities.CoerceValue(r + shade, 0, 255);
 
-                    //生成水波
+                    // 生成水波
                     faddr[pxi] = b;
                     faddr[pxi + 1] = g;
                     faddr[pxi + 2] = r;
                 }
 
-                //复制首尾行像素
+                // 复制首尾行像素
                 for (int i = 0; i < w * 3; i++)
                 {
                     faddr[w * h * 3 - i - 1] = taddr[w * h * 3 - i - 1];
@@ -158,7 +158,7 @@ namespace PowerControl
                 }
             }
 
-            //解锁位图数据
+            // 解锁位图数据
             _frame.UnlockBits(fdat);
             _texture.UnlockBits(tdat);
 
@@ -173,9 +173,9 @@ namespace PowerControl
         /// <param name="r">以像素为单位的水波初始半径</param>
         public void Splash(int x, int y, int r)
         {
-            //越界
+            // 越界
             if (x < 0 || x >= _texture.Width || y < 0 || y >= _texture.Height) return;
-            //Temp solution
+            // Temp solution
             if (x < r || x >= _texture.Width - r || y < r || y >= _texture.Height - r) return;
 
             Rectangle effectRect = new Rectangle(0, 0, _texture.Width, _texture.Height);
@@ -184,7 +184,7 @@ namespace PowerControl
             {
                 for (int ix = x - r; ix < x + r; ix++)
                 {
-                    //根据水波圆心的距离差计算水波浪高
+                    // 根据水波圆心的距离差计算水波浪高
                     double d = Math.Sqrt(Math.Pow(ix - x, 2) + Math.Pow(iy - y, 2));
                     Point p = new Point(ix, iy);
                     if (d < r && effectRect.Contains(p))

@@ -78,18 +78,18 @@ namespace PowerControl
             Rectangle arcRect = new Rectangle(rect.Location, new Size(diameter, diameter));
             GraphicsPath path = new GraphicsPath();
 
-            //左上角
+            // 左上角
             path.AddArc(arcRect, 180, 90);
 
-            //右上角
+            // 右上角
             arcRect.X = rect.Right - diameter;
             path.AddArc(arcRect, 270, 90);
 
-            //右下角
+            // 右下角
             arcRect.Y = rect.Bottom - diameter;
             path.AddArc(arcRect, 0, 90);
 
-            //左下角
+            // 左下角
             arcRect.X = rect.Left;
             path.AddArc(arcRect, 90, 90);
 
@@ -179,11 +179,11 @@ namespace PowerControl
         /// <returns>旋转后的点</returns>
         public static PointF RotateAt(this PointF pointToRotate, PointF centerPoint, double angleInDegrees)
         {
-            //弧度
+            // 弧度
             double angleInRadians = angleInDegrees * (Math.PI / 180);
-            //余弦
+            // 余弦
             double cosTheta = Math.Cos(angleInRadians);
-            //正弦
+            // 正弦
             double sinTheta = Math.Sin(angleInRadians);
 
             return new PointF(
@@ -267,9 +267,9 @@ namespace PowerControl
 
             Color clr = Color.FromArgb(alpha, baseColor);
 
-            //for (int i = 0; i < bmp.Width; i++)
-            //    for (int j = 0; j < bmp.Height; j++)
-            //        bmp.SetPixel(i, j, clr);
+            // for (int i = 0; i < bmp.Width; i++)
+            //     for (int j = 0; j < bmp.Height; j++)
+            //         bmp.SetPixel(i, j, clr);
 
             using (Graphics g = Graphics.FromImage(bmp))
                 g.Clear(clr);

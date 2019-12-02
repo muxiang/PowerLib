@@ -45,9 +45,9 @@
             this.xButton1.HoldingImage = null;
             this.xButton1.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton1.Image = null;
-            this.xButton1.Location = new System.Drawing.Point(139, 294);
+            this.xButton1.Location = new System.Drawing.Point(152, 156);
             this.xButton1.Name = "xButton1";
-            this.xButton1.Size = new System.Drawing.Size(75, 23);
+            this.xButton1.Size = new System.Drawing.Size(476, 294);
             this.xButton1.StartColor = System.Drawing.Color.White;
             this.xButton1.TabIndex = 0;
             this.xButton1.Text = "xButton1";

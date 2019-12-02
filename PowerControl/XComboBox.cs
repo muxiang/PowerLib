@@ -12,7 +12,7 @@ namespace PowerControl
         private Color _MouseHoveringForeColor = Color.FromArgb(83, 128, 252);
         private ButtonBorderStyle _borderStyle = ButtonBorderStyle.Solid;
 
-        //缓存画笔画刷
+        // 缓存画笔画刷
         private SolidBrush _brsBackColor;
         private SolidBrush _brsDisabledBackColor = new SolidBrush(Color.Gray);
         private SolidBrush _brsForeColor;
@@ -20,7 +20,7 @@ namespace PowerControl
         private Pen _penBorderColor;
         private Pen _penMouseHoveringForeColor;
 
-        //鼠标正在停留
+        // 鼠标正在停留
         private bool _isMouseHovering;
 
         public XComboBox()
@@ -109,15 +109,15 @@ namespace PowerControl
                     Rectangle rect = new Rectangle(0, 0, Width, Height);
                     Rectangle rectBg = new Rectangle(1, 1, Width - 2, Height - 2);
 
-                    //边框
+                    // 边框
                     ControlPaint.DrawBorder(g, rect, _isMouseHovering ? _MouseHoveringForeColor : _borderColor, _borderStyle);
-                    //背景
+                    // 背景
                     g.FillRectangle(Enabled ? _brsBackColor : _brsDisabledBackColor, rectBg);
 
                     string selValue = SelectedItem == null ? "" : SelectedItem.ToString();
                     string Text = Enabled ? selValue : "";
 
-                    //下拉箭头
+                    // 下拉箭头
                     g.DrawLines(_isMouseHovering ? _penMouseHoveringForeColor : _penBorderColor, new[]
                     {
                         new PointF(Width - Height / 4 * 3, Height / 2),
