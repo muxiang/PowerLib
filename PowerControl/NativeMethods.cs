@@ -47,6 +47,12 @@ namespace PowerControl
         public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
         public delegate bool EnumWindowsProc(IntPtr hwnd, IntPtr lParam);
+        
+        [DllImport("USER32.dll", SetLastError = true)]
+        public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
+
+        [DllImport("USER32.dll")]
+        public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpWindowText, int nMaxCount);
 
         [DllImport("USER32.dll", SetLastError = true)]
         public static extern bool EnumChildWindows(IntPtr hwndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);

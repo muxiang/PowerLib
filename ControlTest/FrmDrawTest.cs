@@ -18,7 +18,7 @@ namespace ControlTest
         {
             InitializeComponent();
 
-            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
+            //SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
         }
         
         private void xButton1_Click(object sender, EventArgs e)
