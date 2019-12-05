@@ -4,7 +4,10 @@ using System.Runtime.InteropServices;
 
 namespace PowerControl
 {
-    public class NativeStructures
+    /// <summary>
+    /// 封装本地代码使用的非托管结构
+    /// </summary>
+    public static class NativeStructures
     {
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
@@ -101,7 +104,7 @@ namespace PowerControl
                 return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", Left, Top, Right, Bottom);
             }
         }
-        
+
         [StructLayout(LayoutKind.Sequential)]
         public struct POINT
         {
@@ -175,6 +178,26 @@ namespace PowerControl
                 SourceConstantAlpha = alpha;
                 AlphaFormat = format;
             }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NCCALCSIZE_PARAMS
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+            public RECT[] rgrc;
+            public WINDOWPOS lppos;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WINDOWPOS
+        {
+            public IntPtr hwnd;
+            public IntPtr hwndInsertAfter;
+            public int x;
+            public int y;
+            public int cx;
+            public int cy;
+            public uint flags;
         }
     }
 }

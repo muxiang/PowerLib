@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 using static PowerControl.NativeMethods;
 using static PowerControl.NativeConstants;
+using static PowerControl.NativeStructures;
 
 namespace PowerControl
 {
@@ -20,12 +16,26 @@ namespace PowerControl
     /// </summary>
     public class XForm : Form
     {
+        private enum TitleBarButtonState
+        {
+            //TODO:
+            Normal,
+            Holding,
+            Hovering,
+            Disabled
+        }
+
         #region 常量
 
         // 边框宽度
         private const int BorderWidth = 4;
         // 标题栏高度
         private const int TitleBarHeight = 30;
+        // 标题栏图标大小
+        private const int IconSize = 16;
+        // 标题栏按钮大小
+        private const int ButtonWidth = 30;
+        private const int ButtonHeight = 30;
 
         #endregion 常量
 
@@ -37,7 +47,25 @@ namespace PowerControl
         private FormBorderStyle _formBorderStyle = FormBorderStyle.Sizable;
         private Color _titleBarStartColor = Color.FromArgb(89, 98, 255);
         private Color _titleBarEndColor = Color.FromArgb(130, 101, 255);
+        private Color _titleForeColor = Color.White;
 
+        // 标题栏按钮图标
+        private Image _imgBtnClose;
+        private Image _imgBtnCloseHovering;
+        private Image _imgBtnCloseHolding;
+        private Image _imgBtnMinimize;
+        private Image _imgBtnMinimizeDisabled;
+        private Image _imgBtnMinimizeHovering;
+        private Image _imgBtnMinimizeHolding;
+        private Image _imgBtnMaximize;
+        private Image _imgBtnMaximizeDisabled;
+        private Image _imgBtnMaximizeHovering;
+        private Image _imgBtnMaximizeHolding;
+        private Image _imgBtnNormal;
+        private Image _imgBtnNormalDisabled;
+        private Image _imgBtnNormalHovering;
+        private Image _imgBtnNormalHolding;
+        
         #endregion 字段
 
         /// <summary>
@@ -49,16 +77,18 @@ namespace PowerControl
             SetStyle(ControlStyles.DoubleBuffer
                      | ControlStyles.AllPaintingInWmPaint
                      | ControlStyles.UserPaint
-                     | ControlStyles.ResizeRedraw, true);
+                //| ControlStyles.ResizeRedraw
+                , true);
 
             InitializeComponent();
+            CreateButtonImages();
         }
 
         private void InitializeComponent()
         {
             Name = "XForm";
-            ClientSize = new Size(300, 300);
             BackColor = Color.White;
+            Padding = new Padding(0);
         }
 
         #region 属性
@@ -80,6 +110,18 @@ namespace PowerControl
                 _formBorderStyle = value;
                 Invalidate();
             }
+        }
+
+        /// <summary>
+        /// 获取或设置窗体的内边距
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("获取或设置窗体的内边距")]
+        public new Padding Padding
+        {
+            get => new Padding(base.Padding.Left, base.Padding.Top, base.Padding.Right, base.Padding.Bottom - TitleBarHeight);
+            set => base.Padding = new Padding(value.Left, value.Top, value.Right, value.Bottom + TitleBarHeight);
         }
 
         /// <summary>
@@ -117,25 +159,20 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 获取或设置控件的内边距
+        /// 获取或设置窗体标题的前景色
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("获取或设置窗体的边框样式")]
-        public new Padding Padding
+        [Description("获取或设置窗体标题的前景色")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color TitleForeColor
         {
-            get =>
-                new Padding(
-                    base.Padding.Left,
-                    base.Padding.Top - TitleBarHeight,
-                    base.Padding.Right,
-                    base.Padding.Bottom);
-            set =>
-                base.Padding = new Padding(
-                    value.Left,
-                    value.Top + TitleBarHeight,
-                    value.Right,
-                    value.Bottom);
+            get => _titleForeColor;
+            set
+            {
+                _titleForeColor = value;
+                Invalidate();
+            }
         }
 
         #endregion 设计器
@@ -143,138 +180,10 @@ namespace PowerControl
         #region 常规
 
         /// <summary>
-        /// 获取表示工作区的矩形
+        /// 获取表示标题栏的矩形(相对于包含客户区与非客户区的整个窗口)
         /// </summary>
         [Browsable(false)]
-        public new Rectangle ClientRectangle
-        {
-            get
-            {
-                switch (_formBorderStyle)
-                {
-                    case FormBorderStyle.None:
-                        return new Rectangle(Point.Empty, Size);
-                    case FormBorderStyle.FixedSingle:
-                    case FormBorderStyle.Fixed3D:
-                    case FormBorderStyle.FixedDialog:
-                    case FormBorderStyle.Sizable:
-                    case FormBorderStyle.FixedToolWindow:
-                    case FormBorderStyle.SizableToolWindow:
-                        return new Rectangle(BorderWidth,
-                            BorderWidth + TitleBarHeight,
-                            Width - BorderWidth * 2,
-                            Height - TitleBarHeight - BorderWidth * 2);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获取表示顶边框的矩形
-        /// </summary>
-        [Browsable(false)]
-        public Rectangle TopBorderRectangle
-        {
-            get
-            {
-                switch (_formBorderStyle)
-                {
-                    case FormBorderStyle.None:
-                        return Rectangle.Empty;
-                    case FormBorderStyle.FixedSingle:
-                    case FormBorderStyle.Fixed3D:
-                    case FormBorderStyle.FixedDialog:
-                    case FormBorderStyle.Sizable:
-                    case FormBorderStyle.FixedToolWindow:
-                    case FormBorderStyle.SizableToolWindow:
-                        return new Rectangle(0, 0, Width, BorderWidth);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获取表示底边框的矩形
-        /// </summary>
-        [Browsable(false)]
-        public Rectangle BottomBorderRectangle
-        {
-            get
-            {
-                switch (_formBorderStyle)
-                {
-                    case FormBorderStyle.None:
-                        return Rectangle.Empty;
-                    case FormBorderStyle.FixedSingle:
-                    case FormBorderStyle.Fixed3D:
-                    case FormBorderStyle.FixedDialog:
-                    case FormBorderStyle.Sizable:
-                    case FormBorderStyle.FixedToolWindow:
-                    case FormBorderStyle.SizableToolWindow:
-                        return new Rectangle(0, Height - BorderWidth, Width, BorderWidth);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获取表示左边框的矩形
-        /// </summary>
-        [Browsable(false)]
-        public Rectangle LeftBorderRectangle
-        {
-            get
-            {
-                switch (_formBorderStyle)
-                {
-                    case FormBorderStyle.None:
-                        return Rectangle.Empty;
-                    case FormBorderStyle.FixedSingle:
-                    case FormBorderStyle.Fixed3D:
-                    case FormBorderStyle.FixedDialog:
-                    case FormBorderStyle.Sizable:
-                    case FormBorderStyle.FixedToolWindow:
-                    case FormBorderStyle.SizableToolWindow:
-                        return new Rectangle(0, 0, BorderWidth, Height);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获取表示右边框的矩形
-        /// </summary>
-        [Browsable(false)]
-        public Rectangle RightBorderRectangle
-        {
-            get
-            {
-                switch (_formBorderStyle)
-                {
-                    case FormBorderStyle.None:
-                        return Rectangle.Empty;
-                    case FormBorderStyle.FixedSingle:
-                    case FormBorderStyle.Fixed3D:
-                    case FormBorderStyle.FixedDialog:
-                    case FormBorderStyle.Sizable:
-                    case FormBorderStyle.FixedToolWindow:
-                    case FormBorderStyle.SizableToolWindow:
-                        return new Rectangle(Width - BorderWidth, 0, BorderWidth, Height);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获取表示标题栏的矩形
-        /// </summary>
-        [Browsable(false)]
-        public Rectangle TitleBarRectangle
+        private Rectangle TitleBarRectangle
         {
             get
             {
@@ -295,53 +204,427 @@ namespace PowerControl
             }
         }
 
+        /// <summary>
+        /// 获取表示标题栏关闭按钮的矩形
+        /// </summary>
+        private Rectangle CloseButtonRectangle
+        {
+            get
+            {
+                switch (_formBorderStyle)
+                {
+                    case FormBorderStyle.None:
+                        return Rectangle.Empty;
+                    case FormBorderStyle.FixedSingle:
+                    case FormBorderStyle.Fixed3D:
+                    case FormBorderStyle.FixedDialog:
+                    case FormBorderStyle.Sizable:
+                    case FormBorderStyle.FixedToolWindow:
+                    case FormBorderStyle.SizableToolWindow:
+                        return new Rectangle(Width - BorderWidth - ButtonWidth,
+                            (TitleBarHeight - ButtonHeight) / 2,
+                            ButtonWidth,
+                            ButtonHeight);
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取表示标题栏最大化按钮的矩形
+        /// </summary>
+        private Rectangle MaximizeButtonRectangle
+        {
+            get
+            {
+                switch (_formBorderStyle)
+                {
+                    case FormBorderStyle.None:
+                        return Rectangle.Empty;
+                    case FormBorderStyle.FixedSingle:
+                    case FormBorderStyle.Fixed3D:
+                    case FormBorderStyle.FixedDialog:
+                    case FormBorderStyle.Sizable:
+                    case FormBorderStyle.FixedToolWindow:
+                    case FormBorderStyle.SizableToolWindow:
+                        return new Rectangle(CloseButtonRectangle.X - ButtonWidth,
+                            (TitleBarHeight - ButtonHeight) / 2,
+                            ButtonWidth,
+                            ButtonHeight);
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取表示标题栏最小化按钮的矩形
+        /// </summary>
+        private Rectangle MinimizeButtonRectangle
+        {
+            get
+            {
+                switch (_formBorderStyle)
+                {
+                    case FormBorderStyle.None:
+                        return Rectangle.Empty;
+                    case FormBorderStyle.FixedSingle:
+                    case FormBorderStyle.Fixed3D:
+                    case FormBorderStyle.FixedDialog:
+                    case FormBorderStyle.Sizable:
+                    case FormBorderStyle.FixedToolWindow:
+                    case FormBorderStyle.SizableToolWindow:
+                        return new Rectangle(MaximizeButtonRectangle.X - ButtonWidth,
+                            (TitleBarHeight - ButtonHeight) / 2,
+                            ButtonWidth,
+                            ButtonHeight);
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
         #endregion 常规
 
         #endregion 属性
 
+        #region 方法
+
+        /// <summary>
+        /// 创建按钮图标
+        /// </summary>
+        private void CreateButtonImages()
+        {
+            CreateNormalDisabledImages();
+            CreateHoveringImages();
+            CreateHoldingImages();
+        }
+
+        /// <summary>
+        /// 创建常规与禁用状态按钮图标
+        /// </summary>
+        /// <returns></returns>
+        private void CreateNormalDisabledImages()
+        {
+            _imgBtnMinimize = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            _imgBtnMinimizeDisabled = new Bitmap(Properties.Resources.btnMinimizeDisabled.Width, Properties.Resources.btnMinimizeDisabled.Height);
+            _imgBtnMaximize = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            _imgBtnMaximizeDisabled = new Bitmap(Properties.Resources.btnMaximizeDisabled.Width, Properties.Resources.btnMaximizeDisabled.Height);
+            _imgBtnNormal = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            _imgBtnNormalDisabled = new Bitmap(Properties.Resources.btnNormalDisabled.Width, Properties.Resources.btnNormalDisabled.Height);
+            _imgBtnClose = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+
+            // 最小化
+            using (Graphics g = Graphics.FromImage(_imgBtnMinimize))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimize.Width + _imgBtnMaximize.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimize.Width, _imgBtnMinimize.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
+                    Properties.Resources.btnMinimize.Width,
+                    Properties.Resources.btnMinimize.Height));
+            }
+            // 最小化禁用
+            using (Graphics g = Graphics.FromImage(_imgBtnMinimizeDisabled))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimize.Width + _imgBtnMaximize.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeDisabled.Width, _imgBtnMinimizeDisabled.Height));
+                g.DrawImage(Properties.Resources.btnMinimizeDisabled, new Rectangle(0, 0,
+                    Properties.Resources.btnMinimizeDisabled.Width,
+                    Properties.Resources.btnMinimizeDisabled.Height));
+            }
+            // 最大化
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximize))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximize.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximize.Width, _imgBtnMaximize.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximize.Width,
+                    Properties.Resources.btnMaximize.Height));
+            }
+            // 最大化禁用
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximizeDisabled))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximizeDisabled.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeDisabled.Width, _imgBtnMaximizeDisabled.Height));
+                g.DrawImage(Properties.Resources.btnMaximizeDisabled, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximizeDisabled.Width,
+                    Properties.Resources.btnMaximizeDisabled.Height));
+            }
+            // 最大化恢复
+            using (Graphics g = Graphics.FromImage(_imgBtnNormal))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormal.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormal.Width, _imgBtnNormal.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
+                    Properties.Resources.btnNormal.Width,
+                    Properties.Resources.btnNormal.Height));
+            }
+            // 最大化恢复禁用
+            using (Graphics g = Graphics.FromImage(_imgBtnNormalDisabled))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormalDisabled.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalDisabled.Width, _imgBtnNormalDisabled.Height));
+                g.DrawImage(Properties.Resources.btnNormalDisabled, new Rectangle(0, 0,
+                    Properties.Resources.btnNormalDisabled.Width,
+                    Properties.Resources.btnNormalDisabled.Height));
+            }
+            // 关闭
+            using (Graphics g = Graphics.FromImage(_imgBtnClose))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-CloseButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnClose.Width, _imgBtnClose.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
+                    Properties.Resources.btnClose.Width,
+                    Properties.Resources.btnClose.Height));
+            }
+        }
+
+        /// <summary>
+        /// 创建鼠标悬浮状态按钮图标
+        /// </summary>
+        /// <returns></returns>
+        private void CreateHoveringImages()
+        {
+            _imgBtnMinimizeHovering = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            _imgBtnMaximizeHovering = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            _imgBtnNormalHovering = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            _imgBtnCloseHovering = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+
+            // 最小化
+            using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHovering))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimizeHovering.Width + _imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHovering.Width, _imgBtnMinimizeHovering.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
+                    Properties.Resources.btnMinimize.Width,
+                    Properties.Resources.btnMinimize.Height));
+            }
+            // 最大化
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHovering))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHovering.Width, _imgBtnMaximizeHovering.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximize.Width,
+                    Properties.Resources.btnMaximize.Height));
+            }
+            // 最大化恢复
+            using (Graphics g = Graphics.FromImage(_imgBtnNormalHovering))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormalHovering.Width + _imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHovering.Width, _imgBtnNormalHovering.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
+                    Properties.Resources.btnNormal.Width,
+                    Properties.Resources.btnNormal.Height));
+            }
+            // 关闭
+            using (Graphics g = Graphics.FromImage(_imgBtnCloseHovering))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-CloseButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHovering.Width, _imgBtnCloseHovering.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
+                    Properties.Resources.btnClose.Width,
+                    Properties.Resources.btnClose.Height));
+            }
+        }
+
+        /// <summary>
+        /// 创建鼠标按下状态按钮图标
+        /// </summary>
+        /// <returns></returns>
+        private void CreateHoldingImages()
+        {
+            _imgBtnMinimizeHolding = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
+            _imgBtnMaximizeHolding = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
+            _imgBtnNormalHolding = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
+            _imgBtnCloseHolding = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+
+            // 最小化
+            using (Graphics g = Graphics.FromImage(_imgBtnMinimizeHolding))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimizeHolding.Width + _imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHolding.Width, _imgBtnMinimizeHolding.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
+                    Properties.Resources.btnMinimize.Width,
+                    Properties.Resources.btnMinimize.Height));
+            }
+            // 最大化
+            using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHolding))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHolding.Width, _imgBtnMaximizeHolding.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
+                    Properties.Resources.btnMaximize.Width,
+                    Properties.Resources.btnMaximize.Height));
+            }
+            // 最大化恢复
+            using (Graphics g = Graphics.FromImage(_imgBtnNormalHolding))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormalHolding.Width + _imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHolding.Width, _imgBtnNormalHolding.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
+                    Properties.Resources.btnNormal.Width,
+                    Properties.Resources.btnNormal.Height));
+            }
+            // 关闭
+            using (Graphics g = Graphics.FromImage(_imgBtnCloseHolding))
+            {
+                LinearGradientBrush brs = new LinearGradientBrush(
+                    new Point(-CloseButtonRectangle.X, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    _titleBarStartColor, _titleBarEndColor);
+
+                g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHolding.Width, _imgBtnCloseHolding.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
+                    Properties.Resources.btnClose.Width,
+                    Properties.Resources.btnClose.Height));
+            }
+        }
+
+        /// <summary>
+        /// 绘制标题栏
+        /// </summary>
+        private void DrawTitleBar()
+        {
+            IntPtr hdc = GetWindowDC(Handle);
+            Graphics g = Graphics.FromHdc(hdc);
+
+            // 标题栏背景
+            using (Brush brsTitleBar = new LinearGradientBrush(TitleBarRectangle,
+                _titleBarStartColor, _titleBarEndColor, LinearGradientMode.Horizontal))
+                g.FillRectangle(brsTitleBar, TitleBarRectangle);
+
+            int txtX = BorderWidth;
+            // 标题栏图标
+            if (ShowIcon)
+            {
+                txtX += IconSize;
+
+                g.DrawIcon(Icon, new Rectangle(
+                    BorderWidth, TitleBarRectangle.Top + (TitleBarRectangle.Height - IconSize) / 2,
+                    IconSize, IconSize));
+            }
+
+            // 标题文本
+            SizeF szText = g.MeasureString(Text, SystemFonts.CaptionFont, Width, StringFormat.GenericDefault);
+            using Brush brsText = new SolidBrush(_titleForeColor);
+            g.DrawString(Text,
+                SystemFonts.CaptionFont,
+                brsText,
+                new RectangleF(txtX,
+                    TitleBarRectangle.Top + (TitleBarRectangle.Bottom - szText.Height) / 2,
+                    Width - BorderWidth * 2 - SystemInformation.MinimumWindowSize.Width,
+                    TitleBarHeight),
+                StringFormat.GenericDefault);
+
+            ReleaseDC(Handle, hdc);
+        }
+
+        /// <summary>
+        /// 绘制标题栏按钮
+        /// </summary>
+        private void DrawTitleButtons()
+        {
+            IntPtr hdc = GetWindowDC(Handle);
+            Graphics g = Graphics.FromHdc(hdc);
+
+            g.DrawImage(_imgBtnClose, CloseButtonRectangle);
+
+            if (MaximizeBox || MinimizeBox)
+            {
+                if (WindowState == FormWindowState.Maximized)
+                    g.DrawImage(MaximizeBox ? _imgBtnNormal : _imgBtnNormalDisabled, MaximizeButtonRectangle);
+                else
+                    g.DrawImage(MaximizeBox ? _imgBtnMaximize : _imgBtnMaximizeDisabled, MaximizeButtonRectangle);
+
+                g.DrawImage(MinimizeBox ? _imgBtnMinimize : _imgBtnMinimizeDisabled, MinimizeButtonRectangle);
+            }
+
+            ReleaseDC(Handle, hdc);
+        }
+
+        /// <summary>
+        /// 将绘图矩形校正为用于处理鼠标消息的逻辑矩形(因自定义非客户区)
+        /// </summary>
+        /// <param name="rectOrigin">绘图矩形</param>
+        /// <returns></returns>
+        private Rectangle CorrectToLogical(Rectangle rectOrigin)
+        {
+            return new Rectangle(rectOrigin.X, rectOrigin.Y - TitleBarHeight, rectOrigin.Width, rectOrigin.Height);
+        }
+
+        #endregion 方法
+
         #region 重写
 
         /// <inheritdoc />
-        protected override Padding DefaultPadding =>
-            new Padding(
-                base.DefaultPadding.Left,
-                base.DefaultPadding.Top + TitleBarHeight,
-                base.DefaultPadding.Right,
-                base.DefaultPadding.Bottom);
         protected override CreateParams CreateParams
         {
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.Style |= (int)(WS_SYSMENU | WS_MINIMIZEBOX);
+                if (MinimizeBox)
+                    cp.Style |= (int)WS_MINIMIZEBOX;
+                if (MaximizeBox)
+                    cp.Style |= (int)WS_MAXIMIZEBOX;
                 return cp;
-            }
-        }
-
-        /// <inheritdoc />
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            switch (FormBorderStyle)
-            {
-                case FormBorderStyle.None:
-                    break;
-                case FormBorderStyle.FixedSingle:
-                case FormBorderStyle.FixedToolWindow:
-                case FormBorderStyle.Fixed3D:
-                case FormBorderStyle.FixedDialog:
-                case FormBorderStyle.Sizable:
-                case FormBorderStyle.SizableToolWindow:
-                    //标题栏背景
-                    using (Brush brsTitleBar = new LinearGradientBrush(TitleBarRectangle,
-                        _titleBarStartColor, _titleBarEndColor, LinearGradientMode.Horizontal))
-                    {
-                        e.Graphics.FillRectangle(brsTitleBar, TitleBarRectangle);
-                    }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -350,6 +633,14 @@ namespace PowerControl
         {
             switch (m.Msg)
             {
+                case WM_NCPAINT:
+                    {
+                        DrawTitleBar();
+                        CreateButtonImages();
+                        DrawTitleButtons();
+                        m.Result = (IntPtr)1;
+                        break;
+                    }
                 case WM_NCHITTEST:
                     {
                         base.WndProc(ref m);
@@ -359,17 +650,33 @@ namespace PowerControl
                         switch (_formBorderStyle)
                         {
                             case FormBorderStyle.None:
+                                break;
                             case FormBorderStyle.FixedSingle:
                             case FormBorderStyle.Fixed3D:
                             case FormBorderStyle.FixedDialog:
                             case FormBorderStyle.FixedToolWindow:
+                                if (pt.Y < 0)
+                                    m.Result = (IntPtr)HTCAPTION;
                                 break;
                             case FormBorderStyle.Sizable:
                             case FormBorderStyle.SizableToolWindow:
-                                bool bTop = pt.Y <= BorderWidth;
-                                bool bBottom = pt.Y >= ClientSize.Height - BorderWidth;
+                                if (pt.Y < 0)
+                                    m.Result = (IntPtr)HTCAPTION;
+
+                                if (CorrectToLogical(CloseButtonRectangle).Contains(pt))
+                                    m.Result = (IntPtr)HTCLOSE;
+                                if (CorrectToLogical(MaximizeButtonRectangle).Contains(pt))
+                                    m.Result = (IntPtr)HTMAXBUTTON;
+                                if (CorrectToLogical(MinimizeButtonRectangle).Contains(pt))
+                                    m.Result = (IntPtr)HTMINBUTTON;
+
+                                if (WindowState == FormWindowState.Maximized)
+                                    break;
+
+                                bool bTop = pt.Y <= -TitleBarHeight + BorderWidth;
+                                bool bBottom = pt.Y >= Height - TitleBarHeight - BorderWidth;
                                 bool bLeft = pt.X <= BorderWidth;
-                                bool bRight = pt.X >= ClientSize.Width - BorderWidth;
+                                bool bRight = pt.X >= Width - BorderWidth;
 
                                 if (bLeft)
                                     if (bTop)
@@ -393,97 +700,90 @@ namespace PowerControl
                         }
                         break;
                     }
-                case WM_LBUTTONDOWN:
+                case WM_NCCALCSIZE:
                     {
-                        Point pt = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
-
-                        if (pt.Y < TitleBarHeight)
+                        if (m.WParam != IntPtr.Zero)
                         {
-                            m.Msg = WM_NCLBUTTONDOWN;
-
-
-
-                            m.WParam = (IntPtr)HTCAPTION;
+                            NCCALCSIZE_PARAMS @params = (NCCALCSIZE_PARAMS)
+                                Marshal.PtrToStructure(m.LParam, typeof(NCCALCSIZE_PARAMS));
+                            @params.rgrc[0].Top += TitleBarHeight;
+                            @params.rgrc[0].Bottom += TitleBarHeight;
+                            Marshal.StructureToPtr(@params, m.LParam, false);
+                            m.Result = (IntPtr)(WVR_ALIGNTOP | WVR_ALIGNBOTTOM | WVR_REDRAW);
                         }
 
                         base.WndProc(ref m);
                         break;
                     }
-                case WM_SYSCOMMAND:
+                case WM_SIZE:
                     {
-                        switch ((int)m.WParam)
+                        DrawTitleBar();
+                        CreateButtonImages();
+                        DrawTitleButtons();
+                        base.WndProc(ref m);
+                        break;
+                    }
+                case WM_EXITSIZEMOVE:
+                    {
+                        DrawTitleBar();
+                        CreateButtonImages();
+                        DrawTitleButtons();
+                        base.WndProc(ref m);
+                        break;
+                    }
+                //case WM_SYSCOMMAND:
+                //    {
+                //        switch ((int)m.WParam)
+                //        {
+                //            case SC_MAXIMIZE:
+                //            case SC_RESTORE:
+                //                if (!MaximizeBox)
+                //                    return;
+                //                break;
+                //        }
+                //        base.WndProc(ref m);
+                //        break;
+                //    }
+                case WM_NCLBUTTONDBLCLK:
+                    {
+                        if (!MaximizeBox)
+                            return;
+                        base.WndProc(ref m);
+                        break;
+                    }
+                //case WM_NCLBUTTONDOWN:
+                //    {
+                //        //base.WndProc(ref m);
+                //        break;
+                //    }
+                case WM_NCLBUTTONUP:
+                    {
+                        switch (m.WParam.ToInt32())
                         {
-                            case SC_MINIMIZE:
-
+                            case HTCLOSE:
+                                m.Msg = WM_SYSCOMMAND;
+                                m.WParam = (IntPtr)SC_CLOSE;
+                                break;
+                            case HTMAXBUTTON:
+                                if (MaximizeBox)
+                                {
+                                    m.Msg = WM_SYSCOMMAND;
+                                    m.WParam = WindowState == FormWindowState.Maximized
+                                        ? (IntPtr)SC_RESTORE
+                                        : (IntPtr)SC_MAXIMIZE;
+                                }
+                                break;
+                            case HTMINBUTTON:
+                                if (MinimizeBox)
+                                {
+                                    m.Msg = WM_SYSCOMMAND;
+                                    m.WParam = (IntPtr)SC_MINIMIZE;
+                                }
                                 break;
                         }
                         base.WndProc(ref m);
                         break;
                     }
-                //case WM_LBUTTONUP:
-                //    {
-                //        Point pt = PointToClient(new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF));
-
-                //        if (pt.Y < TitleHeight)
-                //        {
-                //            m.Msg = WM_NCLBUTTONUP;
-
-
-
-                //            m.WParam = (IntPtr)HTCAPTION;
-                //        }
-                //        base.WndProc(ref m);
-
-                //        break;
-                //    }
-                //case WM_MOUSEMOVE:
-                //    {
-
-                //        Point pt = PointToClient(new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF));
-
-                //        if (pt.Y < TitleHeight)
-                //        {
-                //            m.Msg = WM_NCMOUSEMOVE;
-
-
-                //            m.WParam = (IntPtr)HTCAPTION;
-                //        }
-                //        base.WndProc(ref m);
-
-                //        break;
-                //    }
-                //case WM_NCLBUTTONDOWN:
-                //    {
-                //        base.WndProc(ref m);
-
-                //        Point pt = PointToClient(new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF));
-
-                //        switch ((int)m.WParam)
-                //        {
-                //            case HTCAPTION:
-                //                _xPadding = pt.X;
-                //                _yPadding = pt.Y;
-                //                _dragging = true;
-                //                break;
-                //        }
-
-                //        break;
-                //    }
-                //case WM_NCLBUTTONUP:
-                //    {
-                //        base.WndProc(ref m);
-
-                //        Point pt = PointToClient(new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF));
-
-                //        switch ((int)m.WParam)
-                //        {
-                //            case HTCAPTION:
-                //                _dragging = false;
-                //                break;
-                //        }
-
-                //        break;
-                //    }
                 //case WM_NCMOUSEMOVE:
                 //    {
                 //        base.WndProc(ref m);

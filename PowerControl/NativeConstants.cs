@@ -17,6 +17,7 @@ namespace PowerControl
         public const int WM_NCACTIVATE = 0x86;
         public const int WM_NCPAINT = 0x85;
         public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int WM_NCLBUTTONDBLCLK = 0x00A3;
         public const int WM_NCRBUTTONDOWN = 0x00A4;
         public const int WM_NCRBUTTONUP = 0x00A5;
         public const int WM_NCMOUSEMOVE = 0x00A0;
@@ -29,6 +30,7 @@ namespace PowerControl
         // public const int WM_RBUTTONUP = 0x0205;  
 
         public const int WM_LBUTTONDOWN = 0x0201;
+        public const int WM_LBUTTONDBLCLK = 0x0203;
         public const int WM_CAPTURECHANGED = 0x0215;
         public const int WM_LBUTTONUP = 0x0202;
         public const int WM_SETCURSOR = 0x0020;
@@ -39,6 +41,7 @@ namespace PowerControl
         public const int WM_SIZING = 0x0214;
         public const int WM_GETMINMAXINFO = 0x0024;
         public const int WM_ENTERSIZEMOVE = 0x0231;
+        public const int WM_EXITSIZEMOVE = 0x0232;
         public const int WM_WINDOWPOSCHANGING = 0x0046;
         public const int WM_CTLCOLOREDIT = 0x133;
 
@@ -52,7 +55,16 @@ namespace PowerControl
 
         #endregion Windows Messages
 
-        //  FOR WM_SIZING MSG WPARAM  
+        public const int WVR_ALIGNTOP = 0x0010;
+        public const int WVR_ALIGNRIGHT = 0x0080;
+        public const int WVR_ALIGNLEFT = 0x0020;
+        public const int WVR_ALIGNBOTTOM = 0x0040;
+        public const int WVR_HREDRAW = 0x0100;
+        public const int WVR_VREDRAW = 0x0200;
+        public const int WVR_REDRAW = 0x0300;
+        public const int WVR_VALIDRECTS = 0x0400;
+
+        // FOR WM_SIZING MSG WPARAM  
         public const int WMSZ_BOTTOM = 6;
         public const int WMSZ_BOTTOMLEFT = 7;
         public const int WMSZ_BOTTOMRIGHT = 8;
@@ -62,7 +74,7 @@ namespace PowerControl
         public const int WMSZ_TOPLEFT = 4;
         public const int WMSZ_TOPRIGHT = 5;
 
-        //  left mouse button is down.  
+        // left mouse button is down.  
         public const int MK_LBUTTON = 0x0001;
 
         public const int SC_CLOSE = 0xF060;

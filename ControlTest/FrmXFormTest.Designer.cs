@@ -1,6 +1,6 @@
 ﻿namespace ControlTest
 {
-    partial class FrmDrawTest
+    partial class FrmXFormTest
     {
         /// <summary>
         /// Required designer variable.
@@ -38,30 +38,30 @@
             this.xButton1.CheckedForeColor = System.Drawing.Color.White;
             this.xButton1.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton1.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.xButton1.Font = new System.Drawing.Font("微软雅黑", 20F);
+            this.xButton1.Font = new System.Drawing.Font("微软雅黑", 8F);
             this.xButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.xButton1.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xButton1.HoldingForeColor = System.Drawing.Color.White;
             this.xButton1.HoldingImage = null;
             this.xButton1.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton1.Image = null;
-            this.xButton1.Location = new System.Drawing.Point(128, 275);
+            this.xButton1.Location = new System.Drawing.Point(487, 218);
             this.xButton1.Name = "xButton1";
-            this.xButton1.Size = new System.Drawing.Size(282, 155);
+            this.xButton1.Size = new System.Drawing.Size(91, 65);
             this.xButton1.StartColor = System.Drawing.Color.White;
             this.xButton1.TabIndex = 0;
             this.xButton1.Text = "xButton1";
             this.xButton1.Click += new System.EventHandler(this.xButton1_Click);
             // 
-            // FrmDrawTest
+            // FrmXFormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(871, 561);
+            this.ClientSize = new System.Drawing.Size(686, 327);
             this.Controls.Add(this.xButton1);
-            this.Name = "FrmDrawTest";
-            this.Text = "FrmDrawTest";
+            this.MaximizeBox = false;
+            this.Name = "FrmXFormTest";
+            this.Text = "FrmXFormTest";
             this.ResumeLayout(false);
 
         }

@@ -35,7 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>BeyondTraffic.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -69,11 +70,11 @@
     <Compile Include="FrmDetectorsSelect.designer.cs">
       <DependentUpon>FrmDetectorsSelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDrawTest.cs">
+    <Compile Include="FrmFormTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDrawTest.Designer.cs">
-      <DependentUpon>FrmDrawTest.cs</DependentUpon>
+    <Compile Include="FrmFormTest.Designer.cs">
+      <DependentUpon>FrmFormTest.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -86,6 +87,12 @@
     </Compile>
     <Compile Include="FrmShadowPanelTest.Designer.cs">
       <DependentUpon>FrmShadowPanelTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmXFormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmXFormTest.Designer.cs">
+      <DependentUpon>FrmXFormTest.cs</DependentUpon>
     </Compile>
     <Compile Include="MyForm2Test.cs">
       <SubType>Form</SubType>
@@ -105,11 +112,14 @@
     <EmbeddedResource Include="FrmDetectorsSelect.resx">
       <DependentUpon>FrmDetectorsSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDrawTest.resx">
-      <DependentUpon>FrmDrawTest.cs</DependentUpon>
+    <EmbeddedResource Include="FrmFormTest.resx">
+      <DependentUpon>FrmFormTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmShadowPanelTest.resx">
       <DependentUpon>FrmShadowPanelTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmXFormTest.resx">
+      <DependentUpon>FrmXFormTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm2Test.resx">
       <DependentUpon>MyForm2Test.cs</DependentUpon>
