@@ -59,7 +59,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 327);
             this.Controls.Add(this.xButton1);
-            this.MaximizeBox = false;
             this.Name = "FrmXFormTest";
             this.Text = "FrmXFormTest";
             this.ResumeLayout(false);

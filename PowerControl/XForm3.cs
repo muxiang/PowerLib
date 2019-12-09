@@ -552,8 +552,7 @@ namespace PowerControl
                     break;
             }
 
-            RECT areatRect = new RECT();
-            GetWindowRect(hwnd, ref areatRect);
+            GetWindowRect(hwnd, out RECT areatRect);
 
             int width = areatRect.Right - areatRect.Left;
             int height = areatRect.Bottom - areatRect.Top;

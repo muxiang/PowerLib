@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -15,6 +16,11 @@ namespace ControlTest
         public FrmXFormTest()
         {
             InitializeComponent();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
         }
 
         private void xButton1_Click(object sender, EventArgs e)

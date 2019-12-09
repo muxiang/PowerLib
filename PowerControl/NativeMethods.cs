@@ -23,7 +23,7 @@ namespace PowerControl
 
         [DllImport("USER32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowRect(IntPtr hwnd, ref RECT rect);
+        public static extern bool GetWindowRect(IntPtr hwnd, out RECT rect);
 
         [DllImport("USER32.dll")]
         public static extern int ReleaseDC(IntPtr hwnd, IntPtr hdc);

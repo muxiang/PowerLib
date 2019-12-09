@@ -7,51 +7,56 @@ namespace PowerControl
         #region Windows Messages
 
         public const int WM_USER = 0x0400;
+        
+        public const int WM_CREATE = 0x01;
+        public const int WM_DESTROY = 0x02;
+        public const int WM_MOVE = 0x03;
+        public const int WM_SIZE = 0x0005;
+        public const int WM_PAINT = 0x000F;
+        public const int WM_CLOSE = 0x0010;
+        public const int WM_ERASEBKGND = 0x0014;
+        public const int WM_SHOWWINDOW = 0x0018;
+        public const int WM_SETCURSOR = 0x0020;
+        public const int WM_GETMINMAXINFO = 0x0024;
+        
+        public const int WM_WINDOWPOSCHANGING = 0x0046;
+        public const int WM_WINDOWPOSCHANGED = 0x0047;
 
         public const int WM_COPYDATA = 0x004A;
 
-        public const int WM_PAINT = 0x000F;
-        public const int WM_ERASEBKGND = 0x0014;
-        public const int WM_PRINTCLIENT = 0x0318;
-
-        public const int WM_NCACTIVATE = 0x86;
+        public const int WM_NCCREATE = 0x81;
+        public const int WM_NCCALCSIZE = 0x83;
+        public const int WM_NCHITTEST = 0x84;
         public const int WM_NCPAINT = 0x85;
+        public const int WM_NCACTIVATE = 0x86;
+        public const int WM_NCMOUSEMOVE = 0xA0;
         public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int WM_NCLBUTTONDBLCLK = 0x00A3;
-        public const int WM_NCRBUTTONDOWN = 0x00A4;
-        public const int WM_NCRBUTTONUP = 0x00A5;
-        public const int WM_NCMOUSEMOVE = 0x00A0;
-        public const int WM_NCLBUTTONUP = 0x00A2;
-        public const int WM_NCCALCSIZE = 0x0083;
+        public const int WM_NCLBUTTONUP = 0xA2;
+        public const int WM_NCLBUTTONDBLCLK = 0xA3;
+        public const int WM_NCRBUTTONDOWN = 0xA4;
+        public const int WM_NCRBUTTONUP = 0xA5;
         public const int WM_NCMOUSEHOVER = 0x02A0;
         public const int WM_NCMOUSELEAVE = 0x02A2;
-        public const int WM_NCHITTEST = 0x0084;
-        public const int WM_NCCREATE = 0x0081;
-        // public const int WM_RBUTTONUP = 0x0205;  
 
-        public const int WM_LBUTTONDOWN = 0x0201;
-        public const int WM_LBUTTONDBLCLK = 0x0203;
-        public const int WM_CAPTURECHANGED = 0x0215;
-        public const int WM_LBUTTONUP = 0x0202;
-        public const int WM_SETCURSOR = 0x0020;
-        public const int WM_CLOSE = 0x0010;
-        public const int WM_SYSCOMMAND = 0x0112;
-        public const int WM_MOUSEMOVE = 0x0200;
-        public const int WM_SIZE = 0x0005;
-        public const int WM_SIZING = 0x0214;
-        public const int WM_GETMINMAXINFO = 0x0024;
-        public const int WM_ENTERSIZEMOVE = 0x0231;
-        public const int WM_EXITSIZEMOVE = 0x0232;
-        public const int WM_WINDOWPOSCHANGING = 0x0046;
-        public const int WM_CTLCOLOREDIT = 0x133;
-
-        public const int WM_HOTKEY = 0x312;
-        public const int WM_CREATE = 0x1;
-        public const int WM_DESTROY = 0x2;
-
-        public const int WM_PASTE = 0x0302;
         public const int WM_KEYDOWN = 0x0100;
         public const int WM_KEYUP = 0x0101;
+
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int WM_CTLCOLOREDIT = 0x133;
+
+        public const int WM_MOUSEMOVE = 0x0200;
+        public const int WM_LBUTTONDOWN = 0x0201;
+        public const int WM_LBUTTONUP = 0x0202;
+        public const int WM_LBUTTONDBLCLK = 0x0203;
+        public const int WM_RBUTTONUP = 0x0205;
+        public const int WM_SIZING = 0x0214;
+        public const int WM_CAPTURECHANGED = 0x0215;
+        public const int WM_ENTERSIZEMOVE = 0x0231;
+        public const int WM_EXITSIZEMOVE = 0x0232;
+
+        public const int WM_PASTE = 0x0302;
+        public const int WM_HOTKEY = 0x312;
+        public const int WM_PRINTCLIENT = 0x0318;
 
         #endregion Windows Messages
 
@@ -175,6 +180,35 @@ namespace PowerControl
         //#endif /* _WIN32_WINNT >= 0x0500 */ 
 
         #endregion Window Styles
+
+        #region SetWindowPos
+
+        public const uint SWP_NOSIZE = 0x0001;
+        public const uint SWP_NOMOVE = 0x0002;
+        public const uint SWP_NOZORDER = 0x0004;
+        public const uint SWP_NOREDRAW = 0x0008;
+        public const uint SWP_NOACTIVATE = 0x0010;
+        public const uint SWP_FRAMECHANGED = 0x0020;
+        public const uint SWP_SHOWWINDOW = 0x0040;
+        public const uint SWP_HIDEWINDOW = 0x0080;
+        public const uint SWP_NOCOPYBITS = 0x0100;
+        public const uint SWP_NOOWNERZORDER = 0x0200;
+        public const uint SWP_NOSENDCHANGING = 0x0400;
+        public const uint SWP_DRAWFRAME = SWP_FRAMECHANGED;
+        public const uint SWP_NOREPOSITION = SWP_NOOWNERZORDER;
+
+        public const uint SWP_DEFERERASE = 0x2000;
+        public const uint SWP_ASYNCWINDOWPOS = 0x4000;
+
+        #endregion SetWindowPos
+
+        public const int GWL_WNDPROC = -4;
+        public const int GWL_HINSTANCE = -6;
+        public const int GWL_HWNDPARENT = -8;
+        public const int GWL_STYLE = -16;
+        public const int GWL_EXSTYLE = -20;
+        public const int GWL_USERDATA = -21;
+        public const int GWL_ID = -12;
 
         public const int HTERROR = -2;
         public const int HTTRANSPARENT = -1;

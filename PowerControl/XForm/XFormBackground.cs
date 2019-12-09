@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 using static PowerControl.NativeMethods;
@@ -16,7 +12,7 @@ namespace PowerControl
     /// <summary>
     /// 为<see cref="XForm"/>阴影背景提供支持
     /// </summary>
-    internal sealed partial class XFormBackground : Form
+    internal sealed class XFormBackground : Form
     {
         #region Fields(Instance)
 
