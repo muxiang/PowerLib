@@ -55,12 +55,16 @@ namespace PowerControl
 
         #region 字段
 
+
+        // 是否渲染阴影
+        private bool _shadow = true;
         // 阴影背景
         private XFormBackground _backWindow;
-        //正在构建背景
+        // 正在构建背景
         private bool _buildingBackWindow;
 
         private FormBorderStyle _formBorderStyle = FormBorderStyle.Sizable;
+
         private Color _titleBarStartColor = Color.FromArgb(89, 98, 255);
         private Color _titleBarEndColor = Color.FromArgb(130, 101, 255);
         private Color _titleForeColor = Color.White;
@@ -86,7 +90,7 @@ namespace PowerControl
         private bool _redrawTitleBarButtonsRequired;
 
         // 标识用户通过鼠标操作调整尺寸或移动窗口
-        private bool _userSizedOrMoved = false;
+        private bool _userSizedOrMoved;
 
         #endregion 字段
 
@@ -116,11 +120,11 @@ namespace PowerControl
         #region 设计器
 
         /// <summary>
-        /// 获取或设置窗体的边框样式
+        /// 获取或设置窗体的边框样式。
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("获取或设置窗体的边框样式")]
+        [Description("获取或设置窗体的边框样式。")]
         [DefaultValue(FormBorderStyle.Sizable)]
         public new FormBorderStyle FormBorderStyle
         {
@@ -133,11 +137,11 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 获取或设置窗体的内边距
+        /// 获取或设置窗体的内边距。
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("获取或设置窗体的内边距")]
+        [Description("获取或设置窗体的内边距。")]
         public new Padding Padding
         {
             get => new Padding(base.Padding.Left, base.Padding.Top, base.Padding.Right, base.Padding.Bottom - TitleBarHeight);
@@ -145,11 +149,11 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 获取或设置窗体标题栏的渐变起始颜色
+        /// 获取或设置窗体标题栏的渐变起始颜色。
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("获取或设置窗体标题栏的渐变起始颜色")]
+        [Description("获取或设置窗体标题栏的渐变起始颜色。")]
         [DefaultValue(typeof(Color), "89, 98, 255")]
         public Color TitleBarStartColor
         {
@@ -162,11 +166,11 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 获取或设置窗体标题栏的渐变结束颜色
+        /// 获取或设置窗体标题栏的渐变结束颜色。
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("获取或设置窗体标题栏的渐变结束颜色")]
+        [Description("获取或设置窗体标题栏的渐变结束颜色。")]
         [DefaultValue(typeof(Color), "130, 101, 255")]
         public Color TitleBarEndColor
         {
@@ -179,11 +183,11 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 获取或设置窗体标题的前景色
+        /// 获取或设置窗体标题的前景色。
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("获取或设置窗体标题的前景色")]
+        [Description("获取或设置窗体标题的前景色。")]
         [DefaultValue(typeof(Color), "White")]
         public Color TitleForeColor
         {
@@ -192,6 +196,29 @@ namespace PowerControl
             {
                 _titleForeColor = value;
                 DrawTitleBar();
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置一个值，该值指示是否渲染窗体的阴影。
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("获取或设置一个值，该值指示是否渲染窗体的阴影。")]
+        [DefaultValue(true)]
+        public bool Shadow
+        {
+            get => _shadow;
+            set
+            {
+                _shadow = value;
+                if (DesignMode)
+                    return;
+
+                if (_shadow)
+                    BuildBackWindow();
+                else
+                    _backWindow?.Hide();
             }
         }
 
@@ -932,6 +959,8 @@ namespace PowerControl
                                 }
                             case HTMINBUTTON:
                                 {
+                                    if (!MinimizeBox)
+                                        return;
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
                                     DrawMinimizeButton(g, TitleBarButtonState.Holding);
@@ -1056,7 +1085,7 @@ namespace PowerControl
                 case WM_EXITSIZEMOVE:
                     {
                         base.WndProc(ref m);
-                        if (_userSizedOrMoved)
+                        if (_userSizedOrMoved && _shadow)
                             BuildBackWindow();
                         break;
                     }
@@ -1073,7 +1102,7 @@ namespace PowerControl
         /// <inheritdoc />
         protected override void OnLoad(EventArgs e)
         {
-            if (!DesignMode)
+            if (!DesignMode && _shadow)
                 BuildBackWindow();
 
             base.OnLoad(e);
@@ -1084,7 +1113,7 @@ namespace PowerControl
         {
             base.OnVisibleChanged(e);
 
-            if (!DesignMode)
+            if (!DesignMode && _shadow)
                 _backWindow.Visible = Visible;
         }
 
