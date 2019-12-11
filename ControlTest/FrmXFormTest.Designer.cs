@@ -45,7 +45,7 @@
             this.xButton1.HoldingImage = null;
             this.xButton1.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton1.Image = null;
-            this.xButton1.Location = new System.Drawing.Point(487, 218);
+            this.xButton1.Location = new System.Drawing.Point(263, 178);
             this.xButton1.Name = "xButton1";
             this.xButton1.Size = new System.Drawing.Size(91, 65);
             this.xButton1.StartColor = System.Drawing.Color.White;
@@ -57,10 +57,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 327);
+            this.ClientSize = new System.Drawing.Size(648, 407);
             this.Controls.Add(this.xButton1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmXFormTest";
             this.Text = "FrmXFormTest";
+            this.TitleBarEndColor = System.Drawing.Color.SkyBlue;
+            this.TitleBarStartColor = System.Drawing.Color.RoyalBlue;
             this.ResumeLayout(false);
 
         }

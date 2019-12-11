@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -86,6 +85,9 @@ namespace PowerControl
         // 用于标记标题栏按钮需要重绘
         private bool _redrawTitleBarButtonsRequired;
 
+        // 标识用户通过鼠标操作调整尺寸或移动窗口
+        private bool _userSizedOrMoved = false;
+
         #endregion 字段
 
         /// <summary>
@@ -100,7 +102,6 @@ namespace PowerControl
                 , true);
 
             InitializeComponent();
-            CreateButtonImages();
         }
 
         private void InitializeComponent()
@@ -127,7 +128,7 @@ namespace PowerControl
             set
             {
                 _formBorderStyle = value;
-                Invalidate();
+                ClientSize = ClientSize;
             }
         }
 
@@ -156,7 +157,7 @@ namespace PowerControl
             set
             {
                 _titleBarStartColor = value;
-                Invalidate();
+                DrawTitleBar();
             }
         }
 
@@ -173,7 +174,7 @@ namespace PowerControl
             set
             {
                 _titleBarEndColor = value;
-                Invalidate();
+                DrawTitleBar();
             }
         }
 
@@ -190,7 +191,7 @@ namespace PowerControl
             set
             {
                 _titleForeColor = value;
-                Invalidate();
+                DrawTitleBar();
             }
         }
 
@@ -326,13 +327,13 @@ namespace PowerControl
         /// <returns></returns>
         private void CreateNormalDisabledImages()
         {
-            _imgBtnMinimize = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
-            _imgBtnMinimizeDisabled = new Bitmap(Properties.Resources.btnMinimizeDisabled.Width, Properties.Resources.btnMinimizeDisabled.Height);
-            _imgBtnMaximize = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
-            _imgBtnMaximizeDisabled = new Bitmap(Properties.Resources.btnMaximizeDisabled.Width, Properties.Resources.btnMaximizeDisabled.Height);
-            _imgBtnNormal = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
-            _imgBtnNormalDisabled = new Bitmap(Properties.Resources.btnNormalDisabled.Width, Properties.Resources.btnNormalDisabled.Height);
-            _imgBtnClose = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+            _imgBtnMinimize = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnMinimizeDisabled = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnMaximize = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnMaximizeDisabled = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnNormal = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnNormalDisabled = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnClose = new Bitmap(TitleBarHeight, TitleBarHeight);
 
             // 最小化
             using (Graphics g = Graphics.FromImage(_imgBtnMinimize))
@@ -343,9 +344,7 @@ namespace PowerControl
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimize.Width, _imgBtnMinimize.Height));
-                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
-                    Properties.Resources.btnMinimize.Width,
-                    Properties.Resources.btnMinimize.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0, _imgBtnMinimize.Width, _imgBtnMinimize.Height));
             }
             // 最小化禁用
             using (Graphics g = Graphics.FromImage(_imgBtnMinimizeDisabled))
@@ -356,9 +355,7 @@ namespace PowerControl
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeDisabled.Width, _imgBtnMinimizeDisabled.Height));
-                g.DrawImage(Properties.Resources.btnMinimizeDisabled, new Rectangle(0, 0,
-                    Properties.Resources.btnMinimizeDisabled.Width,
-                    Properties.Resources.btnMinimizeDisabled.Height));
+                g.DrawImage(Properties.Resources.btnMinimizeDisabled, new Rectangle(0, 0, _imgBtnMinimizeDisabled.Width, _imgBtnMinimizeDisabled.Height));
             }
             // 最大化
             using (Graphics g = Graphics.FromImage(_imgBtnMaximize))
@@ -369,9 +366,7 @@ namespace PowerControl
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximize.Width, _imgBtnMaximize.Height));
-                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
-                    Properties.Resources.btnMaximize.Width,
-                    Properties.Resources.btnMaximize.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0, _imgBtnMaximize.Width, _imgBtnMaximize.Height));
             }
             // 最大化禁用
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeDisabled))
@@ -382,9 +377,7 @@ namespace PowerControl
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeDisabled.Width, _imgBtnMaximizeDisabled.Height));
-                g.DrawImage(Properties.Resources.btnMaximizeDisabled, new Rectangle(0, 0,
-                    Properties.Resources.btnMaximizeDisabled.Width,
-                    Properties.Resources.btnMaximizeDisabled.Height));
+                g.DrawImage(Properties.Resources.btnMaximizeDisabled, new Rectangle(0, 0, _imgBtnMaximizeDisabled.Width, _imgBtnMaximizeDisabled.Height));
             }
             // 最大化恢复
             using (Graphics g = Graphics.FromImage(_imgBtnNormal))
@@ -395,9 +388,7 @@ namespace PowerControl
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormal.Width, _imgBtnNormal.Height));
-                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
-                    Properties.Resources.btnNormal.Width,
-                    Properties.Resources.btnNormal.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0, _imgBtnNormal.Width, _imgBtnNormal.Height));
             }
             // 最大化恢复禁用
             using (Graphics g = Graphics.FromImage(_imgBtnNormalDisabled))
@@ -408,9 +399,7 @@ namespace PowerControl
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalDisabled.Width, _imgBtnNormalDisabled.Height));
-                g.DrawImage(Properties.Resources.btnNormalDisabled, new Rectangle(0, 0,
-                    Properties.Resources.btnNormalDisabled.Width,
-                    Properties.Resources.btnNormalDisabled.Height));
+                g.DrawImage(Properties.Resources.btnNormalDisabled, new Rectangle(0, 0, _imgBtnNormalDisabled.Width, _imgBtnNormalDisabled.Height));
             }
             // 关闭
             using (Graphics g = Graphics.FromImage(_imgBtnClose))
@@ -421,9 +410,7 @@ namespace PowerControl
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnClose.Width, _imgBtnClose.Height));
-                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
-                    Properties.Resources.btnClose.Width,
-                    Properties.Resources.btnClose.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0, _imgBtnClose.Width, _imgBtnClose.Height));
             }
         }
 
@@ -433,10 +420,10 @@ namespace PowerControl
         /// <returns></returns>
         private void CreateHoveringImages()
         {
-            _imgBtnMinimizeHovering = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
-            _imgBtnMaximizeHovering = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
-            _imgBtnNormalHovering = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
-            _imgBtnCloseHovering = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+            _imgBtnMinimizeHovering = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnMaximizeHovering = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnNormalHovering = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnCloseHovering = new Bitmap(TitleBarHeight, TitleBarHeight);
 
             Color cStart = Utilities.GetLighterColor(_titleBarStartColor);
             Color cEnd = Utilities.GetLighterColor(_titleBarEndColor);
@@ -450,9 +437,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHovering.Width, _imgBtnMinimizeHovering.Height));
-                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
-                    Properties.Resources.btnMinimize.Width,
-                    Properties.Resources.btnMinimize.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0, _imgBtnMinimizeHovering.Width, _imgBtnMinimizeHovering.Height));
             }
             // 最大化
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHovering))
@@ -463,9 +448,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHovering.Width, _imgBtnMaximizeHovering.Height));
-                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
-                    Properties.Resources.btnMaximize.Width,
-                    Properties.Resources.btnMaximize.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0, _imgBtnMaximizeHovering.Width, _imgBtnMaximizeHovering.Height));
             }
             // 最大化恢复
             using (Graphics g = Graphics.FromImage(_imgBtnNormalHovering))
@@ -476,9 +459,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHovering.Width, _imgBtnNormalHovering.Height));
-                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
-                    Properties.Resources.btnNormal.Width,
-                    Properties.Resources.btnNormal.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0, _imgBtnNormalHovering.Width, _imgBtnNormalHovering.Height));
             }
             // 关闭
             using (Graphics g = Graphics.FromImage(_imgBtnCloseHovering))
@@ -489,9 +470,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHovering.Width, _imgBtnCloseHovering.Height));
-                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
-                    Properties.Resources.btnClose.Width,
-                    Properties.Resources.btnClose.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0, _imgBtnCloseHovering.Width, _imgBtnCloseHovering.Height));
             }
         }
 
@@ -501,10 +480,10 @@ namespace PowerControl
         /// <returns></returns>
         private void CreateHoldingImages()
         {
-            _imgBtnMinimizeHolding = new Bitmap(Properties.Resources.btnMinimize.Width, Properties.Resources.btnMinimize.Height);
-            _imgBtnMaximizeHolding = new Bitmap(Properties.Resources.btnMaximize.Width, Properties.Resources.btnMaximize.Height);
-            _imgBtnNormalHolding = new Bitmap(Properties.Resources.btnNormal.Width, Properties.Resources.btnNormal.Height);
-            _imgBtnCloseHolding = new Bitmap(Properties.Resources.btnClose.Width, Properties.Resources.btnClose.Height);
+            _imgBtnMinimizeHolding = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnMaximizeHolding = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnNormalHolding = new Bitmap(TitleBarHeight, TitleBarHeight);
+            _imgBtnCloseHolding = new Bitmap(TitleBarHeight, TitleBarHeight);
 
             Color cStart = Utilities.GetDeeperColor(_titleBarStartColor);
             Color cEnd = Utilities.GetDeeperColor(_titleBarEndColor);
@@ -518,9 +497,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHolding.Width, _imgBtnMinimizeHolding.Height));
-                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0,
-                    Properties.Resources.btnMinimize.Width,
-                    Properties.Resources.btnMinimize.Height));
+                g.DrawImage(Properties.Resources.btnMinimize, new Rectangle(0, 0, _imgBtnMinimizeHolding.Width, _imgBtnMinimizeHolding.Height));
             }
             // 最大化
             using (Graphics g = Graphics.FromImage(_imgBtnMaximizeHolding))
@@ -531,9 +508,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHolding.Width, _imgBtnMaximizeHolding.Height));
-                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0,
-                    Properties.Resources.btnMaximize.Width,
-                    Properties.Resources.btnMaximize.Height));
+                g.DrawImage(Properties.Resources.btnMaximize, new Rectangle(0, 0, _imgBtnMaximizeHolding.Width, _imgBtnMaximizeHolding.Height));
             }
             // 最大化恢复
             using (Graphics g = Graphics.FromImage(_imgBtnNormalHolding))
@@ -544,9 +519,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHolding.Width, _imgBtnNormalHolding.Height));
-                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0,
-                    Properties.Resources.btnNormal.Width,
-                    Properties.Resources.btnNormal.Height));
+                g.DrawImage(Properties.Resources.btnNormal, new Rectangle(0, 0, _imgBtnNormalHolding.Width, _imgBtnNormalHolding.Height));
             }
             // 关闭
             using (Graphics g = Graphics.FromImage(_imgBtnCloseHolding))
@@ -557,9 +530,7 @@ namespace PowerControl
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHolding.Width, _imgBtnCloseHolding.Height));
-                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0,
-                    Properties.Resources.btnClose.Width,
-                    Properties.Resources.btnClose.Height));
+                g.DrawImage(Properties.Resources.btnClose, new Rectangle(0, 0, _imgBtnCloseHolding.Width, _imgBtnCloseHolding.Height));
             }
         }
 
@@ -567,6 +538,19 @@ namespace PowerControl
         /// 绘制标题栏
         /// </summary>
         private void DrawTitleBar()
+        {
+            if (_formBorderStyle == FormBorderStyle.None)
+                return;
+
+            DrawTitleBackgroundTextIcon();
+            CreateButtonImages();
+            DrawTitleButtons();
+        }
+
+        /// <summary>
+        /// 绘制标题栏背景文字图标
+        /// </summary>
+        private void DrawTitleBackgroundTextIcon()
         {
             IntPtr hdc = GetWindowDC(Handle);
             Graphics g = Graphics.FromHdc(hdc);
@@ -621,6 +605,11 @@ namespace PowerControl
             ReleaseDC(Handle, hdc);
         }
 
+        /// <summary>
+        /// 绘制关闭按钮
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="state"></param>
         private void DrawCloseButton(Graphics g, TitleBarButtonState state)
         {
             Image img = state switch
@@ -634,6 +623,11 @@ namespace PowerControl
             g.DrawImage(img, CloseButtonRectangle);
         }
 
+        /// <summary>
+        /// 绘制最大化按钮
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="state"></param>
         private void DrawMaximizeButton(Graphics g, TitleBarButtonState state)
         {
             Image img = state switch
@@ -656,6 +650,11 @@ namespace PowerControl
             g.DrawImage(img, MaximizeButtonRectangle);
         }
 
+        /// <summary>
+        /// 绘制最小化按钮
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="state"></param>
         private void DrawMinimizeButton(Graphics g, TitleBarButtonState state)
         {
             Image img = state switch
@@ -670,6 +669,9 @@ namespace PowerControl
             g.DrawImage(img, MinimizeButtonRectangle);
         }
 
+        /// <summary>
+        /// 重绘标题栏按钮
+        /// </summary>
         private void RedrawTitleBarButtons()
         {
             if (!_redrawTitleBarButtonsRequired)
@@ -737,8 +739,6 @@ namespace PowerControl
 
                 gp.Dispose();
 
-                bmpBackground.Save("D:\\bg.png");
-
                 _backWindow = new XFormBackground(bmpBackground);
 
                 _buildingBackWindow = false;
@@ -749,7 +749,6 @@ namespace PowerControl
                     _backWindow.Handle.ToInt32());
 
                 AlignBackWindow();
-
                 _backWindow.Show();
                 Activate();
             }//end of lock(this)
@@ -785,9 +784,6 @@ namespace PowerControl
             }
         }
 
-        // 标识用户通过鼠标操作调整尺寸或移动窗口
-        private bool _userSizedOrMoved = true;
-
         /// <inheritdoc />
         protected override void WndProc(ref Message m)
         {
@@ -796,8 +792,6 @@ namespace PowerControl
                 case WM_NCPAINT:
                     {
                         DrawTitleBar();
-                        CreateButtonImages();
-                        DrawTitleButtons();
                         m.Result = (IntPtr)1;
                         break;
                     }
@@ -822,6 +816,13 @@ namespace PowerControl
                                     _userSizedOrMoved = false;
                                     m.Result = (IntPtr)HTCAPTION;
                                 }
+
+                                if (CorrectToLogical(CloseButtonRectangle).Contains(pt))
+                                    m.Result = (IntPtr)HTCLOSE;
+                                if (CorrectToLogical(MaximizeButtonRectangle).Contains(pt))
+                                    m.Result = (IntPtr)HTMAXBUTTON;
+                                if (CorrectToLogical(MinimizeButtonRectangle).Contains(pt))
+                                    m.Result = (IntPtr)HTMINBUTTON;
 
                                 break;
                             case FormBorderStyle.Sizable:
@@ -848,21 +849,35 @@ namespace PowerControl
                                 bool bRight = pt.X >= Width - BorderWidth;
 
                                 if (bLeft)
+                                {
+                                    _userSizedOrMoved = true;
                                     if (bTop)
                                         m.Result = (IntPtr)HTTOPLEFT;
                                     else if (bBottom)
                                         m.Result = (IntPtr)HTBOTTOMLEFT;
-                                    else m.Result = (IntPtr)HTLEFT;
+                                    else
+                                        m.Result = (IntPtr)HTLEFT;
+                                }
                                 else if (bRight)
+                                {
+                                    _userSizedOrMoved = true;
                                     if (bTop)
                                         m.Result = (IntPtr)HTTOPRIGHT;
                                     else if (bBottom)
                                         m.Result = (IntPtr)HTBOTTOMRIGHT;
-                                    else m.Result = (IntPtr)HTRIGHT;
+                                    else
+                                        m.Result = (IntPtr)HTRIGHT;
+                                }
                                 else if (bTop)
+                                {
+                                    _userSizedOrMoved = true;
                                     m.Result = (IntPtr)HTTOP;
+                                }
                                 else if (bBottom)
+                                {
+                                    _userSizedOrMoved = true;
                                     m.Result = (IntPtr)HTBOTTOM;
+                                }
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
@@ -871,7 +886,7 @@ namespace PowerControl
                     }
                 case WM_NCCALCSIZE:
                     {
-                        if (m.WParam != IntPtr.Zero)
+                        if (m.WParam != IntPtr.Zero && _formBorderStyle != FormBorderStyle.None)
                         {
                             NCCALCSIZE_PARAMS @params = (NCCALCSIZE_PARAMS)
                                 Marshal.PtrToStructure(m.LParam, typeof(NCCALCSIZE_PARAMS));
@@ -1020,19 +1035,22 @@ namespace PowerControl
 
                         break;
                     }
-                //case WM_MOVE:
-                //    if (!DesignMode)
-                //        AlignBackWindow();
-                //    break;
                 case WM_WINDOWPOSCHANGED:
                     {
                         base.WndProc(ref m);
-                        DrawTitleBar();
-                        CreateButtonImages();
-                        DrawTitleButtons();
+
+                        if (_userSizedOrMoved)
+                            DrawTitleBar();
 
                         if (!DesignMode)
                             AlignBackWindow();
+                        break;
+                    }
+                case WM_ENTERSIZEMOVE:
+                    {
+                        base.WndProc(ref m);
+                        if (_userSizedOrMoved)
+                            _backWindow.Hide();
                         break;
                     }
                 case WM_EXITSIZEMOVE:
@@ -1042,22 +1060,6 @@ namespace PowerControl
                             BuildBackWindow();
                         break;
                     }
-                //case WM_SYSCOMMAND:
-                //    {
-                //        switch ((int)m.WParam)
-                //        {
-                //            case SC_MAXIMIZE:
-                //            case SC_RESTORE:
-                //                if (!MaximizeBox)
-                //                    return;
-                //                DrawTitleBar();
-                //                CreateButtonImages();
-                //                DrawTitleButtons();
-                //                break;
-                //        }
-                //        base.WndProc(ref m);
-                //        break;
-                //    }
                 case WM_MOUSEMOVE:
                     base.WndProc(ref m);
                     RedrawTitleBarButtons();
@@ -1084,6 +1086,13 @@ namespace PowerControl
 
             if (!DesignMode)
                 _backWindow.Visible = Visible;
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+
+            DrawTitleBar();
         }
 
         #endregion 重写

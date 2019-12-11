@@ -128,7 +128,7 @@ namespace PowerControl
             get
             {
                 CreateParams cParms = base.CreateParams;
-                cParms.ExStyle |= (int)WS_EX_LAYERED;
+                cParms.ExStyle |= (int)WS_EX_LAYERED | (int)WS_EX_NOACTIVATE;
                 return DesignMode ? base.CreateParams : cParms;
             }
         }
