@@ -1078,7 +1078,7 @@ namespace PowerControl
                 case WM_ENTERSIZEMOVE:
                     {
                         base.WndProc(ref m);
-                        if (_userSizedOrMoved)
+                        if (_userSizedOrMoved && _shadow)
                             _backWindow.Hide();
                         break;
                     }
@@ -1117,6 +1117,7 @@ namespace PowerControl
                 _backWindow.Visible = Visible;
         }
 
+        /// <inheritdoc />
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);

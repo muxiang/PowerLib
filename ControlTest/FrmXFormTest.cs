@@ -26,7 +26,7 @@ namespace ControlTest
 
         private void xButton1_Click(object sender, EventArgs e)
         {
-            xButton1.Dock = DockStyle.Bottom;
+
         }
     }
 }
