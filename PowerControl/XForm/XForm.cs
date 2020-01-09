@@ -629,6 +629,7 @@ namespace PowerControl
                 DrawMinimizeButton(g, MinimizeBox ? TitleBarButtonState.Normal : TitleBarButtonState.Disabled);
             }
 
+            g.Dispose();
             ReleaseDC(Handle, hdc);
         }
 
@@ -758,8 +759,8 @@ namespace PowerControl
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
                     g.SmoothingMode = SmoothingMode.AntiAlias;
 
-                    brs.CenterColor = Color.Black;
-                    brs.FocusScales = new PointF(.9f, .9f);
+                    brs.CenterColor = Color.FromArgb(100, Color.Black);
+                    brs.FocusScales = new PointF(1 - BorderWidth * 4F / Width, 1 - BorderWidth * 4F / Height);
                     brs.SurroundColors = new[] { Color.FromArgb(0, 0, 0, 0) };
                     g.FillPath(brs, gp);
                 }
@@ -1026,7 +1027,9 @@ namespace PowerControl
                                     Graphics g = Graphics.FromHdc(hdc);
 
                                     DrawCloseButton(g, TitleBarButtonState.Normal);
-                                    if (MinimizeBox) DrawMinimizeButton(g, TitleBarButtonState.Normal);
+
+                                    if (MinimizeBox)
+                                        DrawMinimizeButton(g, TitleBarButtonState.Normal);
 
                                     if (!MaximizeBox)
                                     {
@@ -1043,8 +1046,11 @@ namespace PowerControl
                                 {
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
+
                                     DrawCloseButton(g, TitleBarButtonState.Normal);
-                                    if (MaximizeBox) DrawMaximizeButton(g, TitleBarButtonState.Normal);
+
+                                    if (MaximizeBox)
+                                        DrawMaximizeButton(g, TitleBarButtonState.Normal);
 
                                     if (!MinimizeBox)
                                     {

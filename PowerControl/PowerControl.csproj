@@ -220,6 +220,9 @@
     <EmbeddedResource Include="XForm3.resx">
       <DependentUpon>XForm3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="XForm\XFormBackground.resx">
+      <DependentUpon>XFormBackground.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XMessageBox.resx">
       <DependentUpon>XMessageBox.cs</DependentUpon>
     </EmbeddedResource>

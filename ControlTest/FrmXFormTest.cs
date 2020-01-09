@@ -26,7 +26,13 @@ namespace ControlTest
 
         private void xButton1_Click(object sender, EventArgs e)
         {
+            XMessageBox.Show("Test", "xxx", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Test","",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+        }
 
+        private void FrmXFormTest_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            xButton1.PerformClick();
         }
     }
 }

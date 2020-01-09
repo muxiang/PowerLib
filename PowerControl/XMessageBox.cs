@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PowerControl
@@ -7,7 +8,7 @@ namespace PowerControl
     /// <summary>
     /// 消息框
     /// </summary>
-    public sealed partial class XMessageBox : XForm3
+    public sealed partial class XMessageBox : XForm
     {
         private const float TextMaxWidth = 430;
         private const float TextMinWidth = 90;

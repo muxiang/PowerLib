@@ -83,12 +83,16 @@ namespace PowerControl
 
             _parentKeyDownEventHandler = (s1, e1) =>
             {
-                if ((char)e1.KeyCode == _shortcut && e1.Alt)
+                if ((char)e1.KeyCode == _shortcut)
                     PerformClick();
             };
 
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
         }
+
+        public override bool Focused => true;
+
+        protected override bool ShowFocusCues => true;
 
         #region 属性
 
@@ -439,10 +443,10 @@ namespace PowerControl
                 switch (_shortcut)
                 {
                     case '\0':
-                        parentForm.KeyDown -= _parentKeyDownEventHandler;
+                        parentForm.PreviewKeyDown -= _parentKeyDownEventHandler;
                         break;
                     default:
-                        parentForm.KeyDown += _parentKeyDownEventHandler;
+                        parentForm.PreviewKeyDown += _parentKeyDownEventHandler;
                         break;
                 }
             }
@@ -531,7 +535,7 @@ namespace PowerControl
         // 快捷键字体
         private Font _shortcutFont;
         // 父窗口键盘按下回调
-        private readonly KeyEventHandler _parentKeyDownEventHandler;
+        private readonly PreviewKeyDownEventHandler _parentKeyDownEventHandler;
 
         #endregion 字段
 
@@ -728,10 +732,10 @@ namespace PowerControl
             switch (_shortcut)
             {
                 case '\0':
-                    parentForm.KeyDown -= _parentKeyDownEventHandler;
+                    parentForm.PreviewKeyDown -= _parentKeyDownEventHandler;
                     break;
                 default:
-                    parentForm.KeyDown += _parentKeyDownEventHandler;
+                    parentForm.PreviewKeyDown += _parentKeyDownEventHandler;
                     break;
             }
 

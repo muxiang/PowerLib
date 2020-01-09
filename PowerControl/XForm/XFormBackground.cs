@@ -155,5 +155,18 @@ namespace PowerControl
         }
 
         #endregion Override
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // XFormBackground
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.KeyPreview = true;
+            this.Name = "XFormBackground";
+            this.ResumeLayout(false);
+
+        }
     }
 }

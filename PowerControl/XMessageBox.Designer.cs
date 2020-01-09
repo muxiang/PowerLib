@@ -29,17 +29,18 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            //  
-            //  XMessageBox
-            //  
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            // 
+            // XMessageBox
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 155);
+            this.ClientSize = new System.Drawing.Size(304, 116);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "XMessageBox";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, -8);
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
