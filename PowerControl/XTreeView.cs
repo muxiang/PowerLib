@@ -106,7 +106,14 @@ namespace PowerControl
             if (pt.Y > node.Bounds.Top && pt.Y < node.Bounds.Bottom && pt.X > node.Bounds.X)
                 return node;
 
-            return node.Nodes.Cast<TreeNode>().FirstOrDefault(child => InNode(pt, child) != null);
+            foreach (TreeNode child in node.Nodes)
+            {
+                TreeNode result = InNode(pt, child);
+                if (result != null)
+                    return result;
+            }
+
+            return null;
         }
 
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
@@ -190,11 +197,25 @@ namespace PowerControl
             foreach (TreeNode node in Nodes)
             {
                 TreeNode clicked = InNode(e.Location, node);
-                if (clicked != null)
-                {
-                    SelectedNode = clicked;
-                    return;
-                }
+                if (clicked == null) continue;
+                SelectedNode = clicked;
+                return;
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            base.OnMouseDoubleClick(e);
+
+            foreach (TreeNode node in Nodes)
+            {
+                TreeNode clicked = InNode(e.Location, node);
+                if (clicked == null) continue;
+                if (clicked.IsExpanded)
+                    clicked.Collapse();
+                else
+                    clicked.Expand();
+                return;
             }
         }
     }
