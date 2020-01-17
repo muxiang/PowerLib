@@ -30,12 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmXFormTest));
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点6");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("节点0", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点5");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("节点4", new System.Windows.Forms.TreeNode[] {
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("节点3", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("节点7");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("节点2", new System.Windows.Forms.TreeNode[] {
+            treeNode7});
             this.xButton1 = new PowerControl.XButton();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.ripplePictureBox1 = new PowerControl.RipplePictureBox();
             this.xButton2 = new PowerControl.XButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.xTreeView1 = new PowerControl.XTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,31 +112,45 @@
             this.xButton2.Text = "xButton1";
             this.xButton2.Click += new System.EventHandler(this.xButton1_Click);
             // 
-            // button1
+            // xTreeView1
             // 
-            this.button1.Location = new System.Drawing.Point(587, 143);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(587, 191);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button1";
-            this.button2.UseVisualStyleBackColor = true;
+            this.xTreeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
+            this.xTreeView1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.xTreeView1.Location = new System.Drawing.Point(427, 144);
+            this.xTreeView1.Name = "xTreeView1";
+            treeNode1.Name = "节点6";
+            treeNode1.Text = "节点6";
+            treeNode2.Name = "节点0";
+            treeNode2.Text = "节点0";
+            treeNode3.Name = "节点5";
+            treeNode3.Text = "节点5";
+            treeNode4.Name = "节点4";
+            treeNode4.Text = "节点4";
+            treeNode5.Name = "节点3";
+            treeNode5.Text = "节点3";
+            treeNode6.Name = "节点1";
+            treeNode6.Text = "节点1";
+            treeNode7.Name = "节点7";
+            treeNode7.Text = "节点7";
+            treeNode8.Name = "节点2";
+            treeNode8.Text = "节点2";
+            this.xTreeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode6,
+            treeNode8});
+            this.xTreeView1.SelectedBackColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.xTreeView1.SelectedBackColorUnFocused = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(206)))), ((int)(((byte)(219)))));
+            this.xTreeView1.SelectedForeColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.xTreeView1.SelectedForeColorUnFocused = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.xTreeView1.Size = new System.Drawing.Size(233, 188);
+            this.xTreeView1.TabIndex = 2;
             // 
             // FrmXFormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 502);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.xTreeView1);
             this.Controls.Add(this.ripplePictureBox1);
             this.Controls.Add(this.xButton2);
             this.Controls.Add(this.xButton1);
@@ -147,7 +173,6 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private PowerControl.RipplePictureBox ripplePictureBox1;
         private PowerControl.XButton xButton2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private PowerControl.XTreeView xTreeView1;
     }
 }

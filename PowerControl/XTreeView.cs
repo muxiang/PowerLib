@@ -12,13 +12,13 @@ namespace PowerControl
     /// </summary>
     public sealed partial class XTreeView : TreeView
     {
-        // 前景画刷
-        private Brush _brsFore;
-        // 背景画刷
-        private Brush _brsBack;
-
         // 选择项背景色
-        private Color _selectedBackColor = Color.FromArgb(0, 150, 170);
+        private Color _selectedBackColorFocused = Color.FromArgb(0, 122, 204);
+        private Color _selectedBackColorUnFocused = Color.FromArgb(204, 206, 219);
+
+        // 选择项前景色
+        private Color _selectedForeColorFocused = Color.FromArgb(255, 255, 255);
+        private Color _selectedForeColorUnFocused = Color.FromArgb(0, 0, 0);
 
         /// <summary>
         /// 初始化<see cref="XTreeView"/>的实例
@@ -28,21 +28,64 @@ namespace PowerControl
             InitializeComponent();
 
             DrawMode = TreeViewDrawMode.OwnerDrawAll;
-            _brsFore = new SolidBrush(ForeColor);
-            _brsBack = new SolidBrush(BackColor);
         }
 
         /// <summary>
-        /// 选择项背景色
+        /// 选择项焦点背景色
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        public Color SelectedBackColor
+        public Color SelectedBackColorFocused
         {
-            get => _selectedBackColor;
+            get => _selectedBackColorFocused;
             set
             {
-                _selectedBackColor = value;
+                _selectedBackColorFocused = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 选择项非焦点背景色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        public Color SelectedBackColorUnFocused
+        {
+            get => _selectedBackColorUnFocused;
+            set
+            {
+                _selectedBackColorUnFocused = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 选择项焦点前景色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        public Color SelectedForeColorFocused
+        {
+            get => _selectedForeColorFocused;
+            set
+            {
+                _selectedForeColorFocused = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 选择项非焦点前景色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        public Color SelectedForeColorUnFocused
+        {
+            get => _selectedForeColorUnFocused;
+            set
+            {
+                _selectedForeColorUnFocused = value;
                 Invalidate();
             }
         }
@@ -52,76 +95,78 @@ namespace PowerControl
             return tn.Nodes.Count != 0 && tn.Nodes.OfType<TreeNode>().Any(child => child.IsSelected || IsChildSelected(child));
         }
 
-        protected override void OnForeColorChanged(EventArgs e)
+        /// <summary>
+        /// 判定坐标是否在节点中，返回节点或其子节点
+        /// </summary>
+        /// <param name="pt">坐标</param>
+        /// <param name="node">节点</param>
+        /// <returns></returns>
+        private static TreeNode InNode(Point pt, TreeNode node)
         {
-            base.OnForeColorChanged(e);
+            if (pt.Y > node.Bounds.Top && pt.Y < node.Bounds.Bottom && pt.X > node.Bounds.X)
+                return node;
 
-            _brsFore = new SolidBrush(ForeColor);
-        }
-
-        protected override void OnBackColorChanged(EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-
-            _brsBack = new SolidBrush(BackColor);
+            return node.Nodes.Cast<TreeNode>().FirstOrDefault(child => InNode(pt, child) != null);
         }
 
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
         {
             base.OnDrawNode(e);
 
-            if (e.Bounds == default(Rectangle)) return;
+            if (e.Bounds == default) return;
 
             e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
-            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-            e.Graphics.FillRectangle(_brsBack, e.Bounds);
+            using Brush brsBack = new SolidBrush(BackColor);
+            using Brush brsFore = new SolidBrush(ForeColor);
+            using Pen penFore = new Pen(ForeColor);
+            using Brush brsSelectedBack = new SolidBrush(Focused ? _selectedBackColorFocused : _selectedBackColorUnFocused);
+            using Brush brsSelectedFore = new SolidBrush(Focused ? _selectedForeColorFocused : _selectedForeColorUnFocused);
+            using Pen penSelectedFore = new Pen(Focused ? _selectedForeColorFocused : _selectedForeColorUnFocused);
+
+            e.Graphics.FillRectangle(brsBack, e.Bounds);
 
             // 绘制节点背景色
-            if (e.Node.IsSelected || IsChildSelected(e.Node))
-            {
-                LinearGradientBrush brs = new LinearGradientBrush(
-                    new PointF(e.Bounds.X, e.Bounds.Y + e.Bounds.Height / 2),
-                    new PointF(e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height / 2),
-                    Color.Transparent, _selectedBackColor
-                )
-                {
-                    Blend = new Blend
-                    {
-                        Positions = new[] { 0, .5f, 1 },
-                        Factors = new[] { 0, 1f, 0 }
-                    }
-                };
+            if (e.Node.IsSelected)
+                e.Graphics.FillRectangle(brsSelectedBack, e.Bounds);
 
-                e.Graphics.FillRectangle(brs, e.Bounds);
-            }
+            // 绘制节点文本
+            e.Graphics.DrawString(e.Node.Text, Font, e.Node.IsSelected ? brsSelectedFore : brsFore, e.Node.Bounds,
+                StringFormat.GenericTypographic);
 
             float fontHeight = Font.GetHeight(e.Graphics);
 
             // 绘制节点折叠图标
             int x = (int)(e.Node.Bounds.X - fontHeight), y = e.Node.Bounds.Y;
 
-            if (e.Node.Nodes.Count > 0)
+            if (e.Node.Nodes.Count <= 0)
+                return;
+
+            PointF[] trianglePts = new PointF[3];
+            if (e.Node.IsExpanded)
             {
-                PointF[] trianglePts = new PointF[3];
-                if (e.Node.IsExpanded)
-                {
-                    trianglePts[0] = new PointF(x + fontHeight / 2 / 2, y + fontHeight / 2 / 2);
-                    trianglePts[1] = new PointF(x + fontHeight * .75f, y + fontHeight / 2 / 2);
-                    trianglePts[2] = new PointF(x + fontHeight / 2, y + fontHeight * .75f);
-                }
-                else
-                {
-                    trianglePts[0] = new PointF(x + fontHeight / 2 / 2, y + fontHeight / 2 / 2);
-                    trianglePts[1] = new PointF(x + fontHeight / 2 / 2, y + fontHeight * .75f);
-                    trianglePts[2] = new PointF(x + fontHeight * .75f, y + fontHeight / 2);
-                }
+                // 左下
+                trianglePts[0] = new PointF(x + fontHeight / 5, y + fontHeight / 5 * 3);
+                // 右下
+                trianglePts[1] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5 * 3);
+                // 右上
+                trianglePts[2] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5);
 
-                e.Graphics.FillPolygon(_brsFore, trianglePts);
+                e.Graphics.FillPolygon(e.Node.IsSelected ? brsSelectedFore : brsFore, trianglePts);
             }
+            else
+            {
+                // 左上
+                trianglePts[0] = new PointF(x + fontHeight / 4, y + fontHeight / 5);
+                // 左下
+                trianglePts[1] = new PointF(x + fontHeight / 4, y + fontHeight / 5 * 4);
+                // 右
+                trianglePts[2] = new PointF(x + fontHeight * .5f, y + fontHeight / 2);
 
-            e.Graphics.DrawString(e.Node.Text, Font, _brsFore, e.Node.Bounds, StringFormat.GenericTypographic);
+                e.Graphics.DrawPolygon(e.Node.IsSelected ? penSelectedFore : penFore, trianglePts);
+            }
         }
 
         protected override void OnAfterSelect(TreeViewEventArgs e)
@@ -132,8 +177,25 @@ namespace PowerControl
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            pe.Graphics.FillRectangle(_brsBack, ClientRectangle);
+            using (Brush brs = new SolidBrush(BackColor))
+                pe.Graphics.FillRectangle(brs, ClientRectangle);
+
             base.OnPaint(pe);
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            foreach (TreeNode node in Nodes)
+            {
+                TreeNode clicked = InNode(e.Location, node);
+                if (clicked != null)
+                {
+                    SelectedNode = clicked;
+                    return;
+                }
+            }
         }
     }
 }

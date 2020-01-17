@@ -492,34 +492,6 @@
             this.button1.Text = "button1(&O)";
             this.button1.UseVisualStyleBackColor = false;
             //  
-            //  treeView1
-            //  
-            this.treeView1.BackColor = System.Drawing.Color.White;
-            this.treeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.treeView1.ForeColor = System.Drawing.Color.Black;
-            this.treeView1.Location = new System.Drawing.Point(926, 149);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "L2,0";
-            treeNode1.Text = "L2,0";
-            treeNode2.Name = "L1,0";
-            treeNode2.Text = "L1,0";
-            treeNode3.Name = "L1,1";
-            treeNode3.Text = "L1,1";
-            treeNode4.Name = "L1,2";
-            treeNode4.Text = "L1,2";
-            treeNode5.Name = "L0,0";
-            treeNode5.Text = "L0,0";
-            treeNode6.Name = "L1,0";
-            treeNode6.Text = "L1,0";
-            treeNode7.Name = "L0,1";
-            treeNode7.Text = "L0,1";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-            this.treeView1.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.treeView1.Size = new System.Drawing.Size(239, 383);
-            this.treeView1.TabIndex = 12;
-            //  
             //  xPanel1
             //  
             this.xPanel1.Location = new System.Drawing.Point(926, 579);
