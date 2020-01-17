@@ -90,11 +90,6 @@ namespace PowerControl
             }
         }
 
-        private static bool IsChildSelected(TreeNode tn)
-        {
-            return tn.Nodes.Count != 0 && tn.Nodes.OfType<TreeNode>().Any(child => child.IsSelected || IsChildSelected(child));
-        }
-
         /// <summary>
         /// 判定坐标是否在节点中，返回节点或其子节点
         /// </summary>
@@ -138,7 +133,7 @@ namespace PowerControl
             // 绘制节点背景色
             if (e.Node.IsSelected)
                 e.Graphics.FillRectangle(brsSelectedBack, e.Bounds);
-
+            e.Graphics.DrawRectangle(Pens.Red, e.Node.Bounds);
             // 绘制节点文本
             e.Graphics.DrawString(e.Node.Text, Font, e.Node.IsSelected ? brsSelectedFore : brsFore, e.Node.Bounds,
                 StringFormat.GenericTypographic);
@@ -211,10 +206,17 @@ namespace PowerControl
             {
                 TreeNode clicked = InNode(e.Location, node);
                 if (clicked == null) continue;
+
+                // 1px偏差
+                Rectangle rectRealBounds = new Rectangle(clicked.Bounds.X, clicked.Bounds.Y, clicked.Bounds.Width + 1, clicked.Bounds.Height);
+                if (rectRealBounds.Contains(e.Location))
+                    return;
+
                 if (clicked.IsExpanded)
                     clicked.Collapse();
                 else
                     clicked.Expand();
+
                 return;
             }
         }
