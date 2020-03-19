@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
@@ -14,12 +16,25 @@ namespace PowerControl
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public sealed partial class IPTextBox : UserControl
     {
+        private Color _borderColor;
+        private Pen _borderPen = Pens.Black;
+
+        private Color _focusedBorderColor;
+        private Pen _focusedBorderPen = Pens.Black;
+
         /// <summary>
         /// 初始化IP输入文本框的实例
         /// </summary>
         public IPTextBox()
         {
             InitializeComponent();
+
+            base.BorderStyle = BorderStyle.None;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            BorderColor = Color.FromArgb(184, 184, 184);
+            FocusedBorderColor = Color.FromArgb(66, 215, 250);
+            ForeColor = Color.FromArgb(80, 80, 80);
 
             foreach (TextBox txt in Controls.OfType<TextBox>())
             {
@@ -77,6 +92,9 @@ namespace PowerControl
                                 ?.Focus();
                     }
                 };
+
+                txt.GotFocus += (s1, e1) => Invalidate();
+                txt.LostFocus += (s1, e1) => Invalidate();
             }
         }
 
@@ -98,20 +116,73 @@ namespace PowerControl
         }
 
         /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("边框颜色")]
+        [DefaultValue(typeof(Color), "184, 184, 184")]
+        public Color BorderColor
+        {
+            get => _borderColor;
+            set
+            {
+                _borderColor = value;
+                _borderPen = new Pen(value, 1);
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 焦点边框颜色
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("焦点边框颜色")]
+        [DefaultValue(typeof(Color), "66, 215, 250")]
+        public Color FocusedBorderColor
+        {
+            get => _focusedBorderColor;
+            set
+            {
+                _focusedBorderColor = value;
+                _focusedBorderPen = new Pen(value, 1.5F);
+                Invalidate();
+            }
+        }
+
+        /// <summary>
         /// 获取输入的IP地址
         /// </summary>
         public IPAddress Value => !IPAddress.TryParse(Text, out IPAddress ip) ? null : ip;
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            foreach (TextBox txt in Controls.OfType<TextBox>().SkipWhile(t => t == txt1))
-            {
-                RectangleF rectDot =
-                    new RectangleF(txt.Location.X - 2, txt.Location.Y + txt.Height - 5, 1.5F, 1.5F);
-                e.Graphics.FillEllipse(Brushes.Black, rectDot);
-            }
+        public override bool Focused => txt1.Focused || txt2.Focused || txt3.Focused || txt4.Focused;
 
-            base.OnPaint(e);
+        public new  BorderStyle BorderStyle { get; set; }
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            switch (m.Msg)
+            {
+                case NativeConstants.WM_PAINT:
+                    Graphics g = Graphics.FromHwnd(Handle);
+                    foreach (TextBox txt in Controls.OfType<TextBox>().Where(t => t != txt1))
+                    {
+                        RectangleF rectDot = new RectangleF(txt.Location.X - 2, txt.Location.Y + txt.Height - 5, 1.5F, 1.5F);
+                        g.FillEllipse(Brushes.Black, rectDot);
+                    }
+
+                    if (BorderStyle == BorderStyle.None)
+                        return;
+
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.DrawRectangle(Focused ? _focusedBorderPen : _borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
+
+                    break;
+            }
         }
     }
 }

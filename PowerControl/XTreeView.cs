@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using PowerControl.Properties;
 
 namespace PowerControl
 {
@@ -133,7 +134,7 @@ namespace PowerControl
             // 绘制节点背景色
             if (e.Node.IsSelected)
                 e.Graphics.FillRectangle(brsSelectedBack, e.Bounds);
-            e.Graphics.DrawRectangle(Pens.Red, e.Node.Bounds);
+
             // 绘制节点文本
             e.Graphics.DrawString(e.Node.Text, Font, e.Node.IsSelected ? brsSelectedFore : brsFore, e.Node.Bounds,
                 StringFormat.GenericTypographic);
@@ -146,29 +147,31 @@ namespace PowerControl
             if (e.Node.Nodes.Count <= 0)
                 return;
 
-            PointF[] trianglePts = new PointF[3];
-            if (e.Node.IsExpanded)
-            {
-                // 左下
-                trianglePts[0] = new PointF(x + fontHeight / 5, y + fontHeight / 5 * 3);
-                // 右下
-                trianglePts[1] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5 * 3);
-                // 右上
-                trianglePts[2] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5);
+            e.Graphics.DrawIconUnstretched(e.Node.IsExpanded ? Resources.tree_collapse : Resources.tree_expand, new Rectangle(x, y, Resources.tree_expand.Width, Resources.tree_expand.Height));
 
-                e.Graphics.FillPolygon(e.Node.IsSelected ? brsSelectedFore : brsFore, trianglePts);
-            }
-            else
-            {
-                // 左上
-                trianglePts[0] = new PointF(x + fontHeight / 4, y + fontHeight / 5);
-                // 左下
-                trianglePts[1] = new PointF(x + fontHeight / 4, y + fontHeight / 5 * 4);
-                // 右
-                trianglePts[2] = new PointF(x + fontHeight * .5f, y + fontHeight / 2);
+            //PointF[] trianglePts = new PointF[3];
+            //if (e.Node.IsExpanded)
+            //{
+            //    // 左下
+            //    trianglePts[0] = new PointF(x + fontHeight / 5, y + fontHeight / 5 * 3);
+            //    // 右下
+            //    trianglePts[1] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5 * 3);
+            //    // 右上
+            //    trianglePts[2] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5);
 
-                e.Graphics.DrawPolygon(e.Node.IsSelected ? penSelectedFore : penFore, trianglePts);
-            }
+            //    e.Graphics.FillPolygon(e.Node.IsSelected ? brsSelectedFore : brsFore, trianglePts);
+            //}
+            //else
+            //{
+            //    // 左上
+            //    trianglePts[0] = new PointF(x + fontHeight / 4, y + fontHeight / 5);
+            //    // 左下
+            //    trianglePts[1] = new PointF(x + fontHeight / 4, y + fontHeight / 5 * 4);
+            //    // 右
+            //    trianglePts[2] = new PointF(x + fontHeight * .5f, y + fontHeight / 2);
+
+            //    e.Graphics.DrawPolygon(e.Node.IsSelected ? penSelectedFore : penFore, trianglePts);
+            //}
         }
 
         protected override void OnAfterSelect(TreeViewEventArgs e)

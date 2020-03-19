@@ -48,6 +48,7 @@
             this.ripplePictureBox1 = new PowerControl.RipplePictureBox();
             this.xButton2 = new PowerControl.XButton();
             this.xTreeView1 = new PowerControl.XTreeView();
+            this.ipTextBox1 = new PowerControl.IPTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             this.xButton1.CheckedForeColor = System.Drawing.Color.White;
             this.xButton1.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton1.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.xButton1.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.xButton1.Font = new System.Drawing.Font("Microsoft YaHei", 8F);
             this.xButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.xButton1.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xButton1.HoldingForeColor = System.Drawing.Color.White;
@@ -97,7 +98,7 @@
             this.xButton2.CheckedForeColor = System.Drawing.Color.White;
             this.xButton2.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.xButton2.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.xButton2.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.xButton2.Font = new System.Drawing.Font("Microsoft YaHei", 8F);
             this.xButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.xButton2.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
             this.xButton2.HoldingForeColor = System.Drawing.Color.White;
@@ -115,7 +116,7 @@
             // xTreeView1
             // 
             this.xTreeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.xTreeView1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.xTreeView1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.xTreeView1.Location = new System.Drawing.Point(427, 144);
             this.xTreeView1.Name = "xTreeView1";
             treeNode1.Name = "节点6";
@@ -145,11 +146,23 @@
             this.xTreeView1.Size = new System.Drawing.Size(233, 188);
             this.xTreeView1.TabIndex = 2;
             // 
+            // ipTextBox1
+            // 
+            this.ipTextBox1.BackColor = System.Drawing.Color.White;
+            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ipTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.ipTextBox1.Location = new System.Drawing.Point(456, 367);
+            this.ipTextBox1.Name = "ipTextBox1";
+            this.ipTextBox1.Padding = new System.Windows.Forms.Padding(1);
+            this.ipTextBox1.Size = new System.Drawing.Size(133, 21);
+            this.ipTextBox1.TabIndex = 3;
+            // 
             // FrmXFormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 502);
+            this.Controls.Add(this.ipTextBox1);
             this.Controls.Add(this.xTreeView1);
             this.Controls.Add(this.ripplePictureBox1);
             this.Controls.Add(this.xButton2);
@@ -174,5 +187,6 @@
         private PowerControl.RipplePictureBox ripplePictureBox1;
         private PowerControl.XButton xButton2;
         private PowerControl.XTreeView xTreeView1;
+        private PowerControl.IPTextBox ipTextBox1;
     }
 }

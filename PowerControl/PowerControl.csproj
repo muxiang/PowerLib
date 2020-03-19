@@ -204,6 +204,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="IPTextBox.resx">
+      <DependentUpon>IPTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadingCircle\LoadingCircle.resx">
       <DependentUpon>LoadingCircle.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,6 +289,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnMinimizeDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-collapse.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-expand.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
