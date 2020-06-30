@@ -31,6 +31,7 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Appearance")]
         [Description("边框颜色")]
+        [DefaultValue(typeof(Color), "184, 184, 184")]
         public Color BorderColor
         {
             get => _borderColor;
@@ -48,6 +49,7 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Appearance")]
         [Description("焦点边框颜色")]
+        [DefaultValue(typeof(Color), "66, 215, 250")]
         public Color FocusedBorderColor
         {
             get => _focusedBorderColor;

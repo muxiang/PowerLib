@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using PowerControl.Properties;
 
 namespace PowerControl
 {
@@ -90,11 +91,6 @@ namespace PowerControl
             }
         }
 
-        private static bool IsChildSelected(TreeNode tn)
-        {
-            return tn.Nodes.Count != 0 && tn.Nodes.OfType<TreeNode>().Any(child => child.IsSelected || IsChildSelected(child));
-        }
-
         /// <summary>
         /// 判定坐标是否在节点中，返回节点或其子节点
         /// </summary>
@@ -106,7 +102,14 @@ namespace PowerControl
             if (pt.Y > node.Bounds.Top && pt.Y < node.Bounds.Bottom && pt.X > node.Bounds.X)
                 return node;
 
-            return node.Nodes.Cast<TreeNode>().FirstOrDefault(child => InNode(pt, child) != null);
+            foreach (TreeNode child in node.Nodes)
+            {
+                TreeNode result = InNode(pt, child);
+                if (result != null)
+                    return result;
+            }
+
+            return null;
         }
 
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
@@ -144,29 +147,31 @@ namespace PowerControl
             if (e.Node.Nodes.Count <= 0)
                 return;
 
-            PointF[] trianglePts = new PointF[3];
-            if (e.Node.IsExpanded)
-            {
-                // 左下
-                trianglePts[0] = new PointF(x + fontHeight / 5, y + fontHeight / 5 * 3);
-                // 右下
-                trianglePts[1] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5 * 3);
-                // 右上
-                trianglePts[2] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5);
+            e.Graphics.DrawIconUnstretched(e.Node.IsExpanded ? Resources.tree_collapse : Resources.tree_expand, new Rectangle(x, y, Resources.tree_expand.Width, Resources.tree_expand.Height));
 
-                e.Graphics.FillPolygon(e.Node.IsSelected ? brsSelectedFore : brsFore, trianglePts);
-            }
-            else
-            {
-                // 左上
-                trianglePts[0] = new PointF(x + fontHeight / 4, y + fontHeight / 5);
-                // 左下
-                trianglePts[1] = new PointF(x + fontHeight / 4, y + fontHeight / 5 * 4);
-                // 右
-                trianglePts[2] = new PointF(x + fontHeight * .5f, y + fontHeight / 2);
+            //PointF[] trianglePts = new PointF[3];
+            //if (e.Node.IsExpanded)
+            //{
+            //    // 左下
+            //    trianglePts[0] = new PointF(x + fontHeight / 5, y + fontHeight / 5 * 3);
+            //    // 右下
+            //    trianglePts[1] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5 * 3);
+            //    // 右上
+            //    trianglePts[2] = new PointF(x + fontHeight / 5 * 3, y + fontHeight / 5);
 
-                e.Graphics.DrawPolygon(e.Node.IsSelected ? penSelectedFore : penFore, trianglePts);
-            }
+            //    e.Graphics.FillPolygon(e.Node.IsSelected ? brsSelectedFore : brsFore, trianglePts);
+            //}
+            //else
+            //{
+            //    // 左上
+            //    trianglePts[0] = new PointF(x + fontHeight / 4, y + fontHeight / 5);
+            //    // 左下
+            //    trianglePts[1] = new PointF(x + fontHeight / 4, y + fontHeight / 5 * 4);
+            //    // 右
+            //    trianglePts[2] = new PointF(x + fontHeight * .5f, y + fontHeight / 2);
+
+            //    e.Graphics.DrawPolygon(e.Node.IsSelected ? penSelectedFore : penFore, trianglePts);
+            //}
         }
 
         protected override void OnAfterSelect(TreeViewEventArgs e)
@@ -190,11 +195,32 @@ namespace PowerControl
             foreach (TreeNode node in Nodes)
             {
                 TreeNode clicked = InNode(e.Location, node);
-                if (clicked != null)
-                {
-                    SelectedNode = clicked;
+                if (clicked == null) continue;
+                SelectedNode = clicked;
+                return;
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            base.OnMouseDoubleClick(e);
+
+            foreach (TreeNode node in Nodes)
+            {
+                TreeNode clicked = InNode(e.Location, node);
+                if (clicked == null) continue;
+
+                // 1px偏差
+                Rectangle rectRealBounds = new Rectangle(clicked.Bounds.X, clicked.Bounds.Y, clicked.Bounds.Width + 1, clicked.Bounds.Height);
+                if (rectRealBounds.Contains(e.Location))
                     return;
-                }
+
+                if (clicked.IsExpanded)
+                    clicked.Collapse();
+                else
+                    clicked.Expand();
+
+                return;
             }
         }
     }
