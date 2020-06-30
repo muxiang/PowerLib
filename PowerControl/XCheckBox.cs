@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace PowerControl
 {
+    /// <summary>
+    /// 表示Windows复选框
+    /// </summary>
     public sealed partial class XCheckBox : CheckBox
     {
         // 缓存画笔画刷
@@ -77,24 +80,34 @@ namespace PowerControl
             }
         }
 
+        /// <summary>
+        /// 初始化<see cref="XCheckBox"/>的实例
+        /// </summary>
         public XCheckBox()
         {
             InitializeComponent();
+
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
 
             _boxBorderColor = ForeColor;
             _innerColor = Color.FromArgb(89, 98, 255);
 
             _penInner = new Pen(_innerColor, 2F);
             _brsInner = new SolidBrush(_innerColor);
+            _brsBackColor = new SolidBrush(Color.White);
+            _brsForeColor = new SolidBrush(Color.Black);
             _penMouseHoveringForeColor = new Pen(_mouseHoveringForeColor);
             _penBoxBorderColor = new Pen(_boxBorderColor);
         }
 
+        /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs pe)
         {
             Graphics g = pe.Graphics;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            g.Clear(BackColor);
 
             // 背景
             Rectangle rectControl = new Rectangle(-1, -1, Width + 2, Height + 2);
@@ -130,19 +143,23 @@ namespace PowerControl
             }
 
             // 文字
-            g.DrawString(Text, Font, _brsForeColor, Height, (Height - Font.Height) / 2);
+            g.DrawString(Text, Font, _brsForeColor, Height, (Height - Font.Height) / 2F);
         }
 
+        /// <inheritdoc />
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);
             _brsBackColor = new SolidBrush(BackColor);
+            Invalidate();
         }
 
+        /// <inheritdoc />
         protected override void OnForeColorChanged(EventArgs e)
         {
             base.OnForeColorChanged(e);
             _brsForeColor = new SolidBrush(ForeColor);
+            Invalidate();
         }
 
         /// <summary>
@@ -167,6 +184,7 @@ namespace PowerControl
             base.OnMouseLeave(e);
         }
 
+        /// <inheritdoc />
         protected override void OnEnabledChanged(EventArgs e)
         {
             base.OnEnabledChanged(e);

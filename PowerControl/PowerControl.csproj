@@ -126,18 +126,6 @@
     <Compile Include="XForm\XForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="XForm3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="XForm3.Designer.cs">
-      <DependentUpon>XForm3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="XForm2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="XForm2.Designer.cs">
-      <DependentUpon>XForm2.cs</DependentUpon>
-    </Compile>
     <Compile Include="XForm\XFormBackground.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,9 +204,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XDataGridView.resx">
       <DependentUpon>XDataGridView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XForm3.resx">
-      <DependentUpon>XForm3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XForm\XFormBackground.resx">
       <DependentUpon>XFormBackground.cs</DependentUpon>

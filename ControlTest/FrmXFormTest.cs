@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 using PowerControl;
@@ -19,20 +13,46 @@ namespace ControlTest
             InitializeComponent();
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void btnCommonButton_Click(object sender, EventArgs e)
         {
-            base.OnPaint(e);
+            XMessageBox.Show("常规按钮单击", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void xButton1_Click(object sender, EventArgs e)
+        private void ddbi1_Click(object sender, EventArgs e)
         {
-            XMessageBox.Show("Test", "xxx", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            MessageBox.Show("Test","",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+            XMessageBox.Show("下拉项1单击");
         }
 
-        private void FrmXFormTest_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void ddbi2_Click(object sender, EventArgs e)
         {
-            xButton1.PerformClick();
+            XMessageBox.Show("下拉项2单击");
+        }
+
+        private void FrmXFormTest_Load(object sender, EventArgs e)
+        {
+            loadingCircle1.Start();
+        }
+
+        private void btnLoadingLayer_Click(object sender, EventArgs e)
+        {
+            using (LoadingLayer ll = new LoadingLayer(this, .8D, true))
+            {
+                ThreadPool.QueueUserWorkItem(o =>
+                {
+                    LoadingLayer layer = (LoadingLayer)o;
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Thread.Sleep(500);
+                        int progress = (i + 1) * 10;
+                        layer.UpdateProgress(progress, $"当前进度 {progress}%");
+                    }
+
+                    layer.Close();
+                }, ll);
+
+                ll.Show();
+            }
         }
     }
 }

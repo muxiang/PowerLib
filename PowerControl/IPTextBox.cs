@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace PowerControl
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public sealed partial class IPTextBox : UserControl
     {
+        private IPAddress _value;
+
         /// <summary>
         /// 初始化IP输入文本框的实例
         /// </summary>
@@ -61,7 +64,7 @@ namespace PowerControl
                     }
                 };
 
-                txt.KeyPress += (sender, e1) =>
+                txt.KeyPress += (s1, e1) =>
                 {
                     if ((e1.KeyChar < '0' || e1.KeyChar > '9') && e1.KeyChar != 8)
                         e1.Handled = true;
@@ -70,26 +73,54 @@ namespace PowerControl
                         if (e1.KeyChar == 8) return;
 
                         // 第三位数字按下后跳到下一段
-                        TextBox t = (TextBox)sender;
+                        TextBox t = (TextBox)s1;
                         if (t.SelectionStart == 2)
                             Controls.OfType<TextBox>().FirstOrDefault(textBox =>
                                     textBox.Name.EndsWith((Convert.ToInt32(t.Name.Substring(3, 1)) + 1).ToString()))
                                 ?.Focus();
                     }
                 };
+
+                txt.TextChanged += InnerTxtOnTextChanged;
             }
         }
 
-        /// <inheritdoc cref="TextBox"/>
-        public override string Text
+        private void InnerTxtOnTextChanged(object s1, EventArgs e1)
         {
-            get => $"{txt1.Text}.{txt2.Text}.{txt3.Text}.{txt4.Text}";
+            string strIp = $"{txt1.Text}.{txt2.Text}.{txt3.Text}.{txt4.Text}";
+
+            if (!IPAddress.TryParse(strIp, out IPAddress ip))
+                return;
+
+            _value = ip;
+        }
+
+        /// <inheritdoc cref="TextBox"/>
+        [Browsable(true)]
+        public new string Text
+        {
+            get => Value == null ? string.Empty : Value.ToString();
             set
             {
                 if (!IPAddress.TryParse(value, out IPAddress ip))
                     return;
 
-                byte[] bytes = ip.GetAddressBytes();
+                Value = ip;
+            }
+        }
+
+        /// <summary>
+        /// 获取输入的IP地址
+        /// </summary>
+        public IPAddress Value
+        {
+            get => _value;
+            set
+            {
+                if (value == null)
+                    return;
+
+                byte[] bytes = value.GetAddressBytes();
                 txt1.Text = bytes[0].ToString();
                 txt2.Text = bytes[1].ToString();
                 txt3.Text = bytes[2].ToString();
@@ -97,18 +128,14 @@ namespace PowerControl
             }
         }
 
-        /// <summary>
-        /// 获取输入的IP地址
-        /// </summary>
-        public IPAddress Value => !IPAddress.TryParse(Text, out IPAddress ip) ? null : ip;
-
+        /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs e)
         {
             foreach (TextBox txt in Controls.OfType<TextBox>().SkipWhile(t => t == txt1))
             {
                 RectangleF rectDot =
                     new RectangleF(txt.Location.X - 2, txt.Location.Y + txt.Height - 5, 1.5F, 1.5F);
-                e.Graphics.FillEllipse(Brushes.Black, rectDot);
+                e.Graphics.FillEllipse(Brushes.Gray, rectDot);
             }
 
             base.OnPaint(e);

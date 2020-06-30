@@ -17,7 +17,7 @@ namespace PowerControl
         /// <summary>
         /// 按钮状态
         /// </summary>
-        enum ButtonState
+        private enum ButtonState
         {
             Normal,
             Holding,
@@ -31,7 +31,7 @@ namespace PowerControl
         /// <summary>
         /// 鼠标停留位置
         /// </summary>
-        enum MouseOn
+        private enum MouseOn
         {
             /// <summary>
             /// 按钮
@@ -90,8 +90,10 @@ namespace PowerControl
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
         }
 
+        /// <inheritdoc />
         public override bool Focused => true;
 
+        /// <inheritdoc />
         protected override bool ShowFocusCues => true;
 
         #region 属性
@@ -473,7 +475,6 @@ namespace PowerControl
 
         // 文本画刷
         private SolidBrush _textBrush;
-        private SolidBrush _holdingTextBrush;
 
         // 按钮状态
         private ButtonState _buttonState;
@@ -1085,7 +1086,7 @@ namespace PowerControl
             }
 
             // 测量文本大小
-            SizeF szText = g.MeasureString(Text, Font, Size, StringFormat.GenericTypographic);
+            SizeF szText = g.MeasureString(Text, Font, Size, StringFormat.GenericDefault);
 
             // 全部文本总大小
             SizeF szTotal = new SizeF(szText.Width + szShortcut.Width + szParentheses.Width,
@@ -1106,7 +1107,7 @@ namespace PowerControl
             // 起始坐标
             PointF drawPt = new PointF(textXOffset, Height / 2f - szTotal.Height / 2F);
 
-            g.DrawString(Text, Font, _textBrush, drawPt, StringFormat.GenericTypographic);
+            g.DrawString(Text, Font, _textBrush, drawPt, StringFormat.GenericDefault);
 
             if (_shortcut == '\0')
                 return contentXOffset;

@@ -19,10 +19,12 @@ namespace PowerControl
         /// <returns>父窗口引用</returns>
         public static Form GetParentForm(Control c)
         {
-            if (c.Parent == null) return null;
-            if (c.Parent is Form parent) return parent;
-
-            return GetParentForm(c.Parent);
+            return c.Parent switch
+            {
+                null => null,
+                Form parent => parent,
+                _ => GetParentForm(c.Parent),
+            };
         }
 
         /// <summary>

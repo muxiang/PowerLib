@@ -1,6 +1,6 @@
 ﻿namespace PowerControl
 {
-    partial class XComboBox
+    sealed partial class XComboBox
     {
         /// <summary>
         /// 必需的设计器变量。

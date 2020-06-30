@@ -6,7 +6,10 @@ using System.Windows.Forms;
 
 namespace PowerControl
 {
-    public partial class XComboBox : ComboBox
+    /// <summary>
+    /// 表示组合框控件
+    /// </summary>
+    public sealed partial class XComboBox : ComboBox
     {
         private Color _borderColor = Color.FromArgb(184, 184, 184);
         private Color _MouseHoveringForeColor = Color.FromArgb(83, 128, 252);
@@ -23,12 +26,15 @@ namespace PowerControl
         // 鼠标正在停留
         private bool _isMouseHovering;
 
+        /// <summary>
+        /// 初始化<see cref="XComboBox"/>的实例
+        /// </summary>
         public XComboBox()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.DoubleBuffer
+            /*SetStyle(ControlStyles.DoubleBuffer
                 | ControlStyles.UserPaint
-                | ControlStyles.AllPaintingInWmPaint, true);
+                | ControlStyles.AllPaintingInWmPaint, true);*/
 
             _brsBackColor = new SolidBrush(BackColor);
             _brsForeColor = new SolidBrush(ForeColor);
@@ -105,6 +111,7 @@ namespace PowerControl
                 {
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
                     g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.Clear(BackColor);
 
                     Rectangle rect = new Rectangle(0, 0, Width, Height);
                     Rectangle rectBg = new Rectangle(1, 1, Width - 2, Height - 2);
@@ -115,17 +122,17 @@ namespace PowerControl
                     g.FillRectangle(Enabled ? _brsBackColor : _brsDisabledBackColor, rectBg);
 
                     string selValue = SelectedItem == null ? "" : SelectedItem.ToString();
-                    string Text = Enabled ? selValue : "";
+                    string text = Enabled ? selValue : "";
 
                     // 下拉箭头
                     g.DrawLines(_isMouseHovering ? _penMouseHoveringForeColor : _penBorderColor, new[]
                     {
-                        new PointF(Width - Height / 4 * 3, Height / 2),
-                        new PointF(Width - (Height / 4 * 3 - Height / 8), Height / 3 * 2),
-                        new PointF(Width - (Height / 4 * 3 - Height / 4), Height / 2)
+                        new PointF(Width - Height / 4 * 3, Height / 2F),
+                        new PointF(Width - (Height / 4 * 3 - Height / 8), Height / 3F * 2),
+                        new PointF(Width - (Height / 4 * 3 - Height / 4), Height / 2F)
                     });
 
-                    g.DrawString(Text, Font, _brsForeColor, 1, 2);
+                    g.DrawString(text, Font, _brsForeColor, 1, 2);
 
                     NativeMethods.ReleaseDC(m.HWnd, hDC);
                 }

@@ -61,23 +61,11 @@ namespace PowerControl.Design
         /// <summary>
         /// 事件页名称
         /// </summary>
-        public override string TabName
-        {
-            get
-            {
-                return "事件";
-            }
-        }
+        public override string TabName => "事件";
 
         /// <summary>
         /// 事件页图标
         /// </summary>
-        public override Bitmap Bitmap
-        {
-            get
-            {
-                return Properties.Resources.iconEvent;
-            }
-        }
+        public override Bitmap Bitmap => Properties.Resources.iconEvent;
     }
 }

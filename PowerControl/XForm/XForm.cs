@@ -44,7 +44,7 @@ namespace PowerControl
         // 边框宽度
         private const int BorderWidth = 4;
         // 标题栏高度
-        private const int TitleBarHeight = 30;
+        public const int TitleBarHeight = 30;
         // 标题栏图标大小
         private const int IconSize = 16;
         // 标题栏按钮大小
@@ -54,7 +54,6 @@ namespace PowerControl
         #endregion 常量
 
         #region 字段
-
 
         // 是否渲染阴影
         private bool _shadow = true;
@@ -225,7 +224,12 @@ namespace PowerControl
         #endregion 设计器
 
         #region 常规
-
+        
+        /// <summary>
+        /// 指定一个值，将覆盖当前AppDomain下所有XForm的图标
+        /// </summary>
+        public static Icon OverrideIcon { get; set; }
+        
         /// <summary>
         /// 获取表示标题栏的矩形(相对于包含客户区与非客户区的整个窗口)
         /// </summary>
@@ -606,7 +610,7 @@ namespace PowerControl
                 brsText,
                 new RectangleF(txtX,
                     TitleBarRectangle.Top + (TitleBarRectangle.Bottom - szText.Height) / 2,
-                    Width - BorderWidth * 2 - SystemInformation.MinimumWindowSize.Width,
+                    Width - BorderWidth * 2,//TODO:算的不对
                     TitleBarHeight),
                 StringFormat.GenericDefault);
 
@@ -1110,6 +1114,9 @@ namespace PowerControl
         {
             if (!DesignMode && _shadow)
                 BuildBackWindow();
+            
+            if (OverrideIcon != null)
+                Icon = OverrideIcon;
 
             base.OnLoad(e);
         }
