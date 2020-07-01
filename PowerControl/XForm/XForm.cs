@@ -66,9 +66,9 @@ namespace PowerControl
 
         private FormBorderStyle _formBorderStyle = FormBorderStyle.Sizable;
 
-        private Color _titleBarStartColor = Color.FromArgb(89, 98, 255);
-        private Color _titleBarEndColor = Color.FromArgb(130, 101, 255);
-        private Color _titleForeColor = Color.White;
+        private Color _titleBarStartColor;
+        private Color _titleBarEndColor;
+        private Color _titleForeColor;
 
         // 标题栏按钮图标
         private Image _imgBtnClose;
@@ -107,6 +107,18 @@ namespace PowerControl
                 , true);
 
             InitializeComponent();
+
+            _titleBarStartColor = DefaultTitleBarStartColor == Color.Transparent
+                ? Color.FromArgb(89, 98, 255)
+                : DefaultTitleBarStartColor;
+
+            _titleBarEndColor = DefaultTitleBarEndColor == Color.Transparent
+                ? Color.FromArgb(130, 101, 255)
+                : DefaultTitleBarEndColor;
+
+            _titleForeColor = DefaultTitleBarForeColor == Color.Transparent
+                ? Color.White
+                : DefaultTitleBarForeColor;
         }
 
         private void InitializeComponent()
@@ -226,12 +238,27 @@ namespace PowerControl
         #endregion 设计器
 
         #region 常规
-        
+
         /// <summary>
         /// 指定一个值，将覆盖当前AppDomain下所有XForm的图标
         /// </summary>
         public static Icon OverrideIcon { get; set; }
-        
+
+        /// <summary>
+        /// 指定一个值，作为当前AppDomain下所有XForm的标题栏起始颜色
+        /// </summary>
+        public static Color DefaultTitleBarStartColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// 指定一个值，作为当前AppDomain下所有XForm的标题栏结束颜色
+        /// </summary>
+        public static Color DefaultTitleBarEndColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// 指定一个值，作为当前AppDomain下所有XForm的标题栏前景颜色
+        /// </summary>
+        public static Color DefaultTitleBarForeColor { get; set; } = Color.Transparent;
+
         /// <summary>
         /// 获取表示标题栏的矩形(相对于包含客户区与非客户区的整个窗口)
         /// </summary>
@@ -1012,7 +1039,7 @@ namespace PowerControl
                 case WM_NCMOUSEMOVE:
                     {
                         TRACKMOUSEEVENT tme = new TRACKMOUSEEVENT();
-                        tme.cbSize = (uint) Marshal.SizeOf(tme);
+                        tme.cbSize = (uint)Marshal.SizeOf(tme);
                         tme.dwFlags = 2 | 0x10;// TME_LEAVE | TME_NONCLIENT
                         tme.hwndTrack = m.HWnd;
                         TrackMouseEvent(tme);
@@ -1123,7 +1150,7 @@ namespace PowerControl
         {
             if (!DesignMode && _shadow)
                 BuildBackWindow();
-            
+
             if (OverrideIcon != null)
                 Icon = OverrideIcon;
 

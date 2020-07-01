@@ -25,7 +25,9 @@ namespace ControlTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly()?.Location ?? throw new InvalidOperationException());
-            
+            XForm.DefaultTitleBarStartColor = Color.PaleVioletRed;
+            XForm.DefaultTitleBarEndColor = Color.Pink;
+
             Application.Run(new FrmXFormTest());
         }
     }
