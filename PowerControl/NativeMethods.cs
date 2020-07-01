@@ -101,6 +101,9 @@ namespace PowerControl
             int cy,
             uint uFlags);
 
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern bool TrackMouseEvent([In, Out] TRACKMOUSEEVENT lpEventTrack);
+
         #endregion USER32.dll
 
         #region GDI32.dll

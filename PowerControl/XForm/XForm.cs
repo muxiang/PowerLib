@@ -43,7 +43,9 @@ namespace PowerControl
 
         // 边框宽度
         private const int BorderWidth = 4;
-        // 标题栏高度
+        /// <summary>
+        /// 标题栏高度
+        /// </summary>
         public const int TitleBarHeight = 30;
         // 标题栏图标大小
         private const int IconSize = 16;
@@ -610,7 +612,7 @@ namespace PowerControl
                 brsText,
                 new RectangleF(txtX,
                     TitleBarRectangle.Top + (TitleBarRectangle.Bottom - szText.Height) / 2,
-                    Width - BorderWidth * 2,//TODO:算的不对
+                    Width - BorderWidth * 2,
                     TitleBarHeight),
                 StringFormat.GenericDefault);
 
@@ -1009,6 +1011,12 @@ namespace PowerControl
                     }
                 case WM_NCMOUSEMOVE:
                     {
+                        TRACKMOUSEEVENT tme = new TRACKMOUSEEVENT();
+                        tme.cbSize = (uint) Marshal.SizeOf(tme);
+                        tme.dwFlags = 2 | 0x10;// TME_LEAVE | TME_NONCLIENT
+                        tme.hwndTrack = m.HWnd;
+                        TrackMouseEvent(tme);
+
                         switch ((int)m.WParam)
                         {
                             case HTCLOSE:
@@ -1100,6 +1108,7 @@ namespace PowerControl
                         break;
                     }
                 case WM_MOUSEMOVE:
+                case WM_NCMOUSELEAVE:
                     base.WndProc(ref m);
                     RedrawTitleBarButtons();
                     break;
@@ -1136,6 +1145,14 @@ namespace PowerControl
             base.OnSizeChanged(e);
 
             DrawTitleBar();
+        }
+
+        /// <inheritdoc />
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            DrawTitleBackgroundTextIcon();
         }
 
         #endregion 重写

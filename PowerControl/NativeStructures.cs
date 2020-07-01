@@ -199,5 +199,15 @@ namespace PowerControl
             public int cy;
             public uint flags;
         }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public class TRACKMOUSEEVENT
+        {
+            public uint cbSize;
+            public uint dwFlags;
+            public IntPtr hwndTrack;
+            public uint dwHoverTime;
+        }
+
     }
 }
