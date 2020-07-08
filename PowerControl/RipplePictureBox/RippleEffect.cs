@@ -205,6 +205,7 @@ namespace PowerControl
 
         #endregion 公开方法
 
+        /// <inheritdoc />
         public void Dispose()
         {
             _frame?.Dispose();

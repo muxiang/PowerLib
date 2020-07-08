@@ -7,7 +7,7 @@ namespace PowerControl
         #region Windows Messages
 
         public const int WM_USER = 0x0400;
-        
+
         public const int WM_CREATE = 0x01;
         public const int WM_DESTROY = 0x02;
         public const int WM_MOVE = 0x03;
@@ -18,7 +18,7 @@ namespace PowerControl
         public const int WM_SHOWWINDOW = 0x0018;
         public const int WM_SETCURSOR = 0x0020;
         public const int WM_GETMINMAXINFO = 0x0024;
-        
+
         public const int WM_WINDOWPOSCHANGING = 0x0046;
         public const int WM_WINDOWPOSCHANGED = 0x0047;
 
