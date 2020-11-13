@@ -82,9 +82,6 @@
     <Compile Include="LoadingCircle\LoadingCircle.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LoadingCircle\LoadingCircle.designer.cs">
-      <DependentUpon>LoadingCircle.cs</DependentUpon>
-    </Compile>
     <Compile Include="NativeConstants.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeStructures.cs" />
@@ -126,7 +123,7 @@
     <Compile Include="XForm\XForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="XForm\XFormBackground.cs">
+    <Compile Include="XForm\XFormShadow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="XGroupBox.cs">
@@ -195,9 +192,6 @@
     <EmbeddedResource Include="IPTextBox.resx">
       <DependentUpon>IPTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingCircle\LoadingCircle.resx">
-      <DependentUpon>LoadingCircle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="IrregularControls\ProjectFlowChart.resx">
       <DependentUpon>ProjectFlowChart.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,8 +202,8 @@
     <EmbeddedResource Include="XDataGridView.resx">
       <DependentUpon>XDataGridView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="XForm\XFormBackground.resx">
-      <DependentUpon>XFormBackground.cs</DependentUpon>
+    <EmbeddedResource Include="XForm\XFormShadow.resx">
+      <DependentUpon>XFormShadow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XMessageBox.resx">
       <DependentUpon>XMessageBox.cs</DependentUpon>

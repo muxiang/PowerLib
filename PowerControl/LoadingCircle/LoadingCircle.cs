@@ -15,7 +15,7 @@ namespace PowerControl
     /// 表示一个加载圆圈动画
     /// </summary>
     [ToolboxBitmap(typeof(LoadingCircle), "LoadingCircleIcon.png")]
-    public sealed partial class LoadingCircle : Control
+    public sealed class LoadingCircle : Control
     {
         #region 构造
 
@@ -24,8 +24,6 @@ namespace PowerControl
         /// </summary>
         public LoadingCircle()
         {
-            InitializeComponent();
-
             // 双缓冲，禁擦背景
             SetStyle(
                 ControlStyles.AllPaintingInWmPaint |
@@ -174,7 +172,8 @@ namespace PowerControl
                         _isDrawing = true;
                     }
 
-                    _actionTmr.Change(ActionInterval, Timeout.Infinite);
+                    if (_isActived)
+                        _actionTmr.Change(ActionInterval, Timeout.Infinite);
                 },
                 null, ActionInterval, Timeout.Infinite);
 
@@ -226,6 +225,22 @@ namespace PowerControl
             _dotSize = Width / 12f;
 
             base.OnResize(e);
+        }
+
+        /// <summary>
+        /// 清理所有正在使用的资源。
+        /// </summary>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(() => { Dispose(disposing); }));
+                return;
+            }
+
+            if (disposing) Stop();
+            base.Dispose(disposing);
         }
 
         #endregion 重写

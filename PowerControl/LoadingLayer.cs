@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace PowerControl
@@ -10,41 +11,91 @@ namespace PowerControl
     /// <inheritdoc />
     public sealed class LoadingLayer : IDisposable
     {
-        private readonly Form _form;
-        private readonly LoadingCircle _circle;
-        private readonly XProgressBar _progressBar;
+        private Form _form;
+        private LoadingCircle _circle;
+        private XProgressBar _progressBar;
+
+        private readonly Thread _formThread;
 
         /// <summary>
         /// 构造一个加载遮罩层
         /// </summary>
-        /// <param name="parent">父窗口</param>
+        /// <param name="rectLayer">遮罩层坐标及尺寸</param>
         /// <param name="opacity">由一个0~1的double值表示的透明度</param>
         /// <param name="progressBar">
         /// 指示遮罩层是否包含一个进度条，在另一线程中调用 <see cref="UpdateProgress"/>更新进度条
         /// </param>
         /// <param name="customCursor">指定自定义的光标</param>
-        public LoadingLayer(Form parent, double opacity = .5D, bool progressBar = false, Cursor customCursor = null)
+        /// <param name="newUiThread">指示遮罩层是否在独立的UI线程执行</param>
+        public LoadingLayer(
+            Rectangle rectLayer,
+            double opacity = .5D,
+            bool progressBar = false,
+            Cursor customCursor = null,
+            bool newUiThread = false)
+        {
+            if (newUiThread)
+            {
+                _formThread = new Thread(() =>
+                {
+                    CreateForm(rectLayer, opacity, progressBar, customCursor);
+                    _circle.Switch();
+                    _form.TopMost = true;
+                    Application.Run(_form);
+                })
+                { IsBackground = true };
+                _formThread.SetApartmentState(ApartmentState.STA);
+
+                return;
+            }
+
+            CreateForm(rectLayer, opacity, progressBar, customCursor);
+        }
+
+        /// <summary>
+        /// 构造一个加载遮罩层
+        /// </summary>
+        /// <param name="parentForm">父窗口</param>
+        /// <param name="opacity">由一个0~1的double值表示的透明度</param>
+        /// <param name="progressBar">
+        /// 指示遮罩层是否包含一个进度条，在另一线程中调用 <see cref="UpdateProgress"/>更新进度条
+        /// </param>
+        /// <param name="customCursor">指定自定义的光标</param>
+        /// <param name="newUiThread">指示遮罩层是否在独立的UI线程执行</param>
+        public LoadingLayer(
+            Form parentForm,
+            double opacity = .5D,
+            bool progressBar = false,
+            Cursor customCursor = null,
+            bool newUiThread = false)
+            : this(new Rectangle(parentForm.Location, parentForm.Size), opacity, progressBar, customCursor, newUiThread) { }
+
+        private void CreateForm(
+            Rectangle rectLayer,
+            double opacity = .5D,
+            bool progressBar = false,
+            Cursor customCursor = null)
         {
             _form = new Form
             {
-                Size = parent.Size,
-                Location = parent.Location,
+                Size = rectLayer.Size,
+                Location = rectLayer.Location,
                 Opacity = opacity,
                 ShowInTaskbar = false,
                 FormBorderStyle = FormBorderStyle.None,
                 BackColor = Color.Black,
-                StartPosition = FormStartPosition.CenterParent,
+                StartPosition = FormStartPosition.Manual,
                 UseWaitCursor = customCursor == null
             };
 
             if (customCursor != null)
                 _form.Cursor = customCursor;
 
-            int wh = Math.Min(parent.Width / 2, parent.Height / 2);
+            int wh = Math.Min(rectLayer.Width / 2, rectLayer.Height / 2);
             _circle = new LoadingCircle
             {
                 Size = new Size(wh, wh),
-                Location = new Point(parent.Width / 2 - wh / 2, parent.Height / 2 - wh / 2)
+                Location = new Point(rectLayer.Width / 2 - wh / 2, rectLayer.Height / 2 - wh / 2)
             };
 
             if (progressBar)
@@ -64,22 +115,39 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 显示遮罩层，此方法将阻塞当前调用线程，
-        /// 调用前请确保在另一线程中调用了Close()
+        /// 显示遮罩层，如果在构造此<see cref="LoadingLayer"/>时没有指定newUiThread参数为true，
+        /// 此方法将阻塞当前调用线程，直到另一线程中调用了Close()
         /// </summary>
         public void Show()
         {
-            if (_form.InvokeRequired)
-                _form.BeginInvoke(new MethodInvoker(() =>
+            if (_formThread == null)
+            {
+                if (_form.InvokeRequired)
+                    _form.BeginInvoke(new MethodInvoker(() =>
+                    {
+                        if (_form.Disposing || _form.IsDisposed)
+                            return;
+
+                        if (_form.Visible)
+                            return;
+
+                        _circle.Switch();
+                        _form.ShowDialog();
+                    }));
+                else
                 {
+                    if (_form.Disposing || _form.IsDisposed)
+                        return;
+
+                    if (_form.Visible)
+                        return;
+
                     _circle.Switch();
                     _form.ShowDialog();
-                }));
-            else
-            {
-                _circle.Switch();
-                _form.ShowDialog();
+                }
             }
+            else
+                _formThread.Start();
         }
 
         /// <summary>
@@ -87,10 +155,13 @@ namespace PowerControl
         /// </summary>
         public void Close()
         {
-            if (_form.InvokeRequired)
-                _form.BeginInvoke(new MethodInvoker(() => _form.Close()));
+            if (_form.IsHandleCreated)
+                _form.BeginInvoke(new MethodInvoker(_form.Close));
             else
-                _form.Close();
+                _form.HandleCreated += (s1, e1) =>
+                {
+                    _form.BeginInvoke(new MethodInvoker(_form.Close));
+                };
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using static PowerControl.NativeStructures;
+using static PowerControl.NativeConstants;
 
 namespace PowerControl
 {
@@ -14,7 +15,7 @@ namespace PowerControl
 
         [DllImport("USER32.dll")]
         public static extern bool SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
-        
+
         [DllImport("USER32.dll")]
         public static extern IntPtr GetDC(IntPtr hWnd);
 
@@ -37,6 +38,10 @@ namespace PowerControl
         [DllImport("USER32.dll")]
         public static extern bool EndPaint(IntPtr hWnd, ref PAINTSTRUCT paintStruct);
 
+        [DllImport("USER32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+
         [DllImport("USER32.dll", EntryPoint = "FindWindow", SetLastError = true)]
         public static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
 
@@ -47,7 +52,7 @@ namespace PowerControl
         public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
         public delegate bool EnumWindowsProc(IntPtr hwnd, IntPtr lParam);
-        
+
         [DllImport("USER32.dll", SetLastError = true)]
         public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
 
@@ -104,6 +109,12 @@ namespace PowerControl
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public static extern bool TrackMouseEvent([In, Out] TRACKMOUSEEVENT lpEventTrack);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr SetWindowsHookEx(HookType hookType, HookProc lpfn, IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32.dll")]
+        public static extern int CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
         #endregion USER32.dll
 
         #region GDI32.dll
@@ -113,13 +124,25 @@ namespace PowerControl
 
         [DllImport("GDI32.dll", EntryPoint = "SelectObject")]
         public static extern IntPtr SelectObject([In] IntPtr hdc, [In] IntPtr hgdiobj);
-        
+
         [DllImport("GDI32.dll", EntryPoint = "DeleteDC")]
         public static extern bool DeleteDC([In] IntPtr hdc);
 
         [DllImport("GDI32.dll", EntryPoint = "DeleteObject")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DeleteObject([In] IntPtr hObject);
+
+        [DllImport("GDI32.dll")]
+        public static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest, int nWidth, int nHeight,
+            IntPtr hObjSource, int nXSrc, int nYSrc, TernaryRasterOperations dwRop);
+
+        [DllImport("GDI32.dll", EntryPoint = "StretchBlt")]
+        public static extern bool StretchBlt(IntPtr hdcDest, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest,
+            IntPtr hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc,
+            TernaryRasterOperations dwRop);
+
+        [DllImport("GDI32.dll")]
+        public static extern bool SetStretchBltMode(IntPtr hdc, StretchMode iStretchMode);
 
         #endregion GDI32.dll
 

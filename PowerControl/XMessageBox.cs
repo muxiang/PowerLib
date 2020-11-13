@@ -45,11 +45,17 @@ namespace PowerControl
         {
             InitializeComponent();
 
-            StartPosition = FormStartPosition.CenterScreen;
+            if (Parent == null)
+                StartPosition = FormStartPosition.CenterScreen;
 
             _content = text;
             Text = caption;
 
+            base.TitleBarStartColor = TitleBarStartColor;
+            base.TitleBarEndColor = TitleBarEndColor;
+            base.TitleForeColor = TitleForeColor;
+            base.Shadow = Shadow;
+            
             switch (icon)
             {
                 case MessageBoxIcon.None:
@@ -77,7 +83,7 @@ namespace PowerControl
             using (Graphics g = CreateGraphics())
                 _szText = g.MeasureString(text, Font,
                     new SizeF(TextMaxWidth, Screen.PrimaryScreen.Bounds.Height),
-                    StringFormat.GenericDefault);
+                    StringFormat.GenericTypographic);
 
             switch (buttons)
             {
@@ -88,14 +94,15 @@ namespace PowerControl
                     if (_szText.Width < TextMinWidth)
                         _szText.Width = TextMinWidth;
 
-                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0);
-                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2) + TitleBarHeight;
-
+                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0)
+                                                                                           + SystemInformation.FrameBorderSize.Width * 4;
+                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2)
+                             + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4;
                     if (Height < WindowMinHeight)
                         Height = (int)WindowMinHeight;
 
-                    btnOK.Location = new Point((int)(Width / 2F - btnOK.Width / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnOK.Location = new Point((int)(Width / 2F - btnOK.Width / 2F - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
                     Controls.AddRange(new Control[] { btnOK });
                     break;
@@ -108,17 +115,20 @@ namespace PowerControl
                     if (_szText.Width < TextMinWidth)
                         _szText.Width = TextMinWidth;
 
-                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0);
+                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0)
+                                                                                            + SystemInformation.FrameBorderSize.Width * 4;
                     Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2)
-                             + TitleBarHeight + SystemInformation.FrameBorderSize.Width * 4;
+                             + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4;
                     if (Height < WindowMinHeight)
                         Height = (int)WindowMinHeight;
 
-                    btnOK.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnOK.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin / 2F
+                                                                - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
-                    btnCancel.Location = new Point((int)(Width / 2F + ButtonMargin / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnCancel.Location = new Point((int)(Width / 2F + ButtonMargin / 2F
+                                                         - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
                     Controls.AddRange(new Control[] { btnOK, btnCancel });
                     break;
@@ -132,20 +142,24 @@ namespace PowerControl
                     if (_szText.Width < TextMinWidth)
                         _szText.Width = TextMinWidth;
 
-                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0);
-                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2) + TitleBarHeight;
-
+                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0)
+                                                                                            + SystemInformation.FrameBorderSize.Width * 4;
+                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2)
+                             + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4;
                     if (Height < WindowMinHeight)
                         Height = (int)WindowMinHeight;
 
-                    btnAbort.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin - ButtonWidth / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnAbort.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin - ButtonWidth / 2F
+                                                      - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
-                    btnRetry.Location = new Point((int)(Width / 2F - ButtonWidth / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnRetry.Location = new Point((int)(Width / 2F - ButtonWidth / 2F
+                                                                - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
-                    btnIgnore.Location = new Point((int)(Width / 2F + ButtonMargin + ButtonWidth / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnIgnore.Location = new Point((int)(Width / 2F + ButtonMargin + ButtonWidth / 2F
+                                                         - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
                     Controls.AddRange(new Control[] { btnAbort, btnRetry, btnIgnore });
                     break;
@@ -159,20 +173,24 @@ namespace PowerControl
                     if (_szText.Width < TextMinWidth)
                         _szText.Width = TextMinWidth;
 
-                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0);
-                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2) + TitleBarHeight;
-
+                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0)
+                                                                                            + SystemInformation.FrameBorderSize.Width * 4;
+                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2)
+                             + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4;
                     if (Height < WindowMinHeight)
                         Height = (int)WindowMinHeight;
 
-                    btnYes.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin - ButtonWidth / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnYes.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin - ButtonWidth / 2F
+                                                      - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
-                    btnNo.Location = new Point((int)(Width / 2F - ButtonWidth / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnNo.Location = new Point((int)(Width / 2F - ButtonWidth / 2F
+                                                     - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
-                    btnCancel.Location = new Point((int)(Width / 2F + ButtonMargin + ButtonWidth / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnCancel.Location = new Point((int)(Width / 2F + ButtonMargin + ButtonWidth / 2F
+                                                      - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
                     Controls.AddRange(new Control[] { btnYes, btnNo, btnCancel });
                     break;
@@ -185,16 +203,20 @@ namespace PowerControl
                     if (_szText.Width < TextMinWidth)
                         _szText.Width = TextMinWidth;
 
-                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0);
-                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2) + TitleBarHeight;
+                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0)
+                                                                                            + SystemInformation.FrameBorderSize.Width * 4;
+                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2)
+                             + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4;
                     if (Height < WindowMinHeight)
                         Height = (int)WindowMinHeight;
 
-                    btnYes.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnYes.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin / 2F
+                                                     - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
-                    btnNo.Location = new Point((int)(Width / 2F + ButtonMargin / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnNo.Location = new Point((int)(Width / 2F + ButtonMargin / 2F
+                                                         - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
                     Controls.AddRange(new Control[] { btnYes, btnNo });
                     break;
@@ -207,16 +229,20 @@ namespace PowerControl
                     if (_szText.Width < TextMinWidth)
                         _szText.Width = TextMinWidth;
 
-                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0);
-                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2) + TitleBarHeight;
+                    Width = Math.Max((int)(_szText.Width + TextMarginX * 2), btnTotalWidth) + (int)(_icon?.Width + IconMarginX ?? 0)
+                                                                                            + SystemInformation.FrameBorderSize.Width * 4;
+                    Height = (int)(ButtonHeight + ButtonMargin * 2 + _szText.Height + TextMarginY * 2)
+                             + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4;
                     if (Height < WindowMinHeight)
                         Height = (int)WindowMinHeight;
 
-                    btnRetry.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnRetry.Location = new Point((int)(Width / 2F - ButtonWidth - ButtonMargin / 2F
+                                                     - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
-                    btnCancel.Location = new Point((int)(Width / 2F + ButtonMargin / 2F),
-                        Height - ButtonMargin - ButtonHeight - TitleBarHeight);
+                    btnCancel.Location = new Point((int)(Width / 2F + ButtonMargin / 2F
+                                                         - SystemInformation.FrameBorderSize.Width * 2),
+                        Height - ButtonMargin - ButtonHeight - (SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Width * 4));
 
                     Controls.AddRange(new Control[] { btnRetry, btnCancel });
                     break;
@@ -228,17 +254,19 @@ namespace PowerControl
         /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
+
             if (_icon != null)
             {
                 e.Graphics.DrawIcon(_icon, (int)IconMarginX, (int)TextMarginY);
                 e.Graphics.DrawString(_content, Font, new SolidBrush(Color.FromArgb(80, 80, 80)),
                     new RectangleF(IconMarginX + _icon.Width + TextMarginX, TextMarginY, _szText.Width, _szText.Height),
-                    StringFormat.GenericDefault);
+                    StringFormat.GenericTypographic);
             }
             else
                 e.Graphics.DrawString(_content, Font, new SolidBrush(Color.FromArgb(80, 80, 80)),
                     new RectangleF(TextMarginX, TextMarginY, _szText.Width, _szText.Height),
-                    StringFormat.GenericDefault);
+                    StringFormat.GenericTypographic);
 
             base.OnPaint(e);
         }
@@ -271,6 +299,41 @@ namespace PowerControl
         }
 
         /// <summary>
+        /// 获取或设置消息框标题栏的渐变起始颜色。
+        /// </summary>
+        public new static Color TitleBarStartColor { get; set; }
+
+        /// <summary>
+        /// 获取或设置消息框标题栏的渐变结束颜色。
+        /// </summary>
+        public new static Color TitleBarEndColor { get; set; }
+
+        /// <summary>
+        /// 获取或设置消息框标题的前景色。
+        /// </summary>
+        public new static Color TitleForeColor { get; set; }
+
+        /// <summary>
+        /// 获取或设置一个值，该值指示是否渲染消息框的阴影。
+        /// </summary>
+        public new static bool Shadow { get; set; }
+
+        /// <summary>
+        /// 按钮鼠标按下状态渐变起始颜色
+        /// </summary>
+        public static Color ButtonHoldingStartColor { get; set; }
+
+        /// <summary>
+        /// 按钮鼠标按下状态渐变结束颜色
+        /// </summary>
+        public static Color ButtonHoldingEndColor { get; set; }
+
+        /// <summary>
+        /// 按钮鼠标按下状态前景颜色
+        /// </summary>
+        public static Color ButtonHoldingForeColor { get; set; }
+
+        /// <summary>
         /// 创建消息框按钮
         /// </summary>
         /// <param name="text">按钮文本</param>
@@ -286,7 +349,10 @@ namespace PowerControl
                 Shortcut = shortcut,
                 RoundedRectangleCornerRadius = 4,
                 BorderColor = Color.White,
-                BorderWidth = 0
+                BorderWidth = 0,
+                HoldingStartColor = ButtonHoldingStartColor,
+                HoldingEndColor = ButtonHoldingEndColor,
+                HoldingForeColor = ButtonHoldingForeColor
             };
 
             btn.Click += (s1, e1) =>

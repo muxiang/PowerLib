@@ -35,7 +35,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>BeyondTraffic.ico</ApplicationIcon>
+    <ApplicationIcon>LoveIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -90,10 +90,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BeyondTraffic.ico" />
+    <None Include="Resources\QQ图片20180329095216.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Content Include="BeyondTraffic.ico" />
+    <Content Include="LoveIcon.ico" />
+    <None Include="Resources\uparrow.png" />
+    <None Include="Resources\ThumbTop.png" />
+    <None Include="Resources\ThumbSpanTop.png" />
+    <None Include="Resources\ThumbSpanBottom.png" />
+    <None Include="Resources\ThumbMiddle.png" />
+    <None Include="Resources\ThumbBottom.png" />
+    <None Include="Resources\downarrow.png" />
+    <None Include="Resources\核素管理2.png" />
+    <None Include="Resources\核素管理1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

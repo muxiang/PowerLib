@@ -14,6 +14,7 @@ namespace PowerControl
     /// <summary>
     /// 表示用户界面窗口
     /// </summary>
+    [ToolboxItem(false)]
     public class XForm : Form
     {
         /// <summary>
@@ -60,7 +61,7 @@ namespace PowerControl
         // 是否渲染阴影
         private bool _shadow = true;
         // 阴影背景
-        private XFormBackground _backWindow;
+        private XFormShadow _backWindow;
         // 正在构建背景
         private bool _buildingBackWindow;
 
@@ -800,7 +801,7 @@ namespace PowerControl
 
                 gp.Dispose();
 
-                _backWindow = new XFormBackground(bmpBackground);
+                _backWindow = new XFormShadow(bmpBackground);
 
                 _buildingBackWindow = false;
 
@@ -1172,6 +1173,15 @@ namespace PowerControl
             base.OnSizeChanged(e);
 
             DrawTitleBar();
+        }
+        
+        /// <inheritdoc />
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            if (OverrideIcon != null)
+                Icon = OverrideIcon;
         }
 
         /// <inheritdoc />
