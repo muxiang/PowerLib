@@ -229,7 +229,7 @@ namespace PowerControl
                 if (DesignMode)
                     return;
 
-                if (_shadow)
+                if (_shadow && Visible)
                     BuildBackWindow();
                 else
                     _backWindow?.Hide();
@@ -805,13 +805,14 @@ namespace PowerControl
 
                 _buildingBackWindow = false;
 
+                AlignBackWindow();
+                _backWindow.Show();
+
                 SetWindowLong(
                     Handle,
                     GWL_HWNDPARENT,
                     _backWindow.Handle.ToInt32());
 
-                AlignBackWindow();
-                _backWindow.Show();
                 Activate();
             }//end of lock(this)
         }
@@ -1149,13 +1150,16 @@ namespace PowerControl
         /// <inheritdoc />
         protected override void OnLoad(EventArgs e)
         {
-            if (!DesignMode && _shadow)
-                BuildBackWindow();
-
             if (OverrideIcon != null)
                 Icon = OverrideIcon;
 
             base.OnLoad(e);
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            AlignBackWindow();
         }
 
         /// <inheritdoc />
@@ -1163,18 +1167,28 @@ namespace PowerControl
         {
             base.OnVisibleChanged(e);
 
-            if (!DesignMode && _shadow)
+            if (DesignMode)
+                return;
+
+            if (!_shadow)
+                return;
+
+            if (_backWindow == null)
+                BuildBackWindow();
+
+            if (_backWindow.Visible != Visible)
                 _backWindow.Visible = Visible;
         }
-
+        
         /// <inheritdoc />
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
 
             DrawTitleBar();
+            AlignBackWindow();
         }
-        
+
         /// <inheritdoc />
         protected override void OnHandleCreated(EventArgs e)
         {
@@ -1188,7 +1202,6 @@ namespace PowerControl
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-
             DrawTitleBackgroundTextIcon();
         }
 
