@@ -13,6 +13,12 @@ namespace ControlTest
             InitializeComponent();
         }
 
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            XMessageBox.Show(e.Location.ToString());
+        }
+
         private void btnCommonButton_Click(object sender, EventArgs e)
         {
             XMessageBox.Show("常规按钮单击", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -30,7 +36,7 @@ namespace ControlTest
 
         private void FrmXFormTest_Load(object sender, EventArgs e)
         {
-            loadingCircle1.Start();
+            loadingCircle1.Switch();
         }
 
         private void btnLoadingLayer_Click(object sender, EventArgs e)

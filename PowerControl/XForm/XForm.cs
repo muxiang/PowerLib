@@ -12,42 +12,20 @@ using static PowerControl.NativeStructures;
 namespace PowerControl
 {
     /// <summary>
-    /// 表示用户界面窗口
+    /// 表示组成应用程序的用户界面的窗口或对话框。
     /// </summary>
     [ToolboxItem(false)]
     public class XForm : Form
     {
-        /// <summary>
-        /// 表示标题栏按钮的状态
-        /// </summary>
-        private enum TitleBarButtonState
-        {
-            /// <summary>
-            /// 常规
-            /// </summary>
-            Normal,
-            /// <summary>
-            /// 鼠标按下
-            /// </summary>
-            Holding,
-            /// <summary>
-            /// 鼠标移上
-            /// </summary>
-            Hovering,
-            /// <summary>
-            /// 禁用
-            /// </summary>
-            Disabled
-        }
-
         #region 常量
 
-        // 边框宽度
-        private const int BorderWidth = 4;
         /// <summary>
         /// 标题栏高度
         /// </summary>
         public const int TitleBarHeight = 30;
+
+        // 边框宽度
+        private const int BorderWidth = 4;
         // 标题栏图标大小
         private const int IconSize = 16;
         // 标题栏按钮大小
@@ -59,30 +37,37 @@ namespace PowerControl
         #region 字段
 
         // 是否渲染阴影
-        private bool _shadow = true;
-        // 阴影背景
-        private XFormShadow _backWindow;
-        // 正在构建背景
-        private bool _buildingBackWindow;
-
+        private bool _showShadow = true;
+        // 阴影
+        private XFormShadow _shadow;
+        // 正在构建阴影
+        private bool _buildingShadow;
+        // 边框样式
         private FormBorderStyle _formBorderStyle = FormBorderStyle.Sizable;
 
+        // 标题栏背景渐变起始颜色
         private Color _titleBarStartColor;
+        // 标题栏背景渐变结束颜色
         private Color _titleBarEndColor;
-        private Color _titleForeColor;
+        // 标题栏前景色
+        private Color _titleBarForeColor;
 
-        // 标题栏按钮图标
+        /* 标题栏按钮图标 */
+        // 关闭(常规、鼠标移上、鼠标按下)
         private Image _imgBtnClose;
         private Image _imgBtnCloseHovering;
         private Image _imgBtnCloseHolding;
+        // 最小化(常规、禁用、鼠标移上、鼠标按下)
         private Image _imgBtnMinimize;
         private Image _imgBtnMinimizeDisabled;
         private Image _imgBtnMinimizeHovering;
         private Image _imgBtnMinimizeHolding;
+        // 最大化(常规、禁用、鼠标移上、鼠标按下)
         private Image _imgBtnMaximize;
         private Image _imgBtnMaximizeDisabled;
         private Image _imgBtnMaximizeHovering;
         private Image _imgBtnMaximizeHolding;
+        // 最大化还原(常规、禁用、鼠标移上、鼠标按下)
         private Image _imgBtnNormal;
         private Image _imgBtnNormalDisabled;
         private Image _imgBtnNormalHovering;
@@ -96,8 +81,10 @@ namespace PowerControl
 
         #endregion 字段
 
+        #region 构造
+
         /// <summary>
-        /// 初始化用户界面窗口
+        /// 初始化<see cref="XForm"/>的实例
         /// </summary>
         protected XForm()
         {
@@ -107,7 +94,9 @@ namespace PowerControl
                      | ControlStyles.UserPaint
                 , true);
 
-            InitializeComponent();
+            Name = "XForm";
+            BackColor = Color.White;
+            Padding = new Padding(0);
 
             _titleBarStartColor = DefaultTitleBarStartColor == Color.Transparent
                 ? Color.FromArgb(89, 98, 255)
@@ -117,17 +106,12 @@ namespace PowerControl
                 ? Color.FromArgb(130, 101, 255)
                 : DefaultTitleBarEndColor;
 
-            _titleForeColor = DefaultTitleBarForeColor == Color.Transparent
+            _titleBarForeColor = DefaultTitleBarForeColor == Color.Transparent
                 ? Color.White
                 : DefaultTitleBarForeColor;
         }
 
-        private void InitializeComponent()
-        {
-            Name = "XForm";
-            BackColor = Color.White;
-            Padding = new Padding(0);
-        }
+        #endregion 构造
 
         #region 属性
 
@@ -146,7 +130,8 @@ namespace PowerControl
             set
             {
                 _formBorderStyle = value;
-                ClientSize = ClientSize;
+                UpdateStyles();
+                DrawTitleBar();
             }
         }
 
@@ -203,12 +188,12 @@ namespace PowerControl
         [Category("Appearance")]
         [Description("获取或设置窗体标题的前景色。")]
         [DefaultValue(typeof(Color), "White")]
-        public Color TitleForeColor
+        public Color TitleBarForeColor
         {
-            get => _titleForeColor;
+            get => _titleBarForeColor;
             set
             {
-                _titleForeColor = value;
+                _titleBarForeColor = value;
                 DrawTitleBar();
             }
         }
@@ -222,23 +207,23 @@ namespace PowerControl
         [DefaultValue(true)]
         public bool Shadow
         {
-            get => _shadow;
+            get => _showShadow;
             set
             {
-                _shadow = value;
+                _showShadow = value;
                 if (DesignMode)
                     return;
 
-                if (_shadow && Visible)
-                    BuildBackWindow();
+                if (_showShadow && Visible)
+                    BuildShadow();
                 else
-                    _backWindow?.Hide();
+                    _shadow?.Hide();
             }
         }
 
         #endregion 设计器
 
-        #region 常规
+        #region 静态
 
         /// <summary>
         /// 指定一个值，将覆盖当前AppDomain下所有XForm的图标
@@ -246,19 +231,23 @@ namespace PowerControl
         public static Icon OverrideIcon { get; set; }
 
         /// <summary>
-        /// 指定一个值，作为当前AppDomain下所有XForm的标题栏起始颜色
+        /// 指定一个值，作为当前AppDomain下所有<see cref="XForm"/>的<see cref="TitleBarStartColor"/>，包括<see cref="XMessageBox"/>
         /// </summary>
         public static Color DefaultTitleBarStartColor { get; set; } = Color.Transparent;
 
         /// <summary>
-        /// 指定一个值，作为当前AppDomain下所有XForm的标题栏结束颜色
+        /// 指定一个值，作为当前AppDomain下所有<see cref="XForm"/>的<see cref="TitleBarEndColor"/>，包括<see cref="XMessageBox"/>
         /// </summary>
         public static Color DefaultTitleBarEndColor { get; set; } = Color.Transparent;
 
         /// <summary>
-        /// 指定一个值，作为当前AppDomain下所有XForm的标题栏前景颜色
+        /// 指定一个值，作为当前AppDomain下所有<see cref="XForm"/>的<see cref="TitleBarForeColor"/>，包括<see cref="XMessageBox"/>
         /// </summary>
         public static Color DefaultTitleBarForeColor { get; set; } = Color.Transparent;
+
+        #endregion 静态
+
+        #region 实例
 
         /// <summary>
         /// 获取表示标题栏的矩形(相对于包含客户区与非客户区的整个窗口)
@@ -288,6 +277,7 @@ namespace PowerControl
         /// <summary>
         /// 获取表示标题栏关闭按钮的矩形
         /// </summary>
+        [Browsable(false)]
         private Rectangle CloseButtonRectangle
         {
             get
@@ -315,6 +305,7 @@ namespace PowerControl
         /// <summary>
         /// 获取表示标题栏最大化按钮的矩形
         /// </summary>
+        [Browsable(false)]
         private Rectangle MaximizeButtonRectangle
         {
             get
@@ -342,6 +333,7 @@ namespace PowerControl
         /// <summary>
         /// 获取表示标题栏最小化按钮的矩形
         /// </summary>
+        [Browsable(false)]
         private Rectangle MinimizeButtonRectangle
         {
             get
@@ -366,7 +358,7 @@ namespace PowerControl
             }
         }
 
-        #endregion 常规
+        #endregion 实例
 
         #endregion 属性
 
@@ -609,7 +601,7 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 绘制标题栏背景文字图标
+        /// 绘制标题栏背景、文字、图标
         /// </summary>
         private void DrawTitleBackgroundTextIcon()
         {
@@ -621,20 +613,16 @@ namespace PowerControl
                 _titleBarStartColor, _titleBarEndColor, LinearGradientMode.Horizontal))
                 g.FillRectangle(brsTitleBar, TitleBarRectangle);
 
-            int txtX = BorderWidth;
             // 标题栏图标
             if (ShowIcon)
-            {
-                txtX += IconSize;
-
                 g.DrawIcon(Icon, new Rectangle(
                     BorderWidth, TitleBarRectangle.Top + (TitleBarRectangle.Height - IconSize) / 2,
                     IconSize, IconSize));
-            }
 
             // 标题文本
+            const int txtX = BorderWidth + IconSize;
             SizeF szText = g.MeasureString(Text, SystemFonts.CaptionFont, Width, StringFormat.GenericDefault);
-            using Brush brsText = new SolidBrush(_titleForeColor);
+            using Brush brsText = new SolidBrush(_titleBarForeColor);
             g.DrawString(Text,
                 SystemFonts.CaptionFont,
                 brsText,
@@ -644,6 +632,7 @@ namespace PowerControl
                     TitleBarHeight),
                 StringFormat.GenericDefault);
 
+            g.Dispose();
             ReleaseDC(Handle, hdc);
         }
 
@@ -655,12 +644,12 @@ namespace PowerControl
             IntPtr hdc = GetWindowDC(Handle);
             Graphics g = Graphics.FromHdc(hdc);
 
-            DrawCloseButton(g, TitleBarButtonState.Normal);
+            DrawCloseButton(g, XFormTitleBarButtonState.Normal);
 
             if (MaximizeBox || MinimizeBox)
             {
-                DrawMaximizeButton(g, MaximizeBox ? TitleBarButtonState.Normal : TitleBarButtonState.Disabled);
-                DrawMinimizeButton(g, MinimizeBox ? TitleBarButtonState.Normal : TitleBarButtonState.Disabled);
+                DrawMaximizeButton(g, MaximizeBox ? XFormTitleBarButtonState.Normal : XFormTitleBarButtonState.Disabled);
+                DrawMinimizeButton(g, MinimizeBox ? XFormTitleBarButtonState.Normal : XFormTitleBarButtonState.Disabled);
             }
 
             g.Dispose();
@@ -672,13 +661,13 @@ namespace PowerControl
         /// </summary>
         /// <param name="g"></param>
         /// <param name="state"></param>
-        private void DrawCloseButton(Graphics g, TitleBarButtonState state)
+        private void DrawCloseButton(Graphics g, XFormTitleBarButtonState state)
         {
             Image img = state switch
             {
-                TitleBarButtonState.Normal => _imgBtnClose,
-                TitleBarButtonState.Holding => _imgBtnCloseHolding,
-                TitleBarButtonState.Hovering => _imgBtnCloseHovering,
+                XFormTitleBarButtonState.Normal => _imgBtnClose,
+                XFormTitleBarButtonState.Holding => _imgBtnCloseHolding,
+                XFormTitleBarButtonState.Hovering => _imgBtnCloseHovering,
                 _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
             };
 
@@ -690,20 +679,20 @@ namespace PowerControl
         /// </summary>
         /// <param name="g"></param>
         /// <param name="state"></param>
-        private void DrawMaximizeButton(Graphics g, TitleBarButtonState state)
+        private void DrawMaximizeButton(Graphics g, XFormTitleBarButtonState state)
         {
             Image img = state switch
             {
-                TitleBarButtonState.Normal => (WindowState == FormWindowState.Maximized
+                XFormTitleBarButtonState.Normal => (WindowState == FormWindowState.Maximized
                     ? _imgBtnNormal
                     : _imgBtnMaximize),
-                TitleBarButtonState.Holding => (WindowState == FormWindowState.Maximized
+                XFormTitleBarButtonState.Holding => (WindowState == FormWindowState.Maximized
                     ? _imgBtnNormalHolding
                     : _imgBtnMaximizeHolding),
-                TitleBarButtonState.Hovering => (WindowState == FormWindowState.Maximized
+                XFormTitleBarButtonState.Hovering => (WindowState == FormWindowState.Maximized
                     ? _imgBtnNormalHovering
                     : _imgBtnMaximizeHovering),
-                TitleBarButtonState.Disabled => (WindowState == FormWindowState.Maximized
+                XFormTitleBarButtonState.Disabled => (WindowState == FormWindowState.Maximized
                     ? _imgBtnNormalDisabled
                     : _imgBtnMaximizeDisabled),
                 _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
@@ -717,14 +706,14 @@ namespace PowerControl
         /// </summary>
         /// <param name="g"></param>
         /// <param name="state"></param>
-        private void DrawMinimizeButton(Graphics g, TitleBarButtonState state)
+        private void DrawMinimizeButton(Graphics g, XFormTitleBarButtonState state)
         {
             Image img = state switch
             {
-                TitleBarButtonState.Normal => _imgBtnMinimize,
-                TitleBarButtonState.Holding => _imgBtnMinimizeHolding,
-                TitleBarButtonState.Hovering => _imgBtnMinimizeHovering,
-                TitleBarButtonState.Disabled => _imgBtnMinimizeDisabled,
+                XFormTitleBarButtonState.Normal => _imgBtnMinimize,
+                XFormTitleBarButtonState.Holding => _imgBtnMinimizeHolding,
+                XFormTitleBarButtonState.Hovering => _imgBtnMinimizeHovering,
+                XFormTitleBarButtonState.Disabled => _imgBtnMinimizeDisabled,
                 _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
             };
 
@@ -744,15 +733,15 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 对齐背景窗口
+        /// 对齐阴影
         /// </summary>
-        private void AlignBackWindow()
+        private void AlignShadow()
         {
-            if (_backWindow == null || _backWindow.IsDisposed || _backWindow.Disposing || _buildingBackWindow) return;
+            if (_shadow == null || _shadow.IsDisposed || _shadow.Disposing || _buildingShadow) return;
 
             GetWindowRect(Handle, out RECT rect);
 
-            SetWindowPos(_backWindow.Handle,
+            SetWindowPos(_shadow.Handle,
                 IntPtr.Zero,
                 rect.Left - BorderWidth * 2,
                 rect.Top - BorderWidth * 2,
@@ -762,22 +751,23 @@ namespace PowerControl
         }
 
         /// <summary>
-        /// 构建背景窗口
+        /// 构建阴影
         /// </summary>
-        private void BuildBackWindow()
+        private void BuildShadow()
         {
             lock (this)
             {
-                _buildingBackWindow = true;
+                _buildingShadow = true;
 
-                if (_backWindow != null && !_backWindow.IsDisposed && !_backWindow.Disposing)
+                if (_shadow != null && !_shadow.IsDisposed && !_shadow.Disposing)
                 {
+                    // 解除父子窗口关系
                     SetWindowLong(
                         Handle,
                         GWL_HWNDPARENT,
                         0);
 
-                    _backWindow.Dispose();
+                    _shadow.Dispose();
                 }
 
                 Bitmap bmpBackground = new Bitmap(Width + BorderWidth * 4, Height + BorderWidth * 4);
@@ -793,25 +783,31 @@ namespace PowerControl
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
                     g.SmoothingMode = SmoothingMode.AntiAlias;
 
+                    // 中心颜色
                     brs.CenterColor = Color.FromArgb(100, Color.Black);
+                    // 指定从实际阴影边界到窗口边框边界的渐变
                     brs.FocusScales = new PointF(1 - BorderWidth * 4F / Width, 1 - BorderWidth * 4F / Height);
+                    // 边框环绕颜色
                     brs.SurroundColors = new[] { Color.FromArgb(0, 0, 0, 0) };
+                    // 掏空窗口实际区域
+                    gp.AddRectangle(new Rectangle(BorderWidth * 2, BorderWidth * 2, Width, Height));
                     g.FillPath(brs, gp);
                 }
 
                 gp.Dispose();
 
-                _backWindow = new XFormShadow(bmpBackground);
+                _shadow = new XFormShadow(bmpBackground);
 
-                _buildingBackWindow = false;
+                _buildingShadow = false;
 
-                AlignBackWindow();
-                _backWindow.Show();
+                AlignShadow();
+                _shadow.Show();
 
+                // 设置父子窗口关系
                 SetWindowLong(
                     Handle,
                     GWL_HWNDPARENT,
-                    _backWindow.Handle.ToInt32());
+                    _shadow.Handle.ToInt32());
 
                 Activate();
             }//end of lock(this)
@@ -830,6 +826,13 @@ namespace PowerControl
         #endregion 方法
 
         #region 重写
+
+        /// <inheritdoc />
+        public sealed override Color BackColor
+        {
+            get => base.BackColor;
+            set => base.BackColor = value;
+        }
 
         /// <inheritdoc />
         protected override CreateParams CreateParams
@@ -949,6 +952,7 @@ namespace PowerControl
                     }
                 case WM_NCCALCSIZE:
                     {
+                        // 自定义客户区
                         if (m.WParam != IntPtr.Zero && _formBorderStyle != FormBorderStyle.None)
                         {
                             NCCALCSIZE_PARAMS @params = (NCCALCSIZE_PARAMS)
@@ -977,7 +981,7 @@ namespace PowerControl
                                 {
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
-                                    DrawCloseButton(g, TitleBarButtonState.Holding);
+                                    DrawCloseButton(g, XFormTitleBarButtonState.Holding);
                                     ReleaseDC(Handle, hdc);
                                     _redrawTitleBarButtonsRequired = true;
                                     break;
@@ -988,7 +992,7 @@ namespace PowerControl
                                         return;
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
-                                    DrawMaximizeButton(g, TitleBarButtonState.Holding);
+                                    DrawMaximizeButton(g, XFormTitleBarButtonState.Holding);
                                     ReleaseDC(Handle, hdc);
                                     _redrawTitleBarButtonsRequired = true;
                                     break;
@@ -999,7 +1003,7 @@ namespace PowerControl
                                         return;
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
-                                    DrawMinimizeButton(g, TitleBarButtonState.Holding);
+                                    DrawMinimizeButton(g, XFormTitleBarButtonState.Holding);
                                     ReleaseDC(Handle, hdc);
                                     _redrawTitleBarButtonsRequired = true;
                                     break;
@@ -1040,10 +1044,13 @@ namespace PowerControl
                     }
                 case WM_NCMOUSEMOVE:
                     {
+                        // 通过追踪鼠标事件，进一步筛选出鼠标离开消息
                         TRACKMOUSEEVENT tme = new TRACKMOUSEEVENT();
                         tme.cbSize = (uint)Marshal.SizeOf(tme);
-                        tme.dwFlags = 2 | 0x10;// TME_LEAVE | TME_NONCLIENT
+                        // 鼠标指针从非客户区离开
+                        tme.dwFlags = TME_LEAVE | TME_NONCLIENT;
                         tme.hwndTrack = m.HWnd;
+                        // 则引发WM_NCMOUSELEAVE
                         TrackMouseEvent(tme);
 
                         switch ((int)m.WParam)
@@ -1053,10 +1060,10 @@ namespace PowerControl
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
 
-                                    if (MaximizeBox) DrawMaximizeButton(g, TitleBarButtonState.Normal);
-                                    if (MinimizeBox) DrawMinimizeButton(g, TitleBarButtonState.Normal);
+                                    if (MaximizeBox) DrawMaximizeButton(g, XFormTitleBarButtonState.Normal);
+                                    if (MinimizeBox) DrawMinimizeButton(g, XFormTitleBarButtonState.Normal);
 
-                                    DrawCloseButton(g, TitleBarButtonState.Hovering);
+                                    DrawCloseButton(g, XFormTitleBarButtonState.Hovering);
 
                                     ReleaseDC(Handle, hdc);
                                     _redrawTitleBarButtonsRequired = true;
@@ -1067,10 +1074,10 @@ namespace PowerControl
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
 
-                                    DrawCloseButton(g, TitleBarButtonState.Normal);
+                                    DrawCloseButton(g, XFormTitleBarButtonState.Normal);
 
                                     if (MinimizeBox)
-                                        DrawMinimizeButton(g, TitleBarButtonState.Normal);
+                                        DrawMinimizeButton(g, XFormTitleBarButtonState.Normal);
 
                                     if (!MaximizeBox)
                                     {
@@ -1078,7 +1085,7 @@ namespace PowerControl
                                         break;
                                     }
 
-                                    DrawMaximizeButton(g, TitleBarButtonState.Hovering);
+                                    DrawMaximizeButton(g, XFormTitleBarButtonState.Hovering);
                                     ReleaseDC(Handle, hdc);
                                     _redrawTitleBarButtonsRequired = true;
                                     return;
@@ -1088,10 +1095,10 @@ namespace PowerControl
                                     IntPtr hdc = GetWindowDC(Handle);
                                     Graphics g = Graphics.FromHdc(hdc);
 
-                                    DrawCloseButton(g, TitleBarButtonState.Normal);
+                                    DrawCloseButton(g, XFormTitleBarButtonState.Normal);
 
                                     if (MaximizeBox)
-                                        DrawMaximizeButton(g, TitleBarButtonState.Normal);
+                                        DrawMaximizeButton(g, XFormTitleBarButtonState.Normal);
 
                                     if (!MinimizeBox)
                                     {
@@ -1099,7 +1106,7 @@ namespace PowerControl
                                         break;
                                     }
 
-                                    DrawMinimizeButton(g, TitleBarButtonState.Hovering);
+                                    DrawMinimizeButton(g, XFormTitleBarButtonState.Hovering);
                                     ReleaseDC(Handle, hdc);
                                     _redrawTitleBarButtonsRequired = true;
                                     return;
@@ -1108,7 +1115,6 @@ namespace PowerControl
                                 RedrawTitleBarButtons();
                                 break;
                         }
-
                         break;
                     }
                 case WM_WINDOWPOSCHANGED:
@@ -1119,21 +1125,21 @@ namespace PowerControl
                             DrawTitleBar();
 
                         if (!DesignMode)
-                            AlignBackWindow();
+                            AlignShadow();
                         break;
                     }
                 case WM_ENTERSIZEMOVE:
                     {
                         base.WndProc(ref m);
-                        if (_userSizedOrMoved && _shadow)
-                            _backWindow.Hide();
+                        if (_userSizedOrMoved && _showShadow)
+                            _shadow.Hide();
                         break;
                     }
                 case WM_EXITSIZEMOVE:
                     {
                         base.WndProc(ref m);
-                        if (_userSizedOrMoved && _shadow)
-                            BuildBackWindow();
+                        if (_userSizedOrMoved && _showShadow)
+                            BuildShadow();
                         break;
                     }
                 case WM_MOUSEMOVE:
@@ -1148,18 +1154,10 @@ namespace PowerControl
         }
 
         /// <inheritdoc />
-        protected override void OnLoad(EventArgs e)
-        {
-            if (OverrideIcon != null)
-                Icon = OverrideIcon;
-
-            base.OnLoad(e);
-        }
-
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            AlignBackWindow();
+            AlignShadow();
         }
 
         /// <inheritdoc />
@@ -1170,23 +1168,23 @@ namespace PowerControl
             if (DesignMode)
                 return;
 
-            if (!_shadow)
+            if (!_showShadow)
                 return;
 
-            if (_backWindow == null)
-                BuildBackWindow();
+            if (_shadow == null)
+                BuildShadow();
 
-            if (_backWindow.Visible != Visible)
-                _backWindow.Visible = Visible;
+            if (_shadow.Visible != Visible)
+                _shadow.Visible = Visible;
         }
-        
+
         /// <inheritdoc />
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
 
             DrawTitleBar();
-            AlignBackWindow();
+            AlignShadow();
         }
 
         /// <inheritdoc />

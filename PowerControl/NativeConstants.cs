@@ -236,6 +236,9 @@ namespace PowerControl
         public const int HTCLOSE = 20;
         public const int HTHELP = 21;
 
+        public const int TME_LEAVE = 0x02;
+        public const int TME_NONCLIENT = 0x10;
+
         public const int SM_CYBORDER = 6;
         public const int SM_CXBORDER = 5;
         public const int SM_CYCAPTION = 4;

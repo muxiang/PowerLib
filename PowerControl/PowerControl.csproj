@@ -55,20 +55,7 @@
     <Compile Include="IPTextBox.Designer.cs">
       <DependentUpon>IPTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="IrregularControls\ComputeApplications.cs" />
     <Compile Include="LoadingLayer.cs" />
-    <Compile Include="IrregularControls\ProjectFlowChart.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IrregularControls\ProjectFlowChart.Designer.cs">
-      <DependentUpon>ProjectFlowChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IrregularControls\ProjectListItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IrregularControls\ProjectListItem.Designer.cs">
-      <DependentUpon>ProjectListItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="RipplePictureBox\RippleEffect.cs" />
     <Compile Include="RipplePictureBox\RipplePictureBox.cs">
       <SubType>Component</SubType>
@@ -95,11 +82,10 @@
     <Compile Include="XButton\XButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XButton\XButton.Designer.cs">
-      <DependentUpon>XButton.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XButton\XButtonDisplayStyle.cs" />
+    <Compile Include="XButton\XButtonMouseLocation.cs" />
+    <Compile Include="XButton\XButtonState.cs" />
     <Compile Include="XCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -126,6 +112,7 @@
     <Compile Include="XForm\XFormShadow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="XForm\XFormTitleBarButtonState.cs" />
     <Compile Include="XGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -191,9 +178,6 @@
   <ItemGroup>
     <EmbeddedResource Include="IPTextBox.resx">
       <DependentUpon>IPTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IrregularControls\ProjectFlowChart.resx">
-      <DependentUpon>ProjectFlowChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

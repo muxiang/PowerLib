@@ -6,14 +6,23 @@ using System.Windows.Forms;
 
 namespace PowerControl
 {
+    /// <summary>
+    /// 表示Windows文本框控件
+    /// </summary>
     public sealed partial class XTextBox : TextBox
     {
         private Color _borderColor;
-        private Pen _borderPen = Pens.Black;
+        private Color _borderColor_HighLight;
 
-        private Color _focusedBorderColor;
-        private Pen _focusedBorderPen = Pens.Black;
+        private Pen _penBorder = Pens.Black;
+        private Pen _penBorder_HighLight = Pens.Black;
 
+        // 边框是否高亮
+        private bool _borderHighLight;
+
+        /// <summary>
+        /// 初始化<see cref="XTextBox"/>的实例
+        /// </summary>
         public XTextBox()
         {
             InitializeComponent();
@@ -21,7 +30,7 @@ namespace PowerControl
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             BorderColor = Color.FromArgb(184, 184, 184);
-            FocusedBorderColor = Color.FromArgb(66, 215, 250);
+            HighLightBorderColor = Color.FromArgb(66, 215, 250);
             ForeColor = Color.FromArgb(80, 80, 80);
         }
 
@@ -38,41 +47,69 @@ namespace PowerControl
             set
             {
                 _borderColor = value;
-                _borderPen = new Pen(value, 1);
+                _penBorder = new Pen(value, 1);
                 Invalidate();
             }
         }
 
         /// <summary>
-        /// 焦点边框颜色
+        /// 高亮边框颜色
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("焦点边框颜色")]
+        [Description("高亮边框颜色")]
         [DefaultValue(typeof(Color), "66, 215, 250")]
-        public Color FocusedBorderColor
+        public Color HighLightBorderColor
         {
-            get => _focusedBorderColor;
+            get => _borderColor_HighLight;
             set
             {
-                _focusedBorderColor = value;
-                _focusedBorderPen = new Pen(value, 1.5F);
+                _borderColor_HighLight = value;
+                _penBorder_HighLight = new Pen(value, 1.5F);
                 Invalidate();
             }
         }
 
+        /// <inheritdoc />
         protected override void OnGotFocus(EventArgs e)
         {
             base.OnGotFocus(e);
+
+            _borderHighLight = true;
             Invalidate();
         }
 
+        /// <inheritdoc />
         protected override void OnLostFocus(EventArgs e)
         {
             base.OnLostFocus(e);
+
+            _borderHighLight = false;
             Invalidate();
         }
 
+        /// <inheritdoc />
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+
+            _borderHighLight = true;
+            Invalidate();
+        }
+
+        /// <inheritdoc />
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+
+            if (Focused)
+                return;
+
+            _borderHighLight = false;
+            Invalidate();
+        }
+
+        /// <inheritdoc />
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -80,11 +117,11 @@ namespace PowerControl
             if (m.Msg != NativeConstants.WM_PAINT || BorderStyle == BorderStyle.None)
                 return;
 
-            Graphics g = Graphics.FromHwnd(Handle);
-
+            using Graphics g = Graphics.FromHwnd(Handle);
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.DrawRectangle(Focused ? _focusedBorderPen : _borderPen, new Rectangle(0, 0, Width - 1, Height - 1));
+            g.DrawRectangle(_borderHighLight ? _penBorder_HighLight : _penBorder, 
+                new Rectangle(0, 0, Width - 1, Height - 1));
         }
     }
 }

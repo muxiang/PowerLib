@@ -63,7 +63,7 @@ namespace PowerControl
 
             base.TitleBarStartColor = TitleBarStartColor;
             base.TitleBarEndColor = TitleBarEndColor;
-            base.TitleForeColor = TitleForeColor;
+            base.TitleBarForeColor = TitleForeColor;
             base.Shadow = Shadow;
 
             switch (icon)

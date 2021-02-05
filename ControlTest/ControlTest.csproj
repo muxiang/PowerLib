@@ -90,20 +90,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\QQ图片20180329095216.jpg" />
+    <Content Include="LoveIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BeyondTraffic.ico" />
-    <Content Include="LoveIcon.ico" />
-    <None Include="Resources\uparrow.png" />
-    <None Include="Resources\ThumbTop.png" />
-    <None Include="Resources\ThumbSpanTop.png" />
-    <None Include="Resources\ThumbSpanBottom.png" />
-    <None Include="Resources\ThumbMiddle.png" />
-    <None Include="Resources\ThumbBottom.png" />
-    <None Include="Resources\downarrow.png" />
-    <None Include="Resources\核素管理2.png" />
-    <None Include="Resources\核素管理1.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

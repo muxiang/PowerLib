@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
+using static PowerControl.NativeMethods;
+
 namespace PowerControl
 {
     /// <summary>
@@ -12,19 +14,29 @@ namespace PowerControl
     public sealed partial class XComboBox : ComboBox
     {
         private Color _borderColor = Color.FromArgb(184, 184, 184);
-        private Color _MouseHoveringForeColor = Color.FromArgb(83, 128, 252);
+        private Color _borderColor_HighLight = Color.FromArgb(66, 215, 250);
         private ButtonBorderStyle _borderStyle = ButtonBorderStyle.Solid;
 
-        // 缓存画笔画刷
-        private SolidBrush _brsBackColor;
-        private SolidBrush _brsDisabledBackColor = new SolidBrush(Color.Gray);
-        private SolidBrush _brsForeColor;
+        /* 缓存画笔画刷 */
+        // 前景画笔
         private Pen _penForeColor;
+        // 边框画笔
         private Pen _penBorderColor;
-        private Pen _penMouseHoveringForeColor;
+        // 高亮边框画笔
+        private Pen _penBorderColor_HighLight;
+        // 前景画刷
+        private SolidBrush _brsForeColor;
+        // 背景画刷
+        private SolidBrush _brsBackColor;
+        // 下拉箭头画刷
+        private SolidBrush _brsArrow;
+        // 高亮下拉箭头画刷
+        private SolidBrush _brsArrow_HighLight;
+        // 禁用状态背景画刷
+        private readonly SolidBrush _brsDisabledBackColor = new SolidBrush(Color.LightGray);
 
-        // 鼠标正在停留
-        private bool _isMouseHovering;
+        // 边框是否高亮
+        private bool _borderHighLight;
 
         /// <summary>
         /// 初始化<see cref="XComboBox"/>的实例
@@ -32,15 +44,18 @@ namespace PowerControl
         public XComboBox()
         {
             InitializeComponent();
-            /*SetStyle(ControlStyles.DoubleBuffer
+            SetStyle(ControlStyles.DoubleBuffer
                 | ControlStyles.UserPaint
-                | ControlStyles.AllPaintingInWmPaint, true);*/
+                | ControlStyles.AllPaintingInWmPaint, true);
+
+            _penForeColor = new Pen(ForeColor);
+            _penBorderColor = new Pen(_borderColor);
+            _penBorderColor_HighLight = new Pen(_borderColor_HighLight);
 
             _brsBackColor = new SolidBrush(BackColor);
             _brsForeColor = new SolidBrush(ForeColor);
-            _penForeColor = new Pen(ForeColor);
-            _penBorderColor = new Pen(_borderColor);
-            _penMouseHoveringForeColor = new Pen(_MouseHoveringForeColor);
+            _brsArrow = new SolidBrush(_borderColor);
+            _brsArrow_HighLight = new SolidBrush(_borderColor_HighLight);
         }
 
         #region 属性
@@ -51,6 +66,7 @@ namespace PowerControl
         [Browsable(true)]
         [Category("Appearance")]
         [Description("指定边框的颜色")]
+        [DefaultValue(typeof(Color), "184, 184, 184")]
         public Color BorderColor
         {
             get => _borderColor;
@@ -58,23 +74,26 @@ namespace PowerControl
             {
                 _borderColor = value;
                 _penBorderColor = new Pen(_borderColor);
+                _brsArrow = new SolidBrush(_borderColor);
                 Invalidate();
             }
         }
 
         /// <summary>
-        /// 鼠标停留时的前景色
+        /// 高亮边框颜色
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
-        [Description("指定鼠标停留时的前景色")]
-        public Color MouseHoveringForeColor
+        [Description("指定高亮边框颜色")]
+        [DefaultValue(typeof(Color), "66, 215, 250")]
+        public Color HighLightBorderColor
         {
-            get => _MouseHoveringForeColor;
+            get => _borderColor_HighLight;
             set
             {
-                _MouseHoveringForeColor = value;
-                _penMouseHoveringForeColor = new Pen(_MouseHoveringForeColor);
+                _borderColor_HighLight = value;
+                _penBorderColor_HighLight = new Pen(_borderColor_HighLight);
+                _brsArrow_HighLight = new SolidBrush(_borderColor_HighLight);
                 Invalidate();
             }
         }
@@ -98,47 +117,51 @@ namespace PowerControl
 
         #endregion 属性
 
+        /// <inheritdoc />
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
 
-            if (m.Msg == NativeConstants.WM_PAINT || m.Msg == NativeConstants.WM_CTLCOLOREDIT)
+            if (m.Msg != NativeConstants.WM_PAINT && m.Msg != NativeConstants.WM_CTLCOLOREDIT)
+                return;
+
+            IntPtr hDC = GetWindowDC(m.HWnd);
+            if (hDC == IntPtr.Zero) return;
+
+            using (Graphics g = Graphics.FromHdc(hDC))
             {
-                IntPtr hDC = NativeMethods.GetWindowDC(m.HWnd);
-                if (hDC == IntPtr.Zero) return;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.Clear(BackColor);
 
-                using (Graphics g = Graphics.FromHdc(hDC))
+                Rectangle rect = new Rectangle(0, 0, Width, Height);
+                Rectangle rectBg = new Rectangle(1, 1, Width - 2, Height - 2);
+
+                // 边框
+                ControlPaint.DrawBorder(g, rect, _borderHighLight ? _borderColor_HighLight : _borderColor, _borderStyle);
+                // 背景
+                g.FillRectangle(Enabled ? _brsBackColor : _brsDisabledBackColor, rectBg);
+
+                string selValue = SelectedItem == null ? "" : SelectedItem.ToString();
+                string text = Enabled ? selValue : "";
+
+                // 下拉箭头
+                g.FillPolygon(_borderHighLight ? _brsArrow_HighLight : _brsArrow, new[]
                 {
-                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.Clear(BackColor);
+                    new PointF(Width - 11, Height / 2F),
+                    new PointF(Width - 8, Height / 3F * 2),
+                    new PointF(Width - 5, Height / 2F)
+                });
 
-                    Rectangle rect = new Rectangle(0, 0, Width, Height);
-                    Rectangle rectBg = new Rectangle(1, 1, Width - 2, Height - 2);
+                SizeF szText = g.MeasureString(text, Font);
 
-                    // 边框
-                    ControlPaint.DrawBorder(g, rect, _isMouseHovering ? _MouseHoveringForeColor : _borderColor, _borderStyle);
-                    // 背景
-                    g.FillRectangle(Enabled ? _brsBackColor : _brsDisabledBackColor, rectBg);
+                g.DrawString(text, Font, _brsForeColor, 2, (Height - szText.Height) / 2);
 
-                    string selValue = SelectedItem == null ? "" : SelectedItem.ToString();
-                    string text = Enabled ? selValue : "";
-
-                    // 下拉箭头
-                    g.DrawLines(_isMouseHovering ? _penMouseHoveringForeColor : _penBorderColor, new[]
-                    {
-                        new PointF(Width - Height / 4 * 3, Height / 2F),
-                        new PointF(Width - (Height / 4 * 3 - Height / 8), Height / 3F * 2),
-                        new PointF(Width - (Height / 4 * 3 - Height / 4), Height / 2F)
-                    });
-
-                    g.DrawString(text, Font, _brsForeColor, 1, 2);
-
-                    NativeMethods.ReleaseDC(m.HWnd, hDC);
-                }
+                ReleaseDC(m.HWnd, hDC);
             }
         }
 
+        /// <inheritdoc />
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
             int ItemsCount = Items.Count;
@@ -147,7 +170,7 @@ namespace PowerControl
             e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             e.Graphics.FillRectangle(_brsBackColor, rect);
-            e.Graphics.DrawRectangle(_isMouseHovering ? _penMouseHoveringForeColor : _penBorderColor, rect);
+            e.Graphics.DrawRectangle(_borderHighLight ? _penBorderColor_HighLight : _penBorderColor, rect);
 
             for (int i = 0; i < Items.Count; i++)
             {
@@ -163,12 +186,14 @@ namespace PowerControl
             }
         }
 
+        /// <inheritdoc />
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);
             _brsBackColor = new SolidBrush(BackColor);
         }
 
+        /// <inheritdoc />
         protected override void OnForeColorChanged(EventArgs e)
         {
             base.OnForeColorChanged(e);
@@ -176,26 +201,51 @@ namespace PowerControl
             _penForeColor = new Pen(ForeColor);
         }
 
-        /// <summary>
-        /// 鼠标进入时调用
-        /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <inheritdoc />
         protected override void OnMouseEnter(EventArgs e)
         {
-            _isMouseHovering = true;
-            Invalidate();
             base.OnMouseEnter(e);
+
+            _borderHighLight = true;
+            Invalidate();
         }
 
-        /// <summary>
-        /// 鼠标离开时调用
-        /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <inheritdoc />
         protected override void OnMouseLeave(EventArgs e)
         {
-            _isMouseHovering = false;
-            Invalidate();
             base.OnMouseLeave(e);
+
+            if (Focused) return;
+
+            _borderHighLight = false;
+            Invalidate();
+        }
+
+        /// <inheritdoc />
+        protected override void OnGotFocus(EventArgs e)
+        {
+            base.OnGotFocus(e);
+
+            _borderHighLight = true;
+            Invalidate();
+        }
+
+        /// <inheritdoc />
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+
+            _borderHighLight = false;
+            Invalidate();
+        }
+
+        /// <inheritdoc />
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            base.OnEnabledChanged(e);
+
+            _borderHighLight = false;
+            Invalidate();
         }
     }
 }

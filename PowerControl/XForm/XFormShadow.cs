@@ -14,20 +14,14 @@ namespace PowerControl
     /// </summary>
     internal sealed class XFormShadow : Form
     {
-        #region Fields(Instance)
+        #region 字段
 
-        // Background image
+        // 背景图片
         private readonly Bitmap _background;
 
-        #endregion Fields(Instance)
-
-        #region Properties
-
-        public bool HaveHandle { get; private set; }
-
-        #endregion Properties
-
-        #region Constructors
+        #endregion 字段
+        
+        #region 构造
 
         public XFormShadow(Color backColor, Size size)
             : this(Utilities.CreateBitmap(127, backColor, size)) { }
@@ -43,9 +37,9 @@ namespace PowerControl
             ShowInTaskbar = false;
         }
 
-        #endregion Constructors
+        #endregion 构造
 
-        #region Methods(Instance)
+        #region 方法
 
         private void InitializeStyles()
         {
@@ -55,11 +49,10 @@ namespace PowerControl
 
         private void UpdateBmp(Bitmap bmp)
         {
-            if (!HaveHandle) return;
+            if (!IsHandleCreated) return;
 
-            // Verify bitmap
             if (!Image.IsCanonicalPixelFormat(bmp.PixelFormat) || !Image.IsAlphaPixelFormat(bmp.PixelFormat))
-                throw new ArgumentException(@"Required 32 bits Alpha Bitmap", nameof(bmp));
+                throw new ArgumentException(@"位图格式不正确", nameof(bmp));
 
             IntPtr oldBits = IntPtr.Zero;
             IntPtr screenDC = GetDC(IntPtr.Zero);
@@ -105,23 +98,9 @@ namespace PowerControl
             }
         }
 
-        #endregion Methods(Instance)
+        #endregion 方法
 
-        #region Override
-
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            e.Cancel = true;
-            base.OnClosing(e);
-            HaveHandle = false;
-        }
-
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            InitializeStyles();
-            base.OnHandleCreated(e);
-            HaveHandle = true;
-        }
+        #region 重写
 
         protected override CreateParams CreateParams
         {
@@ -133,19 +112,10 @@ namespace PowerControl
             }
         }
 
-        protected override void OnClientSizeChanged(EventArgs e)
+        protected override void OnHandleCreated(EventArgs e)
         {
-            if (FormBorderStyle != FormBorderStyle.None)
-                FormBorderStyle = FormBorderStyle.None;
-
-            base.OnClientSizeChanged(e);
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            UpdateBmp(_background);
-
-            base.OnLoad(e);
+            InitializeStyles();
+            base.OnHandleCreated(e);
         }
 
         protected override void OnHandleDestroyed(EventArgs e)
@@ -154,18 +124,26 @@ namespace PowerControl
             base.OnHandleDestroyed(e);
         }
 
-        #endregion Override
-
-        private void InitializeComponent()
+        protected override void OnLoad(EventArgs e)
         {
-            this.SuspendLayout();
-            // 
-            // XFormBackground
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.KeyPreview = true;
-            this.Name = "XFormShadow";
-            this.ResumeLayout(false);
+            UpdateBmp(_background);
+            base.OnLoad(e);
         }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;
+            base.OnClosing(e);
+        }
+
+        protected override void OnClientSizeChanged(EventArgs e)
+        {
+            if (FormBorderStyle != FormBorderStyle.None)
+                FormBorderStyle = FormBorderStyle.None;
+
+            base.OnClientSizeChanged(e);
+        }
+
+        #endregion 重写
     }
 }

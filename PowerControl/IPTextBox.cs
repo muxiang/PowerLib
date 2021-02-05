@@ -6,12 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
+using PowerControl.Design;
+
 namespace PowerControl
 {
     /// <summary>
     /// 表示一个支持IPV4格式化录入的文本框
     /// </summary>
-    // [Designer(typeof(FixedSizeDesigner))]
+    [Designer(typeof(FixedSizeDesigner))]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public sealed partial class IPTextBox : UserControl
     {
@@ -131,10 +133,10 @@ namespace PowerControl
         /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs e)
         {
-            foreach (TextBox txt in Controls.OfType<TextBox>().SkipWhile(t => t == txt1))
+            foreach (TextBox txt in Controls.OfType<TextBox>().Where(t => t != txt1))
             {
                 RectangleF rectDot =
-                    new RectangleF(txt.Location.X - 2, txt.Location.Y + txt.Height - 5, 1.5F, 1.5F);
+                    new RectangleF(txt.Location.X - 2, txt.Location.Y + txt.Height - 5, 3F, 3F);
                 e.Graphics.FillEllipse(Brushes.Gray, rectDot);
             }
 
