@@ -22,6 +22,7 @@ namespace PowerLib.Winform.Demo
         private void btnCommonButton_Click(object sender, EventArgs e)
         {
             XMessageBox.Show("常规按钮单击", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Height += 50;
         }
 
         private void ddbi1_Click(object sender, EventArgs e)

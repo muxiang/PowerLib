@@ -28,6 +28,8 @@ namespace PowerLib.Winform
 
         // 边框宽度
         private const int BorderWidth = 2;
+        // 边框热区附加宽度
+        private const int BorderRegionAddtionalWidth = 2;
         // 标题栏图标大小
         private const int IconSize = 16;
         // 标题栏按钮大小
@@ -82,6 +84,9 @@ namespace PowerLib.Winform
 
         // 标识用户通过鼠标操作调整尺寸或移动窗口
         private bool _userSizedOrMoved;
+
+        // 通过窗体设计器调整尺寸
+        private bool _resizedInDesignMode;
 
         #endregion 字段
 
@@ -796,6 +801,8 @@ namespace PowerLib.Winform
         /// </summary>
         private void AlignShadow()
         {
+            if (DesignMode) return;
+
             if (_shadow == null || _shadow.IsDisposed || _shadow.Disposing || _buildingShadow) return;
 
             GetWindowRect(Handle, out RECT rect);
@@ -814,6 +821,8 @@ namespace PowerLib.Winform
         /// </summary>
         private void BuildShadow()
         {
+            if (DesignMode) return;
+
             lock (this)
             {
                 _buildingShadow = true;
@@ -879,7 +888,10 @@ namespace PowerLib.Winform
         /// <returns></returns>
         private static Rectangle CorrectToLogical(Rectangle rectOrigin)
         {
-            return new Rectangle(rectOrigin.X, rectOrigin.Y - TitleBarHeight, rectOrigin.Width, rectOrigin.Height);
+            return new Rectangle(rectOrigin.X - BorderWidth,
+                rectOrigin.Y - TitleBarHeight + BorderWidth,
+                rectOrigin.Width,
+                rectOrigin.Height);
         }
 
         #endregion 方法
@@ -945,9 +957,9 @@ namespace PowerLib.Winform
 
                                 if (CorrectToLogical(CloseButtonRectangle).Contains(pt))
                                     m.Result = (IntPtr)HTCLOSE;
-                                if (CorrectToLogical(MaximizeButtonRectangle).Contains(pt))
+                                if (MaximizeBox && CorrectToLogical(MaximizeButtonRectangle).Contains(pt))
                                     m.Result = (IntPtr)HTMAXBUTTON;
-                                if (CorrectToLogical(MinimizeButtonRectangle).Contains(pt))
+                                if (MinimizeBox && CorrectToLogical(MinimizeButtonRectangle).Contains(pt))
                                     m.Result = (IntPtr)HTMINBUTTON;
 
                                 break;
@@ -970,10 +982,11 @@ namespace PowerLib.Winform
                                     break;
 
                                 Point ptScreen = PointToScreen(pt);
-                                bool bTop = ptScreen.Y >= Top && ptScreen.Y <= Top + BorderWidth;
-                                bool bBottom = ptScreen.Y <= Bottom && ptScreen.Y >= Bottom - BorderWidth;
-                                bool bLeft = ptScreen.X >= Left && ptScreen.X <= Left + BorderWidth;
-                                bool bRight = ptScreen.X <= Right && ptScreen.X >= Right - BorderWidth;
+                                const int borderRegionWidth = BorderWidth + BorderRegionAddtionalWidth;
+                                bool bTop = ptScreen.Y >= Top && ptScreen.Y <= Top + borderRegionWidth;
+                                bool bBottom = ptScreen.Y <= Bottom && ptScreen.Y >= Bottom - borderRegionWidth;
+                                bool bLeft = ptScreen.X >= Left && ptScreen.X <= Left + borderRegionWidth;
+                                bool bRight = ptScreen.X <= Right && ptScreen.X >= Right - borderRegionWidth;
 
                                 if (bLeft)
                                 {
@@ -1026,16 +1039,9 @@ namespace PowerLib.Winform
 
                             @params.rgrc[1] = @params.rgrc[0];
 
-                            //@params.rgrc[2].Top = Top + BorderWidth + TitleBarHeight;
-                            //@params.rgrc[2].Bottom = Top + Height - BorderWidth;
-                            //@params.rgrc[2].Left = Left + BorderWidth;
-                            //@params.rgrc[2].Right = Left + Width - BorderWidth;
-
-
-                            //TODO:修复窗口边框热区不正确的bug
                             Marshal.StructureToPtr(@params, m.LParam, false);
 
-                            m.Result = (IntPtr)(WVR_VALIDRECTS);
+                            m.Result = (IntPtr)WVR_VALIDRECTS;
                         }
 
                         base.WndProc(ref m);
@@ -1203,8 +1209,7 @@ namespace PowerLib.Winform
                             DrawBorder();
                         }
 
-                        if (!DesignMode)
-                            AlignShadow();
+                        AlignShadow();
                         break;
                     }
                 case WM_ENTERSIZEMOVE:
@@ -1219,6 +1224,20 @@ namespace PowerLib.Winform
                         base.WndProc(ref m);
                         if (_userSizedOrMoved && _showShadow)
                             BuildShadow();
+
+                        if (DesignMode)
+                        {
+                            return;
+                            //if (_resizedInDesignMode)
+                            //{
+                            //    _resizedInDesignMode = false;
+                            //    break;
+                            //}
+
+                            //_resizedInDesignMode = true;
+                            Width += BorderWidth * 2;
+                            Height += TitleBarHeight + BorderWidth * 2;
+                        }
                         break;
                     }
                 case WM_MOUSEMOVE:
@@ -1264,6 +1283,7 @@ namespace PowerLib.Winform
 
             DrawTitleBar();
             DrawBorder();
+
             AlignShadow();
         }
 
@@ -1281,6 +1301,15 @@ namespace PowerLib.Winform
         {
             base.OnTextChanged(e);
             DrawTitleBar();
+        }
+
+        protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
+        {
+            int newWidth = width, newHeight = height;
+            if (width != Width) newWidth = width + BorderWidth * 2;
+            if (height != Height) newHeight = height + TitleBarHeight + BorderWidth * 2;
+
+            base.SetBoundsCore(x, y, newWidth, newHeight, specified);
         }
 
         #endregion 重写

@@ -413,7 +413,7 @@
             this.AcceptButton = this.btnLoadingLayer;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1272, 710);
+            this.ClientSize = new System.Drawing.Size(1169, 697);
             this.Controls.Add(this.xShadowPanel1);
             this.Controls.Add(this.txt1);
             this.Controls.Add(this.xTabControl1);
@@ -431,8 +431,6 @@
             this.Controls.Add(this.btnCommonButton);
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(100, 100);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FrmXFormTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmXFormTest";
