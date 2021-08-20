@@ -151,6 +151,31 @@ namespace PowerLib.Winform.Controls
         }
 
         /// <summary>
+        /// 显示遮罩层，在线程池线程执行工作项委托，并在执行完毕后自动关闭遮罩层，
+        /// 如果在构造此<see cref="LoadingLayer"/>时没有指定newUiThread参数为true，
+        /// 此方法将阻塞当前调用线程，直到<see cref="waitCallback"/>执行完毕
+        /// </summary>
+        /// <param name="waitCallback">表示遮罩层显示时，线程池线程需要调用的委托</param>
+        /// <param name="state">线程池线程需要使用的状态对象</param>
+        public void ShowAutoClose(WaitCallback waitCallback, object state)
+        {
+            waitCallback += o => Close();
+            ThreadPool.UnsafeQueueUserWorkItem(waitCallback, state);
+            Show();
+        }
+
+        /// <summary>
+        /// 显示遮罩层，在线程池线程执行工作项委托，并在执行完毕后自动关闭遮罩层，
+        /// 如果在构造此<see cref="LoadingLayer"/>时没有指定newUiThread参数为true，
+        /// 此方法将阻塞当前调用线程，直到<see cref="waitCallback"/>执行完毕
+        /// </summary>
+        /// <param name="waitCallback">表示遮罩层显示时，线程池线程需要调用的委托</param>
+        public void ShowAutoClose(WaitCallback waitCallback)
+        {
+            ShowAutoClose(waitCallback, null);
+        }
+
+        /// <summary>
         /// 关闭遮罩层
         /// </summary>
         public void Close()
@@ -162,6 +187,8 @@ namespace PowerLib.Winform.Controls
                 {
                     _form.BeginInvoke(new MethodInvoker(_form.Close));
                 };
+
+            Dispose();
         }
 
         /// <summary>

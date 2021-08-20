@@ -53,7 +53,7 @@
             this.ddbi2 = new PowerLib.Winform.Controls.DropDownButtonItem();
             this.xTreeView1 = new PowerLib.Winform.Controls.XTreeView();
             this.loadingCircle1 = new PowerLib.Winform.Controls.LoadingCircle();
-            this.btnLoadingLayer = new PowerLib.Winform.Controls.XButton();
+            this.btnShowLoadingLayerManualClose = new PowerLib.Winform.Controls.XButton();
             this.ipInputBox1 = new PowerLib.Winform.Controls.IPInputBox();
             this.chk1 = new PowerLib.Winform.Controls.XCheckBox();
             this.xComboBox1 = new PowerLib.Winform.Controls.XComboBox();
@@ -68,6 +68,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txt1 = new PowerLib.Winform.Controls.XTextBox();
             this.xShadowPanel1 = new PowerLib.Winform.Controls.XShadowPanel();
+            this.btnShowLoadingLayerAutoClose = new PowerLib.Winform.Controls.XButton();
             ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
             this.grp1.SuspendLayout();
@@ -194,27 +195,27 @@
             this.loadingCircle1.TabIndex = 4;
             this.loadingCircle1.Text = "loadingCircle1";
             // 
-            // btnLoadingLayer
+            // btnShowLoadingLayerManualClose
             // 
-            this.btnLoadingLayer.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
-            this.btnLoadingLayer.CheckedForeColor = System.Drawing.Color.White;
-            this.btnLoadingLayer.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
-            this.btnLoadingLayer.DefaultButtonBorderWidth = 2;
-            this.btnLoadingLayer.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.btnLoadingLayer.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.btnLoadingLayer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.btnLoadingLayer.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
-            this.btnLoadingLayer.HoldingForeColor = System.Drawing.Color.White;
-            this.btnLoadingLayer.HoldingImage = null;
-            this.btnLoadingLayer.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
-            this.btnLoadingLayer.Image = null;
-            this.btnLoadingLayer.Location = new System.Drawing.Point(335, 37);
-            this.btnLoadingLayer.Name = "btnLoadingLayer";
-            this.btnLoadingLayer.Size = new System.Drawing.Size(91, 65);
-            this.btnLoadingLayer.StartColor = System.Drawing.Color.White;
-            this.btnLoadingLayer.TabIndex = 9;
-            this.btnLoadingLayer.Text = "遮罩层";
-            this.btnLoadingLayer.Click += new System.EventHandler(this.btnLoadingLayer_Click);
+            this.btnShowLoadingLayerManualClose.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.btnShowLoadingLayerManualClose.CheckedForeColor = System.Drawing.Color.White;
+            this.btnShowLoadingLayerManualClose.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.btnShowLoadingLayerManualClose.DefaultButtonBorderWidth = 2;
+            this.btnShowLoadingLayerManualClose.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.btnShowLoadingLayerManualClose.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.btnShowLoadingLayerManualClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.btnShowLoadingLayerManualClose.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.btnShowLoadingLayerManualClose.HoldingForeColor = System.Drawing.Color.White;
+            this.btnShowLoadingLayerManualClose.HoldingImage = null;
+            this.btnShowLoadingLayerManualClose.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.btnShowLoadingLayerManualClose.Image = null;
+            this.btnShowLoadingLayerManualClose.Location = new System.Drawing.Point(335, 37);
+            this.btnShowLoadingLayerManualClose.Name = "btnShowLoadingLayerManualClose";
+            this.btnShowLoadingLayerManualClose.Size = new System.Drawing.Size(115, 65);
+            this.btnShowLoadingLayerManualClose.StartColor = System.Drawing.Color.White;
+            this.btnShowLoadingLayerManualClose.TabIndex = 9;
+            this.btnShowLoadingLayerManualClose.Text = "遮罩层(手动关闭)";
+            this.btnShowLoadingLayerManualClose.Click += new System.EventHandler(this.btnShowLoadingLayerManualClose_Click);
             // 
             // ipInputBox1
             // 
@@ -408,9 +409,31 @@
             this.xShadowPanel1.TabIndex = 24;
             this.xShadowPanel1.TopBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             // 
+            // btnShowLoadingLayerAutoClose
+            // 
+            this.btnShowLoadingLayerAutoClose.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.btnShowLoadingLayerAutoClose.CheckedForeColor = System.Drawing.Color.White;
+            this.btnShowLoadingLayerAutoClose.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.btnShowLoadingLayerAutoClose.DefaultButtonBorderWidth = 2;
+            this.btnShowLoadingLayerAutoClose.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.btnShowLoadingLayerAutoClose.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.btnShowLoadingLayerAutoClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.btnShowLoadingLayerAutoClose.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.btnShowLoadingLayerAutoClose.HoldingForeColor = System.Drawing.Color.White;
+            this.btnShowLoadingLayerAutoClose.HoldingImage = null;
+            this.btnShowLoadingLayerAutoClose.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.btnShowLoadingLayerAutoClose.Image = null;
+            this.btnShowLoadingLayerAutoClose.Location = new System.Drawing.Point(492, 37);
+            this.btnShowLoadingLayerAutoClose.Name = "btnShowLoadingLayerAutoClose";
+            this.btnShowLoadingLayerAutoClose.Size = new System.Drawing.Size(115, 65);
+            this.btnShowLoadingLayerAutoClose.StartColor = System.Drawing.Color.White;
+            this.btnShowLoadingLayerAutoClose.TabIndex = 9;
+            this.btnShowLoadingLayerAutoClose.Text = "遮罩层(自动关闭)";
+            this.btnShowLoadingLayerAutoClose.Click += new System.EventHandler(this.btnShowLoadingLayerAutoClose_Click);
+            // 
             // FrmXFormTest
             // 
-            this.AcceptButton = this.btnLoadingLayer;
+            this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 704);
@@ -423,7 +446,8 @@
             this.Controls.Add(this.xComboBox1);
             this.Controls.Add(this.chk1);
             this.Controls.Add(this.ipInputBox1);
-            this.Controls.Add(this.btnLoadingLayer);
+            this.Controls.Add(this.btnShowLoadingLayerAutoClose);
+            this.Controls.Add(this.btnShowLoadingLayerManualClose);
             this.Controls.Add(this.loadingCircle1);
             this.Controls.Add(this.xTreeView1);
             this.Controls.Add(this.ripplePictureBox1);
@@ -454,7 +478,7 @@
         private PowerLib.Winform.Controls.DropDownButtonItem ddbi1;
         private PowerLib.Winform.Controls.DropDownButtonItem ddbi2;
         private PowerLib.Winform.Controls.LoadingCircle loadingCircle1;
-        private PowerLib.Winform.Controls.XButton btnLoadingLayer;
+        private PowerLib.Winform.Controls.XButton btnShowLoadingLayerManualClose;
         private PowerLib.Winform.Controls.IPInputBox ipInputBox1;
         private PowerLib.Winform.Controls.XCheckBox chk1;
         private PowerLib.Winform.Controls.XComboBox xComboBox1;
@@ -469,5 +493,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private PowerLib.Winform.Controls.XTextBox txt1;
         private PowerLib.Winform.Controls.XShadowPanel xShadowPanel1;
+        private Controls.XButton btnShowLoadingLayerAutoClose;
     }
 }

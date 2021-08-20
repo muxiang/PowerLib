@@ -40,26 +40,52 @@ namespace PowerLib.Winform.Demo
             loadingCircle1.Switch();
         }
 
-        private void btnLoadingLayer_Click(object sender, EventArgs e)
+        private void btnShowLoadingLayerManualClose_Click(object sender, EventArgs e)
         {
-            using (LoadingLayer ll = new LoadingLayer(this, .8D, true))
+            ShowLoadingLayerManualClose();
+        }
+
+        private void btnShowLoadingLayerAutoClose_Click(object sender, EventArgs e)
+        {
+            ShowLoadingLayerAutoClose();
+        }
+
+        private void ShowLoadingLayerAutoClose()
+        {
+            LoadingLayer ll = new LoadingLayer(this, .8D, true);
+
+            ll.ShowAutoClose(o =>
             {
-                ThreadPool.QueueUserWorkItem(o =>
+                LoadingLayer layer = (LoadingLayer)o;
+
+                for (int i = 0; i < 10; i++)
                 {
-                    LoadingLayer layer = (LoadingLayer)o;
+                    Thread.Sleep(500);
+                    int progress = (i + 1) * 10;
+                    layer.UpdateProgress(progress, $"当前进度 {progress}%");
+                }
+            }, ll);
+        }
 
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Thread.Sleep(500);
-                        int progress = (i + 1) * 10;
-                        layer.UpdateProgress(progress, $"当前进度 {progress}%");
-                    }
+        private void ShowLoadingLayerManualClose()
+        {
+            LoadingLayer ll = new LoadingLayer(this, .8D, true);
 
-                    layer.Close();
-                }, ll);
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                LoadingLayer layer = (LoadingLayer)o;
 
-                ll.Show();
-            }
+                for (int i = 0; i < 10; i++)
+                {
+                    Thread.Sleep(500);
+                    int progress = (i + 1) * 10;
+                    layer.UpdateProgress(progress, $"当前进度 {progress}%");
+                }
+
+                layer.Close();
+            }, ll);
+
+            ll.Show();
         }
     }
 }
