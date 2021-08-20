@@ -49,7 +49,7 @@ namespace PowerLib.Winform
             UpdateStyles();
         }
 
-        private void UpdateBmp(Bitmap bmp)
+        public void UpdateBmp(Bitmap bmp)
         {
             if (!IsHandleCreated) return;
 
