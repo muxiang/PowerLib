@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -85,7 +84,7 @@ namespace PowerLib.Winform
 
         // 标识用户通过鼠标操作调整尺寸或移动窗口
         private bool _userSizedOrMoved;
-        
+
         #endregion 字段
 
         #region 构造
@@ -794,94 +793,10 @@ namespace PowerLib.Winform
             _redrawTitleBarButtonsRequired = false;
         }
 
-        ///// <summary>
-        ///// 对齐阴影
-        ///// </summary>
-        //private void AlignShadow()
-        //{
-        //    if (DesignMode) return;
-
-        //    lock (this)
-        //    {
-        //        if (_shadow == null || _shadow.IsDisposed || _shadow.Disposing || _buildingShadow) return;
-
-        //        GetWindowRect(Handle, out RECT rect);
-
-        //        SetWindowPos(_shadow.Handle,
-        //            IntPtr.Zero,
-        //            rect.Left - BorderWidth * 2,
-        //            rect.Top - BorderWidth * 2,
-        //            rect.Width + BorderWidth * 4,
-        //            rect.Height + BorderWidth * 4,
-        //            SWP_NOACTIVATE);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// 构建阴影
-        ///// </summary>
-        //private void BuildShadow()
-        //{
-        //    if (DesignMode) return;
-
-        //    lock (this)
-        //    {
-        //        _buildingShadow = true;
-
-        //        if (_shadow != null && !_shadow.IsDisposed && !_shadow.Disposing)
-        //        {
-        //            // 解除父子窗口关系
-        //            SetWindowLong(
-        //                Handle,
-        //                GWL_HWNDPARENT,
-        //                0);
-
-        //            _shadow.Dispose();
-        //        }
-
-        //        Bitmap bmpBackground = new Bitmap(Width + BorderWidth * 4, Height + BorderWidth * 4);
-
-        //        GraphicsPath gp = new GraphicsPath();
-        //        gp.AddRectangle(new Rectangle(0, 0, bmpBackground.Width, bmpBackground.Height));
-
-        //        using (Graphics g = Graphics.FromImage(bmpBackground))
-        //        using (PathGradientBrush brs = new PathGradientBrush(gp))
-        //        {
-        //            g.CompositingMode = CompositingMode.SourceCopy;
-        //            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-        //            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-        //            g.SmoothingMode = SmoothingMode.AntiAlias;
-
-        //            // 中心颜色
-        //            brs.CenterColor = Color.FromArgb(100, Color.Black);
-        //            // 指定从实际阴影边界到窗口边框边界的渐变
-        //            brs.FocusScales = new PointF(1 - BorderWidth * 4F / Width, 1 - BorderWidth * 4F / Height);
-        //            // 边框环绕颜色
-        //            brs.SurroundColors = new[] { Color.FromArgb(0, 0, 0, 0) };
-        //            // 掏空窗口实际区域
-        //            gp.AddRectangle(new Rectangle(BorderWidth * 2, BorderWidth * 2, Width, Height));
-        //            g.FillPath(brs, gp);
-        //        }
-
-        //        gp.Dispose();
-
-        //        _shadow = new XFormShadow(bmpBackground);
-
-        //        _buildingShadow = false;
-
-        //        AlignShadow();
-        //        _shadow.Show();
-
-        //        // 设置父子窗口关系
-        //        SetWindowLong(
-        //            Handle,
-        //            GWL_HWNDPARENT,
-        //            _shadow.Handle.ToInt32());
-
-        //        Activate();
-        //    }
-        //}
-
+        /// <summary>
+        /// 创建阴影位图
+        /// </summary>
+        /// <returns></returns>
         private Bitmap CreateShadowBitmap()
         {
             Bitmap bmpBackground = new Bitmap(Width + BorderWidth * 4, Height + BorderWidth * 4);
@@ -912,6 +827,9 @@ namespace PowerLib.Winform
             return bmpBackground;
         }
 
+        /// <summary>
+        /// 创建阴影窗口
+        /// </summary>
         private void BuildShadow()
         {
             if (DesignMode) return;
@@ -948,6 +866,9 @@ namespace PowerLib.Winform
             }
         }
 
+        /// <summary>
+        /// 对齐阴影窗口位置
+        /// </summary>
         private void AlignShadowPos()
         {
             if (DesignMode) return;
@@ -968,6 +889,9 @@ namespace PowerLib.Winform
             }
         }
 
+        /// <summary>
+        /// 对齐阴影窗口位置和尺寸
+        /// </summary>
         private void AlignShadowPosSize()
         {
             if (DesignMode) return;

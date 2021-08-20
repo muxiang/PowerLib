@@ -413,7 +413,7 @@
             this.AcceptButton = this.btnLoadingLayer;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1169, 697);
+            this.ClientSize = new System.Drawing.Size(1186, 704);
             this.Controls.Add(this.xShadowPanel1);
             this.Controls.Add(this.txt1);
             this.Controls.Add(this.xTabControl1);
