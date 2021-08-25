@@ -1,4 +1,4 @@
-﻿namespace PowerLib.Winform.Demo
+﻿namespace PowerLib.Winform.Sample
 {
     partial class FrmXFormTest
     {
@@ -453,6 +453,7 @@
             this.Controls.Add(this.ripplePictureBox1);
             this.Controls.Add(this.btnDropdownButton);
             this.Controls.Add(this.btnCommonButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(100, 100);
             this.Name = "FrmXFormTest";

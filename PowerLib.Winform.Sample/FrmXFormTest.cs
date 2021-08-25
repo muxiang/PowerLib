@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 using PowerLib.Winform.Controls;
 
-namespace PowerLib.Winform.Demo
+namespace PowerLib.Winform.Sample
 {
     public partial class FrmXFormTest : XForm
     {

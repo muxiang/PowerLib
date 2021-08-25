@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace PowerLib.Winform.Demo
+namespace PowerLib.Winform.Sample
 {
     static class Program
     {
@@ -13,12 +13,13 @@ namespace PowerLib.Winform.Demo
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             XForm.OverrideIcon = Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly()?.Location ?? throw new InvalidOperationException());
             XForm.DefaultTitleBarStartColor = Color.PaleVioletRed;
             XForm.DefaultTitleBarEndColor = Color.Pink;
             XForm.DefaultTitleBarForeColor = Color.White;
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmXFormTest());
         }
     }
