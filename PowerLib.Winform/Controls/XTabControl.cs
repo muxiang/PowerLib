@@ -211,7 +211,7 @@ namespace PowerLib.Winform.Controls
         /// <summary>
         /// 设置选项卡头部边框色
         /// </summary>
-        /// <param name="graph"></param>
+        /// <param name="g"></param>
         /// <param name="index"></param>
         /// <param name="path"></param>
         private void PaintTabBorder(Graphics g, int index, GraphicsPath path)

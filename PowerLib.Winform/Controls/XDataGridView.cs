@@ -13,6 +13,7 @@ using System.Windows.Forms.Design;
 
 namespace PowerLib.Winform.Controls
 {
+    /// <inheritdoc cref="XDataGridView"/>
     public partial class XDataGridView : UserControl, ISupportInitialize
     {
         /// <summary>
@@ -43,6 +44,9 @@ namespace PowerLib.Winform.Controls
             WrapMode = DataGridViewTriState.False,
         };
 
+        /// <summary>
+        /// 初始化<see cref="XDataGridView"/>的实例
+        /// </summary>
         public XDataGridView()
         {
             InitializeComponent();
@@ -74,7 +78,8 @@ namespace PowerLib.Winform.Controls
         }
 
         #region 属性
-
+        
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DataGridViewCell this[string columnName, int rowIndex]
@@ -83,6 +88,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1[columnName, rowIndex] = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DataGridViewCell this[int columnIndex, int rowIndex]
@@ -91,6 +97,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1[columnIndex, rowIndex] = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(true)]
         public bool RowHeadersVisible
         {
@@ -98,6 +105,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.RowHeadersVisible = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [AmbientValue(null)]
         public DataGridViewCellStyle RowHeadersDefaultCellStyle
         {
@@ -105,6 +113,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.RowHeadersDefaultCellStyle = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(true)]
         [DefaultValue(DataGridViewHeaderBorderStyle.Raised)]
         public DataGridViewHeaderBorderStyle RowHeadersBorderStyle
@@ -113,6 +122,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.RowHeadersBorderStyle = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DefaultValue(0)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -123,6 +133,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.RowCount = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(true)]
         [DefaultValue(false)]
         public bool ReadOnly
@@ -131,15 +142,17 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ReadOnly = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Padding Padding
+        public new Padding Padding
         {
             get => dataGridView1.Padding;
             set => dataGridView1.Padding = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int NewRowIndex
@@ -147,6 +160,7 @@ namespace PowerLib.Winform.Controls
             get => dataGridView1.NewRowIndex;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(true)]
         public bool MultiSelect
         {
@@ -154,24 +168,28 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.MultiSelect = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public bool IsCurrentRowDirty
         {
             get => dataGridView1.IsCurrentRowDirty;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public bool IsCurrentCellInEditMode
         {
             get => dataGridView1.IsCurrentCellInEditMode;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public bool IsCurrentCellDirty
         {
             get => dataGridView1.IsCurrentCellDirty;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int HorizontalScrollingOffset
@@ -180,12 +198,14 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.HorizontalScrollingOffset = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public Color GridColor
         {
             get => dataGridView1.GridColor;
             set => dataGridView1.GridColor = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public Font Font
@@ -193,7 +213,8 @@ namespace PowerLib.Winform.Controls
             get => dataGridView1.Font;
             set => dataGridView1.Font = value;
         }
-
+        
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int FirstDisplayedScrollingRowIndex
@@ -202,6 +223,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.FirstDisplayedScrollingRowIndex = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int FirstDisplayedScrollingColumnIndex
@@ -210,11 +232,13 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.FirstDisplayedScrollingColumnIndex = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public int FirstDisplayedScrollingColumnHiddenWidth => dataGridView1.FirstDisplayedScrollingColumnHiddenWidth;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DataGridViewCell FirstDisplayedCell
@@ -223,6 +247,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.FirstDisplayedCell = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Localizable(true)]
         public int RowHeadersWidth
         {
@@ -230,6 +255,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.RowHeadersWidth = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(DataGridViewRowHeadersWidthSizeMode.EnableResizing)]
         [RefreshProperties(RefreshProperties.All)]
         public DataGridViewRowHeadersWidthSizeMode RowHeadersWidthSizeMode
@@ -238,9 +264,11 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.RowHeadersWidthSizeMode = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public DataGridViewRowCollection Rows => dataGridView1.Rows;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public bool VirtualMode
@@ -249,14 +277,17 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.VirtualMode = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int VerticalScrollingOffset => dataGridView1.VerticalScrollingOffset;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public Cursor UserSetCursor => dataGridView1.UserSetCursor;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DataGridViewHeaderCell TopLeftHeaderCell
@@ -265,15 +296,17 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.TopLeftHeaderCell = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Bindable(false)]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Text
+        public new string Text
         {
             get => dataGridView1.Text;
             set => dataGridView1.Text = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public bool StandardTab
@@ -282,12 +315,15 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.StandardTab = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public SortOrder SortOrder => dataGridView1.SortOrder;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public DataGridViewColumn SortedColumn => dataGridView1.SortedColumn;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(true)]
         public bool EnableHeadersVisualStyles
         {
@@ -295,6 +331,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.EnableHeadersVisualStyles = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(true)]
         public bool ShowRowErrors
         {
@@ -302,6 +339,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ShowRowErrors = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(true)]
         public bool ShowCellToolTips
         {
@@ -309,6 +347,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ShowCellToolTips = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(true)]
         public bool ShowCellErrors
         {
@@ -316,6 +355,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ShowCellErrors = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(true)]
         [DefaultValue(DataGridViewSelectionMode.RowHeaderSelect)]
         public DataGridViewSelectionMode SelectionMode
@@ -324,15 +364,19 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.SelectionMode = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public DataGridViewSelectedRowCollection SelectedRows => dataGridView1.SelectedRows;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public DataGridViewSelectedColumnCollection SelectedColumns => dataGridView1.SelectedColumns;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public DataGridViewSelectedCellCollection SelectedCells => dataGridView1.SelectedCells;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(ScrollBars.Both)]
         [Localizable(true)]
         public ScrollBars ScrollBars
@@ -341,6 +385,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ScrollBars = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DataGridViewRow RowTemplate
@@ -349,6 +394,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.RowTemplate = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(true)]
         public bool ShowEditingIcon
         {
@@ -356,19 +402,22 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ShowEditingIcon = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public Panel EditingPanel => dataGridView1.EditingPanel;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public Color ForeColor
+        public new Color ForeColor
         {
             get => dataGridView1.ForeColor;
             set => dataGridView1.ForeColor = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(DataGridViewEditMode.EditOnKeystrokeOrF2)]
         public DataGridViewEditMode EditMode
         {
@@ -376,29 +425,33 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.EditMode = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Image BackgroundImage
+        public new Image BackgroundImage
         {
             get => dataGridView1.BackgroundImage;
             set => dataGridView1.BackgroundImage = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public Color BackgroundColor
         {
             get => dataGridView1.BackgroundColor;
             set => dataGridView1.BackgroundColor = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color BackColor
+        public new Color BackColor
         {
             get => dataGridView1.BackColor;
             set => dataGridView1.BackColor = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(DataGridViewAutoSizeRowsMode.None)]
         public DataGridViewAutoSizeRowsMode AutoSizeRowsMode
         {
@@ -406,6 +459,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.AutoSizeRowsMode = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(DataGridViewAutoSizeColumnsMode.None)]
         public DataGridViewAutoSizeColumnsMode AutoSizeColumnsMode
         {
@@ -413,10 +467,12 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.AutoSizeColumnsMode = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public Control EditingControl => dataGridView1.EditingControl;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DefaultValue(true)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
@@ -426,85 +482,59 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.AutoGenerateColumns = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public DataGridViewCellStyle AlternatingRowsDefaultCellStyle
         {
             get => dataGridView1.AlternatingRowsDefaultCellStyle;
             set => dataGridView1.AlternatingRowsDefaultCellStyle = value;
         }
-
-        // [DefaultValue(true)]
-        // public bool AllowUserToResizeRows
-        // {
-        //     get => dataGridView1.AllowUserToResizeRows;
-        //     set => dataGridView1.AllowUserToResizeRows = value;
-        // }
-
-        // [DefaultValue(true)]
-        // public bool AllowUserToResizeColumns
-        // {
-        //     get => dataGridView1.AllowUserToResizeColumns;
-        //     set => dataGridView1.AllowUserToResizeColumns = value;
-        // }
-
-        // [DefaultValue(false)]
-        // public bool AllowUserToOrderColumns
-        // {
-        //     get => dataGridView1.AllowUserToOrderColumns;
-        //     set => dataGridView1.AllowUserToOrderColumns = value;
-        // }
-
-        // [DefaultValue(true)]
-        // public bool AllowUserToDeleteRows
-        // {
-        //     get => dataGridView1.AllowUserToDeleteRows;
-        //     set => dataGridView1.AllowUserToDeleteRows = value;
-        // }
-
-        // [DefaultValue(true)]
-        // public bool AllowUserToAddRows
-        // {
-        //     get => dataGridView1.AllowUserToAddRows;
-        //     set => dataGridView1.AllowUserToAddRows = value;
-        // }
-
+        
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public DataGridViewAdvancedBorderStyle AdvancedRowHeadersBorderStyle => dataGridView1.AdvancedRowHeadersBorderStyle;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public DataGridViewAdvancedBorderStyle AdvancedColumnHeadersBorderStyle => dataGridView1.AdvancedColumnHeadersBorderStyle;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public DataGridViewAdvancedBorderStyle AdvancedCellBorderStyle => dataGridView1.AdvancedCellBorderStyle;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public DataGridViewAdvancedBorderStyle AdjustedTopLeftHeaderBorderStyle => dataGridView1.AdjustedTopLeftHeaderBorderStyle;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageLayout BackgroundImageLayout
+        public new ImageLayout BackgroundImageLayout
         {
             get => dataGridView1.BackgroundImageLayout;
             set => dataGridView1.BackgroundImageLayout = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(BorderStyle.FixedSingle)]
-        public BorderStyle BorderStyle
+        public new BorderStyle BorderStyle
         {
             get => dataGridView1.BorderStyle;
             set => dataGridView1.BorderStyle = value;
         }
 
-        public bool AutoSize
+        /// <inheritdoc cref="XDataGridView"/>
+        public new bool AutoSize
         {
             get => dataGridView1.AutoSize;
             set => dataGridView1.AutoSize = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(true)]
         [DefaultValue(DataGridViewCellBorderStyle.Single)]
         public DataGridViewCellBorderStyle CellBorderStyle
@@ -513,6 +543,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.CellBorderStyle = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [AmbientValue(null)]
         public DataGridViewCellStyle DefaultCellStyle
         {
@@ -520,6 +551,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.DefaultCellStyle = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [AttributeProvider(typeof(IListSource))]
         [DefaultValue(null)]
         [RefreshProperties(RefreshProperties.Repaint)]
@@ -529,6 +561,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.DataSource = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue("")]
         [Editor("System.Windows.Forms.Design.DataMemberListEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         public string DataMember
@@ -537,12 +570,15 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.DataMember = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public DataGridViewRow CurrentRow => dataGridView1.CurrentRow;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         public Point CurrentCellAddress => dataGridView1.CurrentCellAddress;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DataGridViewCell CurrentCell
@@ -551,13 +587,16 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.CurrentCell = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Editor(typeof(XDataGridViewColumnCollectionEditor), typeof(UITypeEditor))]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         // [MergableProperty(false)]
         public DataGridViewColumnCollection Columns => dataGridView1.Columns;
 
-        public Rectangle DisplayRectangle => dataGridView1.DisplayRectangle;
+        /// <inheritdoc cref="XDataGridView"/>
+        public new Rectangle DisplayRectangle => dataGridView1.DisplayRectangle;
 
+        /// <inheritdoc cref="XDataGridView"/>
         [DefaultValue(DataGridViewColumnHeadersHeightSizeMode.EnableResizing)]
         [RefreshProperties(RefreshProperties.All)]
         public DataGridViewColumnHeadersHeightSizeMode ColumnHeadersHeightSizeMode
@@ -566,6 +605,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ColumnHeadersHeightSizeMode = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Localizable(true)]
         public int ColumnHeadersHeight
         {
@@ -573,12 +613,14 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ColumnHeadersHeight = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public bool ColumnHeadersVisible
         {
             get => dataGridView1.ColumnHeadersVisible;
             set => dataGridView1.ColumnHeadersVisible = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [AmbientValue(null)]
         public DataGridViewCellStyle ColumnHeadersDefaultCellStyle
         {
@@ -586,6 +628,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ColumnHeadersDefaultCellStyle = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(true)]
         [DefaultValue(DataGridViewHeaderBorderStyle.Raised)]
         public DataGridViewHeaderBorderStyle ColumnHeadersBorderStyle
@@ -594,6 +637,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ColumnHeadersBorderStyle = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DefaultValue(0)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -604,6 +648,7 @@ namespace PowerLib.Winform.Controls
             set => dataGridView1.ColumnCount = value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(true)]
         [DefaultValue(DataGridViewClipboardCopyMode.EnableWithAutoHeaderText)]
         public DataGridViewClipboardCopyMode ClipboardCopyMode
@@ -616,12 +661,14 @@ namespace PowerLib.Winform.Controls
 
         #region 事件
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler BackgroundColorChanged
         {
             add => dataGridView1.BackgroundColorChanged += value;
             remove => dataGridView1.BackgroundColorChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler BackColorChanged
@@ -630,18 +677,21 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.BackgroundColorChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewAutoSizeModeEventHandler AutoSizeRowsModeChanged
         {
             add => dataGridView1.AutoSizeRowsModeChanged += value;
             remove => dataGridView1.AutoSizeRowsModeChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewAutoSizeColumnsModeEventHandler AutoSizeColumnsModeChanged
         {
             add => dataGridView1.AutoSizeColumnsModeChanged += value;
             remove => dataGridView1.AutoSizeColumnsModeChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event EventHandler AutoGenerateColumnsChanged
@@ -650,42 +700,49 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.AutoGenerateColumnsChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler AlternatingRowsDefaultCellStyleChanged
         {
             add => dataGridView1.AlternatingRowsDefaultCellStyleChanged += value;
             remove => dataGridView1.AlternatingRowsDefaultCellStyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler AllowUserToResizeRowsChanged
         {
             add => dataGridView1.AllowUserToResizeRowsChanged += value;
             remove => dataGridView1.AllowUserToResizeRowsChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler AllowUserToResizeColumnsChanged
         {
             add => dataGridView1.AllowUserToResizeColumnsChanged += value;
             remove => dataGridView1.AllowUserToResizeColumnsChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler AllowUserToOrderColumnsChanged
         {
             add => dataGridView1.AllowUserToOrderColumnsChanged += value;
             remove => dataGridView1.AllowUserToOrderColumnsChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler AllowUserToAddRowsChanged
         {
             add => dataGridView1.AllowUserToAddRowsChanged += value;
             remove => dataGridView1.AllowUserToAddRowsChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler Sorted
         {
             add => dataGridView1.Sorted += value;
             remove => dataGridView1.Sorted -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event DataGridViewSortCompareEventHandler SortCompare
         {
@@ -693,30 +750,35 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.SortCompare -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler SelectionChanged
         {
             add => dataGridView1.SelectionChanged += value;
             remove => dataGridView1.SelectionChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event ScrollEventHandler Scroll
         {
             add => dataGridView1.Scroll += value;
             remove => dataGridView1.Scroll -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewCellCancelEventHandler RowValidating
         {
             add => dataGridView1.RowValidating += value;
             remove => dataGridView1.RowValidating -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler AllowUserToDeleteRowsChanged
         {
             add => dataGridView1.AllowUserToDeleteRowsChanged += value;
             remove => dataGridView1.AllowUserToDeleteRowsChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler StyleChanged
@@ -725,6 +787,7 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.StyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler BackgroundImageChanged
@@ -733,134 +796,155 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.BackgroundImageChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler BorderStyleChanged
         {
             add => dataGridView1.BorderStyleChanged += value;
             remove => dataGridView1.BorderStyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewBindingCompleteEventHandler DataBindingComplete
         {
             add => dataGridView1.DataBindingComplete += value;
             remove => dataGridView1.DataBindingComplete -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-
         public event EventHandler CurrentCellDirtyStateChanged
         {
             add => dataGridView1.CurrentCellDirtyStateChanged += value;
             remove => dataGridView1.CurrentCellDirtyStateChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler CurrentCellChanged
         {
             add => dataGridView1.CurrentCellChanged += value;
             remove => dataGridView1.CurrentCellChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnWidthChanged
         {
             add => dataGridView1.ColumnWidthChanged += value;
             remove => dataGridView1.ColumnWidthChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnToolTipTextChanged
         {
             add => dataGridView1.ColumnToolTipTextChanged += value;
             remove => dataGridView1.ColumnToolTipTextChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnStateChangedEventHandler ColumnStateChanged
         {
             add => dataGridView1.ColumnStateChanged += value;
             remove => dataGridView1.ColumnStateChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnSortModeChanged
         {
             add => dataGridView1.ColumnSortModeChanged += value;
             remove => dataGridView1.ColumnSortModeChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnRemoved
         {
             add => dataGridView1.ColumnRemoved += value;
             remove => dataGridView1.ColumnRemoved -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnNameChanged
         {
             add => dataGridView1.ColumnNameChanged += value;
             remove => dataGridView1.ColumnNameChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnMinimumWidthChanged
         {
             add => dataGridView1.ColumnMinimumWidthChanged += value;
             remove => dataGridView1.ColumnMinimumWidthChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewDataErrorEventHandler DataError
         {
             add => dataGridView1.DataError += value;
             remove => dataGridView1.DataError -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnHeaderCellChanged
         {
             add => dataGridView1.ColumnHeaderCellChanged += value;
             remove => dataGridView1.ColumnHeaderCellChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewCellMouseEventHandler ColumnHeaderMouseClick
         {
             add => dataGridView1.ColumnHeaderMouseClick += value;
             remove => dataGridView1.ColumnHeaderMouseClick -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnDividerWidthChanged
         {
             add => dataGridView1.ColumnDividerWidthChanged += value;
             remove => dataGridView1.ColumnDividerWidthChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnDividerDoubleClickEventHandler ColumnDividerDoubleClick
         {
             add => dataGridView1.ColumnDividerDoubleClick += value;
             remove => dataGridView1.ColumnDividerDoubleClick -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnDisplayIndexChanged
         {
             add => dataGridView1.ColumnDisplayIndexChanged += value;
             remove => dataGridView1.ColumnDisplayIndexChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnDefaultCellStyleChanged
         {
             add => dataGridView1.ColumnDefaultCellStyleChanged += value;
             remove => dataGridView1.ColumnDefaultCellStyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnDataPropertyNameChanged
         {
             add => dataGridView1.ColumnDataPropertyNameChanged += value;
             remove => dataGridView1.ColumnDataPropertyNameChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnContextMenuStripChanged
         {
             add => dataGridView1.ColumnContextMenuStripChanged += value;
             remove => dataGridView1.ColumnContextMenuStripChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewColumnEventHandler ColumnAdded
         {
             add => dataGridView1.ColumnAdded += value;
             remove => dataGridView1.ColumnAdded -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event DataGridViewCellValueEventHandler CellValuePushed
         {
@@ -868,6 +952,7 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.CellValuePushed -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event DataGridViewCellValueEventHandler CellValueNeeded
         {
@@ -875,18 +960,21 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.CellValueNeeded -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewCellMouseEventHandler ColumnHeaderMouseDoubleClick
         {
             add => dataGridView1.ColumnHeaderMouseDoubleClick += value;
             remove => dataGridView1.ColumnHeaderMouseDoubleClick -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewCellEventHandler CellValueChanged
         {
             add => dataGridView1.CellValueChanged += value;
             remove => dataGridView1.CellValueChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event DataGridViewRowEventHandler DefaultValuesNeeded
         {
@@ -894,6 +982,7 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.DefaultValuesNeeded -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewRowEventHandler NewRowNeeded
         {
             add => dataGridView1.NewRowNeeded += value;
@@ -1068,120 +1157,140 @@ namespace PowerLib.Winform.Controls
             remove => dataGridView1.AutoSizeColumnModeChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler TextChanged
+        public new event EventHandler TextChanged
         {
             add => dataGridView1.TextChanged += value;
             remove => dataGridView1.TextChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler RowsDefaultCellStyleChanged
         {
             add => dataGridView1.RowsDefaultCellStyleChanged += value;
             remove => dataGridView1.RowsDefaultCellStyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewAutoSizeModeEventHandler RowHeadersWidthSizeModeChanged
         {
             add => dataGridView1.RowHeadersWidthSizeModeChanged += value;
             remove => dataGridView1.RowHeadersWidthSizeModeChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler RowHeadersWidthChanged
         {
             add => dataGridView1.RowHeadersWidthChanged += value;
             remove => dataGridView1.RowHeadersWidthChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler RowHeadersDefaultCellStyleChanged
         {
             add => dataGridView1.RowHeadersDefaultCellStyleChanged += value;
             remove => dataGridView1.RowHeadersDefaultCellStyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler RowHeadersBorderStyleChanged
         {
             add => dataGridView1.RowHeadersBorderStyleChanged += value;
             remove => dataGridView1.RowHeadersBorderStyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler ReadOnlyChanged
         {
             add => dataGridView1.ReadOnlyChanged += value;
             remove => dataGridView1.ReadOnlyChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler PaddingChanged
+        public new event EventHandler PaddingChanged
         {
             add => dataGridView1.PaddingChanged += value;
             remove => dataGridView1.PaddingChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler MultiSelectChanged
         {
             add => dataGridView1.MultiSelectChanged += value;
             remove => dataGridView1.MultiSelectChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event QuestionEventHandler CancelRowEdit
         {
             add => dataGridView1.CancelRowEdit += value;
             remove => dataGridView1.CancelRowEdit -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler GridColorChanged
         {
             add => dataGridView1.GridColorChanged += value;
             remove => dataGridView1.GridColorChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public event EventHandler ForeColorChanged
+        public new event EventHandler ForeColorChanged
         {
             add => dataGridView1.ForeColorChanged += value;
             remove => dataGridView1.ForeColorChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler EditModeChanged
         {
             add => dataGridView1.EditModeChanged += value;
             remove => dataGridView1.EditModeChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler DefaultCellStyleChanged
         {
             add => dataGridView1.DefaultCellStyleChanged += value;
             remove => dataGridView1.DefaultCellStyleChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler DataSourceChanged
         {
             add => dataGridView1.DataSourceChanged += value;
             remove => dataGridView1.DataSourceChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler DataMemberChanged
         {
             add => dataGridView1.DataMemberChanged += value;
             remove => dataGridView1.DataMemberChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event DataGridViewAutoSizeModeEventHandler ColumnHeadersHeightSizeModeChanged
         {
             add => dataGridView1.ColumnHeadersHeightSizeModeChanged += value;
             remove => dataGridView1.ColumnHeadersHeightSizeModeChanged -= value;
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler ColumnHeadersHeightChanged
         {
             add => dataGridView1.ColumnHeadersHeightChanged += value;
             remove => dataGridView1.ColumnHeadersHeightChanged -= value;
         }
+
+        /// <inheritdoc cref="XDataGridView"/>
         public event EventHandler ColumnHeadersDefaultCellStyleChanged
         {
             add => dataGridView1.ColumnHeadersDefaultCellStyleChanged += value;
@@ -1585,11 +1694,13 @@ namespace PowerLib.Winform.Controls
             dataGridView1.UpdateRowErrorText(rowIndexStart, rowIndexEnd);
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public void UpdateRowErrorText(int rowIndex)
         {
             dataGridView1.UpdateRowErrorText(rowIndex);
         }
 
+        /// <inheritdoc cref="XDataGridView"/>
         public void UpdateRowHeightInfo(int rowIndex, bool updateToEnd)
         {
             dataGridView1.UpdateRowHeightInfo(rowIndex, updateToEnd);

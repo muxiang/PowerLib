@@ -69,7 +69,6 @@
             this.txt1 = new PowerLib.Winform.Controls.XTextBox();
             this.xShadowPanel1 = new PowerLib.Winform.Controls.XShadowPanel();
             this.btnShowLoadingLayerAutoClose = new PowerLib.Winform.Controls.XButton();
-            ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
             this.grp1.SuspendLayout();
             this.xTabControl1.SuspendLayout();
@@ -461,7 +460,6 @@
             this.Text = "FrmXFormTest";
             this.TitleBarStartColor = System.Drawing.Color.HotPink;
             this.Load += new System.EventHandler(this.FrmXFormTest_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ripplePictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).EndInit();
             this.grp1.ResumeLayout(false);
             this.xTabControl1.ResumeLayout(false);

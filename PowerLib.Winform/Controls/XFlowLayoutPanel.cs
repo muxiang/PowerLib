@@ -4,8 +4,19 @@ using System.Windows.Forms;
 
 namespace PowerLib.Winform.Controls
 {
+    /// <summary>
+    /// 表示以水平或垂直方式动态布置其内容的面板。
+    /// </summary>
     public partial class XFlowLayoutPanel : UserControl
     {
+        /// <summary>
+        /// 获取包含在控件内的控件的集合
+        /// </summary>
+        public ControlCollection ControlList => fpnlInner.Controls;
+
+        /// <summary>
+        /// 初始化<see cref="XFlowLayoutPanel"/>的实例
+        /// </summary>
         public XFlowLayoutPanel()
         {
             InitializeComponent();
@@ -14,8 +25,7 @@ namespace PowerLib.Winform.Controls
             xScrollBar1.Scroll += (s1, e1) =>
             {
                 fpnlInner.AutoScrollPosition = new Point(0, xScrollBar1.Value);
-                xScrollBar1.Invalidate();
-                Application.DoEvents();
+                xScrollBar1.Refresh();
             };
 
             fpnlInner.ControlAdded += FpnlInner_ControlChanged;
@@ -42,12 +52,11 @@ namespace PowerLib.Winform.Controls
             xScrollBar1.Value = Math.Abs(fpnlInner.AutoScrollPosition.Y);
         }
 
+        /// <inheritdoc cref="UserControl"/>
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
             KeepInnerAndScrollBar();
         }
-
-        public ControlCollection ControlList => fpnlInner.Controls;
     }
 }

@@ -196,6 +196,7 @@ namespace PowerLib.Winform.Controls
 
         #region 重写
 
+        ///<inheritdoc cref="Control"/>
         protected override void OnPaint(PaintEventArgs e)
         {
             if (_isActived && _isDrawing)
@@ -221,6 +222,7 @@ namespace PowerLib.Winform.Controls
             base.OnPaint(e);
         }
 
+        ///<inheritdoc cref="Control"/>
         protected override void OnResize(EventArgs e)
         {
             Height = Width;

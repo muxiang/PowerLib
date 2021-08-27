@@ -18,7 +18,7 @@ namespace PowerLib.Winform.Controls
     /// <summary>
     /// 表示附带水波特效的图片框
     /// </summary>
-    public sealed class RipplePictureBox : PictureBox
+    public sealed class RipplePictureBox : Control
     {
         #region 字段
 
@@ -28,8 +28,6 @@ namespace PowerLib.Winform.Controls
         private readonly ThreadingTimer _tmrRender;
         // 自动划动定时器
         private readonly ThreadingTimer _tmrAutoSplash;
-        // 是否正在拖动
-        private bool _dragging;
         // 上一次单击点
         private Point? _lastClick;
         // 单击计时
@@ -77,7 +75,7 @@ namespace PowerLib.Winform.Controls
             ClickSplashRadius = 12;
             DragSplashRadius = 10;
 
-            _dragging = false;
+            bool dragging = false;
 
             _tmrRender = new ThreadingTimer(o =>
             {
@@ -108,14 +106,14 @@ namespace PowerLib.Winform.Controls
                 _swClick = Stopwatch.StartNew();
                 _lastClick = new Point(e1.X, e1.Y);
                 Splash(e1.Location.X, e1.Location.Y, ClickSplashRadius);
-                _dragging = true;
+                dragging = true;
             };
 
-            MouseUp += (s1, e1) => { _dragging = false; };
+            MouseUp += (s1, e1) => { dragging = false; };
 
             MouseMove += (s1, e1) =>
             {
-                if (_dragging || HoverSplash)
+                if (dragging || HoverSplash)
                     Splash(e1.Location.X, e1.Location.Y, DragSplashRadius);
             };
         }
@@ -149,14 +147,13 @@ namespace PowerLib.Winform.Controls
         [Category("Appearance")]
         [DefaultValue(null)]
         [Description("获取或设置水波背景图")]
-        public new Image Image
+        public Image Image
         {
             get => _effect?.Texture;
             set
             {
                 if (value == null) return;
                 _bmpOrigin = new Bitmap(value);
-                // Bitmap texture = Utilities.StretchBitmap(_bmpOrigin, Size);
                 _effect?.Dispose();
                 _effect = new RippleEffect(_bmpOrigin);
             }
@@ -473,6 +470,7 @@ namespace PowerLib.Winform.Controls
             };
         }
 
+        /// <inheritdoc cref="Control"/>
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
@@ -511,15 +509,15 @@ namespace PowerLib.Winform.Controls
         }
 
         /// <summary>
-        /// 
+        /// 将控件坐标转换为图像坐标
         /// </summary>
-        /// <param name="point"></param>
+        /// <param name="ptControl">控件坐标</param>
         /// <returns></returns>
-        private Point Translate(Point point)
+        private Point Translate(Point ptControl)
         {
             double cx = (double)Image.Width / Width;
             double cy = (double)Image.Height / Height;
-            return new Point((int)(cx * point.X), (int)(cy * point.Y));
+            return new Point((int)(cx * ptControl.X), (int)(cy * ptControl.Y));
         }
 
         #endregion 私有方法
