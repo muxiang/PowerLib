@@ -15,6 +15,9 @@ namespace PowerLib.Winform.Controls
         private LoadingCircle _circle;
         private XProgressBar _progressBar;
 
+        // 用于遮罩层创建过程中，立即关闭时设置的标记，仅在Close中设置为true，并在HandleCreated事件处理中读取
+        private bool _isClosed;
+
         private readonly Thread _formThread;
 
         /// <summary>
@@ -86,6 +89,12 @@ namespace PowerLib.Winform.Controls
                 BackColor = Color.Black,
                 StartPosition = FormStartPosition.Manual,
                 UseWaitCursor = customCursor == null
+            };
+
+            _form.HandleCreated += (s1, e1) =>
+            {
+                if (_isClosed)
+                    _form.BeginInvoke(new MethodInvoker(_form.Close));
             };
 
             if (customCursor != null)
@@ -183,10 +192,7 @@ namespace PowerLib.Winform.Controls
             if (_form.IsHandleCreated)
                 _form.BeginInvoke(new MethodInvoker(_form.Close));
             else
-                _form.HandleCreated += (s1, e1) =>
-                {
-                    _form.BeginInvoke(new MethodInvoker(_form.Close));
-                };
+                _isClosed = true;
 
             Dispose();
         }
@@ -224,7 +230,7 @@ namespace PowerLib.Winform.Controls
             {
                 if (_circle.InvokeRequired)
                     _circle.BeginInvoke(new MethodInvoker(_circle.Dispose));
-                else
+                else if (_circle.IsHandleCreated)
                     _circle.Dispose();
             }
 
@@ -232,7 +238,7 @@ namespace PowerLib.Winform.Controls
             {
                 if (_progressBar.InvokeRequired)
                     _progressBar.BeginInvoke(new MethodInvoker(_progressBar.Dispose));
-                else
+                else if (_progressBar.IsHandleCreated)
                     _progressBar.Dispose();
             }
 
@@ -240,7 +246,7 @@ namespace PowerLib.Winform.Controls
             {
                 if (_form.InvokeRequired)
                     _form.BeginInvoke(new MethodInvoker(_form.Dispose));
-                else
+                else if (_form.IsHandleCreated)
                     _form.Dispose();
             }
         }
