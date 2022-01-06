@@ -1277,6 +1277,20 @@ namespace PowerLib.Winform
         }
 
         /// <inheritdoc />
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            /*
+             * 因调用SetWindowLong强制设置父子窗口关系，
+             * 导致Application.Run创建模态消息循环的时候不会被视为模态窗口，
+             * 故base.OnLoad中不会调用CenterToScreen，在此补全
+             */
+            if (StartPosition == FormStartPosition.CenterScreen)
+                CenterToScreen();
+        }
+
+        /// <inheritdoc />
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);

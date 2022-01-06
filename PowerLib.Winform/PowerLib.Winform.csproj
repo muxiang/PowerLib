@@ -40,10 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\Dot.cs" />
@@ -103,6 +105,12 @@
     </Compile>
     <Compile Include="Controls\XGroupBox.designer.cs">
       <DependentUpon>XGroupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\XFileProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\XFileProgressBar.Designer.cs">
+      <DependentUpon>XFileProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="XMessageBox.cs">
       <SubType>Form</SubType>

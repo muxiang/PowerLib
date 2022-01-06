@@ -43,28 +43,44 @@ namespace PowerLib.Winform.Controls
         #region 属性
 
         /// <summary>
-        ///     圆心
+        /// 圆心
         /// </summary>
         [Browsable(false)]
-        public PointF CircleCenter
-        {
-            get { return new PointF(Width / 2f, Height / 2f); }
-        }
+        public PointF CircleCenter => new PointF(Width / 2f, Height / 2f);
 
         /// <summary>
-        ///     半径
+        /// 半径
         /// </summary>
         [Browsable(false)]
-        public float CircleRadius
-        {
-            get { return Width / 2f - _dotSize; }
-        }
+        public float CircleRadius => Width / 2f - _dotSize;
 
         /// <summary>
-        ///     颜色
+        /// 颜色
         /// </summary>
-        [Browsable(true), Category("Appearance"), Description("设置\"点\"的前景色")]
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("设置\"点\"的前景色")]
+        [DefaultValue(typeof(Color), "255, 255, 255")]
         public Color Color { get; set; }
+
+        /// <summary>
+        /// 获取或设置动画的刷新频率
+        /// </summary>
+        [Browsable(true)]
+        [Category("Behavior")]
+        [Description("获取或设置动画的刷新频率")]
+        [DefaultValue(60)]
+        public int RefreshRate
+        {
+            get => _refreshRate;
+            set
+            {
+                if (value < 1 || value > 60)
+                    throw new ArgumentOutOfRangeException(nameof(value), @"刷新频率不能小于1或大于60");
+
+                _refreshRate = value;
+            }
+        }
 
         #endregion 属性
 
@@ -88,6 +104,9 @@ namespace PowerLib.Winform.Controls
 
         // Timer计数:用于延迟启动每个点
         private int _timerCount;
+
+        // 动画刷新频率
+        private int _refreshRate = 60;
 
         #endregion 字段
 
@@ -117,7 +136,7 @@ namespace PowerLib.Winform.Controls
         }
 
         /// <summary>
-        ///     开关
+        /// 开关
         /// </summary>
         public bool Switch()
         {
@@ -147,7 +166,7 @@ namespace PowerLib.Winform.Controls
                     return;
 
                 BeginInvoke(new MethodInvoker(Invalidate));
-            }, null, 0, 1000 / 60);
+            }, null, 0, (int)Math.Round(1000 / (double)60));
 
 
             // 初始化动作timer

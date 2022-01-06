@@ -87,5 +87,11 @@ namespace PowerLib.Winform.Sample
 
             ll.Show();
         }
+
+        private void btnXFileProgressBarTest_Click(object sender, EventArgs e)
+        {
+            using (FrmXFileProgressBarTest frm = new FrmXFileProgressBarTest())
+                frm.ShowDialog();
+        }
     }
 }

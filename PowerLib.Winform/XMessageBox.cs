@@ -60,7 +60,8 @@ namespace PowerLib.Winform
             if (Parent == null)
                 StartPosition = FormStartPosition.CenterScreen;
 
-            _content = text;
+            _content = text.Length > 2046 ? text.Substring(0, 2046) : text;
+
             Text = caption;
 
             base.TitleBarStartColor = TitleBarStartColor;
@@ -93,7 +94,7 @@ namespace PowerLib.Winform
             int btnTotalWidth;
 
             using (Graphics g = CreateGraphics())
-                _szText = g.MeasureString(text, Font,
+                _szText = g.MeasureString(_content, Font,
                     new SizeF(TEXT_MAX_WIDTH, Screen.PrimaryScreen.Bounds.Height),
                     StringFormat.GenericDefault);
 

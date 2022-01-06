@@ -69,6 +69,7 @@
             this.txt1 = new PowerLib.Winform.Controls.XTextBox();
             this.xShadowPanel1 = new PowerLib.Winform.Controls.XShadowPanel();
             this.btnShowLoadingLayerAutoClose = new PowerLib.Winform.Controls.XButton();
+            this.btnXFileProgressBarTest = new PowerLib.Winform.Controls.XButton();
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
             this.grp1.SuspendLayout();
             this.xTabControl1.SuspendLayout();
@@ -187,7 +188,6 @@
             // loadingCircle1
             // 
             this.loadingCircle1.BackColor = System.Drawing.Color.Black;
-            this.loadingCircle1.Color = System.Drawing.Color.White;
             this.loadingCircle1.Location = new System.Drawing.Point(335, 447);
             this.loadingCircle1.Name = "loadingCircle1";
             this.loadingCircle1.Size = new System.Drawing.Size(231, 231);
@@ -430,12 +430,35 @@
             this.btnShowLoadingLayerAutoClose.Text = "遮罩层(自动关闭)";
             this.btnShowLoadingLayerAutoClose.Click += new System.EventHandler(this.btnShowLoadingLayerAutoClose_Click);
             // 
+            // btnXFileProgressBarTest
+            // 
+            this.btnXFileProgressBarTest.CheckedEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.btnXFileProgressBarTest.CheckedForeColor = System.Drawing.Color.White;
+            this.btnXFileProgressBarTest.CheckedStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.btnXFileProgressBarTest.DefaultButtonBorderWidth = 2;
+            this.btnXFileProgressBarTest.EndColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.btnXFileProgressBarTest.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.btnXFileProgressBarTest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.btnXFileProgressBarTest.HoldingEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(128)))), ((int)(((byte)(252)))));
+            this.btnXFileProgressBarTest.HoldingForeColor = System.Drawing.Color.White;
+            this.btnXFileProgressBarTest.HoldingImage = null;
+            this.btnXFileProgressBarTest.HoldingStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.btnXFileProgressBarTest.Image = null;
+            this.btnXFileProgressBarTest.Location = new System.Drawing.Point(667, 37);
+            this.btnXFileProgressBarTest.Name = "btnXFileProgressBarTest";
+            this.btnXFileProgressBarTest.Size = new System.Drawing.Size(115, 65);
+            this.btnXFileProgressBarTest.StartColor = System.Drawing.Color.White;
+            this.btnXFileProgressBarTest.TabIndex = 26;
+            this.btnXFileProgressBarTest.Text = "文件进度条示例";
+            this.btnXFileProgressBarTest.Click += new System.EventHandler(this.btnXFileProgressBarTest_Click);
+            // 
             // FrmXFormTest
             // 
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 704);
+            this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);
             this.Controls.Add(this.txt1);
             this.Controls.Add(this.xTabControl1);
@@ -456,7 +479,7 @@
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(100, 100);
             this.Name = "FrmXFormTest";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmXFormTest";
             this.TitleBarStartColor = System.Drawing.Color.HotPink;
             this.Load += new System.EventHandler(this.FrmXFormTest_Load);
@@ -493,5 +516,6 @@
         private PowerLib.Winform.Controls.XTextBox txt1;
         private PowerLib.Winform.Controls.XShadowPanel xShadowPanel1;
         private Controls.XButton btnShowLoadingLayerAutoClose;
+        private Controls.XButton btnXFileProgressBarTest;
     }
 }

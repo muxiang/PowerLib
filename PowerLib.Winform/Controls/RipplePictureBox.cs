@@ -42,17 +42,17 @@ namespace PowerLib.Winform.Controls
 
         // 启用动画
         private bool _animationEnabled;
+        // 动画刷新频率
+        private int _refreshRate = 60;
 
         #endregion 字段
 
         #region 常量
 
-        // 核定每秒帧数
-        private const int Fps = 60;
         // 单击延迟
-        private const int ClickDelay = 1000;
+        private const int CLICK_DELAY = 1000;
         // 自动划动间隔
-        private const int AutoSplashIntervals = 8000;
+        private const int AUTO_SPLASH_INTERVALS = 8000;
 
         #endregion 常量
 
@@ -83,7 +83,7 @@ namespace PowerLib.Winform.Controls
                     return;
 
                 BeginInvoke(new MethodInvoker(UpdateFrame));
-            }, null, Timeout.Infinite, (int)Math.Round(1000 / (double)Fps));
+            }, null, Timeout.Infinite, (int)Math.Round(1000 / (double)_refreshRate));
 
             _tmrAutoSplash = new ThreadingTimer(o =>
             {
@@ -96,12 +96,12 @@ namespace PowerLib.Winform.Controls
                     Thread.Sleep(30);
                 }
 
-            }, null, Timeout.Infinite, AutoSplashIntervals);
+            }, null, Timeout.Infinite, AUTO_SPLASH_INTERVALS);
 
             MouseDown += (s1, e1) =>
             {
                 // 由于算法缺陷,避免短时间内在同一点生成大量水波
-                if (ComparePoint(_lastClick, e1.Location, 10) && _swClick != null && _swClick.ElapsedMilliseconds < ClickDelay) return;
+                if (ComparePoint(_lastClick, e1.Location, 10) && _swClick != null && _swClick.ElapsedMilliseconds < CLICK_DELAY) return;
 
                 _swClick = Stopwatch.StartNew();
                 _lastClick = new Point(e1.X, e1.Y);
@@ -172,8 +172,27 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _animationEnabled = value;
-                _tmrRender.Change(value ? 0 : Timeout.Infinite, (int)Math.Round(1000 / (double)Fps));
+                _tmrRender.Change(value ? 0 : Timeout.Infinite, (int)Math.Round(1000 / (double)_refreshRate));
                 if (!value) Clear();
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置动画的刷新频率
+        /// </summary>
+        [Browsable(true)]
+        [Category("Behavior")]
+        [Description("获取或设置动画的刷新频率")]
+        [DefaultValue(60)]
+        public int RefreshRate
+        {
+            get => _refreshRate;
+            set
+            {
+                if (value < 1 || value > 60)
+                    throw new ArgumentOutOfRangeException(nameof(value), @"刷新频率不能小于1或大于60");
+
+                _refreshRate = value;
             }
         }
 
@@ -190,7 +209,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _autoSplash = value;
-                _tmrAutoSplash.Change((!DesignerUtil.IsDesignMode() && value) ? 0 : Timeout.Infinite, AutoSplashIntervals);
+                _tmrAutoSplash.Change((!DesignerUtil.IsDesignMode() && value) ? 0 : Timeout.Infinite, AUTO_SPLASH_INTERVALS);
             }
         }
 
@@ -474,7 +493,7 @@ namespace PowerLib.Winform.Controls
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
-            _tmrRender.Change(0, (int)Math.Round(1000 / (double)Fps));
+            _tmrRender.Change(0, (int)Math.Round(1000 / (double)_refreshRate));
         }
 
         #endregion 重写
