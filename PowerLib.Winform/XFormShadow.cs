@@ -22,7 +22,7 @@ namespace PowerLib.Winform
         private readonly Bitmap _background;
 
         #endregion 字段
-        
+
         #region 构造
 
         public XFormShadow(Color backColor, Size size)

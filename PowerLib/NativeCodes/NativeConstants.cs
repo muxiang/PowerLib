@@ -13,6 +13,8 @@ namespace PowerLib.NativeCodes
         public const int WM_DESTROY = 0x02;
         public const int WM_MOVE = 0x03;
         public const int WM_SIZE = 0x0005;
+        public const int WM_ACTIVATE = 0x0006;
+        public const int WM_ACTIVATEAPP = 0x001C;
         public const int WM_SETREDRAW = 0x000B;
         public const int WM_PAINT = 0x000F;
         public const int WM_CLOSE = 0x0010;
@@ -247,7 +249,7 @@ namespace PowerLib.NativeCodes
         public const int SM_CXBORDER = 5;
         public const int SM_CYCAPTION = 4;
 
-        public const int CS_DropSHADOW = 0x20000;
+        public const int CS_DROPSHADOW = 0x20000;
         public const int GCL_STYLE = -26;
 
         public const byte AC_SRC_OVER = 0;

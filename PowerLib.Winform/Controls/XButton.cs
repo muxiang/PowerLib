@@ -169,7 +169,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _image = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -185,7 +185,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _holdingImage = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -202,7 +202,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _checked = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -219,7 +219,7 @@ namespace PowerLib.Winform.Controls
             {
                 _startColor = value;
                 _hoveringStartColor = CommonUtility.GetLighterColor(StartColor);
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -236,7 +236,7 @@ namespace PowerLib.Winform.Controls
             {
                 _endColor = value;
                 _hoveringEndColor = CommonUtility.GetLighterColor(EndColor);
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -254,7 +254,7 @@ namespace PowerLib.Winform.Controls
                 _checkedStartColor = value;
                 _hoveringCheckedStartColor = CommonUtility.GetLighterColor(CheckedStartColor);
                 _holdingCheckedStartColor = CommonUtility.GetDeeperColor(CheckedStartColor);
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -272,7 +272,7 @@ namespace PowerLib.Winform.Controls
                 _checkedEndColor = value;
                 _hoveringCheckedEndColor = CommonUtility.GetLighterColor(CheckedEndColor);
                 _holdingCheckedEndColor = CommonUtility.GetDeeperColor(CheckedEndColor);
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -288,7 +288,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _checkedForeColor = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -304,7 +304,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _holdingStartColor = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -320,7 +320,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _holdingEndColor = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -336,7 +336,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _holdingForeColor = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -353,7 +353,7 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _enableLinearGradientColor = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -361,16 +361,16 @@ namespace PowerLib.Winform.Controls
         /// 是否启用圆角矩形
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(true)]
         [Category("Appearance")]
         [Description("是否启用圆角矩形")]
+        [DefaultValue(true)]
         public bool EnableRoundedRectangle
         {
             get => _enableRoundedRectangle;
             set
             {
                 _enableRoundedRectangle = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -378,16 +378,16 @@ namespace PowerLib.Winform.Controls
         /// 圆角矩形圆角所在圆的半径，值越小，圆角越尖锐
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(5)]
         [Category("Appearance")]
         [Description("圆角矩形圆角所在圆的半径，值越小，圆角越尖锐")]
+        [DefaultValue(5)]
         public int RoundedRectangleCornerRadius
         {
             get => _roundedRectangleCornerRadius;
             set
             {
                 _roundedRectangleCornerRadius = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -395,16 +395,16 @@ namespace PowerLib.Winform.Controls
         /// 指定为此 <see cref="XButton"/> 显示何种对象（图像还是文本）
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(typeof(XButtonDisplayStyle), "Text")]
-        [Description("指定为此 XButton 显示何种对象（图像还是文本）")]
         [Category("Appearance")]
+        [Description("指定为此 XButton 显示何种对象（图像还是文本）")]
+        [DefaultValue(typeof(XButtonDisplayStyle), "Text")]
         public XButtonDisplayStyle DisplayStyle
         {
             get => _displayStyle;
             set
             {
                 _displayStyle = value;
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -422,7 +422,7 @@ namespace PowerLib.Winform.Controls
             {
                 _borderColor = value;
                 _borderPen = new Pen(value, _borderWidth);
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -430,9 +430,9 @@ namespace PowerLib.Winform.Controls
         /// 边框宽度
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(1)]
         [Category("Appearance")]
         [Description("边框宽度")]
+        [DefaultValue(1)]
         public int BorderWidth
         {
             get => _borderWidth;
@@ -442,7 +442,7 @@ namespace PowerLib.Winform.Controls
                 if (value > 0)
                     _borderPen = new Pen(_borderColor, value);
 
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -460,7 +460,7 @@ namespace PowerLib.Winform.Controls
             {
                 _defaultButtonBorderColor = value;
                 _defaultButtonBorderPen = new Pen(value, _defaultButtonBorderWidth);
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -468,9 +468,9 @@ namespace PowerLib.Winform.Controls
         /// 作为默认窗口按钮时的边框宽度
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(1)]
         [Category("Appearance")]
         [Description("作为默认窗口按钮时的边框宽度")]
+        [DefaultValue(1)]
         public int DefaultButtonBorderWidth
         {
             get => _defaultButtonBorderWidth;
@@ -480,7 +480,7 @@ namespace PowerLib.Winform.Controls
                 if (value > 0)
                     _defaultButtonBorderPen = new Pen(_defaultButtonBorderColor, value);
 
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -496,9 +496,9 @@ namespace PowerLib.Winform.Controls
         /// 指定此 <see cref="XButton"/> 单击后，容器窗口的返回值，仅指定非 <see cref="DialogResult.None"/> 时生效
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(DialogResult.None)]
-        [Description("指定为此 XButton 单击后，容器窗口的返回值，仅指定非 DialogResult.None 时生效")]
         [Category("Behavior")]
+        [Description("指定为此 XButton 单击后，容器窗口的返回值，仅指定非 DialogResult.None 时生效")]
+        [DefaultValue(DialogResult.None)]
         public DialogResult DialogResult
         {
             get => _dialogResult;
@@ -509,9 +509,9 @@ namespace PowerLib.Winform.Controls
         /// 指定为此 <see cref="XButton"/> 显示并响应的快捷键字符
         /// </summary>
         [Browsable(true)]
-        [DefaultValue('\0')]
-        [Description("指定为此 XButton 显示并响应的快捷键字符")]
         [Category("Behavior")]
+        [Description("指定为此 XButton 显示并响应的快捷键字符")]
+        [DefaultValue('\0')]
         public char Shortcut
         {
             get => _shortcut;
@@ -530,7 +530,7 @@ namespace PowerLib.Winform.Controls
                 }
 
                 _shortcut = value;
-                Invalidate();
+                Refresh();
 
                 // 绑定快捷键响应
                 Form parentForm = CommonUtility.GetParentForm(this);
@@ -818,7 +818,7 @@ namespace PowerLib.Winform.Controls
         private void DropDownItemAdded(object sender, DropDownButtonItemCollectionChangedEventArgs e)
         {
             // 重绘以更新下拉箭头
-            Invalidate();
+            Refresh();
 
             Form parentForm = CommonUtility.GetParentForm(this);
             if (parentForm == null) return;
@@ -860,7 +860,7 @@ namespace PowerLib.Winform.Controls
         // 下拉项移除
         private void DropDownItemRemoved(object sender, DropDownButtonItemCollectionChangedEventArgs e)
         {
-            Invalidate();
+            Refresh();
 
             if (Parent == null) return;
 
@@ -941,7 +941,7 @@ namespace PowerLib.Winform.Controls
         {
             base.OnTextChanged(e);
 
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -951,7 +951,7 @@ namespace PowerLib.Winform.Controls
 
             _buttonRect = new Rectangle(0, 0, Width - DROP_DOWN_ARROW_WIDTH, Height);
             _dropArrowAreaRect = new Rectangle(_buttonRect.Width, 0, DROP_DOWN_ARROW_WIDTH, Height);
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -960,7 +960,7 @@ namespace PowerLib.Winform.Controls
             base.OnForeColorChanged(e);
 
             _textBrush = new SolidBrush(Enabled ? ForeColor : Color.FromArgb(76, 92, 95));
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -968,21 +968,21 @@ namespace PowerLib.Winform.Controls
         {
             base.OnFontChanged(e);
             _shortcutFont = new Font(Font, Font.Style | FontStyle.Underline);
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
         protected override void OnEnabledChanged(EventArgs e)
         {
             base.OnEnabledChanged(e);
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
         protected override void OnMouseEnter(EventArgs e)
         {
             _isMouseHovering = true;
-            Invalidate();
+            Refresh();
             base.OnMouseEnter(e);
         }
 
@@ -1016,7 +1016,7 @@ namespace PowerLib.Winform.Controls
             }
 
             // 重绘
-            Invalidate();
+            Refresh();
             base.OnMouseMove(e);
         }
 
@@ -1024,7 +1024,7 @@ namespace PowerLib.Winform.Controls
         protected override void OnMouseLeave(EventArgs e)
         {
             _isMouseHovering = false;
-            Invalidate();
+            Refresh();
             base.OnMouseLeave(e);
         }
 
@@ -1032,7 +1032,7 @@ namespace PowerLib.Winform.Controls
         protected override void OnMouseDown(MouseEventArgs e)
         {
             _isMouseHolding = true;
-            Invalidate();
+            Refresh();
             base.OnMouseDown(e);
             Focus();
         }
@@ -1041,7 +1041,7 @@ namespace PowerLib.Winform.Controls
         protected override void OnMouseUp(MouseEventArgs e)
         {
             _isMouseHolding = false;
-            Invalidate();
+            Refresh();
             base.OnMouseUp(e);
         }
 
@@ -1116,7 +1116,7 @@ namespace PowerLib.Winform.Controls
         public void NotifyDefault(bool value)
         {
             _isDefaultButton = value;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />

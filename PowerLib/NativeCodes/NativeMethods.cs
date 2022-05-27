@@ -15,6 +15,10 @@ namespace PowerLib.NativeCodes
         [DllImport("USER32.dll")]
         public static extern bool SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern bool PostMessage(IntPtr hWnd, uint wMsg, int wParam, int lParam);
+
         [DllImport("USER32.dll")]
         public static extern IntPtr GetDC(IntPtr hWnd);
 
@@ -105,6 +109,9 @@ namespace PowerLib.NativeCodes
             int cy,
             uint uFlags);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public static extern bool TrackMouseEvent([In, Out] TRACKMOUSEEVENT lpEventTrack);
 
@@ -149,6 +156,9 @@ namespace PowerLib.NativeCodes
 
         [DllImport("DWMAPI.dll")]
         public static extern int DwmIsCompositionEnabled(out bool isEnabled);
+
+        [DllImport("DWMAPI.dll")]
+        public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref MARGINS margins);
 
         #endregion DWMAPI.dll
     }

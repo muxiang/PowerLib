@@ -102,7 +102,7 @@
             this.ripplePictureBox1.AnimationEnabled = false;
             this.ripplePictureBox1.DragSplashRadius = 10;
             this.ripplePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("ripplePictureBox1.Image")));
-            this.ripplePictureBox1.Location = new System.Drawing.Point(17, 434);
+            this.ripplePictureBox1.Location = new System.Drawing.Point(17, 398);
             this.ripplePictureBox1.MinimumSize = new System.Drawing.Size(256, 256);
             this.ripplePictureBox1.Name = "ripplePictureBox1";
             this.ripplePictureBox1.Size = new System.Drawing.Size(256, 256);
@@ -188,7 +188,7 @@
             // loadingCircle1
             // 
             this.loadingCircle1.BackColor = System.Drawing.Color.Black;
-            this.loadingCircle1.Location = new System.Drawing.Point(335, 447);
+            this.loadingCircle1.Location = new System.Drawing.Point(323, 412);
             this.loadingCircle1.Name = "loadingCircle1";
             this.loadingCircle1.Size = new System.Drawing.Size(231, 231);
             this.loadingCircle1.TabIndex = 4;
@@ -457,7 +457,7 @@
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 704);
+            this.ClientSize = new System.Drawing.Size(1178, 700);
             this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);
             this.Controls.Add(this.txt1);

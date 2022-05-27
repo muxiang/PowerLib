@@ -27,14 +27,14 @@ namespace PowerLib.Winform
         public const int TitleBarHeight = 30;
 
         // 边框宽度
-        private const int BorderWidth = 2;
+        private const int BORDER_WIDTH = 2;
         // 边框热区附加宽度
-        private const int BorderRegionAddtionalWidth = 2;
+        private const int BORDER_REGION_ADDTIONAL_WIDTH = 2;
         // 标题栏图标大小
-        private const int IconSize = 16;
+        private const int ICON_SIZE = 16;
         // 标题栏按钮大小
-        private const int ButtonWidth = 30;
-        private const int ButtonHeight = 30;
+        private const int BUTTON_WIDTH = 30;
+        private const int BUTTON_HEIGHT = 30;
 
         #endregion 常量
 
@@ -84,6 +84,17 @@ namespace PowerLib.Winform
 
         // 标识用户通过鼠标操作调整尺寸或移动窗口
         private bool _userSizedOrMoved;
+
+        /*
+         * 标识窗口已从最大化或最小化恢复成原始尺寸，
+         * 于WM_SYSCOMMAND中WParam为SC_RESTORE时，由XForm内部Post到消息队列末尾，
+         * WndProc处理此消息时将_isRestoring置为false
+         */
+        private const int WM_RESTORED = WM_USER + 0xFF;
+        // 标识窗口正在从最大化或最小化恢复成原始尺寸
+        private bool _isRestoring;
+        // 记录窗口最大化或最小化前的原始窗口矩形
+        private RECT _rectWndBeforeRestored;
 
         #endregion 字段
 
@@ -300,7 +311,7 @@ namespace PowerLib.Winform
                     case FormBorderStyle.Sizable:
                     case FormBorderStyle.FixedToolWindow:
                     case FormBorderStyle.SizableToolWindow:
-                        return new Rectangle(BorderWidth, BorderWidth, Width - BorderWidth * 2, TitleBarHeight);
+                        return new Rectangle(BORDER_WIDTH, BORDER_WIDTH, Width - BORDER_WIDTH * 2, TitleBarHeight);
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -327,10 +338,10 @@ namespace PowerLib.Winform
                     case FormBorderStyle.SizableToolWindow:
 
                         return new Rectangle(
-                            TitleBarRectangle.Right - ButtonWidth,
-                            TitleBarRectangle.Top + (TitleBarRectangle.Height - ButtonHeight) / 2,
-                            ButtonWidth,
-                            ButtonHeight);
+                            TitleBarRectangle.Right - BUTTON_WIDTH,
+                            TitleBarRectangle.Top + (TitleBarRectangle.Height - BUTTON_HEIGHT) / 2,
+                            BUTTON_WIDTH,
+                            BUTTON_HEIGHT);
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -356,10 +367,10 @@ namespace PowerLib.Winform
                     case FormBorderStyle.FixedToolWindow:
                     case FormBorderStyle.SizableToolWindow:
                         return new Rectangle(
-                            CloseButtonRectangle.X - ButtonWidth,
+                            CloseButtonRectangle.X - BUTTON_WIDTH,
                             CloseButtonRectangle.Y,
-                            ButtonWidth,
-                            ButtonHeight);
+                            BUTTON_WIDTH,
+                            BUTTON_HEIGHT);
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -385,10 +396,10 @@ namespace PowerLib.Winform
                     case FormBorderStyle.FixedToolWindow:
                     case FormBorderStyle.SizableToolWindow:
                         return new Rectangle(
-                            MaximizeButtonRectangle.X - ButtonWidth,
+                            MaximizeButtonRectangle.X - BUTTON_WIDTH,
                             CloseButtonRectangle.Y,
-                            ButtonWidth,
-                            ButtonHeight);
+                            BUTTON_WIDTH,
+                            BUTTON_HEIGHT);
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -430,7 +441,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMinimize.Width + _imgBtnMaximize.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimize.Width + _imgBtnMaximize.Width + _imgBtnClose.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimize.Width, _imgBtnMinimize.Height));
@@ -441,7 +452,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMinimize.Width + _imgBtnMaximize.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimize.Width + _imgBtnMaximize.Width + _imgBtnClose.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeDisabled.Width, _imgBtnMinimizeDisabled.Height));
@@ -452,7 +463,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMaximize.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximize.Width + _imgBtnClose.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximize.Width, _imgBtnMaximize.Height));
@@ -463,7 +474,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMaximizeDisabled.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximizeDisabled.Width + _imgBtnClose.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeDisabled.Width, _imgBtnMaximizeDisabled.Height));
@@ -474,7 +485,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnNormal.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormal.Width + _imgBtnClose.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormal.Width, _imgBtnNormal.Height));
@@ -485,7 +496,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnNormalDisabled.Width + _imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormalDisabled.Width + _imgBtnClose.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalDisabled.Width, _imgBtnNormalDisabled.Height));
@@ -496,7 +507,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-CloseButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnClose.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnClose.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     _titleBarStartColor, _titleBarEndColor);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnClose.Width, _imgBtnClose.Height));
@@ -523,7 +534,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMinimizeHovering.Width + _imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimizeHovering.Width + _imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHovering.Width, _imgBtnMinimizeHovering.Height));
@@ -534,7 +545,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximizeHovering.Width + _imgBtnCloseHovering.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHovering.Width, _imgBtnMaximizeHovering.Height));
@@ -545,7 +556,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnNormalHovering.Width + _imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormalHovering.Width + _imgBtnCloseHovering.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHovering.Width, _imgBtnNormalHovering.Height));
@@ -556,7 +567,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-CloseButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnCloseHovering.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnCloseHovering.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHovering.Width, _imgBtnCloseHovering.Height));
@@ -583,7 +594,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MinimizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMinimizeHolding.Width + _imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMinimizeHolding.Width + _imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMinimizeHolding.Width, _imgBtnMinimizeHolding.Height));
@@ -594,7 +605,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnMaximizeHolding.Width + _imgBtnCloseHolding.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnMaximizeHolding.Width, _imgBtnMaximizeHolding.Height));
@@ -605,7 +616,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-MaximizeButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnNormalHolding.Width + _imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnNormalHolding.Width + _imgBtnCloseHolding.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnNormalHolding.Width, _imgBtnNormalHolding.Height));
@@ -616,7 +627,7 @@ namespace PowerLib.Winform
             {
                 LinearGradientBrush brs = new LinearGradientBrush(
                     new Point(-CloseButtonRectangle.X, MinimizeButtonRectangle.Y),
-                    new Point(_imgBtnCloseHolding.Width + BorderWidth, MinimizeButtonRectangle.Y),
+                    new Point(_imgBtnCloseHolding.Width + BORDER_WIDTH, MinimizeButtonRectangle.Y),
                     cStart, cEnd);
 
                 g.FillRectangle(brs, new Rectangle(0, 0, _imgBtnCloseHolding.Width, _imgBtnCloseHolding.Height));
@@ -647,15 +658,16 @@ namespace PowerLib.Winform
 
             IntPtr hdc = GetWindowDC(Handle);
             Graphics g = Graphics.FromHdc(hdc);
+
             using (Brush brsBorder = new SolidBrush(_borderColor))
                 g.FillRectangles(brsBorder, new[]
                 {
-                    new Rectangle(0, 0, Width, BorderWidth),// Top
-                    new Rectangle(0, Height - BorderWidth, Width, BorderWidth),// Bottom
-                    new Rectangle(0, 0, BorderWidth, Height),// Left
-                    new Rectangle(Width - BorderWidth, 0, BorderWidth, Height),// Right
+                    new Rectangle(0, 0, Width, BORDER_WIDTH),// Top
+                    new Rectangle(0, Height - BORDER_WIDTH, Width, BORDER_WIDTH),// Bottom
+                    new Rectangle(0, 0, BORDER_WIDTH, Height),// Left
+                    new Rectangle(Width - BORDER_WIDTH, 0, BORDER_WIDTH, Height),// Right
                 });
-
+            
             g.Dispose();
             ReleaseDC(Handle, hdc);
         }
@@ -676,12 +688,12 @@ namespace PowerLib.Winform
             // 标题栏图标
             if (ShowIcon)
                 g.DrawIcon(Icon, new Rectangle(
-                    TitleBarRectangle.Left + (TitleBarRectangle.Height - IconSize) / 2,
-                    TitleBarRectangle.Top + (TitleBarRectangle.Height - IconSize) / 2,
-                    IconSize, IconSize));
+                    TitleBarRectangle.Left + (TitleBarRectangle.Height - ICON_SIZE) / 2,
+                    TitleBarRectangle.Top + (TitleBarRectangle.Height - ICON_SIZE) / 2,
+                    ICON_SIZE, ICON_SIZE));
 
             // 标题文本
-            int txtX = TitleBarRectangle.Left + (TitleBarRectangle.Height - IconSize) / 2 + IconSize;
+            int txtX = TitleBarRectangle.Left + (TitleBarRectangle.Height - ICON_SIZE) / 2 + ICON_SIZE;
             SizeF szText = g.MeasureString(Text, SystemFonts.CaptionFont, Width, StringFormat.GenericDefault);
             using Brush brsText = new SolidBrush(_titleBarForeColor);
             g.DrawString(Text,
@@ -689,7 +701,7 @@ namespace PowerLib.Winform
                 brsText,
                 new RectangleF(txtX,
                     TitleBarRectangle.Top + (TitleBarRectangle.Bottom - szText.Height) / 2,
-                    Width - BorderWidth * 2,
+                    Width - BORDER_WIDTH * 2,
                     TitleBarHeight),
                 StringFormat.GenericDefault);
 
@@ -799,7 +811,7 @@ namespace PowerLib.Winform
         /// <returns></returns>
         private Bitmap CreateShadowBitmap()
         {
-            Bitmap bmpBackground = new Bitmap(Width + BorderWidth * 4, Height + BorderWidth * 4);
+            Bitmap bmpBackground = new Bitmap(Width + BORDER_WIDTH * 4, Height + BORDER_WIDTH * 4);
 
             GraphicsPath gp = new GraphicsPath();
             gp.AddRectangle(new Rectangle(0, 0, bmpBackground.Width, bmpBackground.Height));
@@ -815,11 +827,11 @@ namespace PowerLib.Winform
                 // 中心颜色
                 brs.CenterColor = Color.FromArgb(100, Color.Black);
                 // 指定从实际阴影边界到窗口边框边界的渐变
-                brs.FocusScales = new PointF(1 - BorderWidth * 4F / Width, 1 - BorderWidth * 4F / Height);
+                brs.FocusScales = new PointF(1 - BORDER_WIDTH * 4F / Width, 1 - BORDER_WIDTH * 4F / Height);
                 // 边框环绕颜色
                 brs.SurroundColors = new[] { Color.FromArgb(0, 0, 0, 0) };
                 // 掏空窗口实际区域
-                gp.AddRectangle(new Rectangle(BorderWidth * 2, BorderWidth * 2, Width, Height));
+                gp.AddRectangle(new Rectangle(BORDER_WIDTH * 2, BORDER_WIDTH * 2, Width, Height));
                 g.FillPath(brs, gp);
             }
 
@@ -853,7 +865,7 @@ namespace PowerLib.Winform
 
                 _buildingShadow = false;
 
-                AlignShadowPos();
+                AlignShadowPos(true);
                 _shadow.Show();
 
                 // 设置父子窗口关系
@@ -861,15 +873,14 @@ namespace PowerLib.Winform
                     Handle,
                     GWL_HWNDPARENT,
                     _shadow.Handle.ToInt32());
-
-                Activate();
             }
         }
 
         /// <summary>
         /// 对齐阴影窗口位置
         /// </summary>
-        private void AlignShadowPos()
+        /// <param name="disconnectedFromForeground">指定已解除与前台窗口的父子关系</param>
+        private void AlignShadowPos(bool disconnectedFromForeground = false)
         {
             if (DesignMode) return;
 
@@ -879,13 +890,24 @@ namespace PowerLib.Winform
 
                 GetWindowRect(Handle, out RECT rect);
 
+                // 解除父子窗口关系
+                if (!disconnectedFromForeground)
+                    SetWindowLong(Handle, GWL_HWNDPARENT, 0);
+
                 SetWindowPos(_shadow.Handle,
                     IntPtr.Zero,
-                    rect.Left - BorderWidth * 2,
-                    rect.Top - BorderWidth * 2,
-                    rect.Width + BorderWidth * 4,
-                    rect.Height + BorderWidth * 4,
+                    rect.Left - BORDER_WIDTH * 2,
+                    rect.Top - BORDER_WIDTH * 2,
+                    rect.Width + BORDER_WIDTH * 4,
+                    rect.Height + BORDER_WIDTH * 4,
                     SWP_NOACTIVATE);
+
+                // 设置父子窗口关系
+                if (!disconnectedFromForeground)
+                {
+                    SetWindowLong(Handle, GWL_HWNDPARENT, _shadow.Handle.ToInt32());
+                    Activate();
+                }
             }
         }
 
@@ -909,7 +931,7 @@ namespace PowerLib.Winform
 
                 _buildingShadow = false;
 
-                AlignShadowPos();
+                AlignShadowPos(true);
                 _shadow.Show();
 
                 Activate();
@@ -923,8 +945,8 @@ namespace PowerLib.Winform
         /// <returns></returns>
         private static Rectangle CorrectToLogical(Rectangle rectOrigin)
         {
-            return new Rectangle(rectOrigin.X - BorderWidth,
-                rectOrigin.Y - TitleBarHeight + BorderWidth,
+            return new Rectangle(rectOrigin.X - BORDER_WIDTH,
+                rectOrigin.Y - TitleBarHeight + BORDER_WIDTH,
                 rectOrigin.Width,
                 rectOrigin.Height);
         }
@@ -952,6 +974,8 @@ namespace PowerLib.Winform
                 if (MaximizeBox)
                     cp.Style |= (int)WS_MAXIMIZEBOX;
 
+                cp.Style |= CS_DROPSHADOW;
+
                 return cp;
             }
         }
@@ -965,9 +989,10 @@ namespace PowerLib.Winform
                     {
                         DrawTitleBar();
                         DrawBorder();
-                        m.Result = (IntPtr)1;
-                        break;
+                        m.Result = IntPtr.Zero;
+                        base.WndProc(ref m);
                     }
+                    break;
                 case WM_NCHITTEST:
                     {
                         base.WndProc(ref m);
@@ -1017,7 +1042,7 @@ namespace PowerLib.Winform
                                     break;
 
                                 Point ptScreen = PointToScreen(pt);
-                                const int borderRegionWidth = BorderWidth + BorderRegionAddtionalWidth;
+                                const int borderRegionWidth = BORDER_WIDTH + BORDER_REGION_ADDTIONAL_WIDTH;
                                 bool bTop = ptScreen.Y >= Top && ptScreen.Y <= Top + borderRegionWidth;
                                 bool bBottom = ptScreen.Y <= Bottom && ptScreen.Y >= Bottom - borderRegionWidth;
                                 bool bLeft = ptScreen.X >= Left && ptScreen.X <= Left + borderRegionWidth;
@@ -1061,22 +1086,59 @@ namespace PowerLib.Winform
                     }
                 case WM_NCCALCSIZE:
                     {
-                        // 自定义客户区
-                        if (m.WParam != IntPtr.Zero && _formBorderStyle != FormBorderStyle.None)
+                        if (_formBorderStyle == FormBorderStyle.None)
                         {
-                            NCCALCSIZE_PARAMS @params = (NCCALCSIZE_PARAMS)
+                            base.WndProc(ref m);
+                            break;
+                        }
+
+                        // 自定义客户区
+                        if (m.WParam != IntPtr.Zero)
+                        {
+                            NCCALCSIZE_PARAMS paramsIn = (NCCALCSIZE_PARAMS)
                                 Marshal.PtrToStructure(m.LParam, typeof(NCCALCSIZE_PARAMS));
 
-                            @params.rgrc[0].Top += BorderWidth + TitleBarHeight;
-                            @params.rgrc[0].Bottom -= BorderWidth;
-                            @params.rgrc[0].Left += BorderWidth;
-                            @params.rgrc[0].Right -= BorderWidth;
+                            // 窗口移动调整后
+                            RECT rectWndAfterMovedOrResized = paramsIn.rgrc[0];
+                            // 窗口移动调整前
+                            RECT rectWndBeforeMovedOrResized = paramsIn.rgrc[1];
+                            // 客户区移动调整前
+                            RECT rectClientBeforeMovedOrResized = paramsIn.rgrc[2];
 
-                            @params.rgrc[1] = @params.rgrc[0];
+                            NCCALCSIZE_PARAMS paramsOut = new NCCALCSIZE_PARAMS
+                            {
+                                rgrc = new RECT[3],
+                                lppos = paramsIn.lppos
+                            };
+
+                            // 客户区调整后
+                            RECT rectClientAfterMovedOrResized = new RECT(
+                                rectWndAfterMovedOrResized.Left + BORDER_WIDTH,
+                                rectWndAfterMovedOrResized.Top + BORDER_WIDTH + TitleBarHeight,
+                                rectWndAfterMovedOrResized.Right - BORDER_WIDTH,
+                                rectWndAfterMovedOrResized.Bottom + TitleBarHeight - BORDER_WIDTH);
+
+                            paramsOut.rgrc[0] = rectClientAfterMovedOrResized;
+                            paramsOut.rgrc[1] = rectWndBeforeMovedOrResized;
+                            paramsOut.rgrc[2] = rectClientBeforeMovedOrResized;
+
+                            Marshal.StructureToPtr(paramsOut, m.LParam, false);
+
+                            m.Result = (IntPtr)WVR_VALIDRECTS;
+                        }
+                        else
+                        {
+                            RECT @params = (RECT)
+                                Marshal.PtrToStructure(m.LParam, typeof(RECT));
+
+                            @params.Left += BORDER_WIDTH;
+                            @params.Top += BORDER_WIDTH + TitleBarHeight;
+                            @params.Right -= BORDER_WIDTH;
+                            @params.Bottom -= TitleBarHeight + BORDER_WIDTH;
 
                             Marshal.StructureToPtr(@params, m.LParam, false);
 
-                            m.Result = (IntPtr)WVR_VALIDRECTS;
+                            m.Result = (IntPtr)1;
                         }
 
                         base.WndProc(ref m);
@@ -1234,28 +1296,46 @@ namespace PowerLib.Winform
                         }
                         break;
                     }
+                case WM_WINDOWPOSCHANGING:
+                    {
+                        if (_isRestoring)
+                        {
+                            WINDOWPOS @params = (WINDOWPOS)
+                                Marshal.PtrToStructure(m.LParam, typeof(WINDOWPOS));
+
+                            @params.cx = _rectWndBeforeRestored.Width;
+                            @params.cy = _rectWndBeforeRestored.Height;
+
+                            Marshal.StructureToPtr(@params, m.LParam, false);
+
+                            PostMessage(Handle, WM_NCPAINT, 0, 0);
+                        }
+                        
+                        base.WndProc(ref m);
+                    }
+                    break;
                 case WM_WINDOWPOSCHANGED:
                     {
                         base.WndProc(ref m);
 
-                        if (_userSizedOrMoved)
-                        {
-                            DrawTitleBar();
-                            DrawBorder();
-                        }
+                        //if (_userSizedOrMoved)
+                        //{
+                        //    DrawTitleBar();
+                        //    DrawBorder();
+                        //}
 
-                        AlignShadowPos();
-                        break;
+                        //SendMessage(Handle, WM_NCPAINT, 0, 0);
+                        AlignShadowPos(true);
                     }
+                    break;
                 case WM_ENTERSIZEMOVE:
                     {
                         base.WndProc(ref m);
 
                         if (_userSizedOrMoved && _showShadow)
                             _shadow.Hide();
-
-                        break;
                     }
+                    break;
                 case WM_EXITSIZEMOVE:
                     {
                         base.WndProc(ref m);
@@ -1269,6 +1349,31 @@ namespace PowerLib.Winform
                 case WM_NCMOUSELEAVE:
                     base.WndProc(ref m);
                     RedrawTitleBarButtons();
+                    break;
+                case WM_SYSCOMMAND:
+                    {
+                        switch ((int)m.WParam)
+                        {
+                            case SC_MINIMIZE:
+                            case SC_MAXIMIZE:
+                                GetWindowRect(Handle, out _rectWndBeforeRestored);
+                                break;
+                            case SC_RESTORE:
+                                PostMessage(Handle, WM_RESTORED, 0, 0);
+                                _isRestoring = true;
+                                break;
+                        }
+
+                        base.WndProc(ref m);
+                    }
+                    break;
+                case WM_RESTORED:
+                    _isRestoring = false;
+                    base.WndProc(ref m);
+                    break;
+                case WM_PAINT:
+                    base.WndProc(ref m);
+                    SendMessage(Handle, WM_NCPAINT, 0, 0);
                     break;
                 default:
                     base.WndProc(ref m);
@@ -1323,6 +1428,9 @@ namespace PowerLib.Winform
         {
             base.OnSizeChanged(e);
 
+            if (WindowState == FormWindowState.Minimized)
+                return;
+
             DrawTitleBar();
             DrawBorder();
 
@@ -1344,15 +1452,6 @@ namespace PowerLib.Winform
         {
             base.OnTextChanged(e);
             DrawTitleBar();
-        }
-
-        protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
-        {
-            int newWidth = width, newHeight = height;
-            if (width != Width) newWidth = width + BorderWidth * 2;
-            if (height != Height) newHeight = height + TitleBarHeight + BorderWidth * 2;
-
-            base.SetBoundsCore(x, y, newWidth, newHeight, specified);
         }
 
         #endregion 重写

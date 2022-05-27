@@ -50,6 +50,12 @@
     <Compile Include="FrmXFileProgressBarTest.Designer.cs">
       <DependentUpon>FrmXFileProgressBarTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmXFormDockTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmXFormDockTest.Designer.cs">
+      <DependentUpon>FrmXFormDockTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmXFormTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmXFileProgressBarTest.resx">
       <DependentUpon>FrmXFileProgressBarTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmXFormDockTest.resx">
+      <DependentUpon>FrmXFormDockTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmXFormTest.resx">
       <DependentUpon>FrmXFormTest.cs</DependentUpon>
@@ -94,6 +103,10 @@
     <ProjectReference Include="..\PowerLib.Winform\PowerLib.Winform.csproj">
       <Project>{20238d73-872f-40d6-8588-a048ccf481f2}</Project>
       <Name>PowerLib.Winform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PowerLib\PowerLib.csproj">
+      <Project>{2CC1D69C-9237-471B-807F-54B0DFEBD423}</Project>
+      <Name>PowerLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
