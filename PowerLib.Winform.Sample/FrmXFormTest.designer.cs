@@ -70,6 +70,7 @@
             this.xShadowPanel1 = new PowerLib.Winform.Controls.XShadowPanel();
             this.btnShowLoadingLayerAutoClose = new PowerLib.Winform.Controls.XButton();
             this.btnXFileProgressBarTest = new PowerLib.Winform.Controls.XButton();
+            this.xTextBox1 = new PowerLib.Winform.Controls.XTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
             this.grp1.SuspendLayout();
             this.xTabControl1.SuspendLayout();
@@ -390,6 +391,7 @@
             // txt1
             // 
             this.txt1.BackColor = System.Drawing.Color.White;
+            this.txt1.BackgroundText = null;
             this.txt1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.txt1.Location = new System.Drawing.Point(483, 183);
@@ -452,12 +454,24 @@
             this.btnXFileProgressBarTest.Text = "文件进度条示例";
             this.btnXFileProgressBarTest.Click += new System.EventHandler(this.btnXFileProgressBarTest_Click);
             // 
+            // xTextBox1
+            // 
+            this.xTextBox1.BackColor = System.Drawing.Color.White;
+            this.xTextBox1.BackgroundText = "空文本时提示";
+            this.xTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.xTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.xTextBox1.Location = new System.Drawing.Point(603, 183);
+            this.xTextBox1.Name = "xTextBox1";
+            this.xTextBox1.Size = new System.Drawing.Size(100, 21);
+            this.xTextBox1.TabIndex = 28;
+            // 
             // FrmXFormTest
             // 
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 700);
+            this.ClientSize = new System.Drawing.Size(1174, 696);
+            this.Controls.Add(this.xTextBox1);
             this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);
             this.Controls.Add(this.txt1);
@@ -517,5 +531,6 @@
         private PowerLib.Winform.Controls.XShadowPanel xShadowPanel1;
         private Controls.XButton btnShowLoadingLayerAutoClose;
         private Controls.XButton btnXFileProgressBarTest;
+        private Controls.XTextBox xTextBox1;
     }
 }

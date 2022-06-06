@@ -19,6 +19,9 @@ namespace PowerLib.Winform.Controls
         private Pen _penBorder = Pens.Black;
         private Pen _penBorderHighLight = Pens.Black;
 
+        // 文本框无内容时的背景提示
+        private string _backgroundText;
+
         // 边框是否高亮
         private bool _borderHighLight;
 
@@ -50,7 +53,7 @@ namespace PowerLib.Winform.Controls
             {
                 _borderColor = value;
                 _penBorder = new Pen(value, 1);
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -68,7 +71,24 @@ namespace PowerLib.Winform.Controls
             {
                 _borderColorHighLight = value;
                 _penBorderHighLight = new Pen(value, 1.5F);
-                Invalidate();
+                Refresh();
+            }
+        }
+
+        /// <summary>
+        /// 文本框无内容时的背景文字
+        /// </summary>
+        [Browsable(true)]
+        [Category("Appearance")]
+        [Description("文本框无内容时的背景文字")]
+        [DefaultValue("")]
+        public string BackgroundText
+        {
+            get => _backgroundText;
+            set
+            {
+                _backgroundText = value;
+                Refresh();
             }
         }
 
@@ -78,7 +98,7 @@ namespace PowerLib.Winform.Controls
             base.OnGotFocus(e);
 
             _borderHighLight = true;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -87,7 +107,7 @@ namespace PowerLib.Winform.Controls
             base.OnLostFocus(e);
 
             _borderHighLight = false;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -96,7 +116,7 @@ namespace PowerLib.Winform.Controls
             base.OnMouseEnter(e);
 
             _borderHighLight = true;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -112,6 +132,15 @@ namespace PowerLib.Winform.Controls
         }
 
         /// <inheritdoc />
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            if(!string.IsNullOrEmpty(_backgroundText))
+                Refresh();
+        }
+
+        /// <inheritdoc />
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -122,8 +151,14 @@ namespace PowerLib.Winform.Controls
             using Graphics g = Graphics.FromHwnd(Handle);
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.DrawRectangle(_borderHighLight ? _penBorderHighLight : _penBorder, 
+            g.DrawRectangle(_borderHighLight ? _penBorderHighLight : _penBorder,
                 new Rectangle(0, 0, Width - 1, Height - 1));
+
+            if (TextLength == 0 && !string.IsNullOrEmpty(_backgroundText))
+            {
+                StringFormat sf = new StringFormat { LineAlignment = StringAlignment.Center };
+                g.DrawString(_backgroundText, Font, Brushes.DarkGray, DisplayRectangle, sf);
+            }
         }
     }
 }
