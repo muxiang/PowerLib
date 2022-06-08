@@ -284,7 +284,7 @@
             this.xDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.xDataGridView1.EnableHeadersVisualStyles = false;
             this.xDataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(235)))));
-            this.xDataGridView1.Location = new System.Drawing.Point(29, 49);
+            this.xDataGridView1.Location = new System.Drawing.Point(19, 25);
             this.xDataGridView1.Name = "xDataGridView1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -313,6 +313,8 @@
             // 
             // grp1
             // 
+            this.grp1.BorderColor = System.Drawing.Color.Silver;
+            this.grp1.BorderWidth = 1;
             this.grp1.Controls.Add(this.xDataGridView1);
             this.grp1.Location = new System.Drawing.Point(691, 398);
             this.grp1.Name = "grp1";
@@ -320,8 +322,7 @@
             this.grp1.TabIndex = 18;
             this.grp1.TabStop = false;
             this.grp1.Text = "分组框1";
-            this.grp1.TitleFont = new System.Drawing.Font("宋体", 13.5F, System.Drawing.FontStyle.Bold);
-            this.grp1.TitleMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(215)))), ((int)(((byte)(250)))));
+            this.grp1.TitleFont = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             // 
             // xProgressBar1
             // 
@@ -470,7 +471,7 @@
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1174, 696);
+            this.ClientSize = new System.Drawing.Size(1154, 676);
             this.Controls.Add(this.xTextBox1);
             this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);

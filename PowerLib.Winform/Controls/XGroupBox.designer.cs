@@ -1,6 +1,6 @@
 ﻿namespace PowerLib.Winform.Controls
 {
-    partial class XGroupBox
+    sealed partial class XGroupBox
     {
         /// <summary>
         /// 必需的设计器变量。
