@@ -18,7 +18,7 @@ namespace PowerLib.Winform.Controls
         private Font _titleFont;
         private bool _showTitleMark = true;
         private Color _titleMarkColor = Color.FromArgb(66, 215, 250);
-        private Color _borderColor;
+        private Color _borderColor = Color.Silver;
         private Pen _penBorder;
         private int _borderWidth;
 
