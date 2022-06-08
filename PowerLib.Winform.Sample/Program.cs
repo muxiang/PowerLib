@@ -20,7 +20,7 @@ namespace PowerLib.Winform.Sample
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmXFormTest());
+            Application.Run(new FrmXFormDockTest());
         }
     }
 }

@@ -282,9 +282,10 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.xDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.xDataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.xDataGridView1.EnableHeadersVisualStyles = false;
             this.xDataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(235)))));
-            this.xDataGridView1.Location = new System.Drawing.Point(19, 25);
+            this.xDataGridView1.Location = new System.Drawing.Point(3, 22);
             this.xDataGridView1.Name = "xDataGridView1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -298,7 +299,7 @@
             this.xDataGridView1.RowHeadersWidth = 41;
             this.xDataGridView1.RowTemplate.Height = 23;
             this.xDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.xDataGridView1.Size = new System.Drawing.Size(385, 164);
+            this.xDataGridView1.Size = new System.Drawing.Size(440, 164);
             this.xDataGridView1.TabIndex = 17;
             // 
             // Column_Name
@@ -471,7 +472,7 @@
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 676);
+            this.ClientSize = new System.Drawing.Size(1150, 672);
             this.Controls.Add(this.xTextBox1);
             this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);

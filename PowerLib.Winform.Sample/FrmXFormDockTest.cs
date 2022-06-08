@@ -23,14 +23,7 @@ namespace PowerLib.Winform.Sample
 
         private void xButton1_Click(object sender, EventArgs e)
         {
-            PostMessage(Handle, WM_NCPAINT, 0, 0);
-
-            //GraphicsPath gp = new GraphicsPath();
-            //gp.AddRectangle(new Rectangle(0, Height - 2, Width, 2));
-            //Region region = new Region(gp);
-            //Graphics g = CreateGraphics();
-            //IntPtr hRgn = region.GetHrgn(g);
-            //SendMessage(Handle, WM_NCPAINT, (int)hRgn, 0);
+            
         }
     }
 }

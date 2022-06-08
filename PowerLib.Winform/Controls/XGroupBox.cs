@@ -21,9 +21,7 @@ namespace PowerLib.Winform.Controls
         private Color _borderColor = Color.Silver;
         private Pen _penBorder;
         private int _borderWidth;
-
-        private Rectangle _rectDisplay;
-
+        
         /// <summary>
         /// 标题字体
         /// </summary>
@@ -36,15 +34,6 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _titleFont = value;
-
-                Size size = ClientSize;
-                Padding padding = Padding;
-                _rectDisplay = new Rectangle(
-                    padding.Left,
-                    _titleFont.Height + padding.Top,
-                    Math.Max(size.Width - padding.Horizontal, 0),
-                    Math.Max(size.Height - _titleFont.Height - padding.Vertical, 0));
-
                 Refresh();
             }
         }
@@ -135,7 +124,19 @@ namespace PowerLib.Winform.Controls
         }
 
         /// <inheritdoc />
-        public override Rectangle DisplayRectangle => _rectDisplay;
+        public override Rectangle DisplayRectangle
+        {
+            get
+            {
+                Size size = ClientSize;
+                Padding padding = Padding;
+                return new Rectangle(
+                    padding.Left,
+                    _titleFont.Height + padding.Top,
+                    Math.Max(size.Width - padding.Horizontal, 0),
+                    Math.Max(size.Height - _titleFont.Height - padding.Vertical, 0));
+            }
+        }
 
         /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs pe)
