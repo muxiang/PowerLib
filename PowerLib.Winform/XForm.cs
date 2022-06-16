@@ -667,7 +667,7 @@ namespace PowerLib.Winform
                     new Rectangle(0, 0, BORDER_WIDTH, Height),// Left
                     new Rectangle(Width - BORDER_WIDTH, 0, BORDER_WIDTH, Height),// Right
                 });
-            
+
             g.Dispose();
             ReleaseDC(Handle, hdc);
         }
@@ -866,13 +866,17 @@ namespace PowerLib.Winform
                 _buildingShadow = false;
 
                 AlignShadowPos(true);
-                _shadow.Show();
+
+                if (Visible)
+                    _shadow.Show();
 
                 // 设置父子窗口关系
                 SetWindowLong(
                     Handle,
                     GWL_HWNDPARENT,
                     _shadow.Handle.ToInt32());
+
+                Activate();
             }
         }
 
@@ -900,7 +904,7 @@ namespace PowerLib.Winform
                     rect.Top - BORDER_WIDTH * 2,
                     rect.Width + BORDER_WIDTH * 4,
                     rect.Height + BORDER_WIDTH * 4,
-                    SWP_NOACTIVATE);
+                    SWP_NOZORDER | SWP_NOACTIVATE);
 
                 // 设置父子窗口关系
                 if (!disconnectedFromForeground)
@@ -932,7 +936,9 @@ namespace PowerLib.Winform
                 _buildingShadow = false;
 
                 AlignShadowPos(true);
-                _shadow.Show();
+
+                if (Visible)
+                    _shadow.Show();
 
                 Activate();
             }//end of lock(this)
@@ -1310,21 +1316,13 @@ namespace PowerLib.Winform
 
                             PostMessage(Handle, WM_NCPAINT, 0, 0);
                         }
-                        
+
                         base.WndProc(ref m);
                     }
                     break;
                 case WM_WINDOWPOSCHANGED:
                     {
                         base.WndProc(ref m);
-
-                        //if (_userSizedOrMoved)
-                        //{
-                        //    DrawTitleBar();
-                        //    DrawBorder();
-                        //}
-
-                        //SendMessage(Handle, WM_NCPAINT, 0, 0);
                         AlignShadowPos(true);
                     }
                     break;
@@ -1399,7 +1397,9 @@ namespace PowerLib.Winform
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            AlignShadowPos();
+
+            if (_showShadow && _shadow == null)
+                BuildShadow();
         }
 
         /// <inheritdoc />
@@ -1413,13 +1413,12 @@ namespace PowerLib.Winform
             if (!_showShadow)
                 return;
 
-            if (_shadow == null)
-                BuildShadow();
-
+            bool visible = Visible;
+            
             lock (this)
             {
-                if (_shadow.Visible != Visible)
-                    _shadow.Visible = Visible;
+                if(_shadow != null && _shadow?.Visible != visible)
+                    _shadow.Visible = visible;
             }
         }
 
