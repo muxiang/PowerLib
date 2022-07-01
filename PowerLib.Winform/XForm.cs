@@ -1372,7 +1372,6 @@ namespace PowerLib.Winform
                     SendMessage(Handle, WM_NCPAINT, 0, 0);
                     break;
                 default:
-                    Debug.Print($"{DateTime.Now}:{m}");
                     base.WndProc(ref m);
                     break;
             }
