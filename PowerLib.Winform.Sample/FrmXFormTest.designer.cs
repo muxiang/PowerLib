@@ -472,7 +472,7 @@
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1142, 664);
+            this.ClientSize = new System.Drawing.Size(1138, 705);
             this.Controls.Add(this.xTextBox1);
             this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);

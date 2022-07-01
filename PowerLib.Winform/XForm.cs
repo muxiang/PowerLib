@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -1088,6 +1089,7 @@ namespace PowerLib.Winform
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
+
                         break;
                     }
                 case WM_NCCALCSIZE:
@@ -1201,30 +1203,27 @@ namespace PowerLib.Winform
                     }
                 case WM_NCLBUTTONUP:
                     {
+                        base.WndProc(ref m);
+
                         switch (m.WParam.ToInt32())
                         {
                             case HTCLOSE:
-                                m.Msg = WM_SYSCOMMAND;
-                                m.WParam = (IntPtr)SC_CLOSE;
+                                SendMessage(Handle, WM_SYSCOMMAND, SC_CLOSE, 0);
                                 break;
                             case HTMAXBUTTON:
                                 if (MaximizeBox)
                                 {
-                                    m.Msg = WM_SYSCOMMAND;
-                                    m.WParam = WindowState == FormWindowState.Maximized
-                                        ? (IntPtr)SC_RESTORE
-                                        : (IntPtr)SC_MAXIMIZE;
+                                    int wParam = WindowState == FormWindowState.Maximized
+                                        ? SC_RESTORE
+                                        : SC_MAXIMIZE;
+                                    SendMessage(Handle, WM_SYSCOMMAND, wParam, 0);
                                 }
                                 break;
                             case HTMINBUTTON:
                                 if (MinimizeBox)
-                                {
-                                    m.Msg = WM_SYSCOMMAND;
-                                    m.WParam = (IntPtr)SC_MINIMIZE;
-                                }
+                                    SendMessage(Handle, WM_SYSCOMMAND, SC_MINIMIZE, 0);
                                 break;
                         }
-                        base.WndProc(ref m);
                         break;
                     }
                 case WM_NCMOUSEMOVE:
@@ -1361,7 +1360,6 @@ namespace PowerLib.Winform
                                 _isRestoring = true;
                                 break;
                         }
-
                         base.WndProc(ref m);
                     }
                     break;
@@ -1374,6 +1372,7 @@ namespace PowerLib.Winform
                     SendMessage(Handle, WM_NCPAINT, 0, 0);
                     break;
                 default:
+                    Debug.Print($"{DateTime.Now}:{m}");
                     base.WndProc(ref m);
                     break;
             }
@@ -1414,10 +1413,10 @@ namespace PowerLib.Winform
                 return;
 
             bool visible = Visible;
-            
+
             lock (this)
             {
-                if(_shadow != null && _shadow?.Visible != visible)
+                if (_shadow != null && _shadow?.Visible != visible)
                     _shadow.Visible = visible;
             }
         }

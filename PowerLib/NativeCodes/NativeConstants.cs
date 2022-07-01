@@ -206,6 +206,16 @@ namespace PowerLib.NativeCodes
 
         #endregion SetWindowPos
 
+        #region WM_SIZE
+
+        public const int SIZE_MAXHIDE = 0x04;
+        public const int SIZE_MAXIMIZED = 0x02;
+        public const int SIZE_MAXSHOW = 0x03;
+        public const int SIZE_MINIMIZED = 0x01;
+        public const int SIZE_RESTORED = 0x00;
+
+        #endregion WM_SIZE
+
         public const int HWND_TOPMOST = -1;
         public const int HWND_NOTOPMOST = -2;
 
