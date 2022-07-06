@@ -64,6 +64,8 @@ namespace PowerLib.NativeCodes
 
         #endregion Windows Messages
 
+        public const int EM_SETCUEBANNER = 0x1501;
+
         public const int WVR_ALIGNTOP = 0x0010;
         public const int WVR_ALIGNRIGHT = 0x0080;
         public const int WVR_ALIGNLEFT = 0x0020;

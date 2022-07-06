@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 using static PowerLib.NativeCodes.NativeConstants;
+using static PowerLib.NativeCodes.NativeMethods;
 
 namespace PowerLib.Winform.Controls
 {
@@ -20,7 +22,7 @@ namespace PowerLib.Winform.Controls
         private Pen _penBorderHighLight = Pens.Black;
 
         // 文本框无内容时的背景提示
-        private string _backgroundText;
+        private string _strPlaceHolder;
 
         // 边框是否高亮
         private bool _borderHighLight;
@@ -82,14 +84,31 @@ namespace PowerLib.Winform.Controls
         [Category("Appearance")]
         [Description("文本框无内容时的背景文字")]
         [DefaultValue("")]
-        public string BackgroundText
+        public string PlaceHolder
         {
-            get => _backgroundText;
+            get => _strPlaceHolder;
             set
             {
-                _backgroundText = value;
+                _strPlaceHolder = value;
+                SetPlaceHolder();
                 Refresh();
             }
+        }
+
+        private void SetPlaceHolder()
+        {
+            if (IsHandleCreated)
+                SendMessage(Handle, EM_SETCUEBANNER, 0, _strPlaceHolder);
+        }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            if (string.IsNullOrEmpty(_strPlaceHolder))
+                return;
+
+            SetPlaceHolder();
         }
 
         /// <inheritdoc />
@@ -136,7 +155,15 @@ namespace PowerLib.Winform.Controls
         {
             base.OnTextChanged(e);
 
-            if(!string.IsNullOrEmpty(_backgroundText))
+            if (!string.IsNullOrEmpty(_strPlaceHolder))
+                Refresh();
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            if (!string.IsNullOrEmpty(_strPlaceHolder))
                 Refresh();
         }
 
@@ -145,19 +172,20 @@ namespace PowerLib.Winform.Controls
         {
             base.WndProc(ref m);
 
-            if (m.Msg != WM_PAINT || BorderStyle == BorderStyle.None)
-                return;
-
-            using Graphics g = Graphics.FromHwnd(Handle);
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.DrawRectangle(_borderHighLight ? _penBorderHighLight : _penBorder,
-                new Rectangle(0, 0, Width - 1, Height - 1));
-
-            if (TextLength == 0 && !string.IsNullOrEmpty(_backgroundText))
+            switch (m.Msg)
             {
-                StringFormat sf = new StringFormat { LineAlignment = StringAlignment.Center };
-                g.DrawString(_backgroundText, Font, Brushes.DarkGray, DisplayRectangle, sf);
+                case WM_PAINT:
+                    if (BorderStyle == BorderStyle.None)
+                        return;
+
+                    using (Graphics g = Graphics.FromHwnd(Handle))
+                    {
+                        g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        g.SmoothingMode = SmoothingMode.AntiAlias;
+                        g.DrawRectangle(_borderHighLight ? _penBorderHighLight : _penBorder,
+                            new Rectangle(0, 0, Width - 1, Height - 1));
+                    }
+                    break;
             }
         }
     }

@@ -15,8 +15,11 @@ namespace PowerLib.NativeCodes
         [DllImport("USER32.dll")]
         public static extern bool SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
+        [DllImport("USER32.dll", CharSet = CharSet.Auto)]
+        public static extern bool SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
+
         [return: MarshalAs(UnmanagedType.Bool)]
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport("USER32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern bool PostMessage(IntPtr hWnd, uint wMsg, int wParam, int lParam);
 
         [DllImport("USER32.dll")]
@@ -109,16 +112,16 @@ namespace PowerLib.NativeCodes
             int cy,
             uint uFlags);
 
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("USER32.dll", SetLastError = true)]
         public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
 
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public static extern bool TrackMouseEvent([In, Out] TRACKMOUSEEVENT lpEventTrack);
 
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("USER32.dll", SetLastError = true)]
         public static extern IntPtr SetWindowsHookEx(HookType hookType, HookProc lpfn, IntPtr hMod, uint dwThreadId);
 
-        [DllImport("user32.dll")]
+        [DllImport("USER32.dll")]
         public static extern int CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
         #endregion USER32.dll

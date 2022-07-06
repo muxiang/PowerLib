@@ -393,7 +393,7 @@
             // txt1
             // 
             this.txt1.BackColor = System.Drawing.Color.White;
-            this.txt1.BackgroundText = null;
+            this.txt1.PlaceHolder = null;
             this.txt1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.txt1.Location = new System.Drawing.Point(483, 183);
@@ -459,7 +459,7 @@
             // xTextBox1
             // 
             this.xTextBox1.BackColor = System.Drawing.Color.White;
-            this.xTextBox1.BackgroundText = "空文本时提示";
+            this.xTextBox1.PlaceHolder = "空文本时提示";
             this.xTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.xTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.xTextBox1.Location = new System.Drawing.Point(603, 183);
