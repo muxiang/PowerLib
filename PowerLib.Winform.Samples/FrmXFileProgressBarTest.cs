@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 using PowerLib.Winform.Controls;
 
-namespace PowerLib.Winform.Sample
+namespace PowerLib.Winform.Samples
 {
     public partial class FrmXFileProgressBarTest : XForm
     {

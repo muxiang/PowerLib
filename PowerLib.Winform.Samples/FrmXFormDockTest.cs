@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using static PowerLib.NativeCodes.NativeMethods;
 using static PowerLib.NativeCodes.NativeConstants;
 
-namespace PowerLib.Winform.Sample
+namespace PowerLib.Winform.Samples
 {
     public partial class FrmXFormDockTest : XForm
     {

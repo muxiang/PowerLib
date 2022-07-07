@@ -1,5 +1,4 @@
-﻿
-namespace PowerLib.Winform.Sample
+﻿namespace PowerLib.Winform.Samples
 {
     partial class FrmXFormDockTest
     {

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace PowerLib.Winform.Sample
+namespace PowerLib.Winform.Samples
 {
     static class Program
     {
