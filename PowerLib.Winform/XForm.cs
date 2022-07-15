@@ -1433,6 +1433,8 @@ namespace PowerLib.Winform
 
             if (_shadow != null && _shadow.Visible)
                 AlignShadowPosSize();
+
+            Refresh();
         }
 
         /// <inheritdoc />
