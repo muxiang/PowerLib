@@ -7,6 +7,10 @@
 		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+	  <DocumentationFile>E:\MuxiangProjects\PowerLib\PowerLib.Winform\PowerLib.Winform.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\PowerLib\PowerLib.csproj" />
 	</ItemGroup>

@@ -113,6 +113,44 @@ namespace PowerLib.Utilities
         }
 
         /// <summary>
+        /// 以指定角度旋转位图
+        /// </summary>
+        /// <param name="bmpOrg">原始位图</param>
+        /// <param name="angle">角度：90/180/270</param>
+        /// <param name="disposeOriginal">是否自动释放原始位图</param>
+        /// <returns>结果位图</returns>
+        public static Bitmap RotateBitmap(Bitmap bmpOrg, int angle, bool disposeOriginal = false)
+        {
+            if (angle != 90 && angle != 180 && angle != 270)
+                throw new ArgumentOutOfRangeException(nameof(angle));
+
+            int width = bmpOrg.Width;
+            int height = bmpOrg.Height;
+            Size szDraw = new Size(bmpOrg.Width, bmpOrg.Height);
+
+            if (angle == 90 || angle == 270)
+            {
+                width = bmpOrg.Height;
+                height = bmpOrg.Width;
+            }
+
+            Bitmap newBitmap = new Bitmap(width, height);
+
+            using (Graphics g = Graphics.FromImage(newBitmap))
+            {
+                g.TranslateTransform(width / 2F, height / 2F);
+                g.RotateTransform(angle);
+                g.TranslateTransform(-bmpOrg.Width / 2F, -bmpOrg.Height / 2F);
+                g.DrawImage(bmpOrg, new Rectangle(Point.Empty, szDraw));
+            }
+
+            if (disposeOriginal)
+                bmpOrg.Dispose();
+
+            return newBitmap;
+        }
+
+        /// <summary>
         /// 使用指定矩形剪裁位图
         /// </summary>
         /// <param name="bmpOrg">原始位图</param>

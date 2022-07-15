@@ -1,0 +1,2282 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PowerLib.Winform</name>
+    </assembly>
+    <members>
+        <member name="T:PowerLib.Winform.Controls.Dot">
+            <summary>
+            表示一个"点"
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.Dot.Location">
+            <summary>
+            当前帧绘图坐标，在每次DoAction()时重新计算
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.Dot.Opacity">
+            <summary>
+            透明度
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.Dot.ReCalcLocation">
+            <summary>
+            重新计算当前帧绘图坐标
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.Dot.DotAction">
+            <summary>
+            点动作
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.DropDownButtonItem">
+            <summary>
+            表示一个下拉按钮的下拉项
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.DropDownButtonItem.#ctor">
+            <summary>
+            初始化可下拉按钮的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.DropDownButtonItem.Caption">
+            <summary>
+            显示文本
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.DropDownButtonItem.ParentBtn">
+            <summary>
+            父按钮
+            </summary>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.DropDownButtonItem.Click">
+            <summary>
+            鼠标单击时发生
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.DropDownButtonItem.Focused">
+            <summary>
+            获取一个值，指示控件是否获得焦点
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.DropDownButtonItemCollection">
+            <summary>
+            支持下拉按钮下拉项集合
+            </summary>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.DropDownButtonItemCollection.AfterItemAdded">
+            <summary>
+            集合项添加后发生
+            </summary>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.DropDownButtonItemCollection.AfterItemRemoved">
+            <summary>
+            集合项移除后发生
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.DropDownButtonItemCollection.Add(PowerLib.Winform.Controls.DropDownButtonItem)">
+            <summary>
+            向集合添加指定项
+            </summary>
+            <param name="item">待添加项</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.DropDownButtonItemCollection.Remove(PowerLib.Winform.Controls.DropDownButtonItem)">
+            <summary>
+            从集合移除指定项
+            </summary>
+            <param name="item">待移除项</param>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.DropDownButtonItemCollectionChangedEventArgs">
+            <summary>
+            下拉按钮下拉集合变更事件参数
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.DropDownButtonItemCollectionChangedEventArgs.#ctor(PowerLib.Winform.Controls.DropDownButtonItem)">
+            <summary>
+            构造下拉按钮下拉集合变更事件参数的实例
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.DropDownButtonItemCollectionChangedEventArgs.ChangedItem">
+            <summary>
+            变更项
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.IPInputBox">
+            <summary>
+            表示一个支持IPV4格式化录入的文本框
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.IPInputBox.#ctor">
+            <summary>
+            初始化IP输入文本框的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.IPInputBox.Text">
+            <inheritdoc cref="T:System.Windows.Forms.TextBox"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.IPInputBox.Value">
+            <summary>
+            获取输入的IP地址
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.IPInputBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="F:PowerLib.Winform.Controls.IPInputBox.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.IPInputBox.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.IPInputBox.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.LoadingCircle">
+            <summary>
+            表示一个加载圆圈动画
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingCircle.#ctor">
+            <summary>
+            初始化加载圆圈动画的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.LoadingCircle.CircleCenter">
+            <summary>
+            圆心
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.LoadingCircle.CircleRadius">
+            <summary>
+            半径
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.LoadingCircle.Color">
+            <summary>
+            颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.LoadingCircle.RefreshRate">
+            <summary>
+            获取或设置动画的刷新频率
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingCircle.Switch">
+            <summary>
+            开关
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingCircle.Start">
+            <summary>
+            开始
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingCircle.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingCircle.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc cref="T:System.Windows.Forms.Control"/>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingCircle.OnResize(System.EventArgs)">
+            <inheritdoc cref="T:System.Windows.Forms.Control"/>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingCircle.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.LoadingLayer">
+            <summary>
+            表示一个包含加载状态动画的遮罩层
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.#ctor(System.Drawing.Rectangle,System.Double,System.Boolean,System.Windows.Forms.Cursor,System.Boolean)">
+            <summary>
+            构造一个加载遮罩层
+            </summary>
+            <param name="rectLayer">遮罩层坐标及尺寸</param>
+            <param name="opacity">由一个0~1的double值表示的透明度</param>
+            <param name="progressBar">
+            指示遮罩层是否包含一个进度条，在另一线程中调用 <see cref="M:PowerLib.Winform.Controls.LoadingLayer.UpdateProgress(System.Int32,System.String)"/>更新进度条
+            </param>
+            <param name="customCursor">指定自定义的光标</param>
+            <param name="newUiThread">指示遮罩层是否在独立的UI线程执行</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.#ctor(System.Windows.Forms.Form,System.Double,System.Boolean,System.Windows.Forms.Cursor,System.Boolean)">
+            <summary>
+            构造一个加载遮罩层
+            </summary>
+            <param name="parentForm">父窗口</param>
+            <param name="opacity">由一个0~1的double值表示的透明度</param>
+            <param name="progressBar">
+            指示遮罩层是否包含一个进度条，在另一线程中调用 <see cref="M:PowerLib.Winform.Controls.LoadingLayer.UpdateProgress(System.Int32,System.String)"/>更新进度条
+            </param>
+            <param name="customCursor">指定自定义的光标</param>
+            <param name="newUiThread">指示遮罩层是否在独立的UI线程执行</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.Show">
+            <summary>
+            显示遮罩层，如果在构造此<see cref="T:PowerLib.Winform.Controls.LoadingLayer"/>时没有指定newUiThread参数为true，
+            此方法将阻塞当前调用线程，直到另一线程中调用了Close()
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.ShowAutoClose(System.Threading.WaitCallback,System.Object)">
+            <summary>
+            显示遮罩层，在线程池线程执行工作项委托，并在执行完毕后自动关闭遮罩层，
+            如果在构造此<see cref="T:PowerLib.Winform.Controls.LoadingLayer"/>时没有指定newUiThread参数为true，
+            此方法将阻塞当前调用线程，直到<paramref name="waitCallback"/>执行完毕
+            </summary>
+            <param name="waitCallback">表示遮罩层显示时，线程池线程需要调用的委托</param>
+            <param name="state">线程池线程需要使用的状态对象</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.ShowAutoClose(System.Threading.WaitCallback)">
+            <summary>
+            显示遮罩层，在线程池线程执行工作项委托，并在执行完毕后自动关闭遮罩层，
+            如果在构造此<see cref="T:PowerLib.Winform.Controls.LoadingLayer"/>时没有指定newUiThread参数为true，
+            此方法将阻塞当前调用线程，直到<paramref name="waitCallback"/>执行完毕
+            </summary>
+            <param name="waitCallback">表示遮罩层显示时，线程池线程需要调用的委托</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.Close">
+            <summary>
+            关闭遮罩层
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.UpdateProgress(System.Int32,System.String)">
+            <summary>
+            更新进度
+            </summary>
+            <param name="value">进度值(0-100)</param>
+            <param name="text">文本</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.LoadingLayer.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:PowerLib.Winform.Controls.RippleEffect">
+            <summary>
+            表示一个2D水波特效
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RippleEffect.Texture">
+            <summary>
+            材质
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RippleEffect.Frame">
+            <summary>
+            当前动画帧
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RippleEffect.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            从位图创建水波特效
+            </summary>
+            <param name="texture">材质位图</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RippleEffect.Update">
+            <summary>
+            更新缓冲区数据到下一帧动画,随后调用Render渲染生效
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RippleEffect.Render">
+            <summary>
+            渲染
+            </summary>
+            <returns>Bitmap:渲染完成的位图</returns>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RippleEffect.Splash(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            在目标区域创建一个水波
+            </summary>
+            <param name="x">X坐标</param>
+            <param name="y">Y坐标</param>
+            <param name="r">以像素为单位的水波初始半径</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RippleEffect.Clear">
+            <summary>
+            清空缓冲区数据,即平复水面浪高至0
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RippleEffect.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:PowerLib.Winform.Controls.RipplePictureBox">
+            <summary>
+            表示附带水波特效的图片框
+            </summary>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.RipplePictureBox.AfterDrawing">
+            <summary>
+            在渲染到缓冲区后与绘制到<see cref="T:PowerLib.Winform.Controls.RipplePictureBox"/>之前触发，
+            订阅该事件，使用绘图参数中的<see cref="T:System.Drawing.Graphics"/>绘制额外内容
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.#ctor">
+            <summary>
+            初始化水波特效图片框
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RipplePictureBox.ClickSplashRadius">
+            <summary>
+            设置水波单击时半径
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RipplePictureBox.DragSplashRadius">
+            <summary>
+            设置水波拖动时半径
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RipplePictureBox.Image">
+            <summary>
+            设置水波背景图
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RipplePictureBox.AnimationEnabled">
+            <summary>
+            启用或禁用动画
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RipplePictureBox.RefreshRate">
+            <summary>
+            获取或设置动画的刷新频率
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RipplePictureBox.AutoSplash">
+            <summary>
+            自动划动水波
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.RipplePictureBox.HoverSplash">
+            <summary>
+            鼠标附上划动水波
+            不需要按下鼠标按键
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.Splash(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            在指定区域创建水波
+            </summary>
+            <param name="x">X坐标</param>
+            <param name="y">Y坐标</param>
+            <param name="radius">半径</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.Clear">
+            <summary>
+            清除浪高数据
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.WndProc(System.Windows.Forms.Message@)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.OnSizeChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.OnHandleCreated(System.EventArgs)">
+            <inheritdoc cref="T:System.Windows.Forms.Control"/>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.ComparePoint(System.Nullable{System.Drawing.Point},System.Nullable{System.Drawing.Point},System.Int32)">
+            <summary>
+            判断两个点的X相差或Y相差是否大于指定值
+            </summary>
+            <param name="pt1"></param>
+            <param name="pt2"></param>
+            <param name="diff"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.Translate(System.Drawing.Point)">
+            <summary>
+            将控件坐标转换为图像坐标
+            </summary>
+            <param name="ptControl">控件坐标</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.RipplePictureBox.OnAfterDrawing(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            引发<see cref="E:PowerLib.Winform.Controls.RipplePictureBox.AfterDrawing"/>事件
+            </summary>
+            <param name="e">绘图事件参数</param>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XButton">
+            <summary>
+            表示Windows按钮控件
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XButton"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.Image">
+            <summary>
+            显示的图像
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.HoldingImage">
+            <summary>
+            鼠标按下状态显示的图像
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.Checked">
+            <summary>
+            是否选中
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.StartColor">
+            <summary>
+            渐变起始颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.EndColor">
+            <summary>
+            渐变结束颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.CheckedStartColor">
+            <summary>
+            选中状态渐变起始颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.CheckedEndColor">
+            <summary>
+            选中状态渐变结束颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.CheckedForeColor">
+            <summary>
+            选中状态前景颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.HoldingStartColor">
+            <summary>
+            鼠标按下状态渐变起始颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.HoldingEndColor">
+            <summary>
+            鼠标按下状态渐变结束颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.HoldingForeColor">
+            <summary>
+            鼠标按下状态前景颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.EnableLinearGradientColor">
+            <summary>
+            是否启用线性渐变颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.EnableRoundedRectangle">
+            <summary>
+            是否启用圆角矩形
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.RoundedRectangleCornerRadius">
+            <summary>
+            圆角矩形圆角所在圆的半径，值越小，圆角越尖锐
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.DisplayStyle">
+            <summary> 
+            指定为此 <see cref="T:PowerLib.Winform.Controls.XButton"/> 显示何种对象（图像还是文本）
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.BorderColor">
+            <summary>
+            边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.BorderWidth">
+            <summary>
+            边框宽度
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.DefaultButtonBorderColor">
+            <summary>
+            作为默认窗口按钮时的边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.DefaultButtonBorderWidth">
+            <summary>
+            作为默认窗口按钮时的边框宽度
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.DropDownItems">
+            <summary>
+            下拉项集合
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.DialogResult">
+            <summary>
+            指定此 <see cref="T:PowerLib.Winform.Controls.XButton"/> 单击后，容器窗口的返回值，仅指定非 <see cref="F:System.Windows.Forms.DialogResult.None"/> 时生效
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.Shortcut">
+            <summary>
+            指定为此 <see cref="T:PowerLib.Winform.Controls.XButton"/> 显示并响应的快捷键字符
+            </summary>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XButton.Click">
+            <summary>
+            鼠标单击时发生
+            </summary>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XButton.DropDown">
+            <summary>
+            下拉列表展开时发生
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.DrawBackgroundAndBorder(System.Drawing.Graphics)">
+            <summary>
+            绘制背景与边框
+            </summary>
+            <param name="g">图面</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.DrawText(System.Drawing.Graphics)">
+            <summary>
+            绘制显示文本
+            </summary>
+            <param name="g">图面</param>
+            <returns>返回显示的所有内容的X偏移</returns>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.DrawImage(System.Drawing.Graphics,System.Single)">
+            <summary>
+            绘制图像
+            </summary>
+            <param name="g">图面</param>
+            <param name="contentXOffset">显示的所有内容的X偏移</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.UpdateButtonState">
+            <summary>
+            更新按钮状态，绘图前调用
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.GetDrawColor(PowerLib.Winform.Controls.ButtonState,System.Drawing.Color@,System.Drawing.Color@)">
+            <summary>
+            获取指定按钮状态的渐变绘图颜色
+            </summary>
+            <param name="btnState">按钮状态</param>
+            <param name="cStart">渐变开始颜色</param>
+            <param name="cEnd">渐变结束颜色</param>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.Focused">
+            <inheritdoc />
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XButton.ShowFocusCues">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnHandleCreated(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnTextChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnSizeChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnForeColorChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnFontChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnEnabledChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnMouseEnter(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnMouseLeave(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.NotifyDefault(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XButton.PerformClick">
+            <inheritdoc />
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XButtonDisplayStyle">
+            <summary>
+            指定为此 XButton 显示何种对象（图像还是文本）
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XButtonDisplayStyle.None">
+            <summary>
+            既不显示图像，也不显示文本
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XButtonDisplayStyle.Text">
+            <summary>
+            只显示文本
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XButtonDisplayStyle.Image">
+            <summary>
+            只显示图像
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XButtonDisplayStyle.ImageAndText">
+            <summary>
+            同时显示图像和文本
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XButtonMouseLocation">
+            <summary>
+            鼠标停留位置
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XButtonMouseLocation.Button">
+            <summary>
+            按钮
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XButtonMouseLocation.DropDownArea">
+            <summary>
+            下拉区
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XButtonMouseLocation.Outside">
+            <summary>
+            外部
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.ButtonState">
+            <summary>
+            按钮状态
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XCheckBox">
+            <summary>
+            表示Windows复选框
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XCheckBox.BoxBorderColor">
+            <summary>
+            选框边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XCheckBox.InnerColor">
+            <summary>
+            内部颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XCheckBox.MouseHoveringForeColor">
+            <summary>
+            鼠标停留时的前景色
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XCheckBox"/>的实例
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.OnBackColorChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.OnForeColorChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.OnMouseEnter(System.EventArgs)">
+            <summary>
+            鼠标进入时调用
+            </summary>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.OnMouseLeave(System.EventArgs)">
+            <summary>
+            鼠标离开时调用
+            </summary>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.OnEnabledChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XCheckBox.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XCheckBox.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XComboBox">
+            <summary>
+            表示组合框控件
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XComboBox"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XComboBox.BorderColor">
+            <summary>
+            边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XComboBox.HighLightBorderColor">
+            <summary>
+            高亮边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XComboBox.BorderStyle">
+            <summary>
+            边框样式
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.WndProc(System.Windows.Forms.Message@)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnDrawItem(System.Windows.Forms.DrawItemEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnBackColorChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnForeColorChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnMouseEnter(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnMouseLeave(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnGotFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnLostFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.OnEnabledChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XComboBox.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XComboBox.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XDataGridView">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XDataGridView.DefaultTableHeaderStyle">
+            <summary>
+            缺省表格列头样式
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XDataGridView.DefaultTableCellStyle">
+            <summary>
+            缺省表格单元格样式
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XDataGridView.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XDataGridView"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.Item(System.String,System.Int32)">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.Item(System.Int32,System.Int32)">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.RowHeadersVisible">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.RowHeadersDefaultCellStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.RowHeadersBorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.RowCount">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ReadOnly">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.Padding">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.NewRowIndex">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.MultiSelect">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.IsCurrentRowDirty">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.IsCurrentCellInEditMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.IsCurrentCellDirty">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.HorizontalScrollingOffset">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.GridColor">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.Font">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.FirstDisplayedScrollingRowIndex">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.FirstDisplayedScrollingColumnIndex">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.FirstDisplayedScrollingColumnHiddenWidth">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.FirstDisplayedCell">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.RowHeadersWidth">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.RowHeadersWidthSizeMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.Rows">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.VirtualMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.VerticalScrollingOffset">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.UserSetCursor">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.TopLeftHeaderCell">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.Text">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.StandardTab">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.SortOrder">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.SortedColumn">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.EnableHeadersVisualStyles">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ShowRowErrors">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ShowCellToolTips">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ShowCellErrors">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.SelectionMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.SelectedRows">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.SelectedColumns">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.SelectedCells">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ScrollBars">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.RowTemplate">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ShowEditingIcon">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.EditingPanel">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ForeColor">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.EditMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.BackgroundImage">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.BackgroundColor">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.BackColor">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AutoSizeRowsMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AutoSizeColumnsMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.EditingControl">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AutoGenerateColumns">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AlternatingRowsDefaultCellStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AdvancedRowHeadersBorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AdvancedColumnHeadersBorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AdvancedCellBorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AdjustedTopLeftHeaderBorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.BackgroundImageLayout">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.BorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.AutoSize">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.CellBorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.DefaultCellStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.DataSource">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.DataMember">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.CurrentRow">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.CurrentCellAddress">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.CurrentCell">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.Columns">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.DisplayRectangle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersHeightSizeMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersHeight">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersVisible">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersDefaultCellStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersBorderStyle">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ColumnCount">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XDataGridView.ClipboardCopyMode">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.BackgroundColorChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.BackColorChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AutoSizeRowsModeChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AutoSizeColumnsModeChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AutoGenerateColumnsChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AlternatingRowsDefaultCellStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AllowUserToResizeRowsChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AllowUserToResizeColumnsChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AllowUserToOrderColumnsChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AllowUserToAddRowsChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.Sorted">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.SortCompare">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.SelectionChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.Scroll">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.RowValidating">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.AllowUserToDeleteRowsChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.StyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.BackgroundImageChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.BorderStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.DataBindingComplete">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.CurrentCellDirtyStateChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.CurrentCellChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnWidthChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnToolTipTextChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnStateChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnSortModeChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnRemoved">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnNameChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnMinimumWidthChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.DataError">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnHeaderCellChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnHeaderMouseClick">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnDividerWidthChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnDividerDoubleClick">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnDisplayIndexChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnDefaultCellStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnDataPropertyNameChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnContextMenuStripChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnAdded">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.CellValuePushed">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.CellValueNeeded">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnHeaderMouseDoubleClick">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.CellValueChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.DefaultValuesNeeded">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.NewRowNeeded">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.TextChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.RowsDefaultCellStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.RowHeadersWidthSizeModeChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.RowHeadersWidthChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.RowHeadersDefaultCellStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.RowHeadersBorderStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ReadOnlyChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.PaddingChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.MultiSelectChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.CancelRowEdit">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.GridColorChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ForeColorChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.EditModeChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.DefaultCellStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.DataSourceChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.DataMemberChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersHeightSizeModeChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersHeightChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="E:PowerLib.Winform.Controls.XDataGridView.ColumnHeadersDefaultCellStyleChanged">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XDataGridView.UpdateRowErrorText(System.Int32)">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XDataGridView.UpdateRowHeightInfo(System.Int32,System.Boolean)">
+            <inheritdoc cref="T:PowerLib.Winform.Controls.XDataGridView"/>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XDataGridView.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XDataGridView.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XDataGridView.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XFileProgressBar">
+            <summary>
+            表示支持速度变化的文件传输进度条
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.BorderColor">
+            <summary>
+            获取或设置进度条的边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.GridColor">
+            <summary>
+            获取或设置进度条的网格颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.ForeColor">
+            <summary>
+            获取或设置进度条的前景颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.BackColor">
+            <summary>
+            获取或设置进度条的背景颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.SpeedForeColor">
+            <summary>
+            获取或设置进度条的速度前景颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.SpeedBackColor">
+            <summary>
+            获取或设置进度条的速度背景颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.TotalSizeInBytes">
+            <summary>
+            获取或设置文件总大小(字节)
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFileProgressBar.Percentage">
+            <summary>
+            获取进度条的百分比
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFileProgressBar.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XFileProgressBar"/>的实例
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFileProgressBar.DrawGrids(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.Size,System.Int32)">
+            <summary>
+            绘制网格
+            </summary>
+            <param name="g">图形</param>
+            <param name="pen">画笔</param>
+            <param name="size">尺寸</param>
+            <param name="padding">内边距</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFileProgressBar.ClearSpeedBuffer">
+            <summary>
+            清除速度变化缓冲位图内容，重新填充背景及网格，并绘制现有速度记录
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFileProgressBar.AddValue(System.Int64)">
+            <summary>
+            向进度条添加字节
+            </summary>
+            <param name="incrInBytes">字节数</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFileProgressBar.ClearData">
+            <summary>
+            通过清除数据将进度条还原成初始状态
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XFileProgressBar.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFileProgressBar.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFileProgressBar.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XFlowLayoutPanel">
+            <summary>
+            表示以水平或垂直方式动态布置其内容的面板。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XFlowLayoutPanel.ControlList">
+            <summary>
+            获取包含在控件内的控件的集合
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFlowLayoutPanel.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XFlowLayoutPanel"/>的实例
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFlowLayoutPanel.OnResize(System.EventArgs)">
+            <inheritdoc cref="T:System.Windows.Forms.UserControl"/>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XFlowLayoutPanel.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFlowLayoutPanel.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XFlowLayoutPanel.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XGroupBox">
+            <summary>
+            表示一个 Windows 控件，该控件显示围绕一组具有可选标题的控件的框架。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XGroupBox.TitleFont">
+            <summary>
+            标题字体
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XGroupBox.ShowTitleMark">
+            <summary>
+            指定一个值标识是否显示标题标记
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XGroupBox.TitleMarkColor">
+            <summary>
+            标题标记的颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XGroupBox.BorderColor">
+            <summary>
+            边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XGroupBox.BorderWidth">
+            <summary>
+            边框宽度
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XGroupBox.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XGroupBox"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XGroupBox.DisplayRectangle">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XGroupBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XGroupBox.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XGroupBox.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XGroupBox.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XProgressBar">
+            <summary>
+            表示一个支持显示文本的进度条
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XProgressBar.Min">
+            <summary>
+            获取或设置进度条的最小值
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XProgressBar.Max">
+            <summary>
+            获取或设置进度条的最大值
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XProgressBar.Value">
+            <summary>
+            获取或设置进度条的值
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XProgressBar.TextOutLine">
+            <summary>
+            获取或设置一个表示进度条文本是否描边的值
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XProgressBar.#ctor">
+            <summary>
+            初始化进度条的实例
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XProgressBar.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XProgressBar.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XProgressBar.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XRadioButton.OuterCircleColor">
+            <summary>
+            外圆颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XRadioButton.InnerCircleColor">
+            <summary>
+            内圆颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XRadioButton.MouseHoveringForeColor">
+            <summary>
+            鼠标停留时的前景色
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XRadioButton.OnMouseEnter(System.EventArgs)">
+            <summary>
+            鼠标进入时调用
+            </summary>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XRadioButton.OnMouseLeave(System.EventArgs)">
+            <summary>
+            鼠标离开时调用
+            </summary>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XRadioButton.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XRadioButton.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XRadioButton.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XScrollBar.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XScrollBar.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XScrollBar.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XShadowPanel.TopBorderColor">
+            <summary>
+            顶部边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XShadowPanel.ShadowColor">
+            <summary>
+            阴影颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XShadowPanel.ShadowHeightRatio">
+            <summary>
+            阴影高度占比
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XShadowPanel.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XShadowPanel.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XShadowPanel.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTabControl.PaintTransparentBackground(System.Drawing.Graphics,System.Drawing.Rectangle)">
+            <summary>
+             TabContorl 背景色设置
+            </summary>
+            <param name="g"></param>
+            <param name="clipRect"></param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTabControl.PaintTabBackground(System.Drawing.Graphics,System.Int32,System.Drawing.Drawing2D.GraphicsPath)">
+            <summary>
+            设置选项卡头部颜色
+            </summary>
+            <param name="graph"></param>
+            <param name="index"></param>
+            <param name="path"></param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTabControl.PaintTabBorder(System.Drawing.Graphics,System.Int32,System.Drawing.Drawing2D.GraphicsPath)">
+            <summary>
+            设置选项卡头部边框色
+            </summary>
+            <param name="g"></param>
+            <param name="index"></param>
+            <param name="path"></param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTabControl.PaintTheTabPageBorder(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            设置 TabPage 内容页边框色
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTabControl.PaintTheSelectedTab(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            //  TabPage 页头部间隔色
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XTabControl.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTabControl.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTabControl.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XTextBox">
+            <summary>
+            表示Windows文本框控件
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XTextBox"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XTextBox.BorderColor">
+            <summary>
+            边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XTextBox.HighLightBorderColor">
+            <summary>
+            高亮边框颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XTextBox.PlaceHolder">
+            <summary>
+            文本框无内容时的背景文字
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.OnGotFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.OnLostFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.OnMouseEnter(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.OnMouseLeave(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.OnTextChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.WndProc(System.Windows.Forms.Message@)">
+            <inheritdoc />
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XTextBox.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Controls.XTreeView">
+            <summary>
+            表示一个树形菜单
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTreeView.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XTreeView"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XTreeView.SelectedBackColorFocused">
+            <summary>
+            选择项焦点背景色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XTreeView.SelectedBackColorUnFocused">
+            <summary>
+            选择项非焦点背景色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XTreeView.SelectedForeColorFocused">
+            <summary>
+            选择项焦点前景色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XTreeView.SelectedForeColorUnFocused">
+            <summary>
+            选择项非焦点前景色
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTreeView.InNode(System.Drawing.Point,System.Windows.Forms.TreeNode)">
+            <summary>
+            判定坐标是否在节点中，返回节点或其子节点
+            </summary>
+            <param name="pt">坐标</param>
+            <param name="node">节点</param>
+            <returns></returns>
+        </member>
+        <member name="F:PowerLib.Winform.Controls.XTreeView.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTreeView.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTreeView.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Design.DesignerUtil">
+            <summary>
+            设计器工具
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Design.DesignerUtil.IsDesignMode">
+            <summary>
+            是否处于设计模式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:PowerLib.Winform.Design.FixedSizeDesigner">
+            <summary>
+            固定大小设计器
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:PowerLib.Winform.Design.FixedSizeDesigner.SelectionRules">
+            <inheritdoc cref="T:System.Windows.Forms.Design.ControlDesigner"/>
+        </member>
+        <member name="T:PowerLib.Winform.Design.TypeEventsTab">
+            <summary>
+            用于支持属性列表中的事件页
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Design.TypeEventsTab.#ctor(System.IServiceProvider)">
+            <summary>
+            构造事件页
+            </summary>
+            <param name="sp"></param>
+        </member>
+        <member name="M:PowerLib.Winform.Design.TypeEventsTab.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+            <summary>
+            重写返回事件集合
+            </summary>
+            <param name="context"></param>
+            <param name="component"></param>
+            <param name="attributes"></param>
+            <returns></returns>
+        </member>
+        <member name="P:PowerLib.Winform.Design.TypeEventsTab.TabName">
+            <summary>
+            事件页名称
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Design.TypeEventsTab.Bitmap">
+            <summary>
+            事件页图标
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性，对
+              使用此强类型资源类的所有资源查找执行重写。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.btnClose">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.btnMaximize">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.btnMaximizeDisabled">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.btnMinimize">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.btnMinimizeDisabled">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.btnNormal">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.btnNormalDisabled">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.downarrow">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.iconEvent">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ProjectItemBtnDelete">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ProjectItemChecked">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ThumbBottom">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ThumbMiddle">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ThumbSpanBottom">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ThumbSpanTop">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.ThumbTop">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.tree_collapse">
+            <summary>
+              查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.tree_expand">
+            <summary>
+              查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Properties.Resources.uparrow">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.XForm">
+            <summary>
+            表示组成应用程序的用户界面的窗口或对话框。
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.XForm.TitleBarHeight">
+            <summary>
+            标题栏高度
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.XForm"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.FormBorderStyle">
+            <summary>
+            获取或设置窗体的边框样式。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.Padding">
+            <summary>
+            获取或设置窗体的内边距。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.TitleBarStartColor">
+            <summary>
+            获取或设置窗体标题栏的渐变起始颜色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.TitleBarEndColor">
+            <summary>
+            获取或设置窗体标题栏的渐变结束颜色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.TitleBarForeColor">
+            <summary>
+            获取或设置窗体标题的前景色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.BorderColor">
+            <summary>
+            获取或设置窗体边框的颜色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.Shadow">
+            <summary>
+            获取或设置一个值，该值指示是否渲染窗体的阴影。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.OverrideIcon">
+            <summary>
+            指定一个值，将覆盖当前AppDomain下所有XForm的图标
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.DefaultTitleBarStartColor">
+            <summary>
+            指定一个值，作为当前AppDomain下所有<see cref="T:PowerLib.Winform.XForm"/>的<see cref="P:PowerLib.Winform.XForm.TitleBarStartColor"/>，包括<see cref="T:PowerLib.Winform.XMessageBox"/>
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.DefaultTitleBarEndColor">
+            <summary>
+            指定一个值，作为当前AppDomain下所有<see cref="T:PowerLib.Winform.XForm"/>的<see cref="P:PowerLib.Winform.XForm.TitleBarEndColor"/>，包括<see cref="T:PowerLib.Winform.XMessageBox"/>
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.DefaultTitleBarForeColor">
+            <summary>
+            指定一个值，作为当前AppDomain下所有<see cref="T:PowerLib.Winform.XForm"/>的<see cref="P:PowerLib.Winform.XForm.TitleBarForeColor"/>，包括<see cref="T:PowerLib.Winform.XMessageBox"/>
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.DefaultBorderColor">
+            <summary>
+            指定一个值，作为当前AppDomain下所有<see cref="T:PowerLib.Winform.XForm"/>的<see cref="P:PowerLib.Winform.XForm.BorderColor"/>，包括<see cref="T:PowerLib.Winform.XMessageBox"/>
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.TitleBarRectangle">
+            <summary>
+            获取表示标题栏的矩形(相对于包含客户区与非客户区的整个窗口)
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.CloseButtonRectangle">
+            <summary>
+            获取表示标题栏关闭按钮的矩形
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.MaximizeButtonRectangle">
+            <summary>
+            获取表示标题栏最大化按钮的矩形
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.MinimizeButtonRectangle">
+            <summary>
+            获取表示标题栏最小化按钮的矩形
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.CreateButtonImages">
+            <summary>
+            创建按钮图标
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.CreateNormalDisabledImages">
+            <summary>
+            创建常规与禁用状态按钮图标
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.CreateHoveringImages">
+            <summary>
+            创建鼠标悬浮状态按钮图标
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.CreateHoldingImages">
+            <summary>
+            创建鼠标按下状态按钮图标
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.DrawTitleBar">
+            <summary>
+            绘制标题栏
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.DrawBorder">
+            <summary>
+            绘制边框
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.DrawTitleBackgroundTextIcon">
+            <summary>
+            绘制标题栏背景、文字、图标
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.DrawTitleButtons">
+            <summary>
+            绘制标题栏按钮
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.DrawCloseButton(System.Drawing.Graphics,PowerLib.Winform.XFormTitleBarButtonState)">
+            <summary>
+            绘制关闭按钮
+            </summary>
+            <param name="g"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.DrawMaximizeButton(System.Drawing.Graphics,PowerLib.Winform.XFormTitleBarButtonState)">
+            <summary>
+            绘制最大化按钮
+            </summary>
+            <param name="g"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.DrawMinimizeButton(System.Drawing.Graphics,PowerLib.Winform.XFormTitleBarButtonState)">
+            <summary>
+            绘制最小化按钮
+            </summary>
+            <param name="g"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.RedrawTitleBarButtons">
+            <summary>
+            重绘标题栏按钮
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.CreateShadowBitmap">
+            <summary>
+            创建阴影位图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.BuildShadow">
+            <summary>
+            创建阴影窗口
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.AlignShadowPos(System.Boolean)">
+            <summary>
+            对齐阴影窗口位置
+            </summary>
+            <param name="disconnectedFromForeground">指定已解除与前台窗口的父子关系</param>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.AlignShadowPosSize">
+            <summary>
+            对齐阴影窗口位置和尺寸
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XForm.CorrectToLogical(System.Drawing.Rectangle)">
+            <summary>
+            将绘图矩形校正为用于处理鼠标消息的逻辑矩形(因自定义非客户区)
+            </summary>
+            <param name="rectOrigin">绘图矩形</param>
+            <returns></returns>
+        </member>
+        <member name="P:PowerLib.Winform.XForm.BackColor">
+            <inheritdoc />
+        </member>
+        <member name="P:PowerLib.Winform.XForm.CreateParams">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XForm.WndProc(System.Windows.Forms.Message@)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XForm.OnLoad(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XForm.OnShown(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XForm.OnVisibleChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XForm.OnSizeChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XForm.OnHandleCreated(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XForm.OnTextChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="T:PowerLib.Winform.XFormShadow">
+            <summary>
+            为<see cref="T:PowerLib.Winform.XForm"/>阴影背景提供支持
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.XFormTitleBarButtonState">
+            <summary>
+            表示标题栏按钮的状态
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.XFormTitleBarButtonState.Normal">
+            <summary>
+            常规
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.XFormTitleBarButtonState.Holding">
+            <summary>
+            鼠标按下
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.XFormTitleBarButtonState.Hovering">
+            <summary>
+            鼠标移上
+            </summary>
+        </member>
+        <member name="F:PowerLib.Winform.XFormTitleBarButtonState.Disabled">
+            <summary>
+            禁用
+            </summary>
+        </member>
+        <member name="T:PowerLib.Winform.XMessageBox">
+            <summary>
+            消息框
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XMessageBox.#ctor(System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon)">
+            <summary>
+            初始化消息框的实例
+            </summary>
+            <param name="text"></param>
+            <param name="caption"></param>
+            <param name="buttons"></param>
+            <param name="icon"></param>
+        </member>
+        <member name="M:PowerLib.Winform.XMessageBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.XMessageBox.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.TitleBarStartColor">
+            <summary>
+            获取或设置消息框标题栏的渐变起始颜色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.TitleBarEndColor">
+            <summary>
+            获取或设置消息框标题栏的渐变结束颜色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.TitleForeColor">
+            <summary>
+            获取或设置消息框标题的前景色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.Shadow">
+            <summary>
+            获取或设置一个值，该值指示是否渲染消息框的阴影。
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.ButtonStartColor">
+            <summary>
+            按钮渐变起始颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.ButtonEndColor">
+            <summary>
+            按钮渐变结束颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.ButtonForeColor">
+            <summary>
+            按钮前景颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.ButtonHoldingStartColor">
+            <summary>
+            按钮鼠标按下状态渐变起始颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.ButtonHoldingEndColor">
+            <summary>
+            按钮鼠标按下状态渐变结束颜色
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.XMessageBox.ButtonHoldingForeColor">
+            <summary>
+            按钮鼠标按下状态前景颜色
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XMessageBox.Show(System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon)">
+            <summary>
+            显示具有指定文本的消息框
+            </summary>
+            <param name="text">文本</param>
+            <param name="caption">标题</param>
+            <param name="buttons">按钮</param>
+            <param name="icon">图标</param>
+            <returns>消息框的返回结果</returns>
+        </member>
+        <member name="M:PowerLib.Winform.XMessageBox.CreateButton(System.String,System.Char,System.Windows.Forms.DialogResult)">
+            <summary>
+            创建消息框按钮
+            </summary>
+            <param name="text">按钮文本</param>
+            <param name="shortcut"></param>
+            <param name="dialogResult">按钮触发的消息框返回值</param>
+            <returns>按钮实例</returns>
+        </member>
+        <member name="F:PowerLib.Winform.XMessageBox.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.XMessageBox.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:PowerLib.Winform.XMessageBox.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1074 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PowerLib</name>
+    </assembly>
+    <members>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LBUTTON">
+            <summary>
+            Left mouse button
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.RBUTTON">
+            <summary>
+            Right mouse button
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.CANCEL">
+            <summary>
+            Control-break processing
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MBUTTON">
+            <summary>
+            Middle mouse button (three-button mouse)
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.XBUTTON1">
+            <summary>
+            Windows 2000/XP: X1 mouse button
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.XBUTTON2">
+            <summary>
+            Windows 2000/XP: X2 mouse button
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BACK">
+            <summary>
+            BACKSPACE key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.TAB">
+            <summary>
+            TAB key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.CLEAR">
+            <summary>
+            CLEAR key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.RETURN">
+            <summary>
+            ENTER key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SHIFT">
+            <summary>
+            SHIFT key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.CONTROL">
+            <summary>
+            CTRL key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MENU">
+            <summary>
+            ALT key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.PAUSE">
+            <summary>
+            PAUSE key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.CAPITAL">
+            <summary>
+            CAPS LOCK key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KANA">
+            <summary>
+            Input Method Editor (IME) Kana mode
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.HANGUL">
+            <summary>
+            IME Hangul mode
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.JUNJA">
+            <summary>
+            IME Junja mode
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.FINAL">
+            <summary>
+            IME final mode
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.HANJA">
+            <summary>
+            IME Hanja mode
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KANJI">
+            <summary>
+            IME Kanji mode
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.ESCAPE">
+            <summary>
+            ESC key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.CONVERT">
+            <summary>
+            IME convert
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NONCONVERT">
+            <summary>
+            IME nonconvert
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.ACCEPT">
+            <summary>
+            IME accept
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MODECHANGE">
+            <summary>
+            IME mode change request
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SPACE">
+            <summary>
+            SPACEBAR
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.PRIOR">
+            <summary>
+            PAGE UP key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NEXT">
+            <summary>
+            PAGE DOWN key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.END">
+            <summary>
+            END key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.HOME">
+            <summary>
+            HOME key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LEFT">
+            <summary>
+            LEFT ARROW key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.UP">
+            <summary>
+            UP ARROW key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.RIGHT">
+            <summary>
+            RIGHT ARROW key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.DOWN">
+            <summary>
+            DOWN ARROW key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SELECT">
+            <summary>
+            SELECT key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.PRINT">
+            <summary>
+            PRINT key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.EXECUTE">
+            <summary>
+            EXECUTE key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SNAPSHOT">
+            <summary>
+            PRINT SCREEN key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.INSERT">
+            <summary>
+            INS key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.DELETE">
+            <summary>
+            DEL key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.HELP">
+            <summary>
+            HELP key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_0">
+            <summary>
+            0 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_1">
+            <summary>
+            1 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_2">
+            <summary>
+            2 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_3">
+            <summary>
+            3 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_4">
+            <summary>
+            4 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_5">
+            <summary>
+            5 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_6">
+            <summary>
+            6 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_7">
+            <summary>
+            7 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_8">
+            <summary>
+            8 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_9">
+            <summary>
+            9 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_A">
+            <summary>
+            A key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_B">
+            <summary>
+            B key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_C">
+            <summary>
+            C key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_D">
+            <summary>
+            D key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_E">
+            <summary>
+            E key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_F">
+            <summary>
+            F key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_G">
+            <summary>
+            G key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_H">
+            <summary>
+            H key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_I">
+            <summary>
+            I key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_J">
+            <summary>
+            J key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_K">
+            <summary>
+            K key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_L">
+            <summary>
+            L key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_M">
+            <summary>
+            M key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_N">
+            <summary>
+            N key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_O">
+            <summary>
+            O key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_P">
+            <summary>
+            P key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_Q">
+            <summary>
+            Q key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_R">
+            <summary>
+            R key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_S">
+            <summary>
+            S key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_T">
+            <summary>
+            T key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_U">
+            <summary>
+            U key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_V">
+            <summary>
+            V key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_W">
+            <summary>
+            W key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_X">
+            <summary>
+            X key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_Y">
+            <summary>
+            Y key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.KEY_Z">
+            <summary>
+            Z key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LWIN">
+            <summary>
+            Left Windows key (Microsoft Natural keyboard)
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.RWIN">
+            <summary>
+            Right Windows key (Natural keyboard)
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.APPS">
+            <summary>
+            Applications key (Natural keyboard)
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SLEEP">
+            <summary>
+            Computer Sleep key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD0">
+            <summary>
+            Numeric keypad 0 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD1">
+            <summary>
+            Numeric keypad 1 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD2">
+            <summary>
+            Numeric keypad 2 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD3">
+            <summary>
+            Numeric keypad 3 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD4">
+            <summary>
+            Numeric keypad 4 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD5">
+            <summary>
+            Numeric keypad 5 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD6">
+            <summary>
+            Numeric keypad 6 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD7">
+            <summary>
+            Numeric keypad 7 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD8">
+            <summary>
+            Numeric keypad 8 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMPAD9">
+            <summary>
+            Numeric keypad 9 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MULTIPLY">
+            <summary>
+            Multiply key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.ADD">
+            <summary>
+            Add key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SEPARATOR">
+            <summary>
+            Separator key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SUBTRACT">
+            <summary>
+            Subtract key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.DECIMAL">
+            <summary>
+            Decimal key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.DIVIDE">
+            <summary>
+            Divide key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F1">
+            <summary>
+            F1 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F2">
+            <summary>
+            F2 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F3">
+            <summary>
+            F3 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F4">
+            <summary>
+            F4 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F5">
+            <summary>
+            F5 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F6">
+            <summary>
+            F6 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F7">
+            <summary>
+            F7 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F8">
+            <summary>
+            F8 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F9">
+            <summary>
+            F9 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F10">
+            <summary>
+            F10 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F11">
+            <summary>
+            F11 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F12">
+            <summary>
+            F12 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F13">
+            <summary>
+            F13 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F14">
+            <summary>
+            F14 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F15">
+            <summary>
+            F15 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F16">
+            <summary>
+            F16 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F17">
+            <summary>
+            F17 key  
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F18">
+            <summary>
+            F18 key  
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F19">
+            <summary>
+            F19 key  
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F20">
+            <summary>
+            F20 key  
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F21">
+            <summary>
+            F21 key  
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F22">
+            <summary>
+            F22 key, (PPC only) Key used to lock device.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F23">
+            <summary>
+            F23 key  
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.F24">
+            <summary>
+            F24 key  
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NUMLOCK">
+            <summary>
+            NUM LOCK key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.SCROLL">
+            <summary>
+            SCROLL LOCK key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LSHIFT">
+            <summary>
+            Left SHIFT key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.RSHIFT">
+            <summary>
+            Right SHIFT key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LCONTROL">
+            <summary>
+            Left CONTROL key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.RCONTROL">
+            <summary>
+            Right CONTROL key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LMENU">
+            <summary>
+            Left MENU key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.RMENU">
+            <summary>
+            Right MENU key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BROWSER_BACK">
+            <summary>
+            Windows 2000/XP: Browser Back key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BROWSER_FORWARD">
+            <summary>
+            Windows 2000/XP: Browser Forward key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BROWSER_REFRESH">
+            <summary>
+            Windows 2000/XP: Browser Refresh key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BROWSER_STOP">
+            <summary>
+            Windows 2000/XP: Browser Stop key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BROWSER_SEARCH">
+            <summary>
+            Windows 2000/XP: Browser Search key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BROWSER_FAVORITES">
+            <summary>
+            Windows 2000/XP: Browser Favorites key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.BROWSER_HOME">
+            <summary>
+            Windows 2000/XP: Browser Start and Home key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.VOLUME_MUTE">
+            <summary>
+            Windows 2000/XP: Volume Mute key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.VOLUME_DOWN">
+            <summary>
+            Windows 2000/XP: Volume Down key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.VOLUME_UP">
+            <summary>
+            Windows 2000/XP: Volume Up key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MEDIA_NEXT_TRACK">
+            <summary>
+            Windows 2000/XP: Next Track key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MEDIA_PREV_TRACK">
+            <summary>
+            Windows 2000/XP: Previous Track key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MEDIA_STOP">
+            <summary>
+            Windows 2000/XP: Stop Media key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.MEDIA_PLAY_PAUSE">
+            <summary>
+            Windows 2000/XP: Play/Pause Media key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LAUNCH_MAIL">
+            <summary>
+            Windows 2000/XP: Start Mail key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LAUNCH_MEDIA_SELECT">
+            <summary>
+            Windows 2000/XP: Select Media key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LAUNCH_APP1">
+            <summary>
+            Windows 2000/XP: Start Application 1 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.LAUNCH_APP2">
+            <summary>
+            Windows 2000/XP: Start Application 2 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_1">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_PLUS">
+            <summary>
+            Windows 2000/XP: For any country/region, the '+' key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_COMMA">
+            <summary>
+            Windows 2000/XP: For any country/region, the ',' key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_MINUS">
+            <summary>
+            Windows 2000/XP: For any country/region, the '-' key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_PERIOD">
+            <summary>
+            Windows 2000/XP: For any country/region, the '.' key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_2">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_3">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_4">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_5">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_6">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_7">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_8">
+            <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_102">
+            <summary>
+            Windows 2000/XP: Either the angle bracket key or the backslash key on the RT 102-key keyboard
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.PROCESSKEY">
+            <summary>
+            Windows 95/98/Me, Windows NT 4.0, Windows 2000/XP: IME PROCESS key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.PACKET">
+            <summary>
+            Windows 2000/XP: Used to pass Unicode characters as if they were keystrokes. The VK_PACKET key is the low word of a 32-bit Virtual Key value used for non-keyboard input methods. For more information, see Remark in KEYBDINPUT, SendInput, WM_KEYDOWN, and WM_KEYUP
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.ATTN">
+            <summary>
+            Attn key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.CRSEL">
+            <summary>
+            CrSel key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.EXSEL">
+            <summary>
+            ExSel key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.EREOF">
+            <summary>
+            Erase EOF key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.PLAY">
+            <summary>
+            Play key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.ZOOM">
+            <summary>
+            Zoom key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.NONAME">
+            <summary>
+            Reserved
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.PA1">
+            <summary>
+            PA1 key
+            </summary>
+        </member>
+        <member name="F:PowerLib.NativeCodes.NativeConstants.VK.OEM_CLEAR">
+            <summary>
+            Clear key
+            </summary>
+        </member>
+        <member name="T:PowerLib.NativeCodes.NativeStructures">
+            <summary>
+            封装本地代码使用的非托管结构
+            </summary>
+        </member>
+        <member name="T:PowerLib.Utilities.BitmapUtility">
+            <summary>
+            封装位图处理
+            </summary>
+        </member>
+        <member name="M:PowerLib.Utilities.BitmapUtility.GetGraphicsPathFromBitmap(System.Drawing.Bitmap,System.Action{System.Int32})">
+            <summary>
+            从位图计算图像路径
+            </summary>
+            <param name="bmp">位图</param>
+            <param name="scanCallback">扫描回调，回传当前扫描的像素索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.BitmapUtility.StretchBitmap(System.Drawing.Bitmap,System.Drawing.Size)">
+            <summary>
+            按指定大小缩放一个位图
+            </summary>
+            <param name="bmpOrigin">原始位图</param>
+            <param name="size">大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.BitmapUtility.CreateTranslucentBitmap(System.Byte,System.Drawing.Color,System.Drawing.Size)">
+            <summary>
+            创建半透明位图
+            </summary>
+            <param name="alpha">透明度(0-255)</param>
+            <param name="baseColor">基础颜色</param>
+            <param name="size">大小</param>
+            <returns>结果位图</returns>
+        </member>
+        <member name="M:PowerLib.Utilities.BitmapUtility.StretchBitmap(System.Drawing.Bitmap,System.Drawing.Size,System.Boolean)">
+            <summary>
+            缩放位图到指定大小
+            </summary>
+            <param name="bmpOrg">原始位图</param>
+            <param name="sz">大小</param>
+            <param name="disposeOriginal">是否自动释放原始位图</param>
+            <returns>结果位图</returns>
+        </member>
+        <member name="M:PowerLib.Utilities.BitmapUtility.RotateBitmap(System.Drawing.Bitmap,System.Int32,System.Boolean)">
+            <summary>
+            以指定角度旋转位图
+            </summary>
+            <param name="bmpOrg">原始位图</param>
+            <param name="angle">角度：90/180/270</param>
+            <param name="disposeOriginal">是否自动释放原始位图</param>
+            <returns>结果位图</returns>
+        </member>
+        <member name="M:PowerLib.Utilities.BitmapUtility.CutBitmap(System.Drawing.Bitmap,System.Drawing.Rectangle,System.Boolean)">
+            <summary>
+            使用指定矩形剪裁位图
+            </summary>
+            <param name="bmpOrg">原始位图</param>
+            <param name="rect">矩形</param>
+            <param name="disposeOriginal">是否自动释放原始位图</param>
+            <returns>结果位图</returns>
+        </member>
+        <member name="M:PowerLib.Utilities.BitmapUtility.Mosaic(System.Drawing.Bitmap,System.Int32)">
+            <summary>
+            对图像进行马赛克处理
+            </summary>
+            <param name="bmpOrigin">图像</param>
+            <param name="radius">马赛克单位半径，值越大越模糊</param>
+            <returns></returns>
+        </member>
+        <member name="T:PowerLib.Utilities.CommonUtility">
+            <summary>
+            实用工具类
+            </summary>
+        </member>
+        <member name="M:PowerLib.Utilities.CommonUtility.GetParentForm(System.Windows.Forms.Control)">
+            <summary>
+            递归获取控件所在的父窗口
+            </summary>
+            <param name="c">控件</param>
+            <returns>父窗口引用</returns>
+        </member>
+        <member name="M:PowerLib.Utilities.CommonUtility.GetDeeperColor(System.Drawing.Color,System.Int32)">
+            <summary>
+            获取更深的颜色
+            </summary>
+            <param name="baseColor">基色</param>
+            <param name="diff">色差</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.CommonUtility.GetLighterColor(System.Drawing.Color,System.Int32)">
+            <summary>
+            获取更浅的颜色
+            </summary>
+            <param name="baseColor">基色</param>
+            <param name="diff">色差</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.CommonUtility.CoerceValue(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            确保值不越界
+            </summary>
+            <param name="raw">原值</param>
+            <param name="lo">最低</param>
+            <param name="hi">最高</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.CommonUtility.GetSizeSuffix(System.Int64,System.Int32)">
+            <summary>
+            获取指定数据大小的后缀描述字符串
+            </summary>
+            <param name="value">数据大小(字节)</param>
+            <param name="decimals">小数位数</param>
+            <returns></returns>
+        </member>
+        <member name="T:PowerLib.Utilities.GraphicsUtility">
+            <summary>
+            封装图形处理
+            </summary>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetDistance(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            计算两点之间线段距离
+            </summary>
+            <param name="pt1"></param>
+            <param name="pt2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetDistanceInMm(System.Drawing.PointF,System.Drawing.PointF,System.Double,System.Double)">
+            <summary>
+            计算两点之间线段距离，计算结果以毫米为单位
+            </summary>
+            <param name="pt1"></param>
+            <param name="pt2"></param>
+            <param name="pxWidth">像素宽度</param>
+            <param name="pxHeight">像素高度</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetAngleDiff(System.Single,System.Single)">
+            <summary>
+            获取指定角度的两条半径所组成的最小圆心角角度
+            </summary>
+            <param name="angleA">半径A的角度</param>
+            <param name="angleB">半径B的角度</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetMidAngle(System.Single,System.Single)">
+            <summary>
+            获取指定角度的两条半径的中线角度
+            </summary>
+            <param name="angleA"></param>
+            <param name="angleB"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetOppositeAngle(System.Single)">
+            <summary>
+            获取指定角度的半径的相对半径的角度
+            </summary>
+            <param name="angle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.CreateRegularPolygon(System.Drawing.PointF,System.Single,System.Int32,System.Double)">
+            <summary>
+            在指定位置创建正多边形
+            </summary>
+            <param name="ptCenter">外切圆圆心</param>
+            <param name="radius">外切圆半径</param>
+            <param name="edgeCount">边数</param>
+            <param name="originDegree">原始角度</param>
+            <returns>多边形顶点数组</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">边数小于3</exception>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.RotateAt(System.Drawing.PointF,System.Drawing.PointF,System.Double)">
+            <summary>
+            计算一个点绕另一个点旋转后的坐标
+            </summary>
+            <param name="pointToRotate">原始点</param>
+            <param name="centerPoint">中心点</param>
+            <param name="angleInDegrees">角度</param>
+            <returns>旋转后的点</returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetHexagonBySquare(System.Drawing.RectangleF,System.Single)">
+            <summary>
+            获取给定正方形内最大的六边形
+            </summary>
+            <param name="rectSquare">正方形</param>
+            <param name="ratioFactor">宽高比因子，值越大，六边形越宽</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetRoundedRectPath(System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            获取圆角矩形路径
+            </summary>
+            <param name="rect">参考矩形</param>
+            <param name="radius">圆角半径</param>
+            <returns></returns>
+        </member>
+        <member name="M:PowerLib.Utilities.GraphicsUtility.GetDotLocationByAngle(System.Drawing.PointF,System.Single,System.Int32)">
+            <summary>
+            根据半径、角度求圆上坐标
+            </summary>
+            <param name="center">圆心</param>
+            <param name="radius">半径</param>
+            <param name="angle">角度</param>
+            <returns>坐标</returns>
+        </member>
+    </members>
+</doc>
