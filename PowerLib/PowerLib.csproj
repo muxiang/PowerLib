@@ -6,7 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+	<PropertyGroup>
 	  <DocumentationFile>E:\MuxiangProjects\PowerLib\PowerLib\PowerLib.xml</DocumentationFile>
 	</PropertyGroup>
 
