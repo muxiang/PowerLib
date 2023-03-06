@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -47,7 +48,9 @@ namespace PowerLib.Winform.Controls
             InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer
                 | ControlStyles.UserPaint
-                | ControlStyles.AllPaintingInWmPaint, true);
+                | ControlStyles.AllPaintingInWmPaint|ControlStyles.UserMouse, true);
+
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             _penForeColor = new Pen(ForeColor);
             _penBorderColor = new Pen(_borderColor);
@@ -112,16 +115,18 @@ namespace PowerLib.Winform.Controls
             set
             {
                 _borderStyle = value;
-                Invalidate();
+                Refresh();
             }
         }
 
         #endregion 属性
-
+        
         /// <inheritdoc />
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
+
+            Debug.Print(m.ToString());
 
             if (m.Msg != WM_PAINT && m.Msg != WM_CTLCOLOREDIT)
                 return;
@@ -208,7 +213,7 @@ namespace PowerLib.Winform.Controls
             base.OnMouseEnter(e);
 
             _borderHighLight = true;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -219,7 +224,7 @@ namespace PowerLib.Winform.Controls
             if (Focused) return;
 
             _borderHighLight = false;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -228,7 +233,7 @@ namespace PowerLib.Winform.Controls
             base.OnGotFocus(e);
 
             _borderHighLight = true;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -237,7 +242,7 @@ namespace PowerLib.Winform.Controls
             base.OnLostFocus(e);
 
             _borderHighLight = false;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />
@@ -246,7 +251,14 @@ namespace PowerLib.Winform.Controls
             base.OnEnabledChanged(e);
 
             _borderHighLight = false;
-            Invalidate();
+            Refresh();
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            Refresh();
         }
     }
 }

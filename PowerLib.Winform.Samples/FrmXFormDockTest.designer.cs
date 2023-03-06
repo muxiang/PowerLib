@@ -44,7 +44,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(640, 610);
+            this.panel1.Size = new System.Drawing.Size(596, 566);
             this.panel1.TabIndex = 0;
             // 
             // xGroupBox1
@@ -93,7 +93,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 640);
+            this.ClientSize = new System.Drawing.Size(596, 596);
             this.Controls.Add(this.panel1);
             this.Location = new System.Drawing.Point(100, 100);
             this.Name = "FrmXFormDockTest";

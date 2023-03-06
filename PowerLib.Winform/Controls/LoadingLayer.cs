@@ -58,7 +58,7 @@ namespace PowerLib.Winform.Controls
         /// <summary>
         /// 构造一个加载遮罩层
         /// </summary>
-        /// <param name="parentForm">父窗口</param>
+        /// <param name="frmParent">父窗口</param>
         /// <param name="opacity">由一个0~1的double值表示的透明度</param>
         /// <param name="progressBar">
         /// 指示遮罩层是否包含一个进度条，在另一线程中调用 <see cref="UpdateProgress"/>更新进度条
@@ -66,12 +66,16 @@ namespace PowerLib.Winform.Controls
         /// <param name="customCursor">指定自定义的光标</param>
         /// <param name="newUiThread">指示遮罩层是否在独立的UI线程执行</param>
         public LoadingLayer(
-            Form parentForm,
+            Form frmParent,
             double opacity = .5D,
             bool progressBar = false,
             Cursor customCursor = null,
             bool newUiThread = false)
-            : this(new Rectangle(parentForm.Location, parentForm.Size), opacity, progressBar, customCursor, newUiThread) { }
+            : this(frmParent.IsMdiChild
+                ? new Rectangle(frmParent.MdiParent.Location, frmParent.MdiParent.Size)
+                : new Rectangle(frmParent.Location, frmParent.Size),
+                opacity, progressBar, customCursor, newUiThread)
+        { }
 
         private void CreateForm(
             Rectangle rectLayer,

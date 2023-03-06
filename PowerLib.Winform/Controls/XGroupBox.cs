@@ -21,7 +21,7 @@ namespace PowerLib.Winform.Controls
         private Color _borderColor = Color.Silver;
         private Pen _penBorder;
         private int _borderWidth;
-        
+
         /// <summary>
         /// 标题字体
         /// </summary>
@@ -148,7 +148,9 @@ namespace PowerLib.Winform.Controls
 
             const int titleX = 10;
 
-            pe.Graphics.FillRectangle(_brsTitleMark, new Rectangle(0, 0, 4, _titleFont.Height));
+            if (_showTitleMark)
+                pe.Graphics.FillRectangle(_brsTitleMark, new Rectangle(0, 0, 4, _titleFont.Height));
+
             pe.Graphics.DrawString(strText, _titleFont, _brsTitle, new PointF(titleX, 0));
 
             int width = Width;

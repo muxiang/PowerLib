@@ -23,7 +23,7 @@ namespace PowerLib.Winform.Samples
 
         private void xButton1_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -1119,6 +1119,11 @@ namespace PowerLib.Winform
                                 lppos = paramsIn.lppos
                             };
 
+                            Debug.Print($"------------------------------------------------------------");
+                            Debug.Print($"rectWndAfterMovedOrResized={rectWndAfterMovedOrResized}");
+                            Debug.Print($"rectWndBeforeMovedOrResized={rectWndBeforeMovedOrResized}");
+                            Debug.Print($"rectClientBeforeMovedOrResized={rectClientBeforeMovedOrResized}");
+                            
                             // 客户区调整后
                             RECT rectClientAfterMovedOrResized = new RECT(
                                 rectWndAfterMovedOrResized.Left + BORDER_WIDTH,
@@ -1129,7 +1134,7 @@ namespace PowerLib.Winform
                             paramsOut.rgrc[0] = rectClientAfterMovedOrResized;
                             paramsOut.rgrc[1] = rectWndBeforeMovedOrResized;
                             paramsOut.rgrc[2] = rectClientBeforeMovedOrResized;
-
+                            
                             Marshal.StructureToPtr(paramsOut, m.LParam, false);
 
                             m.Result = (IntPtr)WVR_VALIDRECTS;
@@ -1146,7 +1151,7 @@ namespace PowerLib.Winform
 
                             Marshal.StructureToPtr(@params, m.LParam, false);
 
-                            m.Result = (IntPtr)1;
+                            m.Result = IntPtr.Zero;
                         }
 
                         base.WndProc(ref m);
@@ -1305,13 +1310,14 @@ namespace PowerLib.Winform
                     {
                         if (_isRestoring)
                         {
-                            WINDOWPOS @params = (WINDOWPOS)
-                                Marshal.PtrToStructure(m.LParam, typeof(WINDOWPOS));
+                            //Debug.Print($"Read _rectWndBeforeRestored={_rectWndBeforeRestored}");
+                            //WINDOWPOS @params = (WINDOWPOS)
+                            //    Marshal.PtrToStructure(m.LParam, typeof(WINDOWPOS));
 
-                            @params.cx = _rectWndBeforeRestored.Width;
-                            @params.cy = _rectWndBeforeRestored.Height;
+                            //@params.cx = _rectWndBeforeRestored.Width;
+                            //@params.cy = _rectWndBeforeRestored.Height;
 
-                            Marshal.StructureToPtr(@params, m.LParam, false);
+                            //Marshal.StructureToPtr(@params, m.LParam, false);
 
                             PostMessage(Handle, WM_NCPAINT, 0, 0);
                         }
@@ -1354,10 +1360,24 @@ namespace PowerLib.Winform
                             case SC_MINIMIZE:
                             case SC_MAXIMIZE:
                                 GetWindowRect(Handle, out _rectWndBeforeRestored);
+                                //Debug.Print($"Write _rectWndBeforeRestored={_rectWndBeforeRestored}");
                                 break;
                             case SC_RESTORE:
-                                PostMessage(Handle, WM_RESTORED, 0, 0);
                                 _isRestoring = true;
+                                PostMessage(Handle, WM_RESTORED, 0, 0);
+
+                                if (_rectWndBeforeRestored.Width == 0 || _rectWndBeforeRestored.Height == 0)
+                                    break;
+
+                                SuspendLayout();
+
+                                if(_rectWndBeforeRestored.Width > 0) 
+                                    Width = _rectWndBeforeRestored.Width;
+
+                                if (_rectWndBeforeRestored.Height > 0) 
+                                    Height = _rectWndBeforeRestored.Height;
+
+                                ResumeLayout(true);
                                 break;
                         }
                         base.WndProc(ref m);

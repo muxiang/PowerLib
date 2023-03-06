@@ -147,7 +147,7 @@ namespace PowerLib.Winform.Controls
                 return;
 
             _borderHighLight = false;
-            Invalidate();
+            Refresh();
         }
 
         /// <inheritdoc />

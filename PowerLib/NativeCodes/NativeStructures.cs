@@ -102,7 +102,8 @@ namespace PowerLib.NativeCodes
 
             public override string ToString()
             {
-                return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", Left, Top, Right, Bottom);
+                return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", 
+                    Left, Top, Right, Bottom);
             }
         }
 

@@ -219,7 +219,7 @@
             <summary>
             构造一个加载遮罩层
             </summary>
-            <param name="parentForm">父窗口</param>
+            <param name="frmParent">父窗口</param>
             <param name="opacity">由一个0~1的double值表示的透明度</param>
             <param name="progressBar">
             指示遮罩层是否包含一个进度条，在另一线程中调用 <see cref="M:PowerLib.Winform.Controls.LoadingLayer.UpdateProgress(System.Int32,System.String)"/>更新进度条

@@ -244,7 +244,6 @@
             // 
             // xComboBox1
             // 
-            this.xComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.xComboBox1.FormattingEnabled = true;
             this.xComboBox1.Items.AddRange(new object[] {
             "1",
@@ -393,11 +392,11 @@
             // txt1
             // 
             this.txt1.BackColor = System.Drawing.Color.White;
-            this.txt1.PlaceHolder = null;
             this.txt1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.txt1.Location = new System.Drawing.Point(483, 183);
             this.txt1.Name = "txt1";
+            this.txt1.PlaceHolder = null;
             this.txt1.Size = new System.Drawing.Size(100, 21);
             this.txt1.TabIndex = 0;
             this.txt1.Text = "文本框1";
@@ -459,11 +458,11 @@
             // xTextBox1
             // 
             this.xTextBox1.BackColor = System.Drawing.Color.White;
-            this.xTextBox1.PlaceHolder = "空文本时提示";
             this.xTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.xTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.xTextBox1.Location = new System.Drawing.Point(603, 183);
             this.xTextBox1.Name = "xTextBox1";
+            this.xTextBox1.PlaceHolder = "空文本时提示";
             this.xTextBox1.Size = new System.Drawing.Size(100, 21);
             this.xTextBox1.TabIndex = 28;
             // 
@@ -472,7 +471,7 @@
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1138, 705);
+            this.ClientSize = new System.Drawing.Size(1134, 701);
             this.Controls.Add(this.xTextBox1);
             this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);

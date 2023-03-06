@@ -18,7 +18,7 @@ namespace PowerLib.Utilities
         /// <returns></returns>
         public static unsafe GraphicsPath GetGraphicsPathFromBitmap(Bitmap bmp, Action<int> scanCallback = null)
         {
-            if (bmp.PixelFormat != PixelFormat.Format32bppArgb || bmp.PixelFormat != PixelFormat.Format32bppPArgb)
+            if (bmp.PixelFormat != PixelFormat.Format32bppArgb && bmp.PixelFormat != PixelFormat.Format32bppPArgb)
                 throw new InvalidOperationException("位图不是有效的32位ARGB位图");
 
             int w = bmp.Width;
@@ -44,8 +44,8 @@ namespace PowerLib.Utilities
                         pData++;
                     }
 
-                    if (stride > w)
-                        pData += stride - w;
+                    if (stride > w * 4)
+                        pData += stride - w * 4;
                 }
             }
             finally
