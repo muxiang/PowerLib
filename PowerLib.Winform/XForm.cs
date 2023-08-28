@@ -694,7 +694,7 @@ namespace PowerLib.Winform
                     ICON_SIZE, ICON_SIZE));
 
             // 标题文本
-            int txtX = TitleBarRectangle.Left + (TitleBarRectangle.Height - ICON_SIZE) / 2 + ICON_SIZE;
+            int txtX = TitleBarRectangle.Left + (TitleBarRectangle.Height - ICON_SIZE) / 2 + (ShowIcon ? ICON_SIZE : 0);
             SizeF szText = g.MeasureString(Text, SystemFonts.CaptionFont, Width, StringFormat.GenericDefault);
             using Brush brsText = new SolidBrush(_titleBarForeColor);
             g.DrawString(Text,
@@ -1123,7 +1123,7 @@ namespace PowerLib.Winform
                             Debug.Print($"rectWndAfterMovedOrResized={rectWndAfterMovedOrResized}");
                             Debug.Print($"rectWndBeforeMovedOrResized={rectWndBeforeMovedOrResized}");
                             Debug.Print($"rectClientBeforeMovedOrResized={rectClientBeforeMovedOrResized}");
-                            
+
                             // 客户区调整后
                             RECT rectClientAfterMovedOrResized = new RECT(
                                 rectWndAfterMovedOrResized.Left + BORDER_WIDTH,
@@ -1134,7 +1134,7 @@ namespace PowerLib.Winform
                             paramsOut.rgrc[0] = rectClientAfterMovedOrResized;
                             paramsOut.rgrc[1] = rectWndBeforeMovedOrResized;
                             paramsOut.rgrc[2] = rectClientBeforeMovedOrResized;
-                            
+
                             Marshal.StructureToPtr(paramsOut, m.LParam, false);
 
                             m.Result = (IntPtr)WVR_VALIDRECTS;
@@ -1371,10 +1371,10 @@ namespace PowerLib.Winform
 
                                 SuspendLayout();
 
-                                if(_rectWndBeforeRestored.Width > 0) 
+                                if (_rectWndBeforeRestored.Width > 0)
                                     Width = _rectWndBeforeRestored.Width;
 
-                                if (_rectWndBeforeRestored.Height > 0) 
+                                if (_rectWndBeforeRestored.Height > 0)
                                     Height = _rectWndBeforeRestored.Height;
 
                                 ResumeLayout(true);

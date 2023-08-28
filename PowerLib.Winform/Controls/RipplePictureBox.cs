@@ -280,6 +280,9 @@ namespace PowerLib.Winform.Controls
                         using (Graphics gWnd = Graphics.FromHdc(wndHdc))
                             gWnd.DrawImage(f, ClientRectangle);
                     }
+                    else
+                        using (Graphics gWnd = Graphics.FromHdc(wndHdc))
+                            gWnd.Clear(Color.White);
 
                     // 结束绘图
                     EndPaint(m.HWnd, ref paintStruct);
