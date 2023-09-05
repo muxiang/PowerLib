@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-
+using PowerLib.NativeCodes;
 using PowerLib.Winform.Controls;
 
 namespace PowerLib.Winform.Samples
@@ -11,12 +11,17 @@ namespace PowerLib.Winform.Samples
         public FrmXFormTest()
         {
             InitializeComponent();
+
+            xHotkeyCapture1.Hotkey =
+                new Tuple<NativeConstants.KeyModifiers, Keys>(
+                    NativeConstants.KeyModifiers.Control | NativeConstants.KeyModifiers.Alt, Keys.Y);
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
             XMessageBox.Show(e.Location.ToString());
+            XMessageBox.Show(xHotkeyCapture1.HotKeyString);
         }
 
         private void btnCommonButton_Click(object sender, EventArgs e)

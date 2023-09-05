@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -13,7 +12,7 @@ namespace PowerLib.Winform.Controls
     /// <summary>
     /// 表示Windows文本框控件
     /// </summary>
-    public sealed partial class XTextBox : TextBox
+    public partial class XTextBox : TextBox
     {
         private Color _borderColor;
         private Color _borderColorHighLight;
@@ -39,6 +38,13 @@ namespace PowerLib.Winform.Controls
             BorderColor = Color.FromArgb(184, 184, 184);
             HighLightBorderColor = Color.FromArgb(66, 215, 250);
             ForeColor = Color.FromArgb(80, 80, 80);
+        }
+
+        /// <inheritdoc />
+        public sealed override Color ForeColor
+        {
+            get => base.ForeColor;
+            set => base.ForeColor = value;
         }
 
         /// <summary>
@@ -101,6 +107,7 @@ namespace PowerLib.Winform.Controls
                 SendMessage(Handle, EM_SETCUEBANNER, 0, _strPlaceHolder);
         }
 
+        /// <inheritdoc />
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
@@ -159,6 +166,7 @@ namespace PowerLib.Winform.Controls
                 Refresh();
         }
 
+        /// <inheritdoc />
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);

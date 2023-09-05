@@ -20,6 +20,11 @@ namespace PowerLib.Utilities
         }
 
         /// <summary>
+        /// 获取None的字符串表示
+        /// </summary>
+        public static string NoneString => CultureInfo.CurrentUICulture.Name == "zh-CN" ? "无" : "None";
+
+        /// <summary>
         /// 递归获取控件所在的父窗口
         /// </summary>
         /// <param name="c">控件</param>

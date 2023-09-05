@@ -939,6 +939,11 @@
             实用工具类
             </summary>
         </member>
+        <member name="P:PowerLib.Utilities.CommonUtility.NoneString">
+            <summary>
+            获取None的字符串表示
+            </summary>
+        </member>
         <member name="M:PowerLib.Utilities.CommonUtility.GetParentForm(System.Windows.Forms.Control)">
             <summary>
             递归获取控件所在的父窗口

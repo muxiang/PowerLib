@@ -1,6 +1,6 @@
 ﻿namespace PowerLib.Winform.Controls
 {
-    sealed partial class XTextBox
+    partial class XTextBox
     {
         /// <summary>
         /// 必需的设计器变量。

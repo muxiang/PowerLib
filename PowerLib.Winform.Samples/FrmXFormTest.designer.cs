@@ -71,6 +71,8 @@
             this.btnShowLoadingLayerAutoClose = new PowerLib.Winform.Controls.XButton();
             this.btnXFileProgressBarTest = new PowerLib.Winform.Controls.XButton();
             this.xTextBox1 = new PowerLib.Winform.Controls.XTextBox();
+            this.xHotkeyCapture1 = new PowerLib.Winform.Controls.XHotkeyCapture();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.xDataGridView1)).BeginInit();
             this.grp1.SuspendLayout();
             this.xTabControl1.SuspendLayout();
@@ -466,12 +468,37 @@
             this.xTextBox1.Size = new System.Drawing.Size(100, 21);
             this.xTextBox1.TabIndex = 28;
             // 
+            // xHotkeyCapture1
+            // 
+            this.xHotkeyCapture1.BackColor = System.Drawing.Color.White;
+            this.xHotkeyCapture1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.xHotkeyCapture1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.xHotkeyCapture1.Hotkey = null;
+            this.xHotkeyCapture1.Location = new System.Drawing.Point(392, 307);
+            this.xHotkeyCapture1.Name = "xHotkeyCapture1";
+            this.xHotkeyCapture1.PlaceHolder = null;
+            this.xHotkeyCapture1.ReadOnly = true;
+            this.xHotkeyCapture1.Size = new System.Drawing.Size(175, 21);
+            this.xHotkeyCapture1.TabIndex = 30;
+            this.xHotkeyCapture1.Text = "无";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(324, 311);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "热键捕获器";
+            // 
             // FrmXFormTest
             // 
             this.AcceptButton = this.btnShowLoadingLayerManualClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 701);
+            this.ClientSize = new System.Drawing.Size(1126, 693);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.xHotkeyCapture1);
             this.Controls.Add(this.xTextBox1);
             this.Controls.Add(this.btnXFileProgressBarTest);
             this.Controls.Add(this.xShadowPanel1);
@@ -533,5 +560,7 @@
         private Controls.XButton btnShowLoadingLayerAutoClose;
         private Controls.XButton btnXFileProgressBarTest;
         private Controls.XTextBox xTextBox1;
+        private Controls.XHotkeyCapture xHotkeyCapture1;
+        private System.Windows.Forms.Label label1;
     }
 }

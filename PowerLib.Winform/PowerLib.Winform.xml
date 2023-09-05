@@ -1454,6 +1454,37 @@
             使用代码编辑器修改此方法的内容。
             </summary>
         </member>
+        <member name="T:PowerLib.Winform.Controls.XHotkeyCapture">
+            <summary>
+            表示基于<see cref="T:PowerLib.Winform.Controls.XTextBox"/>的热键捕捉器
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XHotkeyCapture.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.Winform.Controls.XHotkeyCapture"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XHotkeyCapture.Hotkey">
+            <summary>
+            获取或设置热键
+            </summary>
+        </member>
+        <member name="P:PowerLib.Winform.Controls.XHotkeyCapture.HotKeyString">
+            <summary>
+            获取热键的字符串表示
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XHotkeyCapture.ShowHotkeys">
+            <summary>
+            显示热键
+            </summary>
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XHotkeyCapture.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XHotkeyCapture.OnKeyUp(System.Windows.Forms.KeyEventArgs)">
+            <inheritdoc />
+        </member>
         <member name="T:PowerLib.Winform.Controls.XProgressBar">
             <summary>
             表示一个支持显示文本的进度条
@@ -1656,6 +1687,9 @@
             初始化<see cref="T:PowerLib.Winform.Controls.XTextBox"/>的实例
             </summary>
         </member>
+        <member name="P:PowerLib.Winform.Controls.XTextBox.ForeColor">
+            <inheritdoc />
+        </member>
         <member name="P:PowerLib.Winform.Controls.XTextBox.BorderColor">
             <summary>
             边框颜色
@@ -1671,6 +1705,9 @@
             文本框无内容时的背景文字
             </summary>
         </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.OnHandleCreated(System.EventArgs)">
+            <inheritdoc />
+        </member>
         <member name="M:PowerLib.Winform.Controls.XTextBox.OnGotFocus(System.EventArgs)">
             <inheritdoc />
         </member>
@@ -1684,6 +1721,9 @@
             <inheritdoc />
         </member>
         <member name="M:PowerLib.Winform.Controls.XTextBox.OnTextChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.Winform.Controls.XTextBox.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
             <inheritdoc />
         </member>
         <member name="M:PowerLib.Winform.Controls.XTextBox.WndProc(System.Windows.Forms.Message@)">
