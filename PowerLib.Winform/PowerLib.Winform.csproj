@@ -12,10 +12,31 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="EmbeddedReferences\SharpDX.Direct2D1.dll" />
+	  <None Remove="EmbeddedReferences\SharpDX.dll" />
+	  <None Remove="EmbeddedReferences\SharpDX.DXGI.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="EmbeddedReferences\SharpDX.Direct2D1.dll" />
+	  <EmbeddedResource Include="EmbeddedReferences\SharpDX.dll" />
+	  <EmbeddedResource Include="EmbeddedReferences\SharpDX.DXGI.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\PowerLib\PowerLib.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Reference Include="SharpDX">
+		  <HintPath>EmbeddedReferences\SharpDX.dll</HintPath>
+		</Reference>
+		<Reference Include="SharpDX.Direct2D1">
+		  <HintPath>EmbeddedReferences\SharpDX.Direct2D1.dll</HintPath>
+		</Reference>
+		<Reference Include="SharpDX.DXGI">
+		  <HintPath>EmbeddedReferences\SharpDX.DXGI.dll</HintPath>
+		</Reference>
 		<Reference Include="System.Design" />
 		<Reference Include="System.Windows.Forms" />
 	</ItemGroup>

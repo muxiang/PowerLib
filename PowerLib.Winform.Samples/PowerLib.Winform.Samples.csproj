@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmRipplePictureBoxTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRipplePictureBoxTest.Designer.cs">
+      <DependentUpon>FrmRipplePictureBoxTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmXFileProgressBarTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmRipplePictureBoxTest.resx">
+      <DependentUpon>FrmRipplePictureBoxTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmXFileProgressBarTest.resx">
       <DependentUpon>FrmXFileProgressBarTest.cs</DependentUpon>
     </EmbeddedResource>

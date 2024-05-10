@@ -1162,6 +1162,26 @@ namespace PowerLib.Winform
                         if (!MaximizeBox)
                             return;
 
+                        if (WindowState == FormWindowState.Normal)
+                        {
+                            GetWindowRect(Handle, out _rectWndBeforeRestored);
+                        }
+                        else if(WindowState == FormWindowState.Maximized)
+                        {
+                            if (_rectWndBeforeRestored.Width == 0 || _rectWndBeforeRestored.Height == 0)
+                                break;
+
+                            SuspendLayout();
+
+                            if (_rectWndBeforeRestored.Width > 0)
+                                Width = _rectWndBeforeRestored.Width;
+
+                            if (_rectWndBeforeRestored.Height > 0)
+                                Height = _rectWndBeforeRestored.Height;
+
+                            ResumeLayout(true);
+                        }
+
                         base.WndProc(ref m);
                         break;
                     }

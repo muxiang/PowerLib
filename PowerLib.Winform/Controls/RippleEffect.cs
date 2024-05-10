@@ -73,7 +73,7 @@ namespace PowerLib.Winform.Controls
             int h = _bmpTexture.Height;
 
             // 固定缓冲区
-            fixed (int* pF = _frontBuffer, pB = _backBuffer)
+            fixed (int* pF = _frontBuffer, pB = _backBuffer) 
             {
                 // 遍历缓冲区,首尾两行除外
                 for (int i = w; i < w * h - w; i++)
@@ -118,8 +118,8 @@ namespace PowerLib.Winform.Controls
             fixed (int* buffer = _frontBuffer)
             {
                 // 获取位图数据指针
-                byte* faddr = (byte*)fdat.Scan0;
-                byte* taddr = (byte*)tdat.Scan0;
+                byte* pFront = (byte*)fdat.Scan0;
+                byte* pTexture = (byte*)tdat.Scan0;
 
                 for (int i = w; i < w * h - w; i++)
                 {
@@ -137,9 +137,9 @@ namespace PowerLib.Winform.Controls
                     if (fxi >= w * h * 3) fxi = pxi;
 
                     // 从材质获取基准像素
-                    byte b = taddr[fxi];
-                    byte g = taddr[fxi + 1];
-                    byte r = taddr[fxi + 2];
+                    byte b = pTexture[fxi];
+                    byte g = pTexture[fxi + 1];
+                    byte r = pTexture[fxi + 2];
 
                     // 着色
                     b = (byte)CommonUtility.CoerceValue(b + shade, 0, 255);
@@ -147,16 +147,16 @@ namespace PowerLib.Winform.Controls
                     r = (byte)CommonUtility.CoerceValue(r + shade, 0, 255);
 
                     // 生成水波
-                    faddr[pxi] = b;
-                    faddr[pxi + 1] = g;
-                    faddr[pxi + 2] = r;
+                    pFront[pxi] = b;
+                    pFront[pxi + 1] = g;
+                    pFront[pxi + 2] = r;
                 }
 
                 // 复制首尾行像素
                 for (int i = 0; i < w * 3; i++)
                 {
-                    faddr[w * h * 3 - i - 1] = taddr[w * h * 3 - i - 1];
-                    faddr[i] = taddr[i];
+                    pFront[w * h * 3 - i - 1] = pTexture[w * h * 3 - i - 1];
+                    pFront[i] = pTexture[i];
                 }
             }
 

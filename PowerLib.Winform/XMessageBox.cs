@@ -280,17 +280,17 @@ namespace PowerLib.Winform
         /// <summary>
         /// 获取或设置消息框标题栏的渐变起始颜色。
         /// </summary>
-        public new static Color TitleBarStartColor { get; set; } = DefaultTitleBarStartColor;
+        public new static Color TitleBarStartColor { get; set; } = DefaultTitleBarStartColor == Color.Transparent ? Color.PaleVioletRed : DefaultTitleBarStartColor;
 
         /// <summary>
         /// 获取或设置消息框标题栏的渐变结束颜色。
         /// </summary>
-        public new static Color TitleBarEndColor { get; set; } = DefaultTitleBarEndColor;
+        public new static Color TitleBarEndColor { get; set; } = DefaultTitleBarEndColor == Color.Transparent ? Color.Pink : DefaultTitleBarEndColor;
 
         /// <summary>
         /// 获取或设置消息框标题的前景色。
         /// </summary>
-        public new static Color TitleForeColor { get; set; } = DefaultTitleBarForeColor;
+        public new static Color TitleForeColor { get; set; } = DefaultTitleBarForeColor == Color.Transparent ? Color.White : DefaultTitleBarForeColor;
 
         /// <summary>
         /// 获取或设置一个值，该值指示是否渲染消息框的阴影。

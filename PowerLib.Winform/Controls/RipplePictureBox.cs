@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
+using PowerLib.Utilities;
 using PowerLib.Winform.Design;
 
 using static PowerLib.NativeCodes.NativeConstants;
@@ -77,7 +78,7 @@ namespace PowerLib.Winform.Controls
 
             bool dragging = false;
 
-            _tmrRender = new ThreadingTimer(o =>
+            _tmrRender = new ThreadingTimer(_ =>
             {
                 if (!IsHandleCreated || Disposing || IsDisposed)
                     return;
@@ -85,7 +86,7 @@ namespace PowerLib.Winform.Controls
                 BeginInvoke(new MethodInvoker(UpdateFrame));
             }, null, Timeout.Infinite, (int)Math.Round(1000 / (double)_refreshRate));
 
-            _tmrAutoSplash = new ThreadingTimer(o =>
+            _tmrAutoSplash = new ThreadingTimer(_ =>
             {
                 foreach (Point pt in _autoSplashPoints)
                 {
@@ -98,7 +99,7 @@ namespace PowerLib.Winform.Controls
 
             }, null, Timeout.Infinite, AUTO_SPLASH_INTERVALS);
 
-            MouseDown += (s1, e1) =>
+            MouseDown += (_, e1) =>
             {
                 // 由于算法缺陷,避免短时间内在同一点生成大量水波
                 if (ComparePoint(_lastClick, e1.Location, 10) && _swClick != null && _swClick.ElapsedMilliseconds < CLICK_DELAY) return;
@@ -109,9 +110,9 @@ namespace PowerLib.Winform.Controls
                 dragging = true;
             };
 
-            MouseUp += (s1, e1) => { dragging = false; };
+            MouseUp += (_, _) => { dragging = false; };
 
-            MouseMove += (s1, e1) =>
+            MouseMove += (_, e1) =>
             {
                 if (dragging || HoverSplash)
                     Splash(e1.Location.X, e1.Location.Y, DragSplashRadius);
@@ -297,6 +298,9 @@ namespace PowerLib.Winform.Controls
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
+
+            if (Image != null)
+                Image = BitmapUtility.StretchBitmap((Bitmap)Image, Size);
 
             _autoSplashPoints = new[]
             {
@@ -511,7 +515,7 @@ namespace PowerLib.Winform.Controls
             // 更新特效缓冲区浪高数据
             _effect.Update();
             // 强制重绘
-            Invalidate();
+            Refresh();
         }
 
         /// <summary>

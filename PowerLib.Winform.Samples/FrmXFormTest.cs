@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
 using PowerLib.NativeCodes;
@@ -22,6 +23,13 @@ namespace PowerLib.Winform.Samples
             base.OnMouseClick(e);
             XMessageBox.Show(e.Location.ToString());
             XMessageBox.Show(xHotkeyCapture1.HotKeyString);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            e.Cancel = true;
+            Hide();
         }
 
         private void btnCommonButton_Click(object sender, EventArgs e)
@@ -97,6 +105,11 @@ namespace PowerLib.Winform.Samples
         {
             using (FrmXFileProgressBarTest frm = new FrmXFileProgressBarTest())
                 frm.ShowDialog();
+        }
+
+        private void asdToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XMessageBox.Show("asdasd");
         }
     }
 }

@@ -92,61 +92,61 @@ namespace PowerLib.Winform.Controls
             switch (_progress)
             {
                 case 0:
-                {
-                    _opacity = MAX_OPACITY;
-                    AddSpeed();
-                    if (_angle + _speed >= SLOW_ANGLE && _angle + _speed < QUICK_ANGLE)
                     {
-                        _progress = 1;
-                        _angle = SLOW_ANGLE - _speed;
+                        _opacity = MAX_OPACITY;
+                        AddSpeed();
+                        if (_angle + _speed >= SLOW_ANGLE && _angle + _speed < QUICK_ANGLE)
+                        {
+                            _progress = 1;
+                            _angle = SLOW_ANGLE - _speed;
+                        }
                     }
-                }
                     break;
                 case 1:
-                {
-                    SubSpeed();
-                    if (_angle + _speed >= QUICK_ANGLE || _angle + _speed < SLOW_ANGLE)
                     {
-                        _progress = 2;
-                        _angle = QUICK_ANGLE - _speed;
+                        SubSpeed();
+                        if (_angle + _speed >= QUICK_ANGLE || _angle + _speed < SLOW_ANGLE)
+                        {
+                            _progress = 2;
+                            _angle = QUICK_ANGLE - _speed;
+                        }
                     }
-                }
                     break;
                 case 2:
-                {
-                    AddSpeed();
-                    if (_angle + _speed >= SLOW_ANGLE && _angle + _speed < QUICK_ANGLE)
                     {
-                        _progress = 3;
-                        _angle = SLOW_ANGLE - _speed;
+                        AddSpeed();
+                        if (_angle + _speed >= SLOW_ANGLE && _angle + _speed < QUICK_ANGLE)
+                        {
+                            _progress = 3;
+                            _angle = SLOW_ANGLE - _speed;
+                        }
                     }
-                }
                     break;
                 case 3:
-                {
-                    SubSpeed();
-                    if (_angle + _speed >= QUICK_ANGLE && _angle + _speed < MAX_ANGLE)
                     {
-                        _progress = 4;
-                        _angle = QUICK_ANGLE - _speed;
+                        SubSpeed();
+                        if (_angle + _speed >= QUICK_ANGLE && _angle + _speed < MAX_ANGLE)
+                        {
+                            _progress = 4;
+                            _angle = QUICK_ANGLE - _speed;
+                        }
                     }
-                }
                     break;
                 case 4:
-                {
-                    SubSpeed();
-                    if (_angle + _speed >= MIN_ANGLE && _angle + _speed < APPEAR_ANGLE)
                     {
-                        _progress = 5;
-                        _angle = MIN_ANGLE;
+                        SubSpeed();
+                        if (_angle + _speed >= MIN_ANGLE && _angle + _speed < APPEAR_ANGLE)
+                        {
+                            _progress = 5;
+                            _angle = MIN_ANGLE;
+                        }
                     }
-                }
                     break;
                 case 5:
-                {
-                    AddSpeed();
-                    FadeOut();
-                }
+                    {
+                        AddSpeed();
+                        FadeOut();
+                    }
                     break;
             }
 
@@ -175,13 +175,13 @@ namespace PowerLib.Winform.Controls
         // 加速
         private void AddSpeed()
         {
-            if (++_speed >= MAX_SPEED) _speed = MAX_SPEED;
+            if (++_speed > MAX_SPEED) _speed = MAX_SPEED;
         }
 
         // 减速
         private void SubSpeed()
         {
-            if (--_speed <= MIN_SPEED) _speed = MIN_SPEED;
+            if (--_speed < MIN_SPEED) _speed = MIN_SPEED;
         }
 
         #endregion 方法
