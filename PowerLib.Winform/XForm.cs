@@ -1166,7 +1166,7 @@ namespace PowerLib.Winform
                         {
                             GetWindowRect(Handle, out _rectWndBeforeRestored);
                         }
-                        else if(WindowState == FormWindowState.Maximized)
+                        else if (WindowState == FormWindowState.Maximized)
                         {
                             if (_rectWndBeforeRestored.Width == 0 || _rectWndBeforeRestored.Height == 0)
                                 break;
@@ -1410,6 +1410,19 @@ namespace PowerLib.Winform
                 case WM_PAINT:
                     base.WndProc(ref m);
                     SendMessage(Handle, WM_NCPAINT, 0, 0);
+                    break;
+                case WM_GETMINMAXINFO:
+                    if (WindowState != FormWindowState.Maximized)
+                    {
+                        Screen screen = Screen.FromHandle(Handle);
+                        MINMAXINFO minMaxInfo = (MINMAXINFO)Marshal.PtrToStructure(m.LParam, typeof(MINMAXINFO));
+                        minMaxInfo.ptMaxPosition.X = screen.WorkingArea.Left;
+                        minMaxInfo.ptMaxPosition.Y = screen.WorkingArea.Top;
+                        minMaxInfo.ptMaxSize.X = screen.WorkingArea.Width;
+                        minMaxInfo.ptMaxSize.Y = screen.WorkingArea.Height;
+                        Marshal.StructureToPtr(minMaxInfo, m.LParam, true);
+                    }
+                    base.WndProc(ref m);
                     break;
                 default:
                     base.WndProc(ref m);

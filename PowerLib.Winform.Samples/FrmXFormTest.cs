@@ -25,13 +25,6 @@ namespace PowerLib.Winform.Samples
             XMessageBox.Show(xHotkeyCapture1.HotKeyString);
         }
 
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            base.OnClosing(e);
-            e.Cancel = true;
-            Hide();
-        }
-
         private void btnCommonButton_Click(object sender, EventArgs e)
         {
             XMessageBox.Show("常规按钮单击", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
