@@ -3,26 +3,26 @@ A simple UI lib based on WPF and WinForms.
 
 # PowerLib.WPF
 ## DefaultTheme
-<img width="3030" height="1686" alt="PowerLib WPF_Default" src="https://github.com/user-attachments/assets/6999688f-bf7e-46e9-8104-9046c006ad8f" />
+<img width="3030" height="1686" alt="PowerLib WPF_Default" src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Default.png" />
 
 ## DarkTheme
-<img width="3030" height="1686" alt="PowerLib WPF_Dark" src="https://github.com/user-attachments/assets/5161b02c-740b-4f0e-b589-e0ebdf1b71ad" />
+<img width="3030" height="1686" alt="PowerLib WPF_Dark" src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Dark.png" />
 
 ## PinkTheme
-<img width="3030" height="1686" alt="PowerLib WPF_Pink" src="https://github.com/user-attachments/assets/58170dc1-0383-4da0-8bce-364085515097" />
+<img width="3030" height="1686" alt="PowerLib WPF_Pink" src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Pink.png" />
 
 ## Extends Controls
 ### LoadingLayer
-![LoadingLayer](https://github.com/user-attachments/assets/e32865d3-2a08-4349-8e3a-de122664820e)
+![LoadingLayer](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF.LoadingLayer.gif)
 
 ### LoadingCirle / LoadingLine
-![LoadingCircleLoadingLine](https://github.com/user-attachments/assets/fdc5ce76-b42d-4678-80a5-29f07d799937)
+![LoadingCircleLoadingLine](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF.LoadingCircleLoadingLine.gif)
 
 ### FileTransferProgressBar
-![FileTransferProgressBar](https://github.com/user-attachments/assets/14c3e1fa-99fc-46d1-a708-e3d88ece3a96)
+![FileTransferProgressBar](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF.FileTransferProgressBar.gif)
 
 ### RipplePictureBox
-![RipplePictureBox](https://github.com/user-attachments/assets/fd445633-e59a-4f78-b662-598ed940f81e)
+![RipplePictureBox](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF.RipplePictureBox.gif)
 
 # PowerLib.WinForms
-![avatar](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLibSample.gif)
+![avatar](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WinForms.Sample.gif)
