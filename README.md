@@ -3,13 +3,13 @@ A simple UI lib based on WPF and WinForms.
 
 # PowerLib.WPF
 ## DefaultTheme
-<img width="3030" height="1686" alt="PowerLib WPF_Default" src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Default.png" />
+![DefaultTheme](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Default.png)
 
 ## DarkTheme
-<img width="3030" height="1686" alt="PowerLib WPF_Dark" src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Dark.png" />
+![DarkTheme](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Dark.png)
 
 ## PinkTheme
-<img width="3030" height="1686" alt="PowerLib WPF_Pink" src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Pink.png" />
+![PinkTheme](https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Pink.png)
 
 ## Extends Controls
 ### LoadingLayer
