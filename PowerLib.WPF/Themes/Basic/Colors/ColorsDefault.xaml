@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- #region 通用 -->
+
+    <!-- Focus Visual -->
+    <Color x:Key="FocusVisualColor">#60000000</Color>
+    <!-- Foreground -->
+    <Color x:Key="ForegroundColor">#161616</Color>
+    <Color x:Key="HoverForegroundColor">#161616</Color>
+    <Color x:Key="PressedForegroundColor">#161616</Color>
+    <Color x:Key="DefaultedForegroundColor">#161616</Color>
+    <Color x:Key="DisabledForegroundColor">#888888</Color>
+    <Color x:Key="HighlightedForegroundColor">#111111</Color>
+    <!-- Background -->
+    <Color x:Key="BackgroundColor">#FFFFFF</Color>
+    <Color x:Key="HoverBackgroundColor">#F0F0F0</Color>
+    <Color x:Key="PressedBackgroundColor">#DDDDDD</Color>
+    <Color x:Key="DefaultedBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="DisabledBackgroundColor">#DDDDDD</Color>
+    <Color x:Key="HighlightedBackgroundColor">#CCCCCC</Color>
+    <!-- Border -->
+    <Color x:Key="BorderColor">#DDDDDD</Color>
+    <Color x:Key="HoverBorderColor">#AAAAAA</Color>
+    <Color x:Key="PressedBorderColor">#999999</Color>
+    <Color x:Key="DefaultedBorderColor">#BBBBBB</Color>
+    <Color x:Key="DisabledBorderColor">#DDDDDD</Color>
+
+    <!-- #endregion 通用 -->
+
+    <!-- #region Window -->
+
+    <Color x:Key="WindowBackgroundColor">#F7F7F7</Color>
+    <Color x:Key="WindowBorderColor">#242445</Color>
+    <Color x:Key="TitleBarForegroundColor">#404040</Color>
+    <Color x:Key="TitleBarBackgroundColor">#EDEDED</Color>
+    <Color x:Key="TitleBarButtonForegroundColor">#404040</Color>
+    <Color x:Key="TitleBarButtonBackgroundColor">Transparent</Color>
+    <Color x:Key="TitleBarButtonHoverBackgroundColor">#E0E0E0</Color>
+    <Color x:Key="TitleBarButtonPressedBackgroundColor">#D4D4D4</Color>
+    <Color x:Key="TitleBarCloseButtonHoverPressedForegroundColor">#FFFFFF</Color>
+    <Color x:Key="TitleBarCloseButtonHoverBackgroundColor">#ED4C4C</Color>
+    <Color x:Key="TitleBarCloseButtonPressedBackgroundColor">#E14949</Color>
+
+    <!-- #endregion Window -->
+
+</ResourceDictionary>

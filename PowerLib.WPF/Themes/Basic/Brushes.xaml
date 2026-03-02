@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:o="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <!-- #region 通用 -->
+
+    <!-- Focus Visual -->
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="FocusVisualBrush" Color="{DynamicResource FocusVisualColor}"/>
+    <!-- Foreground -->
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="ForegroundBrush" Color="{DynamicResource ForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="HoverForegroundBrush" Color="{DynamicResource HoverForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="PressedForegroundBrush" Color="{DynamicResource PressedForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="DefaultedForegroundBrush" Color="{DynamicResource DefaultedForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="DisabledForegroundBrush" Color="{DynamicResource DisabledForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="HighlightedForegroundBrush" Color="{DynamicResource HighlightedForegroundColor}"/>
+    <!-- Background -->
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="BackgroundBrush" Color="{DynamicResource BackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="HoverBackgroundBrush" Color="{DynamicResource HoverBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="PressedBackgroundBrush" Color="{DynamicResource PressedBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="DefaultedBackgroundBrush" Color="{DynamicResource DefaultedBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="DisabledBackgroundBrush" Color="{DynamicResource DisabledBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="HighlightedBackgroundBrush" Color="{DynamicResource HighlightedBackgroundColor}"/>
+    <!-- Border -->
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="BorderBrush" Color="{DynamicResource BorderColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="HoverBorderBrush" Color="{DynamicResource HoverBorderColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="PressedBorderBrush" Color="{DynamicResource PressedBorderColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="DefaultedBorderBrush" Color="{DynamicResource DefaultedBorderColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="DisabledBorderBrush" Color="{DynamicResource DisabledBorderColor}"/>
+
+    <!-- #endregion 通用 -->
+
+    <!-- #region Window -->
+
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="WindowBackgroundBrush" Color="{DynamicResource WindowBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="WindowBorderBrush" Color="{DynamicResource WindowBorderColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarForegroundBrush" Color="{DynamicResource TitleBarForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarBackgroundBrush" Color="{DynamicResource TitleBarBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarButtonForegroundBrush" Color="{DynamicResource TitleBarButtonForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarButtonBackgroundBrush" Color="{DynamicResource TitleBarButtonBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarButtonHoverBackgroundBrush" Color="{DynamicResource TitleBarButtonHoverBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarButtonPressedBackgroundBrush" Color="{DynamicResource TitleBarButtonPressedBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarCloseButtonHoverPressedForegroundBrush" Color="{DynamicResource TitleBarCloseButtonHoverPressedForegroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarCloseButtonHoverBackgroundBrush" Color="{DynamicResource TitleBarCloseButtonHoverBackgroundColor}"/>
+    <SolidColorBrush o:Freeze="True" x:Shared="False" x:Key="TitleBarCloseButtonPressedBackgroundBrush" Color="{DynamicResource TitleBarCloseButtonPressedBackgroundColor}"/>
+
+    <!-- #endregion Window -->
+
+</ResourceDictionary>

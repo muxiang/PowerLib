@@ -1,0 +1,76 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <Style x:Key="CheckBoxFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="15,0,0,0"
+                                   StrokeThickness="1"
+                                   Stroke="{DynamicResource FocusVisualBrush}"
+                                   StrokeDashArray="1 2"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type CheckBox}" TargetType="CheckBox">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="FocusVisualStyle"	Value="{StaticResource CheckBoxFocusVisual}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border"  
+                                    Width="13" 
+                                    Height="13" 
+                                    CornerRadius="0" 
+                                    BorderThickness="1"
+                                    Background="{DynamicResource BackgroundBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}">
+                                <Path x:Name="CheckMark"
+                                      Width="7" 
+                                      Height="7" 
+                                      SnapsToDevicePixels="False" 
+                                      Stroke="{DynamicResource ForegroundBrush}"
+                                      StrokeThickness="2"
+                                      Data="M 0 2 3 5 8 0" />
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"
+                                          RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource HoverBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource HoverBorderBrush}" />
+                            <Setter TargetName="CheckMark" Property="Stroke" Value="{DynamicResource HoverForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource PressedBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource PressedBorderBrush}" />
+                            <Setter TargetName="CheckMark" Property="Stroke" Value="{DynamicResource PressedForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" />
+                            <Setter TargetName="CheckMark" Property="Stroke" Value="{DynamicResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

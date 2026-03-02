@@ -1,0 +1,31 @@
+# --------------------------------------
+Basic\Brushes.xaml
+# --------------------------------------
+Styles\Window.xaml
+# --------------------------------------
+Styles\Button.xaml
+Styles\CheckBox.xaml
+Styles\RadioButton.xaml
+Styles\TextBox.xaml
+Styles\ComboBox.Xaml
+Styles\ListBox.xaml
+Styles\ScrollBar.xaml
+Styles\ScrollViewer.xaml
+Styles\Slider.xaml
+Styles\TreeView.xaml
+Styles\Menu.xaml
+Styles\ProgressBar.xaml
+Styles\ToolTip.xaml
+Styles\TabControl.xaml
+Styles\Expander.xaml
+Styles\GroupBox.xaml
+Styles\ListView.xaml
+Styles\DataGrid.xaml
+Styles\Separator.xaml
+Styles\StatusBar.xaml
+Styles\ToolBar.xaml
+# --------------------------------------
+Styles\IPV4InputBox.xaml
+Styles\HotKeyRecorder.xaml
+Styles\EnhancedProgressBar.xaml
+Styles\FileTransferProgressBar.xaml

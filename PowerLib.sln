@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32602.291
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerLib", "PowerLib\PowerLib.csproj", "{5FCFAAA7-BF1A-4B75-A8D6-7980C30E84A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerLib.Winform", "PowerLib.Winform\PowerLib.Winform.csproj", "{F3FE5185-B137-4128-96B0-135514DD473E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerLib.WPF", "PowerLib.WPF\PowerLib.WPF.csproj", "{D211F0D5-FC64-4FEF-89D9-F61EAAF94C7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerLib.Winform.Samples", "PowerLib.Winform.Samples\PowerLib.Winform.Samples.csproj", "{B8E9E7FE-E6F6-45FC-B7D6-8590209AA7E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerLib.WPF.Samples", "PowerLib.WPF.Samples\PowerLib.WPF.Samples.csproj", "{5614B47D-FE6D-4006-BD60-618B4671F9BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerLib.WinForms", "PowerLib.WinForms\PowerLib.WinForms.csproj", "{01F8E1EA-6FAA-14E7-4C26-C838A6ADC56E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerLib.WinForms.Samples", "PowerLib.WinForms.Samples\PowerLib.WinForms.Samples.csproj", "{B8E9E7FE-E6F6-45FC-B7D6-8590209AA7E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +23,18 @@ Global
 		{5FCFAAA7-BF1A-4B75-A8D6-7980C30E84A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FCFAAA7-BF1A-4B75-A8D6-7980C30E84A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FCFAAA7-BF1A-4B75-A8D6-7980C30E84A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3FE5185-B137-4128-96B0-135514DD473E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3FE5185-B137-4128-96B0-135514DD473E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3FE5185-B137-4128-96B0-135514DD473E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3FE5185-B137-4128-96B0-135514DD473E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D211F0D5-FC64-4FEF-89D9-F61EAAF94C7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D211F0D5-FC64-4FEF-89D9-F61EAAF94C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D211F0D5-FC64-4FEF-89D9-F61EAAF94C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D211F0D5-FC64-4FEF-89D9-F61EAAF94C7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5614B47D-FE6D-4006-BD60-618B4671F9BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5614B47D-FE6D-4006-BD60-618B4671F9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5614B47D-FE6D-4006-BD60-618B4671F9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5614B47D-FE6D-4006-BD60-618B4671F9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F8E1EA-6FAA-14E7-4C26-C838A6ADC56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F8E1EA-6FAA-14E7-4C26-C838A6ADC56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F8E1EA-6FAA-14E7-4C26-C838A6ADC56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F8E1EA-6FAA-14E7-4C26-C838A6ADC56E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B8E9E7FE-E6F6-45FC-B7D6-8590209AA7E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8E9E7FE-E6F6-45FC-B7D6-8590209AA7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8E9E7FE-E6F6-45FC-B7D6-8590209AA7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,5 +45,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C19C0415-5297-4160-B5AB-8500BFD67DCA}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedProject1\SharedProject1.projitems*{d211f0d5-fc64-4fef-89d9-f61eaaf94c7f}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

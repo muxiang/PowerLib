@@ -1,0 +1,495 @@
+﻿<pl:Window x:Class="PowerLib.WPF.Samples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pl="https://muxiang.github.io/powerlibwpf"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:samples="clr-namespace:PowerLib.WPF.Samples"
+        mc:Ignorable="d"
+        Title="PowerLib.WPF.Samples"
+        WindowStartupLocation="CenterScreen"
+        Icon="LoveIcon.ico">
+    <Window.Resources>
+        <BitmapImage x:Key="rippleBG" UriSource="landscape.png" />
+        <Style x:Key="VerticalHIC" TargetType="{x:Type HeaderedItemsControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type HeaderedItemsControl}">
+                        <StackPanel Margin="20">
+                            <ContentPresenter 
+                                Grid.Row="0" 
+                                Margin="8,20,0,0" 
+                                TextBlock.Foreground="#888" 
+                                TextBlock.FontFamily="Trebuchet MS" 
+                                TextBlock.FontSize="14px" 
+                                TextBlock.FontWeight="Bold" 
+                                ContentSource="Header" />
+                            <StackPanel
+                                IsItemsHost="True"
+                                Orientation="Vertical" 
+                                Grid.Row="1" 
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HorizontalHIC" TargetType="{x:Type HeaderedItemsControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type HeaderedItemsControl}">
+                        <StackPanel Margin="20">
+                            <ContentPresenter 
+                                Grid.Row="0" 
+                                Margin="8,20,0,0" 
+                                TextBlock.Foreground="#888" 
+                                TextBlock.FontFamily="Trebuchet MS" 
+                                TextBlock.FontSize="14px" 
+                                TextBlock.FontWeight="Bold" 
+                                ContentSource="Header" />
+                            <StackPanel
+                                IsItemsHost="True"
+                                Orientation="Horizontal" 
+                                Grid.Row="1" 
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ObjectDataProvider x:Key="GenderValues"
+                    MethodName="GetValues"
+                    ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="samples:MainWindow+Gender"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="20,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center" TextAlignment="Right">切换皮肤：</TextBlock>
+                <ComboBox Grid.Column="1" VerticalAlignment="Center" x:Name="CmbSkin"  SelectionChanged="CmbSkin_OnSelectionChanged" HorizontalContentAlignment="Center">
+                    <ComboBoxItem Content="默认" Tag="{x:Static pl:SkinHelper.SkinDefaultUri}" IsSelected="True"/>
+                    <ComboBoxItem Content="暗黑" Tag="{x:Static pl:SkinHelper.SkinDarkUri}" />
+                    <ComboBoxItem Content="粉色" Tag="{x:Static pl:SkinHelper.SkinPinkUri}" />
+                </ComboBox>
+            </Grid>
+
+            <Expander Grid.Row="1" Header="调节窗口参数" Margin="20,10" IsExpanded="False">
+                <Grid Margin="20">
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="0,4,0,4"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Right">显示阴影：</TextBlock>
+                    <CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding ShowShadow,RelativeSource={RelativeSource AncestorType=pl:Window}}" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Right">阴影宽度：</TextBlock>
+                    <Slider Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Minimum="0" Maximum="50" Value="{Binding ShadowWidth,RelativeSource={RelativeSource AncestorType=pl:Window}}" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Right">阴影透明度：</TextBlock>
+                    <Slider Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Minimum="0" Maximum="1" Value="{Binding ShadowOpacity,RelativeSource={RelativeSource AncestorType=pl:Window}}" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" TextAlignment="Right">边框：</TextBlock>
+                    <Slider Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Minimum="0" Maximum="50" Value="{Binding BorderWidth,RelativeSource={RelativeSource AncestorType=pl:Window}}" />
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" TextAlignment="Right">圆角：</TextBlock>
+                    <Slider Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Minimum="0" Maximum="50" Value="{Binding CornerRadius,RelativeSource={RelativeSource AncestorType=pl:Window}}" />
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" TextAlignment="Right">显示标题栏：</TextBlock>
+                    <CheckBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding ShowTitleBar,RelativeSource={RelativeSource AncestorType=pl:Window}}" />
+                    <TextBlock Grid.Row="7" Grid.Column="0" TextAlignment="Right">标题栏高度：</TextBlock>
+                    <Slider Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Minimum="0" Maximum="50" Value="{Binding TitleBarHeight,RelativeSource={RelativeSource AncestorType=pl:Window}}" />
+                </Grid>
+            </Expander>
+
+            <Expander Grid.Row="2" Header="原生控件" Margin="20,10" IsExpanded="True">
+                <WrapPanel>
+                    <!-- Button -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="Button">
+                        <Button Margin="4" IsDefault="True">默认</Button>
+                        <Button Margin="4">常态</Button>
+                        <Button Margin="4" IsEnabled="False">禁用</Button>
+                        <Button Margin="4" pl:VisualHelper.IsVisualStateAnimated="True">悬停</Button>
+                    </HeaderedItemsControl>
+                    <!-- CheckBox -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="CheckBox">
+                        <CheckBox Margin="8">未选中</CheckBox>
+                        <CheckBox Margin="8" IsChecked="True">已选中</CheckBox>
+                        <CheckBox Margin="8" IsThreeState="True" IsChecked="{x:Null}">中间态</CheckBox>
+                        <CheckBox Margin="8" IsEnabled="False" IsChecked="True">禁用</CheckBox>
+                    </HeaderedItemsControl>
+                    <!-- RadioButton -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="RadioButton">
+                        <RadioButton Margin="8">未选中</RadioButton>
+                        <RadioButton Margin="8" IsChecked="True">已选中</RadioButton>
+                        <RadioButton Margin="8" IsEnabled="False">禁用</RadioButton>
+                    </HeaderedItemsControl>
+                    <!-- TextBox -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="TextBox">
+                        <StackPanel>
+                            <TextBox HorizontalAlignment="Center" Margin="8" Text="文字" />
+                            <PasswordBox HorizontalAlignment="Center" Margin="8" Password="Password" />
+                            <TextBox HorizontalAlignment="Center" Margin="8" IsEnabled="False" Text="禁用" />
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- ComboBox -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="ComboBox">
+                        <StackPanel>
+                            <ComboBox Margin="8">
+                                <ComboBoxItem Content="第一项" />
+                                <ComboBoxItem IsEnabled="False" Content="第二项已禁用" />
+                                <ComboBoxItem IsEnabled="False" Content="第三项已禁用" />
+                                <ComboBoxItem Content="第四项" />
+                                <ComboBoxItem Content="第五项" />
+                            </ComboBox>
+                            <ComboBox Margin="8" IsEditable="True" Text="可编辑">
+                                <ComboBoxItem Content="第一项" />
+                                <ComboBoxItem Content="第二项" />
+                                <ComboBoxItem IsEnabled="False" Content="第三项已禁用" />
+                                <ComboBoxItem Content="第四项" />
+                                <ComboBoxItem Content="第五项" />
+                            </ComboBox>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- ListBox -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="ListBox">
+                        <StackPanel Orientation="Horizontal">
+                            <ListBox Margin="8" SelectionMode="Extended"  Height="120">
+                                <ListBoxItem Content="第一项" />
+                                <ListBoxItem IsEnabled="False" Content="第二项已禁用" />
+                                <ListBoxItem Content="第三项" />
+                                <ListBoxItem Content="第四项" />
+                                <ListBoxItem IsEnabled="False" Content="第五项已禁用" />
+                            </ListBox>
+                            <ListBox Margin="8" SelectionMode="Extended" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="120">
+                                <ListBoxItem Content="第一项" />
+                                <ListBoxItem IsEnabled="False" Content="第二项已禁用" />
+                                <ListBoxItem Content="第三项" />
+                                <ListBoxItem Content="第四项" />
+                                <ListBoxItem IsEnabled="False" Content="第五项已禁用" />
+                                <ListBoxItem Content="第六项" />
+                                <ListBoxItem Content="第七项" />
+                                <ListBoxItem Content="第八项" />
+                            </ListBox>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- Slider -->
+                    <HeaderedItemsControl Style="{StaticResource HorizontalHIC}" Header="Slider">
+                        <StackPanel>
+                            <Slider Margin="8" Orientation="Horizontal" />
+                            <Slider Margin="8" Orientation="Horizontal" TickPlacement="TopLeft" />
+                            <Slider Margin="8" Orientation="Horizontal" TickPlacement="BottomRight" />
+                            <Slider Margin="8" Orientation="Horizontal" TickPlacement="Both" TickFrequency="2" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                            <Slider Margin="8" Orientation="Vertical" />
+                            <Slider Margin="8" Orientation="Vertical" TickPlacement="TopLeft" />
+                            <Slider Margin="8" Orientation="Vertical" TickPlacement="BottomRight" />
+                            <Slider Margin="8" Orientation="Vertical" TickPlacement="Both" TickFrequency="2" />
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- TreeView -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="TreeView">
+                        <StackPanel>
+                            <TreeView Width="150" Height="150" Margin="8">
+                                <TreeViewItem Header="顶级节点一">
+                                    <TreeViewItem Header="二级节点一" />
+                                    <TreeViewItem Header="二级节点二（加长）" />
+                                    <TreeViewItem Header="二级节点三" />
+                                    <TreeViewItem Header="二级节点四">
+                                        <TreeViewItem Header="三级节点一" />
+                                        <TreeViewItem Header="三级节点二" />
+                                        <TreeViewItem Header="三级节点三" />
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="二级节点五" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="顶级节点二">
+                                    <TreeViewItem Header="二级节点一" />
+                                    <TreeViewItem Header="二级节点二" />
+                                    <TreeViewItem Header="二级节点三" />
+                                    <TreeViewItem Header="二级节点四">
+                                        <TreeViewItem Header="三级节点一" />
+                                        <TreeViewItem Header="三级节点二" />
+                                        <TreeViewItem Header="三级节点三" />
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="二级节点五" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="顶级节点三" >
+                                    <TreeViewItem Header="二级节点一" />
+                                    <TreeViewItem Header="二级节点二" />
+                                    <TreeViewItem Header="二级节点三" />
+                                    <TreeViewItem Header="二级节点四" />
+                                </TreeViewItem>
+                            </TreeView>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- Menu / ContextMenu -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="Menu / ContextMenu">
+                        <Menu Margin="8" Width="400">
+                            <MenuItem Header="顶层菜单项1">
+                                <MenuItem Header="二级菜单项1" InputGestureText="Ctrl+L" />
+                                <MenuItem Header="二级菜单项2（图标）" InputGestureText="Ctrl+A">
+                                    <MenuItem.Icon>
+                                        <Ellipse Width="16" Height="16" Fill="Pink" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="二级菜单项3（禁用）" IsEnabled="False" />
+                                <Separator />
+                                <MenuItem Header="二级菜单项4">
+                                    <MenuItem Header="三级菜单项1" />
+                                    <MenuItem Header="三级菜单项2" />
+                                    <MenuItem Header="三级菜单项3" />
+                                </MenuItem>
+                                <MenuItem Header="二级菜单项5" />
+                            </MenuItem>
+                            <MenuItem Header="顶层菜单项2">
+                                <MenuItem Header="二级菜单项1" />
+                                <MenuItem Header="二级菜单项3（复选框）" IsCheckable="True" />
+                                <MenuItem Header="二级菜单项3" />
+                                <Separator />
+                                <MenuItem Header="二级菜单项4">
+                                    <MenuItem Header="三级菜单项1" />
+                                    <MenuItem Header="三级菜单项2" />
+                                    <MenuItem Header="三级菜单项3" />
+                                </MenuItem>
+                                <MenuItem Header="二级菜单项5" />
+                            </MenuItem>
+                            <MenuItem Header="顶层菜单项3">
+                                <MenuItem Header="二级菜单项1" />
+                                <MenuItem Header="二级菜单项2" />
+                                <MenuItem Header="二级菜单项3" />
+                                <Separator />
+                                <MenuItem Header="二级菜单项5" />
+                            </MenuItem>
+                            <MenuItem Header="子级溢出演示" Name="MISubMenuOverflow" />
+                        </Menu>
+                        <StackPanel>
+                            <Border Margin="8" Background="{DynamicResource BackgroundBrush}" Width="150" Height="50"  CornerRadius="2">
+                                <Border.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="二级菜单1" InputGestureText="Ctrl+L" />
+                                        <MenuItem Header="二级菜单2（图标）" InputGestureText="Ctrl+A">
+                                            <MenuItem.Icon>
+                                                <Ellipse Width="16" Height="16" Fill="Pink" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="二级菜单3" />
+                                        <Separator />
+                                        <MenuItem Header="二级菜单4">
+                                            <MenuItem Header="三级菜单项1" />
+                                            <MenuItem Header="三级菜单项2" />
+                                            <MenuItem Header="三级菜单项3" />
+                                        </MenuItem>
+                                        <MenuItem Header="二级菜单5" />
+                                    </ContextMenu>
+                                </Border.ContextMenu>
+                                <TextBlock Foreground="{DynamicResource ForegroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center">右键单击弹出上下文菜单</TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- ProgressBar -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="ProgressBar">
+                        <StackPanel>
+                            <ProgressBar HorizontalAlignment="Center" Margin="8" Value="20" />
+                            <ProgressBar HorizontalAlignment="Center" Margin="8" Value="90" />
+                            <ProgressBar HorizontalAlignment="Center" Margin="8" IsIndeterminate="True"   />
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- ToolTip -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="ToolTip">
+                        <StackPanel>
+                            <Border Margin="8" Background="{DynamicResource BackgroundBrush}" Width="150" Height="50"  CornerRadius="2">
+                                <Border.ToolTip>
+                                    鼠标悬停显示提示
+                                </Border.ToolTip>
+                                <TextBlock Foreground="{DynamicResource ForegroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center">鼠标悬停显示提示</TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- TabControl -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="TabControl">
+                        <StackPanel Orientation="Horizontal">
+                            <TabControl Margin="8" Height="100" Width="250">
+                                <TabItem Header="第一" />
+                                <TabItem Header="第二" />
+                                <TabItem Header="第三（禁用）" IsEnabled="False" />
+                                <TabItem Header="第四" />
+                            </TabControl>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- Expander -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="Expander">
+                        <StackPanel Orientation="Vertical">
+                            <Expander Width="200" Margin="8" Header="Expander标题">
+                                <Border Height="100" Background="{DynamicResource BackgroundBrush}">
+                                    <TextBlock>内容</TextBlock>
+                                </Border>
+                            </Expander>
+                            <Expander Width="200" Margin="8" IsEnabled="False"  Header="Expander已禁用">
+                                <Border Height="100" Background="{DynamicResource BackgroundBrush}">
+                                    <TextBlock>内容</TextBlock>
+                                </Border>
+                            </Expander>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- GroupBox -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="GroupBox">
+                        <StackPanel>
+                            <GroupBox Margin="8" Header="标题" Width="200" >
+                                <Border Height="100" />
+                            </GroupBox>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- ListView -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="ListView">
+                        <StackPanel>
+                            <ListView Margin="8" Height="100" Width="150">
+                                <ListView.View>
+                                    <GridView AllowsColumnReorder="True">
+                                        <GridViewColumn DisplayMemberBinding="{Binding}" Header="内容" Width="100"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Length}" Header="长度" Width="100"/>
+                                    </GridView>
+                                </ListView.View>
+                                <ListViewItem Content="第一项" />
+                                <ListViewItem Content="第二项(禁用)" IsEnabled="False" />
+                                <ListViewItem Content="第三项" />
+                                <ListViewItem Content="第四项" />
+                                <ListViewItem Content="第五项" />
+                                <ListViewItem Content="第六项" />
+                                <ListViewItem Content="第七项" />
+                                <ListViewItem Content="第八项" />
+                            </ListView>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- DataGrid -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="DataGrid">
+                        <DataGrid x:Name="SampleDataGrid" Margin="8" Height="180" Width="460"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  SelectionUnit="FullRow"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="All">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="编号" Binding="{Binding Id, Mode=OneWay}" Width="50"/>
+                                <DataGridTextColumn Header="姓名" Binding="{Binding Name, Mode=TwoWay}" Width="Auto"/>
+                                <DataGridComboBoxColumn Header="性别" SelectedItemBinding="{Binding Gender, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource GenderValues}}" Width="80"/>
+                                <DataGridTextColumn Header="部门" Binding="{Binding Department, Mode=OneWay}" Width="Auto"/>
+                                <DataGridTextColumn Header="成绩" Binding="{Binding Score, Mode=TwoWay}" Width="80"/>
+                                <DataGridCheckBoxColumn Header="活动" Binding="{Binding Active, Mode=OneWay}" IsReadOnly="True" Width="60"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </HeaderedItemsControl>
+                    <!-- ScrollViewer -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="ScrollViewer">
+                        <StackPanel>
+                            <ScrollViewer Width="200" Height="200" Style="{StaticResource LeftScrollViewer}">
+                                <Canvas Width="400" Height="400">
+                                    <Canvas.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="{DynamicResource BackgroundColor}" Offset="0"/>
+                                            <GradientStop Color="{DynamicResource ForegroundColor}" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Canvas.Background>
+                                </Canvas>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- StatusBar -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="StatusBar">
+                        <StackPanel Width="220">
+                            <StatusBar VerticalAlignment="Bottom">
+                                <StatusBarItem DockPanel.Dock="Right">Ln 181, Col 20</StatusBarItem>
+                                <Separator DockPanel.Dock="Right"/>
+                                <StatusBarItem>80%</StatusBarItem>
+                            </StatusBar>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                    <!-- ToolBar -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="ToolBar">
+                        <StackPanel>
+                            <ToolBarTray>
+                                <ToolBar>
+                                    <Button>按钮</Button>
+                                    <Button>按钮</Button>
+                                    <CheckBox>可选中按钮</CheckBox>
+                                    <TextBox>文本框</TextBox>
+                                </ToolBar>
+                            </ToolBarTray>
+                        </StackPanel>
+                    </HeaderedItemsControl>
+                </WrapPanel>
+            </Expander>
+
+            <Expander Grid.Row="3" Header="扩展控件" Margin="20,10" IsExpanded="True">
+                <WrapPanel>
+                    <!-- IPInputBox -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="IPV4InputBox">
+                        <pl:IPV4InputBox Margin="0,10" AddressString="192.168.1.100" />
+                    </HeaderedItemsControl>
+                    <!-- HotKeyRecorder -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="HotKeyRecorder">
+                        <pl:HotKeyRecorder Margin="0,10" Width="150" />
+                    </HeaderedItemsControl>
+                    <!-- EnhancedProgressBar -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="EnhancedProgressBar">
+                        <pl:EnhancedProgressBar Margin="0,10" Width="200" ShowTextOutline="True" TextOutlineThickness=".9" Value="50" />
+                    </HeaderedItemsControl>
+                    <!-- LoadingCircle / LoadingLine -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="LoadingCircle / LoadingLine">
+                        <pl:LoadingCircle Background="{DynamicResource HighlightedBackgroundBrush}" Foreground="{DynamicResource BackgroundBrush}" IsActive="True" Margin="0,10" Width="200" Height="200"/>
+                        <pl:LoadingLine Background="{DynamicResource HighlightedBackgroundBrush}" Foreground="{DynamicResource BackgroundBrush}" IsActive="True" Margin="0,10" Width="400" Height="50"/>
+                    </HeaderedItemsControl>
+                    <!-- LoadingLayer -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="LoadingLayer">
+                        <Button Margin="10" Width="200" Height="50" Click="BtnOpenLoadingLayer_Click">单击打开遮罩层</Button>
+                    </HeaderedItemsControl>
+                    <!-- FileTransferProgressBar -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="FileTransferProgressBar">
+                        <pl:FileTransferProgressBar Name="FileTransferProgressBar1" Margin="0,10" Width="400"/>
+                        <Button Margin="10" Width="200" Height="50" Click="BtnStartFileTransfer_Click">开始模拟文件传输</Button>
+                    </HeaderedItemsControl>
+                    <!-- RipplePictureBox -->
+                    <HeaderedItemsControl Style="{StaticResource VerticalHIC}" Header="RipplePictureBox">
+                        <TextBlock Margin="10,10">鼠标左键按下划过</TextBlock>
+                        <pl:RipplePictureBox Margin="0,10" Image="{StaticResource rippleBG}" Visibility="Visible" />
+                    </HeaderedItemsControl>
+                </WrapPanel>
+            </Expander>
+        </Grid>
+    </ScrollViewer>
+</pl:Window>

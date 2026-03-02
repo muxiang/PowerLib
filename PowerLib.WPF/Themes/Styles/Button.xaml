@@ -1,0 +1,274 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:tools="clr-namespace:PowerLib.WPF.Tools">
+
+    <Style x:Key="ButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="2"
+                                   StrokeThickness="1"
+                                   Stroke="{DynamicResource FocusVisualBrush}"
+                                   StrokeDashArray="1 2"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        <Setter Property="MinHeight" Value="23"/>
+        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Border"
+                            CornerRadius="2"
+                            BorderThickness="1"
+                            Background="{DynamicResource BackgroundBrush}"
+                            BorderBrush="{DynamicResource BorderBrush}"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Border.RenderTransform>
+                            <TranslateTransform x:Name="TranslateTransform" Y="0"/>
+                        </Border.RenderTransform>
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Margin="2"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource DefaultedBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsDefault" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource DefaultedBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource PressedBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource PressedBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                        </Trigger>
+
+                        <!-- 启用鼠标悬停动画 且IsDefault==False -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding IsDefault, RelativeSource={RelativeSource Self}}" Value="False" />
+                                <Condition Binding="{Binding Path=(tools:VisualHelper.IsVisualStateAnimated), RelativeSource={RelativeSource Self}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- 背景颜色渐变 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="{StaticResource HoverBackgroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 边框颜色渐变 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                To="{StaticResource HoverBorderColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 文字颜色渐变 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="ContentPresenter"
+                                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{StaticResource HoverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 上浮 1px -->
+                                        <DoubleAnimation
+                                                Storyboard.TargetName="TranslateTransform"
+                                                Storyboard.TargetProperty="Y"
+                                                To="-1"
+                                                Duration="0:0:0.15"
+                                                FillBehavior="HoldEnd"/>
+                                        <!-- 阴影 -->
+                                        <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="Effect">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <DropShadowEffect
+                                                            Color="{StaticResource HoverBorderColor}"
+                                                            ShadowDepth="2"
+                                                            BlurRadius="8"
+                                                            Opacity="0.3"/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- 恢复背景 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="{StaticResource BackgroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 恢复边框 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                To="{StaticResource BorderColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 恢复文字 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="ContentPresenter"
+                                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{StaticResource ForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <DoubleAnimation
+                                                Storyboard.TargetName="TranslateTransform"
+                                                Storyboard.TargetProperty="Y"
+                                                To="0"
+                                                Duration="0:0:0.15"/>
+                                        <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="Effect">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Null/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.ExitActions>
+                        </MultiDataTrigger>
+
+                        <!-- 启用鼠标悬停动画 且IsDefault==True -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding IsDefault, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=(tools:VisualHelper.IsVisualStateAnimated), RelativeSource={RelativeSource Self}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- 背景颜色渐变 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="{StaticResource HoverBackgroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 边框颜色渐变 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                To="{StaticResource HoverBorderColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 文字颜色渐变 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="ContentPresenter"
+                                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{StaticResource HoverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 上浮 1px -->
+                                        <DoubleAnimation
+                                                Storyboard.TargetName="TranslateTransform"
+                                                Storyboard.TargetProperty="Y"
+                                                To="-1"
+                                                Duration="0:0:0.15"
+                                                FillBehavior="HoldEnd"/>
+                                        <!-- 添加阴影 -->
+                                        <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="Effect">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <DropShadowEffect
+                                                            Color="{StaticResource HoverBorderColor}"
+                                                            ShadowDepth="2"
+                                                            BlurRadius="8"
+                                                            Opacity="0.3"/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- 恢复背景 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="{StaticResource DefaultedBackgroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 恢复边框 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                To="{StaticResource DefaultedBorderColor}"
+                                                Duration="0:0:0.2"/>
+                                        <!-- 恢复文字 -->
+                                        <ColorAnimation
+                                                Storyboard.TargetName="ContentPresenter"
+                                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{StaticResource DefaultedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                        <DoubleAnimation
+                                                Storyboard.TargetName="TranslateTransform"
+                                                Storyboard.TargetProperty="Y"
+                                                To="0"
+                                                Duration="0:0:0.15"/>
+                                        <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="Effect">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Null/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.ExitActions>
+                        </MultiDataTrigger>
+
+                        <!-- 未启用鼠标悬停动画 且 未按下 -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="False" />
+                                <Condition Binding="{Binding Path=(tools:VisualHelper.IsVisualStateAnimated), RelativeSource={RelativeSource Self}}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Foreground" Value="{DynamicResource HoverForegroundBrush}" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource HoverBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource HoverBorderBrush}" />
+                        </MultiDataTrigger>
+
+                        <!-- 未启用鼠标悬停动画 且 按下 -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=(tools:VisualHelper.IsVisualStateAnimated), RelativeSource={RelativeSource Self}}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Foreground" Value="{DynamicResource PressedForegroundBrush}" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource PressedBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource PressedBorderBrush}" />
+                        </MultiDataTrigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

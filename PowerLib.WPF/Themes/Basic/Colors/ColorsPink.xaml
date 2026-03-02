@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- #region 粉色主题 (Pink Theme) -->
+
+    <!-- Focus Visual -->
+    <Color x:Key="FocusVisualColor">#40FFB6C1</Color>
+    <!-- Foreground (使用深色玫瑰灰以保证对比度) -->
+    <Color x:Key="ForegroundColor">#5F3E43</Color>
+    <Color x:Key="HoverForegroundColor">#4A3135</Color>
+    <Color x:Key="PressedForegroundColor">#2E1F21</Color>
+    <Color x:Key="DefaultedForegroundColor">#5F3E43</Color>
+    <Color x:Key="DisabledForegroundColor">#CBAEAF</Color>
+    <Color x:Key="HighlightedForegroundColor">#D81B60</Color>
+    <!-- 强调色 -->
+
+    <!-- Background (以淡樱花粉和白色为基调) -->
+    <Color x:Key="BackgroundColor">#FFF0F3</Color>
+    <!-- 极浅粉 -->
+    <Color x:Key="HoverBackgroundColor">#FFE4E9</Color>
+    <Color x:Key="PressedBackgroundColor">#FFD1D9</Color>
+    <Color x:Key="DefaultedBackgroundColor">#FFF5F7</Color>
+    <Color x:Key="DisabledBackgroundColor">#F5F5F5</Color>
+    <Color x:Key="HighlightedBackgroundColor">#FFB6C1</Color>
+
+    <!-- Border -->
+    <Color x:Key="BorderColor">#F7C8D0</Color>
+    <Color x:Key="HoverBorderColor">#FF8DA1</Color>
+    <Color x:Key="PressedBorderColor">#E67387</Color>
+    <Color x:Key="DefaultedBorderColor">#F0B4BE</Color>
+    <Color x:Key="DisabledBorderColor">#EFEFEF</Color>
+
+    <!-- #endregion 通用 -->
+
+    <!-- #region Window (更加柔和的窗体色) -->
+
+    <Color x:Key="WindowBackgroundColor">#FFF9FA</Color>
+    <Color x:Key="WindowBorderColor">#FFB1C1</Color>
+    <Color x:Key="TitleBarForegroundColor">#7D4F55</Color>
+    <Color x:Key="TitleBarBackgroundColor">#FFE1E6</Color>
+    <Color x:Key="TitleBarButtonForegroundColor">#7D4F55</Color>
+    <Color x:Key="TitleBarButtonBackgroundColor">Transparent</Color>
+    <Color x:Key="TitleBarButtonHoverBackgroundColor">#FFC0CB</Color>
+    <Color x:Key="TitleBarButtonPressedBackgroundColor">#FFA6B6</Color>
+
+    <!-- 关闭按钮保留红色系但微调以适应粉色基调 -->
+    <Color x:Key="TitleBarCloseButtonHoverPressedForegroundColor">#FFFFFF</Color>
+    <Color x:Key="TitleBarCloseButtonHoverBackgroundColor">#FB7185</Color>
+    <Color x:Key="TitleBarCloseButtonPressedBackgroundColor">#E11D48</Color>
+
+    <!-- #endregion Window -->
+
+</ResourceDictionary>

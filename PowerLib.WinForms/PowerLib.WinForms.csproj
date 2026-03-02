@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+	<PropertyGroup>
+		<TargetFrameworks>net45</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseWindowsForms>true</UseWindowsForms>
+
+		<!-- NuGet 元数据 -->
+		<PackageId>PowerLib.WinForms</PackageId>
+		<Version>1.0.10</Version>
+		<Authors>Mu Xiang</Authors>
+		<Description>Assembly providing some good-looking UI use in Winform.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/muxiang/PowerLib</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/muxiang/PowerLib.git</RepositoryUrl>
+		<PackageTags>PowerLib;Winform;WinForms;WPF;GDI;GDI+;P/Invoke;Animation</PackageTags>
+		<Copyright>Copyright © 2023 MuXiang. All rights reserved.</Copyright>
+
+		<!-- icon/readme -->
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\PowerLib\PowerLib.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Design" />
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+	<!-- 将解决方案根目录的 icon/readme 打进包根目录 -->
+	<ItemGroup>
+		<None Include="$(MSBuildProjectDirectory)\..\icon.png" Pack="true" PackagePath="\" Visible="false" />
+		<None Include="$(MSBuildProjectDirectory)\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+	</ItemGroup>
+
+	<!-- Pack 前读取 RELEASE_NOTE.md 并写入 PackageReleaseNotes -->
+	<Target Name="LoadPackageReleaseNotes" BeforeTargets="GenerateNuspec">
+		<PropertyGroup>
+			<_ReleaseNoteFile>$(MSBuildProjectDirectory)\..\RELEASE_NOTE.md</_ReleaseNoteFile>
+		</PropertyGroup>
+
+		<ReadLinesFromFile File="$(_ReleaseNoteFile)" Condition="Exists('$(_ReleaseNoteFile)')">
+			<Output TaskParameter="Lines" ItemName="_ReleaseNoteLines" />
+		</ReadLinesFromFile>
+
+		<PropertyGroup Condition="Exists('$(_ReleaseNoteFile)')">
+			<PackageReleaseNotes>@(_ReleaseNoteLines, '%0A')</PackageReleaseNotes>
+		</PropertyGroup>
+	</Target>
+
+</Project>

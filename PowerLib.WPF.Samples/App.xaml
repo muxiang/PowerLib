@@ -1,0 +1,14 @@
+﻿<Application x:Class="PowerLib.WPF.Samples.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PowerLib.WPF.Samples"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PowerLib.WPF;component/Themes/SkinDefault.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/PowerLib.WPF;component/Themes/Generic.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
