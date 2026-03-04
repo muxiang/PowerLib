@@ -1,5 +1,8 @@
 # PowerLib
 A simple UI lib based on WPF and WinForms.
+This lightweight UI library, developed based on WinForms and WPF, is open-source on GitHub and released on NuGet. 
+It supports theme switching, provides theme-compatible styles for most native controls, and offers a variety of extended controls, 
+including water ripple effects, Win8-style loading animations, Win10-style file transfer progress bars, and loading overlays.
 
 # PowerLib.WPF
 ## DefaultTheme

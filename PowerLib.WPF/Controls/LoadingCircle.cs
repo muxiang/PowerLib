@@ -13,7 +13,7 @@ namespace PowerLib.WPF.Controls;
 /// <summary>
 /// 表示一个Win8Metro风格的加载圆圈动画
 /// </summary>
-public class LoadingCircle : ContentControl
+public class LoadingCircle : ContentControl,IDisposable
 {
     /// <summary>
     /// 表示动画中的一个点，负责逻辑位置计算
@@ -194,6 +194,9 @@ public class LoadingCircle : ContentControl
     // 点更新间隔，即第一个点更新逻辑位置后，第二个点需要等待多少次UpdateLogicState()调用后再进行更新
     private const int DOT_UPDATE_OFFSET = 80;
 
+    // 逻辑帧间隔
+    private const double LOGIC_STEP_MS = 1000 / 60D;
+
     #endregion 常量
 
     #region 字段
@@ -210,8 +213,8 @@ public class LoadingCircle : ContentControl
     // 渲染时间控制
     private TimeSpan _lastTime = TimeSpan.Zero;
     private TimeSpan _accumulator = TimeSpan.Zero;
-    // 逻辑帧间隔
-    private const double LOGIC_STEP_MS = 1000 / 60D;
+
+    private bool _disposed;
 
     #endregion 字段
 
@@ -258,6 +261,11 @@ public class LoadingCircle : ContentControl
         SizeChanged += OnSizeChanged;
         Loaded += (_, _) => Start();
         Unloaded += (_, _) => Stop();
+    }
+
+    ~LoadingCircle()
+    {
+        Dispose(false);
     }
 
     #region 属性
@@ -373,6 +381,9 @@ public class LoadingCircle : ContentControl
 
     private void Start()
     {
+        if (_disposed)
+            throw new ObjectDisposedException(nameof(LoadingCircle));
+
         _lastTime = TimeSpan.Zero;
         _accumulator = TimeSpan.Zero;
 
@@ -435,4 +446,32 @@ public class LoadingCircle : ContentControl
     }
 
     #endregion 事件处理
+
+    #region 实现IDisposable
+
+    /// <summary>
+    /// 释放资源
+    /// </summary>
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// 释放资源，取消事件订阅
+    /// </summary>
+    /// <param name="disposing"></param>
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed)
+            return;
+
+        if (disposing)
+            Stop();
+
+        _disposed = true;
+    }
+
+    #endregion 实现IDisposable
 }
