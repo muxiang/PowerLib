@@ -1,0 +1,822 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PowerLib.WPF</name>
+    </assembly>
+    <members>
+        <member name="T:PowerLib.WPF.Controls.EnhancedProgressBar">
+            <summary>
+            表示增强进度条控件
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.MinimumProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.Minimum"/>依赖属性
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.MaximumProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.Maximum"/>依赖属性
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.ValueProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.Value"/>依赖属性
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.ForegroundProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.Foreground"/>依赖属性，覆盖 Control.Foreground 以提供默认值和 AffectsRender 元数据
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.BackgroundProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.Background"/>依赖属性，覆盖 Control.Background 以提供默认值和 AffectsRender 元数据
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.BorderBrushProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.BorderBrush"/>依赖属性，覆盖 Control.BorderBrush 以提供默认值和 AffectsRender 元数据
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.BorderThicknessProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.BorderThickness"/>依赖属性，覆盖 Control.BorderThickness 以提供默认值和 AffectsRender 元数据
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.CornerRadiusProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.CornerRadius"/>依赖属性，表示进度条的圆角半径
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.ShowTextOutlineProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.ShowTextOutline"/>依赖属性，表示是否显示文字的外包围线以避免重影
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.TextProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.EnhancedProgressBar.Text"/>依赖属性，表示显示在百分比前方的附加文字
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.TextOutlineStrokeProperty">
+            <summary>
+            文字描边的画笔，为 null 时使用 Foreground
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.EnhancedProgressBar.TextOutlineThicknessProperty">
+            <summary>
+            文字描边的宽度
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.Minimum">
+            <summary>
+            获取或设置进度条的最小值
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.Maximum">
+            <summary>
+            获取或设置进度条的最大值
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.Value">
+            <summary>
+            获取或设置进度条的当前值
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.Foreground">
+            <summary>
+            获取或设置进度条的前景画刷（进度填充色）
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.Background">
+            <summary>
+            获取或设置进度条的进度背景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.BorderBrush">
+            <summary>
+            获取或设置进度条的边框画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.BorderThickness">
+            <summary>
+            获取或设置进度条的边框厚度，如果四个边框厚度不同，仅取最大边框厚度进行渲染
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.CornerRadius">
+            <summary>
+            获取或设置进度条的圆角半径
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.ShowTextOutline">
+            <summary>
+            获取或设置一个布尔值，表示是否显示文字的外包围线以避免重影
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.Text">
+            <summary>
+            获取或设置显示在百分比前方的附加文字
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.TextOutlineStroke">
+            <summary>
+            获取或设置文字描边的画笔颜色，为 null 时使用 Foreground
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.EnhancedProgressBar.TextOutlineThickness">
+            <summary>
+            获取或设置文字描边的宽度
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.EnhancedProgressBar.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.EnhancedProgressBar"/>的实例
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.EnhancedProgressBar.CreateFormattedText(System.String,System.Windows.Media.Typeface,System.Windows.Media.Brush)">
+            <summary>
+            创建 FormattedText 实例
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.FileTransferProgressBar">
+            <summary>
+            表示支持速度变化的文件传输进度条
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.TotalSizeInBytesProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.TotalSizeInBytes"/>依赖属性
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.GridBrushProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.GridBrush"/>依赖属性
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedForegroundProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedForeground"/>依赖属性
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedBackgroundProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedBackground"/>依赖属性
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.ForegroundProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.Foreground"/>依赖属性，覆盖 Control.Foreground 以提供默认值和 AffectsRender 元数据
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.BackgroundProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.Background"/>依赖属性，覆盖 Control.Background 以提供默认值和 AffectsRender 元数据
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.BorderBrushProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.BorderBrush"/>依赖属性，覆盖 Control.BorderBrush 以提供默认值和 AffectsRender 元数据
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedTextBrushProperty">
+            <summary>
+            标识<see cref="P:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedTextBrush"/>依赖属性
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.TotalSizeInBytes">
+            <summary>
+            获取或设置文件总大小(字节)
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.GridBrush">
+            <summary>
+            获取或设置进度条的网格画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedForeground">
+            <summary>
+            获取或设置进度条的速度前景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedBackground">
+            <summary>
+            获取或设置进度条的速度背景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.Foreground">
+            <summary>
+            获取或设置进度条的前景画刷（参考线颜色）
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.Background">
+            <summary>
+            获取或设置进度条的背景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.BorderBrush">
+            <summary>
+            获取或设置进度条的边框画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.SpeedTextBrush">
+            <summary>
+            获取或设置速度文字画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.FileTransferProgressBar.Percentage">
+            <summary>
+            获取进度条的百分比
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.FileTransferProgressBar.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.FileTransferProgressBar"/>的实例
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.FileTransferProgressBar.AddValue(System.Int64)">
+            <summary>
+            向进度条添加字节
+            </summary>
+            <param name="incrInBytes">字节数</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.FileTransferProgressBar.ClearData">
+            <summary>
+            通过清除数据将进度条还原成初始状态
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.FileTransferProgressBar.CoerceValue(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            确保值不越界
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.FileTransferProgressBar.DrawGrids(System.Windows.Media.DrawingContext,System.Double,System.Double)">
+            <summary>
+            在控件整体区域上绘制网格（带内边距偏移）
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.FileTransferProgressBar.DrawGridsInner(System.Windows.Media.DrawingContext,System.Double,System.Double)">
+            <summary>
+            在速度波形内部区域绘制网格（无偏移，直接在裁剪区域内）
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.FileTransferProgressBar.DrawSpeedWave(System.Windows.Media.DrawingContext,System.Double,System.Double)">
+            <summary>
+            绘制速度波形多边形
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.HotKeyRecorder">
+            <summary>
+            表示一个热键记录器
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.HotKeyRecorder.#ctor">
+            <summary>
+            初始化 <see cref="T:PowerLib.WPF.Controls.HotKeyRecorder"/> 的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.HotKeyRecorder.HotKey">
+            <summary>
+            获取或设置热键
+            Item1: 修饰键 (Ctrl, Alt, Shift, Windows)
+            Item2: 主键
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.HotKeyRecorder.HotKeyString">
+            <summary>
+            获取热键的字符串表示
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.HotKeyRecorder.ShowHotKeys">
+            <summary>
+            更新显示文本
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.HotKeyRecorder.OnPreviewKeyDown(System.Windows.Input.KeyEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:PowerLib.WPF.Controls.HotKeyRecorder.OnPreviewKeyUp(System.Windows.Input.KeyEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="T:PowerLib.WPF.Controls.IPV4InputBox">
+            <summary>
+            封装一个支持IPV4格式化录入的输入框
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.LoadingCircle">
+            <summary>
+            表示一个Win8Metro风格的加载圆圈动画
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.LoadingCircle.Dot">
+            <summary>
+            表示动画中的一个点，负责逻辑位置计算
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.Dot.#ctor(System.Windows.Point,System.Double)">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.LoadingCircle.Dot"/>的实例
+            </summary>
+            <param name="center">圆心</param>
+            <param name="radius">半径</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.Dot.UpdateLayout(System.Windows.Point,System.Double)">
+            <summary>
+            更新圆心及半径以重新计算点位置
+            </summary>
+            <param name="center">圆心</param>
+            <param name="radius">半径</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.Dot.Reset">
+            <summary>
+            重置点的状态
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.Dot.Action">
+            <summary>
+            触发一次点的动作，使之更新状态以匹配动画帧
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.Dot.ReCalcLocation">
+            <summary>
+             根据圆心、半径、角度重新计算点位置
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.LoadingCircle"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.LoadingCircle.Foreground">
+            <summary>
+            获取或设置前景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.LoadingCircle.Background">
+            <summary>
+            获取或设置背景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.LoadingCircle.IsActive">
+            <summary>
+            获取或设置是否激活动画
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.UpdateLogicState">
+            <summary>
+            逻辑点更新
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.UpdateVisuals">
+            <summary>
+            渲染帧更新
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingCircle.Dispose(System.Boolean)">
+            <summary>
+            释放资源，取消事件订阅
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.LoadingLayer">
+            <summary>
+            提供在任意 WPF 窗口上显示加载遮罩层的静态方法。
+            通过动态注入覆盖层实现，适用于任何 WPF 窗口，无论其根元素类型。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.LoadingLayer.LayerState">
+            <summary>
+            表示单个窗口的遮罩层状态
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLayer.Show(System.Windows.Window,System.Double,System.Boolean,System.Nullable{System.Windows.Media.Color})">
+            <summary>
+            在指定窗口上显示遮罩层
+            </summary>
+            <param name="owner">目标窗口</param>
+            <param name="opacity">遮罩层不透明度（0~1），默认 0.5</param>
+            <param name="showProgressBar">是否显示进度条</param>
+            <param name="overlayColor">遮罩层背景色，默认黑色</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLayer.Close(System.Windows.Window)">
+            <summary>
+            关闭指定窗口上的遮罩层，还原窗口原始内容
+            </summary>
+            <param name="owner">目标窗口</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLayer.ShowAutoClose(System.Windows.Window,System.Action{System.Windows.Window},System.Double,System.Boolean,System.Nullable{System.Windows.Media.Color})">
+            <summary>
+            显示遮罩层，在线程池线程执行工作项委托，并在执行完毕后自动关闭遮罩层
+            </summary>
+            <param name="owner">目标窗口</param>
+            <param name="action">遮罩层显示期间需要执行的委托，参数为目标窗口</param>
+            <param name="opacity">遮罩层不透明度（0~1），默认 0.5</param>
+            <param name="showProgressBar">是否显示进度条</param>
+            <param name="overlayColor">遮罩层背景色，默认黑色</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLayer.UpdateProgress(System.Windows.Window,System.Int32,System.String)">
+            <summary>
+            更新指定窗口上遮罩层的进度（线程安全）
+            </summary>
+            <param name="owner">目标窗口</param>
+            <param name="value">进度值（0-100）</param>
+            <param name="text">进度文本</param>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.LoadingLine">
+            <summary>
+            表示一个Win8Metro风格的加载横线动画
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.LoadingLine.Dot">
+            <summary>
+            表示动画中的一个点，负责逻辑位置计算
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.Dot.#ctor(System.Windows.Size)">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.LoadingLine.Dot"/>的实例
+            </summary>
+            <param name="szContainer">容器大小</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.Dot.UpdateLayout(System.Windows.Size)">
+            <summary>
+            更新容器大小以重新计算点位置
+            </summary>
+            <param name="szContainer">容器大小</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.Dot.Reset">
+            <summary>
+            重置点的状态
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.Dot.Action">
+            <summary>
+            触发一次点的动作，使之更新状态以匹配动画帧
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.Dot.ReCalcLocation">
+            <summary>
+             根据圆心、半径、角度重新计算点位置
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.LoadingLine"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.LoadingLine.Foreground">
+            <summary>
+            获取或设置前景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.LoadingLine.Background">
+            <summary>
+            获取或设置背景画刷
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.LoadingLine.IsActive">
+            <summary>
+            获取或设置是否激活动画
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.UpdateLogicState">
+            <summary>
+            逻辑点更新
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.LoadingLine.UpdateVisuals">
+            <summary>
+            渲染帧更新
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.RippleEffect">
+            <summary>
+            表示一个2D水波特效
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RippleEffect.Texture">
+            <summary>
+            材质位图（只读）
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RippleEffect.Frame">
+            <summary>
+            当前动画帧
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RippleEffect.#ctor(System.Windows.Media.Imaging.WriteableBitmap)">
+            <summary>
+            从 WriteableBitmap 创建水波特效
+            </summary>
+            <param name="texture">材质位图（必须为 Pbgra32 格式）</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RippleEffect.Update">
+            <summary>
+            更新水波物理模拟到下一帧
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RippleEffect.Render">
+            <summary>
+            渲染当前水波效果到 Frame
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RippleEffect.Splash(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            在指定位置产生水波
+            </summary>
+            <param name="x">X坐标</param>
+            <param name="y">Y坐标</param>
+            <param name="radius">水波半径（像素）</param>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RippleEffect.Clear">
+            <summary>
+            清空水波（水面恢复平静）
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.RipplePictureBox">
+            <summary>
+            表示一个带有水波特效的图片控件
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RipplePictureBox.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.RipplePictureBox"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RipplePictureBox.ClickSplashRadius">
+            <summary>
+            获取或设置水波单击时的半径（像素）
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RipplePictureBox.DragSplashRadius">
+            <summary>
+            获取或设置水波拖动/悬停时的半径（像素）
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RipplePictureBox.Image">
+            <summary>
+            获取或设置背景图像（必须为 BitmapSource）
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RipplePictureBox.AnimationEnabled">
+            <summary>
+            获取或设置是否启用动画
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RipplePictureBox.RefreshRate">
+            <summary>
+            获取或设置动画刷新率（1~60 FPS）
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RipplePictureBox.AutoSplash">
+            <summary>
+            获取或设置是否自动播放水波轨迹
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.RipplePictureBox.HoverSplash">
+            <summary>
+            获取或设置是否在鼠标悬停时生成水波（无需按下）
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RipplePictureBox.Splash(System.Double,System.Double,System.Int32)">
+            <summary>
+            在指定位置产生水波（控件坐标 → 纹理坐标）
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RipplePictureBox.Clear">
+            <summary>
+            清除所有水波
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.RipplePictureBox.GenerateAutoSplashPoints">
+            <summary>
+            生成自动水波的预设点（基于原始纹理尺寸的相对坐标）
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Controls.Window">
+            <summary>
+            表示一个具有自定义外观和阴影效果的窗口。该窗口提供了可选的最小化、最大化/还原和关闭按钮，并允许用户通过拖动标题栏来移动窗口。窗口的外观和行为可以通过依赖属性进行定制。
+            <see cref="!:Window.ActualWidth"/>和<see cref="!:Window.ActualHeight"/>属性返回的值包含阴影部分将包含阴影宽度，使用<see cref="P:PowerLib.WPF.Controls.Window.InnerActualWidth"/>和<see cref="P:PowerLib.WPF.Controls.Window.InnerActualHeight"/>属性获取不包含阴影部分的实际宽度和高度。
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.Window.MIN_TITLE_BAR_HEIGHT">
+            <summary>
+            允许标题栏高度的最小值，单位为像素。过小的标题栏可能会导致窗口无法正常显示和操作。默认值为 20。
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Controls.Window.MIN_SHADOW_WIDTH">
+            <summary>
+            允许阴影宽度的最小值，单位为像素。过窄的阴影无意义，并可能会导致窗口边界异常显示。默认值为 8。
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Controls.Window.#ctor">
+            <summary>
+            初始化<see cref="T:PowerLib.WPF.Controls.Window"/>的实例
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.ShowTitleBar">
+            <summary>
+            获取或设置是否显示标题栏。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.ShowMinButton">
+            <summary>
+            获取或设置是否显示最小化按钮。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.ShowMaxButton">
+            <summary>
+            获取或设置是否显示最大化/还原按钮。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.ShowCloseButton">
+            <summary>
+            获取或设置是否显示关闭按钮。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.TitleBarHeight">
+            <summary>
+            获取或设置标题栏高度。默认值为 36。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.BorderWidth">
+            <summary>
+            获取或设置窗口边框宽度。默认值为 1。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.ShadowWidth">
+            <summary>
+            获取或设置窗口阴影宽度。默认值为 50。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.ShadowOpacity">
+            <summary>
+            获取或设置窗口阴影不透明度。默认值为 0.7。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.ShowShadow">
+            <summary>
+            获取或设置是否显示窗口阴影。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.CornerRadius">
+            <summary>
+            获取或设置窗口圆角半径。默认值为 8。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.Background">
+            <summary>
+            获取或设置窗口背景。默认值为白色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.BorderBrush">
+            <summary>
+            获取或设置窗口边框颜色。默认值为黑色。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.EnableEscClose">
+            <summary>
+            获取或设置是否启用按下 Esc 键关闭窗口的功能。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.InnerActualWidth">
+            <summary>
+            获取窗口的实际宽度（不包含阴影部分）。
+            </summary>
+        </member>
+        <member name="P:PowerLib.WPF.Controls.Window.InnerActualHeight">
+            <summary>
+            获取窗口的实际高度（不包含阴影部分）。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.PointExtensions">
+            <summary>
+            提供 <see cref="T:PowerLib.Primitives.Point"/> 与 <see cref="T:System.Windows.Point"/> 之间的转换扩展方法。
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.PointExtensions.ToWpfPoint(PowerLib.Primitives.Point)">
+            <summary>
+            将平台无关的 <see cref="T:PowerLib.Primitives.Point"/> 转换为 WPF 的 <see cref="T:System.Windows.Point"/>。
+            </summary>
+            <param name="point">要转换的共享点。</param>
+            <returns>对应的 WPF 点。</returns>
+        </member>
+        <member name="M:PowerLib.WPF.PointExtensions.ToSharedPoint(System.Windows.Point)">
+            <summary>
+            将 WPF 的 <see cref="T:System.Windows.Point"/> 转换为平台无关的 <see cref="T:PowerLib.Primitives.Point"/>。
+            </summary>
+            <param name="point">要转换的 WPF 点。</param>
+            <returns>对应的共享点。</returns>
+        </member>
+        <member name="T:PowerLib.WPF.SizeExtensions">
+            <summary>
+            提供 <see cref="T:PowerLib.Primitives.Size"/> 与 <see cref="T:System.Windows.Size"/> 之间的转换扩展方法。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.RectangleExtensions">
+            <summary>
+            提供 <see cref="T:PowerLib.Primitives.Rectangle"/> 与 <see cref="T:System.Windows.Rect"/> 之间的转换扩展方法。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.ColorExtensions">
+            <summary>
+            提供 <see cref="T:PowerLib.Primitives.Color"/> 与 <see cref="T:System.Windows.Media.Color"/> 之间的转换扩展方法。
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.ColorExtensions.ToWpfColor(PowerLib.Primitives.Color)">
+            <summary>
+            将平台无关的 <see cref="T:PowerLib.Primitives.Color"/> 转换为 WPF 的 <see cref="T:System.Windows.Media.Color"/>。
+            </summary>
+            <param name="color">要转换的共享颜色。</param>
+            <returns>对应的 WPF 颜色。</returns>
+        </member>
+        <member name="M:PowerLib.WPF.ColorExtensions.ToSharedColor(System.Windows.Media.Color)">
+            <summary>
+            将 WPF 的 <see cref="T:System.Windows.Media.Color"/> 转换为平台无关的 <see cref="T:PowerLib.Primitives.Color"/>。
+            </summary>
+            <param name="color">要转换的 WPF 颜色。</param>
+            <returns>对应的共享颜色。</returns>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.BooleanToVisibilityConverter">
+            <summary>
+            将布尔值转换为可见性。true 显示，false 隐藏。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowClipRectConverter">
+            <summary>
+            将 Window 的 ActualWidth、ActualHeight、ShadowWidth 和 BorderWidth 转换为一个 Rect，用于设置窗口内容的 Clip 属性，以确保内容不会超过边界。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowCloseButtonCornerRadiusConverter">
+            <summary>
+            将 Window 的 CornerRadius 转换为关闭按钮的 CornerRadius，以确保关闭按钮的圆角与窗口的圆角一致。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowContentPresenterMarginConverter">
+            <summary>
+            将 <see cref="T:PowerLib.WPF.Controls.Window"/> 的 <see cref="P:PowerLib.WPF.Controls.Window.ShadowWidth"/> 、 <see cref="P:PowerLib.WPF.Controls.Window.BorderWidth"/> 、<see cref="P:PowerLib.WPF.Controls.Window.ShowTitleBar"/> 和 <see cref="P:PowerLib.WPF.Controls.Window.TitleBarHeight"/>
+            转换为 ContentPresenter 的 Margin，以确保内容不会被阴影、边框或标题栏遮挡。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowCornerRadiusConverter">
+            <summary>
+            将 Window 的 CornerRadius（double）转换为 System.Windows.CornerRadius，以便在 XAML 中直接绑定 CornerRadius 属性。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowResizeBorderThicknessConverter">
+            <summary>
+            将窗口阴影宽度转换为调整边框的厚度。默认阴影宽度为 0 时，调整边框厚度为 8；当阴影宽度增加时，调整边框厚度也相应增加，以确保用户仍然可以轻松调整窗口大小。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowShadowBlurRadiusConverter">
+            <summary>
+            将 Window 的 ShadowWidth 转换为 DropShadowEffect 的 BlurRadius，以确保阴影的模糊程度与边框宽度成正比。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowShadowOpacityConverter">
+            <summary>
+            将 <see cref="T:PowerLib.WPF.Controls.Window"/> 的 <see cref="P:PowerLib.WPF.Controls.Window.ShowShadow"/> 和 <see cref="P:PowerLib.WPF.Controls.Window.ShadowOpacity"/> 转换为 DropShadowEffect 的 Opacity，以确保当用户选择不显示阴影时，阴影的透明度为 0，从而隐藏阴影效果；当用户选择显示阴影时，使用用户设置的透明度值来显示阴影效果。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowTitleBarCornerRadiusConverter">
+            <summary>
+            将 Window 的 CornerRadius 转换为标题栏的 CornerRadius，以确保标题栏的圆角与窗口的圆角一致。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.Converters.WindowTitleBarMarginConverter">
+            <summary>
+            将 <see cref="T:PowerLib.WPF.Controls.Window"/> 的 <see cref="P:PowerLib.WPF.Controls.Window.ShadowWidth"/> 和 <see cref="P:PowerLib.WPF.Controls.Window.BorderWidth"/> 转换为标题栏的 Margin，以确保标题栏不会被阴影或边框遮挡。
+            </summary>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.SkinHelper">
+            <summary>
+            封装皮肤应用的工具类，提供方法来动态加载和切换 PowerLib.WPF 应用程序的皮肤资源字典。
+            </summary>
+        </member>
+        <member name="M:PowerLib.WPF.Tools.SkinHelper.ApplySkin(System.String)">
+            <summary>
+            应用指定的皮肤资源字典到当前应用程序。<br/>
+            该方法会从参数 <see cref="!:strSkinFileUri"/> 中加载指定的 XAML 文件，并将其作为新的资源字典应用到应用程序的资源集合中。<br/>
+            调用前应确保默认皮肤资源字典和主题资源字典分别位于 Application.Current.Resources.MergedDictionaries 的第一和第二位置，以便正确移除旧的皮肤资源字典。<br/>
+            通过创建自定义的颜色资源字典，并按照PowerLib.WPF/Themes/Basic/ColorsDefault.xaml中的Key值覆盖对应颜色值。<br/>
+            随后将创建的资源字典uri作为参数传递给此方法，可以实现对应用程序皮肤的个性化定制。
+            </summary>
+            <param name="strSkinFileUri"></param>
+        </member>
+        <member name="T:PowerLib.WPF.Tools.VisualHelper">
+            <summary>
+            可视化辅助类
+            </summary>
+        </member>
+        <member name="F:PowerLib.WPF.Tools.VisualHelper.IsVisualStateAnimatedProperty">
+            <summary>
+            控制控件在状态改变（如 MouseOver, IsPressed）时是否执行动画过渡（如果支持），默认值是false。
+            </summary>
+        </member>
+    </members>
+</doc>

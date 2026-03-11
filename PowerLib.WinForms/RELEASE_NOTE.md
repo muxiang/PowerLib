@@ -1,0 +1,1 @@
+Restructure the project, rename PowerLib.Winform to PowerLib.WinForms, and publish PowerLib.WPF.

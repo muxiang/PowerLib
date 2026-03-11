@@ -47,7 +47,7 @@
 	<!-- Pack 前读取 RELEASE_NOTE.md 并写入 PackageReleaseNotes -->
 	<Target Name="LoadPackageReleaseNotes" BeforeTargets="GenerateNuspec">
 		<PropertyGroup>
-			<_ReleaseNoteFile>$(MSBuildProjectDirectory)\..\RELEASE_NOTE.md</_ReleaseNoteFile>
+			<_ReleaseNoteFile>$(MSBuildProjectDirectory)\RELEASE_NOTE.md</_ReleaseNoteFile>
 		</PropertyGroup>
 
 		<ReadLinesFromFile File="$(_ReleaseNoteFile)" Condition="Exists('$(_ReleaseNoteFile)')">

@@ -10,7 +10,7 @@
 		<PackageId>PowerLib.WPF</PackageId>
 		<Version>1.0.10</Version>
 		<Authors>Mu Xiang</Authors>
-		<Description>Assembly providing some good-looking UI use in Winform.</Description>
+		<Description>Assembly providing some good-looking UI use in WPF.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/muxiang/PowerLib</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
@@ -62,7 +62,7 @@
 	<!-- Pack 前读取 RELEASE_NOTE.md 并写入 PackageReleaseNotes -->
 	<Target Name="LoadPackageReleaseNotes" BeforeTargets="GenerateNuspec">
 		<PropertyGroup>
-			<_ReleaseNoteFile>$(MSBuildProjectDirectory)\..\RELEASE_NOTE.md</_ReleaseNoteFile>
+			<_ReleaseNoteFile>$(MSBuildProjectDirectory)\RELEASE_NOTE.md</_ReleaseNoteFile>
 		</PropertyGroup>
 
 		<ReadLinesFromFile File="$(_ReleaseNoteFile)" Condition="Exists('$(_ReleaseNoteFile)')">
