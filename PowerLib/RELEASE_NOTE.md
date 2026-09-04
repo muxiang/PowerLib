@@ -1,1 +1,1 @@
-Restructure the project, rename PowerLib.Winform to PowerLib.WinForms, and publish PowerLib.WPF.
+Upgrade the target framework to .NET Framework 4.8.
