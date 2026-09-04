@@ -7,7 +7,7 @@
 
 		<!-- NuGet 元数据 -->
 		<PackageId>PowerLib</PackageId>
-		<Version>1.0.10</Version>
+		<Version>1.0.11</Version>
 		<Authors>Mu Xiang</Authors>
 		<Description>Core assembly for all PowerLib assemblies.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
